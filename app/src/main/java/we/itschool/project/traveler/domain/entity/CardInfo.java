@@ -3,7 +3,8 @@ package we.itschool.project.traveler.domain.entity;
 public class CardInfo {
 
     private final String city;
-    private final String description;
+    private final String fullDescription;
+    private final String shortDescription;
     private final String email;
     private final String phone;
     private final String address;
@@ -11,13 +12,15 @@ public class CardInfo {
 
     public CardInfo(
             String city,
-            String description,
+            String fullDescription,
+            String shortDescription,
             String email,
             String phone,
             String address,
             String pathToPhoto) {
         this.city = city;
-        this.description = description;
+        this.fullDescription = fullDescription;
+        this.shortDescription = shortDescription;
         this.email = email;
         this.phone = phone;
         this.address = address;
@@ -28,8 +31,8 @@ public class CardInfo {
         return city;
     }
 
-    public String getDescription() {
-        return description;
+    public String getFullDescription() {
+        return fullDescription;
     }
 
     public String getEmail() {
