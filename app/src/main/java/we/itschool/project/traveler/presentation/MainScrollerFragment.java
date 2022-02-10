@@ -64,6 +64,6 @@ public class MainScrollerFragment extends Fragment {
             ViewGroup container,
             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_scroller, container, false);
+        return inflater.inflate(R.layout.activity_small_card, container, false);
     }
 }
