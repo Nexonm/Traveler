@@ -35,6 +35,10 @@ public class CardInfo {
         return fullDescription;
     }
 
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
     public String getEmail() {
         return email;
     }
