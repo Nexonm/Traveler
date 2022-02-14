@@ -1,9 +1,9 @@
-package we.itschool.project.traveler.presentation;
+package we.itschool.project.traveler.presentation.activity;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import we.itschool.project.traveler.R;
 
