@@ -44,8 +44,8 @@ public class Card {
         }
         Card guest = (Card) obj;
         return
-                _id == guest.get_id()
-                        && (cardInfo == guest.getCardInfo()
+                _id == guest.get_id() && (
+                        cardInfo == guest.getCardInfo()
                         || (cardInfo != null && cardInfo.equals(guest.getCardInfo()))
                 );
     }
