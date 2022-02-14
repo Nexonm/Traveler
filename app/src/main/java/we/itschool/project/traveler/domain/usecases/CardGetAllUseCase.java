@@ -15,7 +15,7 @@ public class CardGetAllUseCase {
         this.repository = repository;
     }
 
-    MutableLiveData<ArrayList<Card>> cardGetAll(){
+    public MutableLiveData<ArrayList<Card>> cardGetAll(){
         return repository.cardGetAll();
     }
 
