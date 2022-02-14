@@ -1,5 +1,7 @@
 package we.itschool.project.traveler.domain.entity;
 
+import androidx.annotation.Nullable;
+
 public class Card {
     public static final int UNDEFINED_ID;
     private int _id;
@@ -32,5 +34,19 @@ public class Card {
         return cardInfo;
     }
 
-
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Card guest = (Card) obj;
+        return
+                _id == guest.get_id()
+                        && (cardInfo == guest.getCardInfo()
+                        || (cardInfo != null && cardInfo.equals(guest.getCardInfo()))
+                );
+    }
 }
