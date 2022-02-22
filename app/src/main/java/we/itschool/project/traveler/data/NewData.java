@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.Data;
+package we.itschool.project.traveler.data;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

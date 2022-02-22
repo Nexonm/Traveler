@@ -2,7 +2,7 @@ package we.itschool.project.traveler.app;
 
 import android.app.Application;
 
-import we.itschool.project.traveler.Data.repositoryImpl.CardArrayListRepositoryImpl;
+import we.itschool.project.traveler.data.repositoryImpl.CardArrayListRepositoryImpl;
 import we.itschool.project.traveler.domain.usecases.CardAddNewUseCase;
 import we.itschool.project.traveler.domain.usecases.CardDeleteByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.CardEditByIdUseCase;
