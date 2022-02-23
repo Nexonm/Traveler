@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.domain.entity.Card;
 import we.itschool.project.traveler.domain.entity.CardInfo;
+import we.itschool.project.traveler.domain.entity.Person;
+import we.itschool.project.traveler.domain.entity.PersonInfo;
 
 public class NewData {
 
@@ -92,11 +94,19 @@ public class NewData {
         return
                 new Card(
                         new CardInfo(
+                                new Person(
+                                        new PersonInfo(
+                                                genShortDescription(),
+                                                genShortDescription(),
+                                                genEmail(),
+                                                genAddress(),
+                                                genPhoneNumber(),
+                                                genPathToPhoto()
+                                        )
+                                ),
                                 genCity(),
                                 genFullDescription(),
                                 genShortDescription(),
-                                genEmail(),
-                                genPhoneNumber(),
                                 genAddress(),
                                 genPathToPhoto()
                         )
