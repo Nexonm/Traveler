@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.domain.entity.Card;
 import we.itschool.project.traveler.domain.entity.CardInfo;
+import we.itschool.project.traveler.domain.entity.Person;
+import we.itschool.project.traveler.domain.entity.PersonInfo;
 
 public class NewData {
 
@@ -30,6 +32,24 @@ public class NewData {
                 "Лос-Анджелес", "Барселона", "Мадрид", "Рим", "Доха",
                 "Чикаго", "Абу-Даби", "Сан-Франциско"};
         return cities[(int) (Math.random() * cities.length)];
+    }
+
+    public static String genFirstName() {
+        String[] names = {"Беатриса", "Ванесса", "Джульетта", "Изабелла", "Розалина",
+                "Камилла", "Таня", "Август", "Кай",
+                "Елисей", "Сергей", "Алексей",
+                "Никита", "Снежана", "Надежда", "Матвей",
+                "Итто", "Синдзи", "Рей", "Сара", "Аска", "Харухи", "Юмэко", "Чуя", "Кагуя"};
+        return names[(int) (Math.random() * names.length)];
+    }
+
+    public static String genSecondName() {
+        String[] names = {"Аратаки", "Кинг", "Грей", "Адамс", "Хейз",
+                "Смит", "Кларк", "Куджо", "Аянами",
+                "Икари", "Тейлор", "Джонсон",
+                "Такахаси", "Ягами", "Миямото", "Учиха",
+                "Джостар", "Адзусагава", "Накахара", "Камадо", "де Блуа", "Шмидт", "Рихтер", "Кляйн"};
+        return names[(int) (Math.random() * names.length)];
     }
 
     public static String genShortDescription() {
@@ -82,26 +102,36 @@ public class NewData {
         return genCity() + "_toVisit@gmail.com";
     }
 
+    public static String genDate() {
+        return "24.02.2000";
+    }
+
     public static String genAddress() {
         return "City " + genCity()
                 + ", Street " + genNumber(2)
                 + ", Home " + genNumber(2);
     }
 
-    public static Card newCard(){
+    public static Card newCard() {
         return
                 new Card(
                         new CardInfo(
+                                new Person(
+                                        new PersonInfo(
+                                                genFirstName(),
+                                                genSecondName(),
+                                                genEmail(),
+                                                genPhoneNumber(),
+                                                genDate(),
+                                                genPathToPhoto()
+                                        )
+                                ),
                                 genCity(),
                                 genFullDescription(),
                                 genShortDescription(),
-                                genEmail(),
-                                genPhoneNumber(),
                                 genAddress(),
                                 genPathToPhoto()
                         )
                 );
     }
-
-
 }
