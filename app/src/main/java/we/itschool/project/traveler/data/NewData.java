@@ -134,4 +134,17 @@ public class NewData {
                         )
                 );
     }
+    public static Person newPerson() {
+        return
+                new Person(
+                        new PersonInfo(
+                                genFirstName(),
+                                genSecondName(),
+                                genEmail(),
+                                genPhoneNumber(),
+                                genDate(),
+                                genPathToPhoto()
+                        )
+                );
+    }
 }
