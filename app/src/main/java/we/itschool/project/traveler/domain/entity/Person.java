@@ -1,18 +1,18 @@
 package we.itschool.project.traveler.domain.entity;
 
 public class Person {
-    public static final int UNDEFINED_INFO;
+    public static final int UNDEFINED_ID;
     private int id;
 
     private final PersonInfo personInfo;
 
     static {
-        UNDEFINED_INFO = -1;
+        UNDEFINED_ID = -1;
     }
 
     public Person(PersonInfo personInfo) {
         this.personInfo = personInfo;
-        this.id = UNDEFINED_INFO;
+        this.id = UNDEFINED_ID;
     }
 
     public PersonInfo getPersonInfo() {
@@ -25,5 +25,9 @@ public class Person {
 
     public int get_id() {
         return id;
+    }
+
+    public void set_id(int id) {
+        this.id = id;
     }
 }
