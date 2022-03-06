@@ -71,9 +71,9 @@ public class Adapter extends ListAdapter<Card, ViewHolder> {
         viewHolder.iv_avatar_image.setImageResource(resId);
         viewHolder.itemView.setOnClickListener(
                 v -> {
-                    Toast.makeText(context, "people position = "+ position+"\npeople _id = "+ card.get_id(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "card position = "+ position+"\ncard _id = "+ card.get_id(), Toast.LENGTH_SHORT).show();
                     // TODO how it work now
-                    cardClickListener.onCardClick(position);
+                    cardClickListener.onCardClick(getCurrentList().get(position));
                     // TODO how it must be work
                     //peopleClickListener.onPeopleClick(card.get_id());
                 }
@@ -81,6 +81,6 @@ public class Adapter extends ListAdapter<Card, ViewHolder> {
     }
 
     interface OnCardClickListener {
-        void onCardClick(int peopleId);
+        void onCardClick(Card card);
     }
 }
