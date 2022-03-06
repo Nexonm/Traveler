@@ -8,10 +8,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.domain.entity.Card;
+import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
 
 public class CardList extends Fragment {
 
@@ -24,7 +29,7 @@ public class CardList extends Fragment {
 
     private Adapter adapter;
 
-    public static CardList newInstance(boolean isOnePane){
+    public static CardList newInstance(boolean isOnePane) {
         Bundle args = new Bundle();
         args.putBoolean(ARGUMENT_IS_ONE_PANE_MODE, isOnePane);
         CardList fragment = new CardList();
@@ -32,7 +37,7 @@ public class CardList extends Fragment {
         return fragment;
     }
 
-    private void parseParams(){
+    private void parseParams() {
         Bundle args = requireArguments();
         if (!args.containsKey(ARGUMENT_IS_ONE_PANE_MODE))
             throw new RuntimeException("Argument 'is onePane' is absent");
@@ -70,12 +75,7 @@ public class CardList extends Fragment {
 
     private void initAdapter() {
         adapter = new Adapter(new DiffCallback());
-        adapter.cardClickListener = new Adapter.OnCardClickListener() {
-            @Override
-            public void onCardClick(int peopleId) {
-                //TODO start a new fragment AboutCard
-            }
-        };
+        adapter.cardClickListener = this::startCardFragment;
     }
 
     private void initViewModel() {
@@ -85,10 +85,30 @@ public class CardList extends Fragment {
         });
     }
 
-    private void initView(View view){
+    private void initView(View view) {
         recyclerView = view.findViewById(R.id.rv_card_list);
         recyclerView.setAdapter(adapter);
         recyclerView.getRecycledViewPool().setMaxRecycledViews(
                 Adapter.VIEW_TYPE_CARD_VISITOR, Adapter.MAX_POOL_SIZE);
+    }
+
+    private void startCardFragment(Card card) {
+        Fragment fragment = CardFragment.newInstance(
+                (new Gson()).toJson(card)
+        );
+        FragmentManager fragmentManager = getParentFragmentManager();
+        fragmentManager.popBackStack();
+        if (isOnePane)
+            fragmentManager
+                    .beginTransaction()
+                    .addToBackStack("null")
+                    .replace(R.id.container_card_list, fragment, null)
+                    .commit();
+        else
+            fragmentManager
+                    .beginTransaction()
+                    .addToBackStack("null")
+                    .replace(R.id.container_card_big_view, fragment, null)
+                    .commit();
     }
 }
