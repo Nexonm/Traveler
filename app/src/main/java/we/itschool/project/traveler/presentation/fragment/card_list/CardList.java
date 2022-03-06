@@ -15,12 +15,29 @@ import we.itschool.project.traveler.R;
 
 public class CardList extends Fragment {
 
+    private static final String ARGUMENT_IS_ONE_PANE_MODE = "is onePaneMode";
+    private boolean isOnePane;
 
     private CardListViewModel viewModel;
 
     private RecyclerView recyclerView;
 
     private Adapter adapter;
+
+    public static CardList newInstance(boolean isOnePane){
+        Bundle args = new Bundle();
+        args.putBoolean(ARGUMENT_IS_ONE_PANE_MODE, isOnePane);
+        CardList fragment = new CardList();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    private void parseParams(){
+        Bundle args = requireArguments();
+        if (!args.containsKey(ARGUMENT_IS_ONE_PANE_MODE))
+            throw new RuntimeException("Argument 'is onePane' is absent");
+        isOnePane = args.getBoolean(ARGUMENT_IS_ONE_PANE_MODE);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
