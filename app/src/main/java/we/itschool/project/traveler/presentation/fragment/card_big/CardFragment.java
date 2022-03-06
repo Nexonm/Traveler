@@ -41,7 +41,7 @@ public class CardFragment extends Fragment {
         String cardGson = args.getString(ARGUMENT_CARD_GSON);
         card = (new Gson()).fromJson(cardGson, Card.class);
         if (AppStart.isLog) {
-            Log.w("AboutPeople", "Incoming parseParams:   " + cardGson + "\n");
+            Log.w("CardFragment", "Incoming parseParams:   " + cardGson + "\n");
         }
     }
 
@@ -97,11 +97,11 @@ public class CardFragment extends Fragment {
                 .setText(
                         card.getCardInfo()
                                 .getPerson().getPersonInfo().getFirstName()
-                        );
+                );
         ((TextView) view.findViewById(R.id.tv_avatar_profile_data_small_SN))
                 .setText(
                         card.getCardInfo()
-                                        .getPerson().getPersonInfo().getSecondName()
+                                .getPerson().getPersonInfo().getSecondName()
                 );
         ((TextView) view.findViewById(R.id.tv_description_long))
                 .setText(card.getCardInfo().getFullDescription());

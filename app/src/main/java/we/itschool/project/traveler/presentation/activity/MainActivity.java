@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initFragments() {
-        fragmentCardList = findViewById(R.id.container_card_list);
         fragmentBigCard = findViewById(R.id.container_card_big_view);
+        fragmentCardList = findViewById(R.id.container_card_list);
         isOnePane = isOnePaneMode();
     }
 

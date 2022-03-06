@@ -15,7 +15,7 @@ public class PersonGetAllUseCase {
         this.repository = repository;
     }
 
-    MutableLiveData<ArrayList<Person>> personGetAll() {
+    public MutableLiveData<ArrayList<Person>> personGetAll() {
         return repository.personGetAll();
     }
 
