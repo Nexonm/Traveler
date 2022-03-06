@@ -56,6 +56,11 @@ public class Adapter extends ListAdapter<Card, ViewHolder> {
     }
 
     @Override
+    public int getItemViewType(int position){
+        return VIEW_TYPE_CARD_VISITOR;
+    }
+
+    @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         Card card = getItem(position);
         viewHolder.tv_name_of_city.setText(card.getCardInfo().getCity());
