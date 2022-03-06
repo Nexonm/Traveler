@@ -12,6 +12,8 @@ import we.itschool.project.traveler.presentation.fragment.card_list.CardList;
 public class MainActivity extends AppCompatActivity {
 
     FragmentContainerView fragmentCardList = null;
+    FragmentContainerView fragmentBigCard = null;
+    private boolean isOnePane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +27,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void initFragments() {
         fragmentCardList = findViewById(R.id.container_card_list);
+        fragmentBigCard = findViewById(R.id.container_card_big_view);
+        isOnePane = isOnePaneMode();
+    }
+
+    private boolean isOnePaneMode() {
+        return fragmentBigCard == null;
     }
 
     private void startFragmentCardList() {
-        Fragment fragment = new CardList();
+        Fragment fragment = CardList.newInstance(isOnePane);
         getSupportFragmentManager()
                 .popBackStack();
         getSupportFragmentManager()
