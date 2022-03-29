@@ -47,7 +47,7 @@ public class CardList extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        parseParams();
+        //parseParams();
     }
 
     @Nullable
@@ -103,13 +103,13 @@ public class CardList extends Fragment {
             fragmentManager
                     .beginTransaction()
                     .addToBackStack("null")
-                    .replace(R.id.container_card_list, fragment, null)
+                    .replace(R.id.nav_host_fragment_content_main, fragment, null)
                     .commit();
-        else
-            fragmentManager
-                    .beginTransaction()
-                    .addToBackStack("null")
-                    .replace(R.id.container_card_big_view, fragment, null)
-                    .commit();
+//        else
+//            fragmentManager
+//                    .beginTransaction()
+//                    .addToBackStack("null")
+//                    .replace(R.id.container_card_big_view, fragment, null)
+//                    .commit();
     }
 }
