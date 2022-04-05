@@ -8,12 +8,12 @@ import we.itschool.project.traveler.domain.usecases.CardDeleteByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.CardEditByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.CardGetAllUseCase;
 import we.itschool.project.traveler.domain.usecases.CardGetByIdUseCase;
-import we.itschool.project.traveler.data.repositoryImpl.PersonArrayListRepositoryImpl;
-import we.itschool.project.traveler.domain.usecases.PersonAddNewUseCase;
-import we.itschool.project.traveler.domain.usecases.PersonDeleteByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.PersonEditByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.PersonGetAllUseCase;
-import we.itschool.project.traveler.domain.usecases.PersonGetByIdUseCase;
+import we.itschool.project.traveler.data.repositoryImpl.UserArrayListRepositoryImpl;
+import we.itschool.project.traveler.domain.usecases.UserAddNewUseCase;
+import we.itschool.project.traveler.domain.usecases.UserDeleteByIdUseCase;
+import we.itschool.project.traveler.domain.usecases.UserEditByIdUseCase;
+import we.itschool.project.traveler.domain.usecases.UserGetAllUseCase;
+import we.itschool.project.traveler.domain.usecases.UserGetByIdUseCase;
 
 public class AppStart extends Application {
     public static final boolean isLog = true;
@@ -26,13 +26,13 @@ public class AppStart extends Application {
     public static CardEditByIdUseCase cardEditByIdUC;
     public static CardDeleteByIdUseCase cardDeleteByIdUC;
 
-    public static PersonArrayListRepositoryImpl imp1;
+    public static UserArrayListRepositoryImpl imp1;
 
-    public static PersonGetAllUseCase personGetAllUC;
-    public static PersonGetByIdUseCase personGetByIdUC;
-    public static PersonAddNewUseCase personAddNewUC;
-    public static PersonEditByIdUseCase personEditByIdUC;
-    public static PersonDeleteByIdUseCase personDeleteByIdUC;
+    public static UserGetAllUseCase personGetAllUC;
+    public static UserGetByIdUseCase personGetByIdUC;
+    public static UserAddNewUseCase personAddNewUC;
+    public static UserEditByIdUseCase personEditByIdUC;
+    public static UserDeleteByIdUseCase personDeleteByIdUC;
 
     @Override
     public void onCreate() {
@@ -45,11 +45,11 @@ public class AppStart extends Application {
         cardEditByIdUC = new CardEditByIdUseCase(imp);
         cardDeleteByIdUC = new CardDeleteByIdUseCase(imp);
 
-        imp1 = new PersonArrayListRepositoryImpl();
-        personGetAllUC = new PersonGetAllUseCase(imp1);
-        personGetByIdUC = new PersonGetByIdUseCase(imp1);
-        personAddNewUC = new PersonAddNewUseCase(imp1);
-        personEditByIdUC = new PersonEditByIdUseCase(imp1);
-        personDeleteByIdUC = new PersonDeleteByIdUseCase(imp1);
+        imp1 = new UserArrayListRepositoryImpl();
+        personGetAllUC = new UserGetAllUseCase(imp1);
+        personGetByIdUC = new UserGetByIdUseCase(imp1);
+        personAddNewUC = new UserAddNewUseCase(imp1);
+        personEditByIdUC = new UserEditByIdUseCase(imp1);
+        personDeleteByIdUC = new UserDeleteByIdUseCase(imp1);
     }
 }

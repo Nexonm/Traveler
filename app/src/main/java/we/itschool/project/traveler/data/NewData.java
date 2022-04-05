@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.domain.entity.Card;
 import we.itschool.project.traveler.domain.entity.CardInfo;
-import we.itschool.project.traveler.domain.entity.Person;
-import we.itschool.project.traveler.domain.entity.PersonInfo;
+import we.itschool.project.traveler.domain.entity.User;
+import we.itschool.project.traveler.domain.entity.UserInfo;
 
 public class NewData {
 
@@ -116,8 +116,8 @@ public class NewData {
         return
                 new Card(
                         new CardInfo(
-                                new Person(
-                                        new PersonInfo(
+                                new User(
+                                        new UserInfo(
                                                 genFirstName(),
                                                 genSecondName(),
                                                 genEmail(),
@@ -134,10 +134,10 @@ public class NewData {
                         )
                 );
     }
-    public static Person newPerson() {
+    public static User newUser() {
         return
-                new Person(
-                        new PersonInfo(
+                new User(
+                        new UserInfo(
                                 genFirstName(),
                                 genSecondName(),
                                 genEmail(),

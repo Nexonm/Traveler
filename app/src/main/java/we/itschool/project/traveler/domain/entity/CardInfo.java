@@ -1,7 +1,7 @@
 package we.itschool.project.traveler.domain.entity;
 
 public class CardInfo {
-    private final Person person;
+    private final User user;
     private final String city;
     private final String fullDescription;
     private final String shortDescription;
@@ -9,13 +9,13 @@ public class CardInfo {
     private final String pathToPhoto;
 
     public CardInfo(
-            Person person,
+            User user,
             String city,
             String fullDescription,
             String shortDescription,
             String address,
             String pathToPhoto) {
-        this.person = person;
+        this.user = user;
         this.city = city;
         this.fullDescription = fullDescription;
         this.shortDescription = shortDescription;
@@ -23,8 +23,8 @@ public class CardInfo {
         this.pathToPhoto = pathToPhoto;
     }
 
-    public Person getPerson() {
-        return person;
+    public User getUser() {
+        return user;
     }
 
     public String getCity() {

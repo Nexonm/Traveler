@@ -1,6 +1,6 @@
 package we.itschool.project.traveler.domain.entity;
 
-public class PersonInfo {
+public class UserInfo {
     private final String firstName;
     private final String secondName;
     private final String email;
@@ -8,7 +8,7 @@ public class PersonInfo {
     private final String pathToPhoto;
     private final String dateOfBirth;
 
-    public PersonInfo(
+    public UserInfo(
             String firstName,
             String secondName,
             String email,

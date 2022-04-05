@@ -37,7 +37,7 @@ public class CardFragment extends Fragment {
     private void parseParams() {
         Bundle args = requireArguments();
         if (!args.containsKey(ARGUMENT_CARD_GSON))
-            throw new RuntimeException("Argument '\''card gson'\'' is absent");
+            throw new RuntimeException("Argument card gson is absent");
         String cardGson = args.getString(ARGUMENT_CARD_GSON);
         card = (new Gson()).fromJson(cardGson, Card.class);
         if (AppStart.isLog) {
@@ -81,10 +81,10 @@ public class CardFragment extends Fragment {
                 "drawable",
                 view.getContext().getPackageName()
         );
-        String mDrawablePerson = card.getCardInfo()
-                .getPerson().getPersonInfo().getPathToPhoto();
-        int resIDPerson = view.getContext().getResources().getIdentifier(
-                mDrawablePerson,
+        String mDrawableUser = card.getCardInfo()
+                .getUser().getUserInfo().getPathToPhoto();
+        int resIDUser = view.getContext().getResources().getIdentifier(
+                mDrawableUser,
                 "drawable",
                 view.getContext().getPackageName()
         );
@@ -92,16 +92,16 @@ public class CardFragment extends Fragment {
         ((ImageView) view.findViewById(R.id.iv_main_image_big_card))
                 .setImageResource(resIDCard);
         ((ImageView) view.findViewById(R.id.iv_avatar_image_big_card))
-                .setImageResource(resIDPerson);
+                .setImageResource(resIDUser);
         ((TextView) view.findViewById(R.id.tv_avatar_profile_data_small_FN))
                 .setText(
                         card.getCardInfo()
-                                .getPerson().getPersonInfo().getFirstName()
+                                .getUser().getUserInfo().getFirstName()
                 );
         ((TextView) view.findViewById(R.id.tv_avatar_profile_data_small_SN))
                 .setText(
                         card.getCardInfo()
-                                .getPerson().getPersonInfo().getSecondName()
+                                .getUser().getUserInfo().getSecondName()
                 );
         ((TextView) view.findViewById(R.id.tv_description_long))
                 .setText(card.getCardInfo().getFullDescription());
