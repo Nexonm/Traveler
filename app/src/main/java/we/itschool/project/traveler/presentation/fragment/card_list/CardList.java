@@ -58,7 +58,7 @@ public class CardList extends Fragment {
             @Nullable Bundle savedInstanceState
     ) {
         return inflater.inflate(
-                R.layout.fragment_card_list,
+                R.layout.fragment_main,
                 container,
                 false);
     }
@@ -105,11 +105,11 @@ public class CardList extends Fragment {
                     .addToBackStack("null")
                     .replace(R.id.nav_host_fragment_content_main, fragment, null)
                     .commit();
-//        else
-//            fragmentManager
-//                    .beginTransaction()
-//                    .addToBackStack("null")
-//                    .replace(R.id.container_card_big_view, fragment, null)
-//                    .commit();
+        else
+            fragmentManager
+                    .beginTransaction()
+                    .addToBackStack("null")
+                    .replace(R.id.container_card_big_view, fragment, null)
+                    .commit();
     }
 }
