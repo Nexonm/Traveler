@@ -4,17 +4,24 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.NewData;
-import we.itschool.project.traveler.domain.entity.User;
+import we.itschool.project.traveler.data.api.APIServiceConstructor;
+import we.itschool.project.traveler.data.api.service.APIServiceUser;
+import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
 
 public class UserArrayListRepositoryImpl implements UserDomainRepository {
 
-    private final MutableLiveData<ArrayList<User>> dataLiveData;
-    private final ArrayList<User> data;
+    private final MutableLiveData<ArrayList<UserEntity>> dataLiveData;
+    private final ArrayList<UserEntity> data;
 
     {
         data = new ArrayList<>();
@@ -31,12 +38,96 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
 
     {
         for (int i = 0; i < NUM_OF_PEOPLE_TO_DO; i++) {
-            userAddNew(
-                    NewData.newUser()
-            );
-
+//            userAddNew(
+//                    NewData.newUser()
+//            );
         }
+//        addNewUserRetrofit();
+//        addSomeDataToUser();
     }
+
+    private void addNewUserRetrofit() {
+        APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
+
+        String password = "some password";
+        String firstName = "some FirstName";
+        String secondName = "some SecondName";
+        String email = "someTestEmailFromServer@gmail.com";
+        String dateOfBirth = "20.09.2011";
+        JSONObject json = new JSONObject();
+        try {
+            json.put("password", password);
+            json.put("firstName", firstName);
+            json.put("secondName", secondName);
+            json.put("email", email);
+            json.put("dateOfBirth", dateOfBirth);
+        } catch (JSONException e) {
+            Log.v("retrofitLogger", "some mistake JSONObject" + e.getMessage());
+            e.printStackTrace();
+        }
+
+
+        Log.v("retrofitLogger", "add User to Server, model.toJson():" + json.toString());
+        Call<String> call = service.regUserMain(json.toString());
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body() != null) {
+                    Log.v("retrofitLogger", "add User to Server, answer" + response.body());
+                } else {
+                    Log.v("retrofitLogger", "null response.body on addNewUserRetrofit");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.v("retrofitLogger", "some error!!! on failure, Cannot add new User toServer:" +
+                        " t:" + t.getMessage());
+            }
+        });
+
+    }
+
+    private void addSomeDataToUser() {
+        APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
+
+        String phoneNumber = "some password";
+        String socialContacts = "some FirstName";
+        boolean isMale = true;
+        String email = "someTestEmailFromServer@gmail.com";
+        JSONObject json = new JSONObject();
+        try {
+            json.put("phoneNumber", phoneNumber);
+            json.put("socialContacts", socialContacts);
+            json.put("isMale", isMale);
+            json.put("email", email);
+        } catch (JSONException e) {
+            Log.v("retrofitLogger", "some mistake JSONObject" + e.getMessage());
+            e.printStackTrace();
+        }
+
+
+        Log.v("retrofitLogger", "add User to Server, model.toJson():" + json.toString());
+        Call<String> call = service.regUserAdd(json.toString());
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body() != null) {
+                    Log.v("retrofitLogger", "additional User info to Server, answer" + response.body());
+                } else {
+                    Log.v("retrofitLogger", "null response.body on addSomeDataToUser");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.v("retrofitLogger", "some error!!! on failure, Cannot add new User toServer:" +
+                        " t:" + t.getMessage());
+            }
+        });
+
+    }
+
 
     private void updateLiveData() {
         dataLiveData.postValue(new ArrayList<>(data));
@@ -46,34 +137,34 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
     }
 
     @Override
-    public void userAddNew(User user) {
-        if (user.get_id() == User.UNDEFINED_ID)
+    public void userAddNew(UserEntity user) {
+        if (user.get_id() == UserEntity.UNDEFINED_ID)
             user.set_id(autoIncrementId++);
         data.add(user);
         updateLiveData();
     }
 
     @Override
-    public void userDeleteById(User user) {
+    public void userDeleteById(UserEntity user) {
         data.remove(user);
         updateLiveData();
     }
 
     @Override
-    public void userEditById(User user) {
-        User user_old = userGetById(user.get_id());
+    public void userEditById(UserEntity user) {
+        UserEntity user_old = userGetById(user.get_id());
         userDeleteById(user_old);
         userAddNew(user);
     }
 
     @Override
-    public MutableLiveData<ArrayList<User>> userGetAll() {
+    public MutableLiveData<ArrayList<UserEntity>> userGetAll() {
         return dataLiveData;
     }
 
     @Override
-    public User userGetById(int id) {
-        User user = data.get(id);
+    public UserEntity userGetById(int id) {
+        UserEntity user = data.get(id);
         if (user != null)
             return user;
         else throw new RuntimeException("There is no element with id = " + id);

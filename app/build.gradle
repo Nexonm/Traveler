@@ -41,6 +41,15 @@ dependencies {
     // Navigation
     implementation 'androidx.navigation:navigation-fragment:2.4.1'
     implementation 'androidx.navigation:navigation-ui:2.4.1'
-    // The GSON
-    implementation 'com.google.code.gson:gson:2.8.7'
+    // gson
+    implementation 'com.google.code.gson:gson:2.9.0'
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
+    //logging
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 }

@@ -10,14 +10,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import we.itschool.project.traveler.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
 import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean isOnePane;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 

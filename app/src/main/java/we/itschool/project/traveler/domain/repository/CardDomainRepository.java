@@ -4,18 +4,18 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
-import we.itschool.project.traveler.domain.entity.Card;
+import we.itschool.project.traveler.domain.entity.CardEntity;
 
 public interface CardDomainRepository {
 
-    void cardAddNew(Card card);
+    void cardAddNew(CardEntity card);
 
-    void cardDeleteById(Card card);
+    void cardDeleteById(CardEntity card);
 
-    void cardEditById(Card card);
+    void cardEditById(CardEntity card);
 
-    MutableLiveData<ArrayList<Card>> cardGetAll();
+    MutableLiveData<ArrayList<CardEntity>> cardGetAll();
 
-    Card cardGetById(int id);
+    CardEntity cardGetById(int id);
 
 }

@@ -4,10 +4,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import we.itschool.project.traveler.R;
-import we.itschool.project.traveler.domain.entity.Card;
-import we.itschool.project.traveler.domain.entity.CardInfo;
-import we.itschool.project.traveler.domain.entity.User;
-import we.itschool.project.traveler.domain.entity.UserInfo;
 
 public class NewData {
 
@@ -112,39 +108,39 @@ public class NewData {
                 + ", Home " + genNumber(2);
     }
 
-    public static Card newCard() {
-        return
-                new Card(
-                        new CardInfo(
-                                new User(
-                                        new UserInfo(
-                                                genFirstName(),
-                                                genSecondName(),
-                                                genEmail(),
-                                                genPhoneNumber(),
-                                                genDate(),
-                                                genPathToPhoto()
-                                        )
-                                ),
-                                genCity(),
-                                genFullDescription(),
-                                genShortDescription(),
-                                genAddress(),
-                                genPathToPhoto()
-                        )
-                );
-    }
-    public static User newUser() {
-        return
-                new User(
-                        new UserInfo(
-                                genFirstName(),
-                                genSecondName(),
-                                genEmail(),
-                                genPhoneNumber(),
-                                genDate(),
-                                genPathToPhoto()
-                        )
-                );
-    }
+//    public static CardEntity newCard() {
+//        return
+//                new CardEntity(
+//                        new CardInfo(
+//                                new UserEntity(
+//                                        new UserInfo(
+//                                                genFirstName(),
+//                                                genSecondName(),
+//                                                genEmail(),
+//                                                genPhoneNumber(),
+//                                                genDate(),
+//                                                genPathToPhoto()
+//                                        )
+//                                ),
+//                                genCity(),
+//                                genFullDescription(),
+//                                genShortDescription(),
+//                                genAddress(),
+//                                genPathToPhoto()
+//                        )
+//                );
+//    }
+//    public static UserEntity newUser() {
+//        return
+//                new UserEntity(
+//                        new UserInfo(
+//                                genFirstName(),
+//                                genSecondName(),
+//                                genEmail(),
+//                                genPhoneNumber(),
+//                                genDate(),
+//                                genPathToPhoto()
+//                        )
+//                );
+//    }
 }

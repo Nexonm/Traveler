@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.domain.entity.Card;
+import we.itschool.project.traveler.domain.entity.CardEntity;
 
-public class Adapter extends ListAdapter<Card, ViewHolder> {
+public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
 
     public static final int MAX_POOL_SIZE = 20;
     public static final int VIEW_TYPE_CARD_VISITOR = 100;
@@ -62,7 +62,7 @@ public class Adapter extends ListAdapter<Card, ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        Card card = getItem(position);
+        CardEntity card = getItem(position);
         viewHolder.tv_name_of_city.setText(card.getCardInfo().getCity());
         viewHolder.tv_short_description.setText(card.getCardInfo().getShortDescription());
         String mDrawableName = card.getCardInfo().getPathToPhoto();
@@ -86,6 +86,6 @@ public class Adapter extends ListAdapter<Card, ViewHolder> {
     }
 
     interface OnCardClickListener {
-        void onCardClick(Card card);
+        void onCardClick(CardEntity card);
     }
 }

@@ -1,6 +1,6 @@
 package we.itschool.project.traveler.domain.entity;
 
-public class User {
+public class UserEntity {
     public static final int UNDEFINED_ID;
     private int id;
 
@@ -10,16 +10,16 @@ public class User {
         UNDEFINED_ID = -1;
     }
 
-    public User(UserInfo userInfo) {
+    public UserEntity(UserInfo userInfo, int id) {
         this.userInfo = userInfo;
-        this.id = UNDEFINED_ID;
+        this.id = id;
     }
 
     public UserInfo getUserInfo() {
         return userInfo;
     }
 
-    public boolean equals(User other) {
+    public boolean equals(UserEntity other) {
         return other.id == this.id;
     }
 

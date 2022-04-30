@@ -1,6 +1,6 @@
 package we.itschool.project.traveler.domain.usecases;
 
-import we.itschool.project.traveler.domain.entity.Card;
+import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.repository.CardDomainRepository;
 
 public class CardDeleteByIdUseCase {
@@ -11,7 +11,7 @@ public class CardDeleteByIdUseCase {
         this.repository = repository;
     }
 
-    public void cardDeleteById(Card card){
+    public void cardDeleteById(CardEntity card){
         repository.cardDeleteById(card);
     }
 

@@ -1,6 +1,6 @@
 package we.itschool.project.traveler.domain.usecases;
 
-import we.itschool.project.traveler.domain.entity.User;
+import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
 
 public class UserAddNewUseCase {
@@ -11,7 +11,7 @@ public class UserAddNewUseCase {
         this.repository = repository;
     }
 
-    public void cardAddNew(User user){
+    public void cardAddNew(UserEntity user){
         repository.userAddNew(user);
     }
 }

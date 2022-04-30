@@ -16,13 +16,13 @@ import com.google.gson.Gson;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.domain.entity.Card;
+import we.itschool.project.traveler.domain.entity.CardEntity;
 
 public class CardFragment extends Fragment {
 
     private static final String ARGUMENT_CARD_GSON = "card Gson";
 
-    private Card card;
+    private CardEntity card;
 
     public static CardFragment newInstance(
             String cardGson
@@ -39,7 +39,7 @@ public class CardFragment extends Fragment {
         if (!args.containsKey(ARGUMENT_CARD_GSON))
             throw new RuntimeException("Argument card gson is absent");
         String cardGson = args.getString(ARGUMENT_CARD_GSON);
-        card = (new Gson()).fromJson(cardGson, Card.class);
+        card = (new Gson()).fromJson(cardGson, CardEntity.class);
         if (AppStart.isLog) {
             Log.w("CardFragment", "Incoming parseParams:   " + cardGson + "\n");
         }

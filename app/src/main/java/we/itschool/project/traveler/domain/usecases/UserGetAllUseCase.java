@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
-import we.itschool.project.traveler.domain.entity.User;
+import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
 
 public class UserGetAllUseCase {
@@ -15,7 +15,7 @@ public class UserGetAllUseCase {
         this.repository = repository;
     }
 
-    public MutableLiveData<ArrayList<User>> userGetAll() {
+    public MutableLiveData<ArrayList<UserEntity>> userGetAll() {
         return repository.userGetAll();
     }
 

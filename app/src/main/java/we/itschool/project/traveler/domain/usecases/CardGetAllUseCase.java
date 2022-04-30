@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
-import we.itschool.project.traveler.domain.entity.Card;
+import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.repository.CardDomainRepository;
 
 public class CardGetAllUseCase {
@@ -15,7 +15,7 @@ public class CardGetAllUseCase {
         this.repository = repository;
     }
 
-    public MutableLiveData<ArrayList<Card>> cardGetAll(){
+    public MutableLiveData<ArrayList<CardEntity>> cardGetAll(){
         return repository.cardGetAll();
     }
 

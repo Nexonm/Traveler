@@ -4,18 +4,18 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
-import we.itschool.project.traveler.domain.entity.User;
+import we.itschool.project.traveler.domain.entity.UserEntity;
 
 public interface UserDomainRepository {
 
-    void userAddNew(User user);
+    void userAddNew(UserEntity user);
 
-    void userDeleteById(User user);
+    void userDeleteById(UserEntity user);
 
-    void userEditById(User user);
+    void userEditById(UserEntity user);
 
-    MutableLiveData<ArrayList<User>> userGetAll();
+    MutableLiveData<ArrayList<UserEntity>> userGetAll();
 
-    User userGetById(int id);
+    UserEntity userGetById(int id);
 
 }

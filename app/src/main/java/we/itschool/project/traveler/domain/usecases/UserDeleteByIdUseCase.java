@@ -1,6 +1,6 @@
 package we.itschool.project.traveler.domain.usecases;
 
-import we.itschool.project.traveler.domain.entity.User;
+import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
 
 public class UserDeleteByIdUseCase {
@@ -11,7 +11,7 @@ public class UserDeleteByIdUseCase {
         this.repository = repository;
     }
 
-    public void cardDeleteById(User user) {
+    public void cardDeleteById(UserEntity user) {
         repository.userDeleteById(user);
     }
 

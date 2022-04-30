@@ -1,6 +1,6 @@
 package we.itschool.project.traveler.domain.usecases;
 
-import we.itschool.project.traveler.domain.entity.Card;
+import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.repository.CardDomainRepository;
 
 public class CardGetByIdUseCase {
@@ -11,7 +11,7 @@ public class CardGetByIdUseCase {
         this.repository = repository;
     }
 
-    Card cardGetById(int id){
+    CardEntity cardGetById(int id){
         return repository.cardGetById(id);
     }
 

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 
 import we.itschool.project.traveler.R;
-import we.itschool.project.traveler.domain.entity.Card;
+import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
 
 public class CardList extends Fragment {
@@ -93,23 +93,16 @@ public class CardList extends Fragment {
                 Adapter.VIEW_TYPE_CARD_VISITOR, Adapter.MAX_POOL_SIZE);
     }
 
-    private void startCardFragment(Card card) {
+    private void startCardFragment(CardEntity card) {
         Fragment fragment = CardFragment.newInstance(
                 (new Gson()).toJson(card)
         );
         FragmentManager fragmentManager = getParentFragmentManager();
         fragmentManager.popBackStack();
-        if (isOnePane)
-            fragmentManager
-                    .beginTransaction()
-                    .addToBackStack("null")
-                    .replace(R.id.nav_host_fragment_content_main, fragment, null)
-                    .commit();
-        else
-            fragmentManager
-                    .beginTransaction()
-                    .addToBackStack("null")
-                    .replace(R.id.container_card_big_view, fragment, null)
-                    .commit();
+        fragmentManager
+                .beginTransaction()
+                .addToBackStack("null")
+                .replace(R.id.nav_host_fragment_content_main, fragment, null)
+                .commit();
     }
 }
