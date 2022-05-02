@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/nav_main"
-        android:name="we.itschool.project.traveler.presentation.fragment.card_list.CardList"
+        android:name="we.itschool.project.traveler.presentation.fragment.card_list.CardListFragment"
         android:label="@string/menu_main"
         tools:layout="@layout/fragment_main" />
     <fragment
