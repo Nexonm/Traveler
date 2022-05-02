@@ -1,5 +1,7 @@
 package we.itschool.project.traveler.domain.entity;
 
+import java.io.File;
+
 public class CardInfo {
     private final UserEntity user;
     private final String city;
@@ -11,6 +13,7 @@ public class CardInfo {
     private final int cost;
     private final boolean isMale;
     private final boolean paymentFixed;
+    private File file;
 
     public CardInfo(
             UserEntity user,
@@ -73,5 +76,13 @@ public class CardInfo {
 
     public boolean isPaymentFixed() {
         return paymentFixed;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }

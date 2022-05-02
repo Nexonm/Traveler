@@ -10,8 +10,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.squareup.picasso.Picasso;
+
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
+import we.itschool.project.traveler.data.api.APIConfig;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 
 public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
@@ -68,15 +71,15 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
         String mDrawableName = card.getCardInfo().getPathToPhoto();
         //TODO  getResources() here
         Context context = viewHolder.itemView.getContext();
-        int resId = context.getResources().getIdentifier(
-                mDrawableName,
-                "drawable",
-                context.getPackageName()
-        );
-        viewHolder.iv_avatar_image.setImageResource(resId);
+        Picasso.with(context)
+                .load(APIConfig.STORAGE_CARD_PHOTO_METHOD+card.get_id())
+                .resize(
+                        AppStart.getInstance().getDisplayHeight()/2,
+                        AppStart.getInstance().getDisplayHeight()/2
+                ).into(viewHolder.iv_avatar_image);
         viewHolder.itemView.setOnClickListener(
                 v -> {
-                    Toast.makeText(context, "card position = "+ position+"\ncard _id = "+ card.get_id(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(viewHolder.itemView.getContext(), "card position = "+ position+"\ncard _id = "+ card.get_id(), Toast.LENGTH_SHORT).show();
                     // TODO how it work now
                     cardClickListener.onCardClick(getCurrentList().get(position));
                     // TODO how it must be work

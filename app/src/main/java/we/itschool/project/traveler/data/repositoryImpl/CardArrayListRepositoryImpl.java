@@ -6,8 +6,12 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,6 +20,7 @@ import we.itschool.project.traveler.data.api.APIServiceConstructor;
 import we.itschool.project.traveler.data.api.entityserv.CardServ;
 import we.itschool.project.traveler.data.api.mapper.CardEntityMapper;
 import we.itschool.project.traveler.data.api.service.APIServiceCard;
+import we.itschool.project.traveler.data.api.service.APIServiceStorage;
 import we.itschool.project.traveler.data.datamodel.CardModel;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.repository.CardDomainRepository;
@@ -35,21 +40,55 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     private static final int NUM_OF_CARDS_TO_DO;
 
     static {
-        NUM_OF_CARDS_TO_DO = 9;
+        NUM_OF_CARDS_TO_DO = 7;
     }
 
     {
         Log.v("retrofitLogger", "start getting data from server");
         //sendNewCardToSeverRetrofit(21l);
         for (int i = 6; i <= NUM_OF_CARDS_TO_DO; i++) {
-            try{
+            try {
                 Thread.sleep(100);
                 loadDataRetrofit(i);
-            }catch (InterruptedException e){
+//                uploadPhotoToCard(i);
+            } catch (InterruptedException e) {
                 loadDataRetrofit(i);
+//                uploadPhotoToCard(i);
             }
         }
 
+    }
+
+    public void uploadPhotoToCard(int id) {
+
+        APIServiceStorage service = APIServiceConstructor.CreateService(APIServiceStorage.class);
+        //pass it like this
+        File file = new File("src/main/res/drawable-nodpi/a001.png");
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+// MultipartBody.Part is used to send also the actual file name
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        Call<String> call = service.uploadPhotoToCard2(body, id);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body() != null) {
+                    Log.v("retrofitLogger", "IMAGE_SENT:" + response.body().toString());
+                } else {
+                    Log.v("retrofitLogger", "null response.body on IMAGE_SENT");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+                Log.v("retrofitLogger", "some error!!! on failure IMAGE_SENT id:" + id +
+                        " t:" + t.getMessage());
+            }
+        });
     }
 
     private void loadDataRetrofit(int id) {
@@ -74,8 +113,8 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
 
             @Override
             public void onFailure(retrofit2.Call<String> call, Throwable t) {
-                Log.v("retrofitLogger", "some error!!! on failure id:"+id +
-                        " t:"+t.getMessage());
+                Log.v("retrofitLogger", "some error!!! on failure id:" + id +
+                        " t:" + t.getMessage());
             }
         });
         // Log.v(MainActivity.TAG, "passed main-response methods");
@@ -83,9 +122,10 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
 
     /**
      * Method creates new card. All data represent using CardModel as a POJO
+     *
      * @param uid (long) - user's id who created this card
      */
-    private void sendNewCardToSeverRetrofit(long uid){
+    private void sendNewCardToSeverRetrofit(long uid) {
         APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
 
         CardModel model = new CardModel(
@@ -102,12 +142,12 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
 
         String str = (new Gson()).toJson(model);
         Log.v("retrofitLogger", "add card to Server, model.toJson():" + str);
-        Call<String>  call = service.addNewCardGson(uid, str);
+        Call<String> call = service.addNewCardGson(uid, str);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.body() != null) {
-                Log.v("retrofitLogger", "add card to Server, answer" + response.body());
+                    Log.v("retrofitLogger", "add card to Server, answer" + response.body());
                 } else {
                     Log.v("retrofitLogger", "null response.body on sendNewCardToSeverRetrofit");
                 }
@@ -115,8 +155,8 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Log.v("retrofitLogger", "some error!!! on failure, Cannot add new Card toServer:"+
-                        " t:"+t.getMessage());
+                Log.v("retrofitLogger", "some error!!! on failure, Cannot add new Card toServer:" +
+                        " t:" + t.getMessage());
             }
         });
     }
