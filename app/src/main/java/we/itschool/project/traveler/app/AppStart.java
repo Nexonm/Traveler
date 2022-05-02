@@ -34,9 +34,17 @@ public class AppStart extends Application {
     public static UserEditByIdUseCase personEditByIdUC;
     public static UserDeleteByIdUseCase personDeleteByIdUC;
 
+    private static AppStart instance;
+
+    private int displayHeight;
+    private int displayWidth;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        instance = this;
 
         imp = new CardArrayListRepositoryImpl();
         cardGetAllUC = new CardGetAllUseCase(imp);
@@ -51,5 +59,26 @@ public class AppStart extends Application {
         personAddNewUC = new UserAddNewUseCase(imp1);
         personEditByIdUC = new UserEditByIdUseCase(imp1);
         personDeleteByIdUC = new UserDeleteByIdUseCase(imp1);
+    }
+
+
+    public void setDisplayHeight(int displayHeight) {
+        this.displayHeight = displayHeight;
+    }
+
+    public void setDisplayWidth(int displayWidth) {
+        this.displayWidth = displayWidth;
+    }
+
+    public int getDisplayHeight() {
+        return displayHeight;
+    }
+
+    public int getDisplayWidth() {
+        return displayWidth;
+    }
+
+    public static AppStart getInstance(){
+        return instance;
     }
 }

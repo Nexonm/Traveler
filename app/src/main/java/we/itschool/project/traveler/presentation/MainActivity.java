@@ -1,6 +1,8 @@
 package we.itschool.project.traveler.presentation;
 
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 
 import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +43,17 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        setDisplayData();
+    }
+
+    //method saves display size to AppStart fields
+    private void setDisplayData(){
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        AppStart.getInstance().setDisplayHeight(size.y);//height is up and down, it's y
+        AppStart.getInstance().setDisplayWidth(size.x);//width is right and left, it's x
     }
 
 
