@@ -4,11 +4,14 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 
+import we.itschool.project.traveler.data.datamodel.CardModelPOJO;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 
 public interface CardDomainRepository {
 
     void cardAddNew(CardEntity card);
+
+    void cardCreateNew(CardModelPOJO model);
 
     void cardDeleteById(CardEntity card);
 

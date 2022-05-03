@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <EditText
+            android:id="@+id/et_new_card_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Город" />
+
+        <ImageView
+            android:id="@+id/iv_new_card_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/bt_new_card_upload_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Загрузить" />
+
+        <EditText
+            android:id="@+id/et_new_card_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Страна" />
+
+        <EditText
+            android:id="@+id/et_new_card_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Адрес" />
+
+        <Switch
+            android:id="@+id/sw_new_card_payment_is_fixed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Будет ли взиматься конкретная плата"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <EditText
+            android:id="@+id/et_new_card_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:visibility="invisible"
+            android:hint="Плата"/>
+
+        <EditText
+            android:id="@+id/et_new_card_short_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Краткая информация" />
+
+        <EditText
+            android:id="@+id/et_new_card_full_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Полная информация" />
+
+        <Button
+            android:id="@+id/bt_new_card_add_new_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Добавить карточку" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

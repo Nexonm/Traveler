@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
+    //codes to get permission to External Storage
+    private static final int IMAGE_PIC_CODE = 1000;
+    private static final int PERMISSION_CODE = 1001;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

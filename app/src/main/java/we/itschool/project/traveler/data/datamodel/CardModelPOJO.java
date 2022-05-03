@@ -1,6 +1,6 @@
 package we.itschool.project.traveler.data.datamodel;
 
-public class CardModel {
+public class CardModelPOJO {
 
     //fields
 
@@ -17,37 +17,16 @@ public class CardModel {
 
     //methods
 
-//    public static CardModel toCardModel(CardEntity entity, boolean withUser){
-//        CardModel model = new CardModel();
-//        model.setID(entity.getID());
-//        if (withUser)
-//        model.setUser(UserEntityMapper.toUserModel(entity.getUser(), false));
-//        model.setCity(entity.getCity());
-//        model.setCountry(entity.getCountry());
-//        model.setFullDescription(entity.getFullDescription());
-//        model.setShortDescription(entity.getShortDescription());
-//        model.setAddress(entity.getAddress());
-//        model.setPathToPhoto(entity.getPathToPhoto());
-//        model.setPaymentFixed(entity.isPaymentFixed());
-//        model.setCost(entity.getCost());
-//        model.setMale(entity.isIs_male());
-//
-//        return model;
-//    }
-
-
-
 
 
     //constructors
 
-    public CardModel(
+    public CardModelPOJO(
             String city,
             String country,
             String fullDescription,
             String shortDescription,
             String address,
-            String pathToPhoto,
             boolean isPaymentFixed,
             int cost,
             boolean male
@@ -57,7 +36,6 @@ public class CardModel {
         this.fullDescription = fullDescription;
         this.shortDescription = shortDescription;
         this.address = address;
-        this.pathToPhoto = pathToPhoto;
         this.isPaymentFixed = isPaymentFixed;
         this.cost = cost;
         this.male = male;

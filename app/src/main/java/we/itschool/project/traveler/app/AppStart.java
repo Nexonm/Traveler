@@ -4,6 +4,7 @@ import android.app.Application;
 
 import we.itschool.project.traveler.data.repositoryImpl.CardArrayListRepositoryImpl;
 import we.itschool.project.traveler.domain.usecases.CardAddNewUseCase;
+import we.itschool.project.traveler.domain.usecases.CardCreateNewUseCase;
 import we.itschool.project.traveler.domain.usecases.CardDeleteByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.CardEditByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.CardGetAllUseCase;
@@ -23,6 +24,7 @@ public class AppStart extends Application {
     public static CardGetAllUseCase cardGetAllUC;
     public static CardGetByIdUseCase cardGetByIdUC;
     public static CardAddNewUseCase cardAddNewUC;
+    public static CardCreateNewUseCase cardCreateNewUC;
     public static CardEditByIdUseCase cardEditByIdUC;
     public static CardDeleteByIdUseCase cardDeleteByIdUC;
 
@@ -50,6 +52,7 @@ public class AppStart extends Application {
         cardGetAllUC = new CardGetAllUseCase(imp);
         cardGetByIdUC = new CardGetByIdUseCase(imp);
         cardAddNewUC = new CardAddNewUseCase(imp);
+        cardCreateNewUC = new CardCreateNewUseCase(imp);
         cardEditByIdUC = new CardEditByIdUseCase(imp);
         cardDeleteByIdUC = new CardDeleteByIdUseCase(imp);
 

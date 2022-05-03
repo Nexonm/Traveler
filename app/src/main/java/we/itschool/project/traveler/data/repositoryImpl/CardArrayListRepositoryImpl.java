@@ -21,7 +21,7 @@ import we.itschool.project.traveler.data.api.entityserv.CardServ;
 import we.itschool.project.traveler.data.api.mapper.CardEntityMapper;
 import we.itschool.project.traveler.data.api.service.APIServiceCard;
 import we.itschool.project.traveler.data.api.service.APIServiceStorage;
-import we.itschool.project.traveler.data.datamodel.CardModel;
+import we.itschool.project.traveler.data.datamodel.CardModelPOJO;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.repository.CardDomainRepository;
 
@@ -36,6 +36,9 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     }
 
     private static int autoIncrementId = 0;
+
+    //only for test!!!
+    private static int USER_ID_FOR_TEST = 21;
 
     private static final int NUM_OF_CARDS_TO_DO;
 
@@ -128,13 +131,12 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     private void sendNewCardToSeverRetrofit(long uid) {
         APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
 
-        CardModel model = new CardModel(
+        CardModelPOJO model = new CardModelPOJO(
                 "some city2",
                 "some country2",
                 "Big full description for i don't know why2",
                 "some extra info available by tap2",
                 "Some address2",
-                "No path2",
                 false,
                 0,
                 true
@@ -166,6 +168,28 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
         if (AppStart.isLog) {
             Log.w("PeopleArrayListRepositoryImpl", data.size() + "\n");
         }
+    }
+
+    @Override
+    public void cardCreateNew(CardModelPOJO model){
+        APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
+        Call<String> call = service.addNewCardGson(USER_ID_FOR_TEST, CardEntityMapper.toCardServFromCardModelPOJO(model));
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body() != null) {
+                    Log.v("retrofitLogger", "add card to Server, answer" + response.body());
+                } else {
+                    Log.v("retrofitLogger", "null response.body on sendNewCardToSeverRetrofit");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.v("retrofitLogger", "some error!!! on failure, Cannot add new Card toServer:" +
+                        " t:" + t.getMessage());
+            }
+        });
     }
 
     @Override

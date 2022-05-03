@@ -105,4 +105,6 @@ public class CardListFragment extends Fragment {
                 .replace(R.id.nav_host_fragment_content_main, fragment, null)
                 .commit();
     }
+
+
 }
