@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 
 import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.databinding.FragmentMainBinding;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
 
@@ -28,6 +29,8 @@ public class CardListFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private Adapter adapter;
+
+    private FragmentMainBinding binding;
 
     public static CardListFragment newInstance(boolean isOnePane) {
         Bundle args = new Bundle();
@@ -57,10 +60,13 @@ public class CardListFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        return inflater.inflate(
-                R.layout.fragment_main,
-                container,
-                false);
+        binding = FragmentMainBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        return root;
+//        return inflater.inflate(
+//                R.layout.fragment_main,
+//                container,
+//                false);
     }
 
     @Override
@@ -105,6 +111,4 @@ public class CardListFragment extends Fragment {
                 .replace(R.id.nav_host_fragment_content_main, fragment, null)
                 .commit();
     }
-
-
 }
