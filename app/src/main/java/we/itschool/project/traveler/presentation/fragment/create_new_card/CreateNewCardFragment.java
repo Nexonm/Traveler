@@ -94,12 +94,15 @@ public class CreateNewCardFragment extends Fragment {
         //it was clicked, start finding photo
         bt_upload_photo.setOnClickListener(v -> {
             //check runtime permission
-            if (!hasPermissions()) {
-                requestPermissionsMy();
-            } else {
-                //permission Granted we can pick image
-                pickImageFromGallery();
-            }
+            try {
+                if (!hasPermissions()) {
+                    requestPermissionsMy();
+                } else {
+                    //permission Granted we can pick image
+                    pickImageFromGallery();
+                }
+            }catch (Exception ignored){}
+
         });
         //create new card button, on this click all check are made and data sends
         bt_new_card = view.findViewById(R.id.bt_new_card_add_new_card);
@@ -244,12 +247,16 @@ public class CreateNewCardFragment extends Fragment {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result != null) {
-                        Uri imageUri = result.getData().getData();
-                        Glide.with(context)
-                                .load(imageUri)
-                                .into(iv_card_photo);
+                        try {
+                            Uri imageUri = result.getData().getData();
+                            Glide.with(context)
+                                    .load(imageUri)
+                                    .into(iv_card_photo);
+                        }catch (NullPointerException e){
+                            Toast.makeText(context, "Видимо вы прекратили выбор фото, не забудьте выбрать:)", Toast.LENGTH_LONG).show();
+                        }
                     } else {
-                        Toast.makeText(context, "Please allow us to upload photo from your gallery", Toast.LENGTH_LONG);
+                        Toast.makeText(context, "Please allow us to upload photo from your gallery", Toast.LENGTH_LONG).show();
                     }
                 }
             }
