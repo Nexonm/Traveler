@@ -1,11 +1,11 @@
 package we.itschool.project.traveler.presentation.fragment.create_new_card;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,11 +18,17 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.bumptech.glide.Glide;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
@@ -76,7 +82,7 @@ public class CreateNewCardFragment extends Fragment {
             @NonNull View view,
             @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        context = this.getContext();
+        context = this.getActivity().getBaseContext();
         initView(view);
     }
 
@@ -89,13 +95,10 @@ public class CreateNewCardFragment extends Fragment {
         //it was clicked, start finding photo
         bt_upload_photo.setOnClickListener(v -> {
             //check runtime permission
-            if(ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_DENIED){
-                //permission not granted, request it
-                String [] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                //show popup for runtime permission
-                requestPermissions(permissions, PERMISSION_CODE);
-            }else{
+            if (!hasPermissions()) {
+                requestPermissionsMy();
+            } else {
+                //permission Granted we can pick image
                 pickImageFromGallery();
             }
         });
@@ -103,7 +106,7 @@ public class CreateNewCardFragment extends Fragment {
         bt_new_card = view.findViewById(R.id.bt_new_card_add_new_card);
         //main onClick method
         bt_new_card.setOnClickListener(v -> {
-            if (checkAllData()){
+            if (checkAllData()) {
                 getActivity().getFragmentManager().popBackStack();
             }
         });
@@ -119,11 +122,11 @@ public class CreateNewCardFragment extends Fragment {
         sw_payment.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     et_coast.setVisibility(View.VISIBLE);
                     et_coast.setClickable(true);
                     paymentIsFixed = true;
-                }else{
+                } else {
                     et_coast.setVisibility(View.INVISIBLE);
                     et_coast.setClickable(false);
                     paymentIsFixed = false;
@@ -132,45 +135,50 @@ public class CreateNewCardFragment extends Fragment {
         });
     }
 
-    private boolean checkAllData(){
+    /**
+     * Checks all the fields in fragment and sends to server new card
+     *
+     * @return is all data complete
+     */
+    private boolean checkAllData() {
         boolean check = true;
         //city
-        if(!(et_city.getText().length()>0)){
+        if (!(et_city.getText().length() > 0)) {
             check = false;
             et_city.setHintTextColor(Color.RED);
             et_city.setHint("Введите название города");
         }
         //country
-        if (!(et_country.getText().length()>0)){
+        if (!(et_country.getText().length() > 0)) {
             check = false;
             et_country.setHintTextColor(Color.RED);
             et_country.setHint("Введите название страны");
         }
         //address
-        if(!(et_address.getText().length()>0)){
+        if (!(et_address.getText().length() > 0)) {
             check = false;
             et_address.setHintTextColor(Color.RED);
             et_address.setText("Введите адрес расположения");
         }
         //short description
-        if(!(et_short_desc.getText().length()>0)){
+        if (!(et_short_desc.getText().length() > 0)) {
             check = false;
             et_short_desc.setHintTextColor(Color.RED);
             et_short_desc.setText("Кратко опишите ваше предложение");
         }
         //full description
-        if(!(et_full_desc.getText().length()>0)){
+        if (!(et_full_desc.getText().length() > 0)) {
             check = false;
             et_full_desc.setHintTextColor(Color.RED);
             et_full_desc.setText("Опишите ваше предложение");
         }
         //coast
-        if (paymentIsFixed && !(et_coast.getText().length()>0 && isNum(et_coast.getText().toString()))){
+        if (paymentIsFixed && !(et_coast.getText().length() > 0 && isNum(et_coast.getText().toString()))) {
             check = false;
             et_coast.setHintTextColor(Color.RED);
             et_coast.setText("Введите плату цифрами");
         }
-        if (check){
+        if (check) {
             if (!paymentIsFixed) {
                 AppStart.cardCreateNewUC.cardCreateNew(
                         new CardModelPOJO(
@@ -183,10 +191,9 @@ public class CreateNewCardFragment extends Fragment {
                                 0,
                                 //TODO when user data is stored in app set user.getInfo().isMale()
                                 false
-                                )
+                        )
                 );
-            }
-            else{
+            } else {
                 AppStart.cardCreateNewUC.cardCreateNew(
                         new CardModelPOJO(
                                 et_city.getText().toString() + "",
@@ -198,7 +205,7 @@ public class CreateNewCardFragment extends Fragment {
                                 getNum(et_coast.getText().toString()),
                                 //TODO when user data is stored in app set user.getInfo().isMale()
                                 false
-                                )
+                        )
                 );
             }
             return check;
@@ -206,20 +213,20 @@ public class CreateNewCardFragment extends Fragment {
         return check;
     }
 
-    private boolean isNum(String a){
+    private boolean isNum(String a) {
         try {
             int c = Integer.parseInt(a);
             return true;
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    private int getNum(String a){
+    private int getNum(String a) {
         try {
-            return  Integer.parseInt(a);
-        }catch (NumberFormatException e){
-            return  0;
+            return Integer.parseInt(a);
+        } catch (NumberFormatException e) {
+            return 0;
         }
     }
 
@@ -227,39 +234,51 @@ public class CreateNewCardFragment extends Fragment {
     private void pickImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        startActivityForResult(intent, IMAGE_PIC_CODE);
+        imagePickerActivityResult.launch(intent);
     }
 
-    //if user chose some photo
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PIC_CODE){
-            iv_card_photo.setImageURI(data.getData());
-        }
-    }
-
-    //check if permission either granted or not
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSION_CODE: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //permission was granted
-                    pickImageFromGallery();
-                } else {
-                    //toast to show user he needs to do give permission
-                    Toast.makeText(this.getContext(), "Permission denied!!!", Toast.LENGTH_LONG);
+    /**
+     * this code provide uri from chosen image. This work if permission is granted
+     */
+    ActivityResultLauncher<Intent> imagePickerActivityResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result != null) {
+                        Uri imageUri = result.getData().getData();
+                        Glide.with(context)
+                                .load(imageUri)
+                                .into(iv_card_photo);
+                    } else {
+                        Toast.makeText(context, "Please allow us to upload photo from your gallery", Toast.LENGTH_LONG);
+                    }
                 }
             }
-        }
+    );
+
+    /**
+     * Checking if there is permission to EXTERNAL_STORAGE
+     * @return true if there is permission
+     */
+    private boolean hasPermissions() {
+        return ActivityCompat.checkSelfPermission(
+                this.getActivity().getBaseContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED;
     }
-    //getters
+
+    /**
+     * In case there is no permission we ask for it
+     */
+    private void requestPermissionsMy() {
+        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+        //show popup for runtime permission
+        requestPermissions(permissions, PERMISSION_CODE);
+    }
 
     //methods for ui changes (fragments)
 
-    private void startMyCardsFragment(){
+    private void startMyCardsFragment() {
         Fragment fragment = MyCardsFragment.newInstance();
 
         FragmentManager fragmentManager = getParentFragmentManager();
