@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -290,33 +289,4 @@ public class CreateNewCardFragment extends Fragment {
                 .commit();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.v("FragmentStat", "onStart create ");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.v("FragmentStat", "onStop create ");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.v("FragmentStat", "onDestroy create ");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.v("FragmentStat", "onResume create ");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.v("FragmentStat", "onPause create ");
-    }
 }
