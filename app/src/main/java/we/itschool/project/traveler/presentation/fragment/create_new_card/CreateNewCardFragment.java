@@ -157,25 +157,25 @@ public class CreateNewCardFragment extends Fragment {
         if (!(et_address.getText().length() > 0)) {
             check = false;
             et_address.setHintTextColor(Color.RED);
-            et_address.setText("Введите адрес расположения");
+            et_address.setHint("Введите адрес расположения");
         }
         //short description
         if (!(et_short_desc.getText().length() > 0)) {
             check = false;
             et_short_desc.setHintTextColor(Color.RED);
-            et_short_desc.setText("Кратко опишите ваше предложение");
+            et_short_desc.setHint("Кратко опишите ваше предложение");
         }
         //full description
         if (!(et_full_desc.getText().length() > 0)) {
             check = false;
             et_full_desc.setHintTextColor(Color.RED);
-            et_full_desc.setText("Опишите ваше предложение");
+            et_full_desc.setHint("Опишите ваше предложение");
         }
         //coast
         if (paymentIsFixed && !(et_coast.getText().length() > 0 && isNum(et_coast.getText().toString()))) {
             check = false;
             et_coast.setHintTextColor(Color.RED);
-            et_coast.setText("Введите плату цифрами");
+            et_coast.setHint("Введите плату цифрами");
         }
         if (check) {
             if (!paymentIsFixed) {
