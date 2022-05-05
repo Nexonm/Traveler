@@ -232,7 +232,9 @@ public class CreateNewCardFragment extends Fragment {
         }
     }
 
-    //my method to start new activity to get photo from storage
+    /**
+     * Method to start new activity to get photo from storage
+     */
     private void pickImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
