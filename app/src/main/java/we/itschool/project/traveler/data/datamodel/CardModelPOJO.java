@@ -27,6 +27,7 @@ public class CardModelPOJO {
             String fullDescription,
             String shortDescription,
             String address,
+            String pathToPhoto,
             boolean isPaymentFixed,
             int cost,
             boolean male
@@ -36,6 +37,7 @@ public class CardModelPOJO {
         this.fullDescription = fullDescription;
         this.shortDescription = shortDescription;
         this.address = address;
+        this.pathToPhoto = pathToPhoto;
         this.isPaymentFixed = isPaymentFixed;
         this.cost = cost;
         this.male = male;

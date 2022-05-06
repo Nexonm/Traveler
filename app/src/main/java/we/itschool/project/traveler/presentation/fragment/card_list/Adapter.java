@@ -68,8 +68,7 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
         CardEntity card = getItem(position);
         viewHolder.tv_name_of_city.setText(card.getCardInfo().getCity());
         viewHolder.tv_short_description.setText(card.getCardInfo().getShortDescription());
-        String mDrawableName = card.getCardInfo().getPathToPhoto();
-        //TODO  getResources() here
+        //TODO  asynk Picasso
         Context context = viewHolder.itemView.getContext();
         Picasso.with(context)
                 .load(APIConfig.STORAGE_CARD_PHOTO_METHOD+card.get_id())

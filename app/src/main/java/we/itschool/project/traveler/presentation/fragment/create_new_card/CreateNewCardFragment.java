@@ -4,9 +4,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +51,8 @@ public class CreateNewCardFragment extends Fragment {
     private EditText et_coast;
     private EditText et_short_desc;
     private EditText et_full_desc;
+
+    private String bufString = "null";
 
     private boolean paymentIsFixed;
     private static final int IMAGE_PIC_CODE = 1000;
@@ -108,9 +113,10 @@ public class CreateNewCardFragment extends Fragment {
         bt_new_card = view.findViewById(R.id.bt_new_card_add_new_card);
         //main onClick method
         bt_new_card.setOnClickListener(v -> {
-            if (checkAllData()) {
-                getActivity().getFragmentManager().popBackStack();
-            }
+//            if (checkAllData()) {
+//                getActivity().getFragmentManager().popBackStack();
+//            }
+            checkAllData();
         });
 
         //EditText's data
@@ -180,6 +186,10 @@ public class CreateNewCardFragment extends Fragment {
             et_coast.setHintTextColor(Color.RED);
             et_coast.setHint("Введите плату цифрами");
         }
+        if ("null".equals(bufString)){
+            check = false;
+            Toast.makeText(context, "Не забудьте выбрать фото! :)", Toast.LENGTH_LONG).show();
+        }
         if (check) {
             if (!paymentIsFixed) {
                 AppStart.cardCreateNewUC.cardCreateNew(
@@ -189,6 +199,7 @@ public class CreateNewCardFragment extends Fragment {
                                 et_full_desc.getText().toString() + "",
                                 et_short_desc.getText().toString() + "",
                                 et_address.getText().toString() + "",
+                                bufString,
                                 paymentIsFixed,
                                 0,
                                 //TODO when user data is stored in app set user.getInfo().isMale()
@@ -203,6 +214,7 @@ public class CreateNewCardFragment extends Fragment {
                                 et_full_desc.getText().toString() + "",
                                 et_short_desc.getText().toString() + "",
                                 et_address.getText().toString() + "",
+                                bufString,
                                 paymentIsFixed,
                                 getNum(et_coast.getText().toString()),
                                 //TODO when user data is stored in app set user.getInfo().isMale()
@@ -251,6 +263,8 @@ public class CreateNewCardFragment extends Fragment {
                     if (result != null) {
                         try {
                             Uri imageUri = result.getData().getData();
+                            bufString = getRealPathFromURI(imageUri);
+                            Log.v("fileName", "the file path: "+ bufString);
                             Glide.with(context)
                                     .load(imageUri)
                                     .into(iv_card_photo);
@@ -263,6 +277,13 @@ public class CreateNewCardFragment extends Fragment {
                 }
             }
     );
+
+    private String getRealPathFromURI(Uri uri) {
+        Cursor cursor = this.getActivity().getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }
 
     /**
      * Checking if there is permission to EXTERNAL_STORAGE

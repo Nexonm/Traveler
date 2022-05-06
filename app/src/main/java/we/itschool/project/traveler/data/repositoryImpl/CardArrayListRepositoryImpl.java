@@ -38,12 +38,12 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     private static int autoIncrementId = 0;
 
     //only for test!!!
-    private static int USER_ID_FOR_TEST = 21;
+    private static int USER_ID_FOR_TEST = 22;
 
     private static final int NUM_OF_CARDS_TO_DO;
 
     static {
-        NUM_OF_CARDS_TO_DO = 7;
+        NUM_OF_CARDS_TO_DO = 9;
     }
 
     {
@@ -52,8 +52,8 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
             //sendNewCardToSeverRetrofit(21l);
             for (int i = 6; i <= NUM_OF_CARDS_TO_DO; i++) {
                 try {
-                    Thread.sleep(100);
                     loadDataRetrofit(i);
+                    Thread.sleep(500);
 //                uploadPhotoToCard(i);
                 } catch (InterruptedException e) {
                     loadDataRetrofit(i);
@@ -63,20 +63,25 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
         });
     }
 
-    public void uploadPhotoToCard(int id) {
+    public void uploadPhotoToCard(String path, int cid) {
         AsyncTask.execute(() -> {
 
             APIServiceStorage service = APIServiceConstructor.CreateService(APIServiceStorage.class);
             //pass it like this
-            File file = new File("src/main/res/drawable-nodpi/a001.png");
+            Log.v("retrofitLogger", "get file from image");
+            File file = new File(path);
+            Log.v("retrofitLogger", "fill it in request Body");
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
 // MultipartBody.Part is used to send also the actual file name
+            Log.v("retrofitLogger", "fill it in multipart Body");
             MultipartBody.Part body =
-                    MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-            Call<String> call = service.uploadPhotoToCard2(body, id);
-
+                    MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+            Log.v("retrofitLogger", "Make call");
+            RequestBody cidBody = RequestBody.create(MediaType.parse("multipart/from-data"), String.valueOf(cid));
+            Call<String> call = service.uploadPhotoToCard2(body, cidBody);
+            Log.v("retrofitLogger", "trying to send data");
             call.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
@@ -90,7 +95,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
 
-                    Log.v("retrofitLogger", "some error!!! on failure IMAGE_SENT id:" + id +
+                    Log.v("retrofitLogger", "some error!!! on failure IMAGE_SENT id:" + cid +
                             " t:" + t.getMessage());
                 }
             });
@@ -98,7 +103,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     }
 
     private void loadDataRetrofit(int id) {
-        AsyncTask.execute(() -> {
+//        AsyncTask.execute(() -> {
 
             APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
             Call<String> call = service.getOneCardById(id);
@@ -124,45 +129,10 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
                             " t:" + t.getMessage());
                 }
             });
-        });
+//        });
         // Log.v(MainActivity.TAG, "passed main-response methods");
     }
 
-
-    private void sendNewCardToSeverRetrofit(long uid) {
-        APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
-
-        CardModelPOJO model = new CardModelPOJO(
-                "some city2",
-                "some country2",
-                "Big full description for i don't know why2",
-                "some extra info available by tap2",
-                "Some address2",
-                false,
-                0,
-                true
-        );
-
-        String str = (new Gson()).toJson(model);
-        Log.v("retrofitLogger", "add card to Server, model.toJson():" + str);
-        Call<String> call = service.addNewCardGson(uid, str);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.body() != null) {
-                    Log.v("retrofitLogger", "add card to Server, answer" + response.body());
-                } else {
-                    Log.v("retrofitLogger", "null response.body on sendNewCardToSeverRetrofit");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.v("retrofitLogger", "some error!!! on failure, Cannot add new Card toServer:" +
-                        " t:" + t.getMessage());
-            }
-        });
-    }
 
     private void updateLiveData() {
         AsyncTask.execute(() -> {
@@ -183,7 +153,11 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if (response.body() != null) {
-                        Log.v("retrofitLogger", "add card to Server, answer" + response.body());
+                        Log.v("retrofitLogger", "card.toString():" + response.body().toString());
+                        CardServ cardServ = (new Gson()).fromJson(response.body().toString(), CardServ.class);
+                        int cid = cardServ.getId();
+                        uploadPhotoToCard(model.getPathToPhoto(), cid);
+
                     } else {
                         Log.v("retrofitLogger", "null response.body on sendNewCardToSeverRetrofit");
                     }

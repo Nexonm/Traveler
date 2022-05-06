@@ -42,6 +42,7 @@ public class CardEntityMapper {
                         entity.getCardInfo().getFullDescription()+"",
                         entity.getCardInfo().getShortDescription()+"",
                         entity.getCardInfo().getAddress()+"",
+                        entity.getCardInfo().getPathToPhoto(),
                         entity.getCardInfo().isPaymentFixed(),
                         entity.getCardInfo().getCost(),
                         entity.getCardInfo().isMale()

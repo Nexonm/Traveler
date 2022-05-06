@@ -3,6 +3,7 @@
     package="we.itschool.project.traveler">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:name=".app.AppStart"
         android:allowBackup="true"
