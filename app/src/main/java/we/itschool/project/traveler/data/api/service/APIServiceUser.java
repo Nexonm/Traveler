@@ -52,4 +52,10 @@ public interface APIServiceUser {
             @Body String gsonStr
     );
 
+    @GET("people/login")
+    Call<String> loginUser(
+        @Query(value = "email") String email,
+        @Query(value = "pass") String pass
+    );
+
 }
