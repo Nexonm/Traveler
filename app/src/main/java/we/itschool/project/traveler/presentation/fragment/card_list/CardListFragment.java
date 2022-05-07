@@ -32,12 +32,10 @@ public class CardListFragment extends Fragment {
 
     private FragmentMainBinding binding;
 
-    public static CardListFragment newInstance(boolean isOnePane) {
-        Bundle args = new Bundle();
-        args.putBoolean(ARGUMENT_IS_ONE_PANE_MODE, isOnePane);
-        CardListFragment fragment = new CardListFragment();
-        fragment.setArguments(args);
-        return fragment;
+    View root;
+
+    public static CardListFragment newInstance() {
+        return new CardListFragment();
     }
 
     private void parseParams() {
@@ -61,7 +59,7 @@ public class CardListFragment extends Fragment {
             @Nullable Bundle savedInstanceState
     ) {
         binding = FragmentMainBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        root = binding.getRoot();
         return root;
 //        return inflater.inflate(
 //                R.layout.fragment_main,
@@ -100,6 +98,7 @@ public class CardListFragment extends Fragment {
     }
 
     private void startCardFragment(CardEntity card) {
+
         Fragment fragment = CardFragment.newInstance(
                 (new Gson()).toJson(card)
         );

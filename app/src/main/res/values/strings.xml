@@ -8,9 +8,33 @@
     <string name="action_settings">Settings</string>
 
 
+    <!-- labels for fragments -->
     <string name="menu_profile">Профиль</string>
     <string name="menu_main">Лента</string>
     <string name="menu_chats">Чаты</string>
     <string name="menu_my_cards">Мои карточки</string>
     <string name="menu_favourites">Избранное</string>
+    <string name="menu_big_card">Карточка</string>
+    <string name="menu_create_new_card">Создание карточки</string>
+    <string name="menu_login">Вход</string>
+    <string name="menu_registration">Регистрация</string>
+
+    <!-- login strings -->
+    <string name="login_title">Добро пжаловать в Traveler!</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">password</string>
+    <string name="login_sign_in">Sign in</string>
+    <string name="login_or">Или</string>
+    <string name="login_register">Регистрация</string>
+    <!-- registration strings -->
+    <string name="reg_main_title">Регистрация</string>
+    <string name="reg_title_first_name">Имя</string>
+    <string name="reg_title_second_name">Фамилия</string>
+    <string name="reg_title_email">Email</string>
+    <string name="reg_title_password">Пароль</string>
+    <string name="reg_title_password_repeat">Повторите пароль</string>
+    <string name="reg_title_password_repeat_not_match">Пороли не совпадают</string>
+    <string name="reg_title_date_of_birth">Дата рождения в формате ^22.05.2004^</string>
+    <string name="reg_title_date_of_birth_hint">22.05.2004</string>
+    <string name="reg_title_phone_number">Номер телефона</string>
 </resources>

@@ -11,10 +11,19 @@
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
+        android:id="@+id/nav_big_card"
+        android:name="we.itschool.project.traveler.presentation.fragment.card_big.CardFragment"
+        android:label="@string/menu_big_card"
+        tools:layout="@layout/fragment_card_big_view" />
+    <fragment
         android:id="@+id/nav_main"
         android:name="we.itschool.project.traveler.presentation.fragment.card_list.CardListFragment"
         android:label="@string/menu_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_nav_main_to_nav_big_card"
+            app:destination="@id/nav_big_card" />
+    </fragment>
     <fragment
         android:id="@+id/nav_chats"
         android:name="we.itschool.project.traveler.presentation.fragment.chats.ChatsFragment"
@@ -24,10 +33,34 @@
         android:id="@+id/nav_my_cards"
         android:name="we.itschool.project.traveler.presentation.fragment.my_cards.MyCardsFragment"
         android:label="@string/menu_my_cards"
-        tools:layout="@layout/fragment_my_cards" />
+        tools:layout="@layout/fragment_my_cards" >
+        <action
+            android:id="@+id/action_nav_my_cards_to_nav_create_card"
+            app:destination="@id/nav_create_card" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_create_card"
+        android:name="we.itschool.project.traveler.presentation.fragment.create_new_card.CreateNewCardFragment"
+        android:label="@string/menu_my_cards"
+        tools:layout="@layout/fragment_create_new_card" />
     <fragment
         android:id="@+id/nav_favourites"
         android:name="we.itschool.project.traveler.presentation.fragment.favourites.FavouritesFragment"
         android:label="@string/menu_favourites"
         tools:layout="@layout/fragment_favourites" />
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="we.itschool.project.traveler.presentation.fragment.login.LoginFragment"
+        android:label="@string/menu_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_nav_login_to_nav_registration"
+            app:destination="@id/nav_registration" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_registration"
+        android:name="we.itschool.project.traveler.presentation.fragment.registration.RegistrationFragment"
+        android:label="@string/menu_registration"
+        tools:layout="@layout/fragment_registration" />
 </navigation>
