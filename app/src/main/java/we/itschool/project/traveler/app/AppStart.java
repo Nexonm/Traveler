@@ -3,6 +3,7 @@ package we.itschool.project.traveler.app;
 import android.app.Application;
 
 import we.itschool.project.traveler.data.repositoryImpl.CardArrayListRepositoryImpl;
+import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.usecases.CardAddNewUseCase;
 import we.itschool.project.traveler.domain.usecases.CardCreateNewUseCase;
 import we.itschool.project.traveler.domain.usecases.CardDeleteByIdUseCase;
@@ -15,6 +16,7 @@ import we.itschool.project.traveler.domain.usecases.UserDeleteByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.UserEditByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.UserGetAllUseCase;
 import we.itschool.project.traveler.domain.usecases.UserGetByIdUseCase;
+import we.itschool.project.traveler.domain.usecases.UserLoginUseCase;
 
 public class AppStart extends Application {
     public static final boolean isLog = true;
@@ -35,8 +37,11 @@ public class AppStart extends Application {
     public static UserAddNewUseCase personAddNewUC;
     public static UserEditByIdUseCase personEditByIdUC;
     public static UserDeleteByIdUseCase personDeleteByIdUC;
+    public static UserLoginUseCase loginUC;
 
     private static AppStart instance;
+
+    private static UserEntity user;
 
     private int displayHeight;
     private int displayWidth;
@@ -62,6 +67,7 @@ public class AppStart extends Application {
         personAddNewUC = new UserAddNewUseCase(imp1);
         personEditByIdUC = new UserEditByIdUseCase(imp1);
         personDeleteByIdUC = new UserDeleteByIdUseCase(imp1);
+        loginUC = new UserLoginUseCase(imp1);
     }
 
 
@@ -71,6 +77,14 @@ public class AppStart extends Application {
 
     public void setDisplayWidth(int displayWidth) {
         this.displayWidth = displayWidth;
+    }
+
+    public static UserEntity getUser() {
+        return user;
+    }
+
+    public static void setUser(UserEntity user) {
+        AppStart.user = user;
     }
 
     public int getDisplayHeight() {

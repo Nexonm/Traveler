@@ -8,7 +8,9 @@ import we.itschool.project.traveler.domain.entity.UserEntity;
 
 public interface UserDomainRepository {
 
-    void userAddNew(UserEntity user);
+    boolean login(String email, String pass);
+
+    void userAddNew(String email, String pass);
 
     void userDeleteById(UserEntity user);
 

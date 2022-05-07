@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.FragmentLoginBinding;
 import we.itschool.project.traveler.presentation.fragment.registration.RegistrationFragment;
 
@@ -63,7 +64,7 @@ public class LoginFragment extends Fragment {
         bt_login = view.findViewById(R.id.bt_login_sign_in);
         bt_login.setOnClickListener(v -> {
             if (checkLoginData()) {
-                //TODO register user, send data to server and get data
+                AppStart.loginUC.login(et_email.getText().toString(), et_password.getText().toString());
             }
         });
         bt_to_reg = view.findViewById(R.id.bt_login_register);

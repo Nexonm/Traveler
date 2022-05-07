@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.presentation.MainActivity;
 
 public class RegistrationFragment extends Fragment {
@@ -105,6 +106,7 @@ public class RegistrationFragment extends Fragment {
             et_phone.setHint(R.string.reg_title_phone_number);
         }
         if (check) {
+            AppStart.personAddNewUC.userAddNew(et_email.getText().toString(), et_password.getText().toString());
             savePrefs();
         }
 

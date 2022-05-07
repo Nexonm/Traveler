@@ -1,6 +1,6 @@
 package we.itschool.project.traveler.data.datamodel;
 
-public class UserModel {
+public class UserModelPOJO {
     private String firstName;
     private String secondName;
     private String email;
@@ -15,7 +15,7 @@ public class UserModel {
 
     //constructors
 
-    public UserModel(
+    public UserModelPOJO(
             String password,
             String firstName,
             String secondName,
@@ -29,7 +29,7 @@ public class UserModel {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public UserModel(
+    public UserModelPOJO(
             String firstName,
             String secondName,
             String email,

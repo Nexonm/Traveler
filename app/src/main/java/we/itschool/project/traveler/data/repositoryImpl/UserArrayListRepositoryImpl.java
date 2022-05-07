@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,6 +16,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.data.api.APIServiceConstructor;
+import we.itschool.project.traveler.data.api.entityserv.UserServ;
+import we.itschool.project.traveler.data.api.mapper.UserEntityMapper;
 import we.itschool.project.traveler.data.api.service.APIServiceUser;
 import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
@@ -46,13 +50,13 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
 //        addSomeDataToUser();
     }
 
-    private void addNewUserRetrofit() {
+    private void addNewUserRetrofit(String email, String password) {
         APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
 
-        String password = "some password";
+        //email is provided
         String firstName = "some FirstName";
         String secondName = "some SecondName";
-        String email = "someTestEmailFromServer@gmail.com";
+        //password is provided
         String dateOfBirth = "20.09.2011";
         JSONObject json = new JSONObject();
         try {
@@ -128,6 +132,38 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
 
     }
 
+    @Override
+    public boolean login(String email, String pass) {
+        APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
+        final boolean[] flag = {false};
+        Call<String> call = service.loginUser(email, pass);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body() != null) {
+                    if ("Пароль не соответствует, вход невозможен".equals(response.body().toString())) {
+                        flag[0] = false;
+                    } else if ("Пользователя не существует".equals(response.body().toString())) {
+                        flag[0] = false;
+                    } else {
+                        UserEntity user = UserEntityMapper.toUserEntityFormUserServ(
+                                (new Gson()).fromJson(response.body(), UserServ.class),
+                                true
+                        );
+                        AppStart.setUser(user);
+                        flag[0] = true;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                flag[0] = false;
+            }
+        });
+        return flag[0];
+    }
+
 
     private void updateLiveData() {
         dataLiveData.postValue(new ArrayList<>(data));
@@ -137,11 +173,8 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
     }
 
     @Override
-    public void userAddNew(UserEntity user) {
-        if (user.get_id() == UserEntity.UNDEFINED_ID)
-            user.set_id(autoIncrementId++);
-        data.add(user);
-        updateLiveData();
+    public void userAddNew(String email, String password) {
+        addNewUserRetrofit(email, password);
     }
 
     @Override
@@ -154,7 +187,8 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
     public void userEditById(UserEntity user) {
         UserEntity user_old = userGetById(user.get_id());
         userDeleteById(user_old);
-        userAddNew(user);
+        //TODO when user will be edited make some working logic here
+        userAddNew("null", "null");
     }
 
     @Override

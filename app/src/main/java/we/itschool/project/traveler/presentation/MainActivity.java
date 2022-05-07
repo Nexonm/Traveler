@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 
@@ -20,7 +21,6 @@ import com.google.android.material.navigation.NavigationView;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.ActivityMainBinding;
-import we.itschool.project.traveler.presentation.fragment.card_list.CardListFragment;
 import we.itschool.project.traveler.presentation.fragment.login.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        if (!userLogged())
-//        startLogInFragmentOrCardList();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -57,6 +54,18 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         setDisplayData();
+
+        if (userLogged()){
+            Log.v("USER_LOGIN", "user try to login");
+            if (AppStart.loginUC.login(userDataFromSPEmail(), userDataFromSPPass())){
+                Log.v("USER_LOGIN", "user was created: " + AppStart.getUser().toString());
+            }else{
+                Log.v("USER_LOGIN", "some error user wasn't logged");
+            }
+
+        }else{
+            startLogInFragment();
+        }
     }
 
     /**
@@ -72,18 +81,17 @@ public class MainActivity extends AppCompatActivity {
         return pref.contains(MainActivity.KEY_PREF_USER_EMAIL) && pref.contains(MainActivity.KEY_PREF_USER_PASSWORD);
     }
 
-    private void startLogInFragmentOrCardList() {
-        if (userLogged()) {
-            //in case we have user data we just login him
-            Fragment fragment = CardListFragment.newInstance();
+    private String userDataFromSPEmail(){
+        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        return pref.getString(KEY_PREF_USER_EMAIL, "null");
+    }
 
-            getSupportFragmentManager().popBackStack();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .addToBackStack("null")
-                    .replace(R.id.nav_host_fragment_content_main, fragment, null)
-                    .commit();
-        }else{
+    private String userDataFromSPPass(){
+        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        return pref.getString(KEY_PREF_USER_PASSWORD, "null");
+    }
+
+    private void startLogInFragment() {
             //in case user is new to app we suggest login or register
             Fragment fragment = LoginFragment.newInstance();
 
@@ -93,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
                     .addToBackStack("null")
                     .replace(R.id.nav_host_fragment_content_main, fragment, null)
                     .commit();
-        }
     }
 
     //method saves display size to AppStart fields

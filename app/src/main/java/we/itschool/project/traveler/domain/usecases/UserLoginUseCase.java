@@ -2,15 +2,14 @@ package we.itschool.project.traveler.domain.usecases;
 
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
 
-public class UserAddNewUseCase {
-
+public class UserLoginUseCase {
     private final UserDomainRepository repository;
 
-    public UserAddNewUseCase(UserDomainRepository repository) {
+    public UserLoginUseCase(UserDomainRepository repository)   {
         this.repository = repository;
     }
 
-    public void userAddNew(String email, String pass){
-        repository.userAddNew(email, pass);
+    public boolean login(String email, String pass) {
+        return repository.login(email, pass);
     }
 }

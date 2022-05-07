@@ -8,6 +8,7 @@ import java.util.List;
 
 import we.itschool.project.traveler.data.api.entityserv.CardServ;
 import we.itschool.project.traveler.data.api.entityserv.UserServ;
+import we.itschool.project.traveler.data.datamodel.UserModelPOJO;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.entity.UserInfo;
@@ -72,6 +73,10 @@ public class UserEntityMapper {
             return cards;
         } else
             return null;
+    }
+
+    public static String toUserServFromUserModelPOJO(UserModelPOJO model){
+        return (new Gson()).toJson(model);
     }
 
 }
