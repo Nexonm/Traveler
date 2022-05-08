@@ -9,7 +9,7 @@ import we.itschool.project.traveler.domain.entity.CardEntity;
 
 public interface CardDomainRepository {
 
-    void cardAddNew(CardEntity card);
+    void cardAddNew();
 
     void cardCreateNew(CardModelPOJO model);
 

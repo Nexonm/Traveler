@@ -136,7 +136,30 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
     public boolean login(String email, String pass) {
         APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
         final boolean[] flag = {false};
+//        boolean flag = false;
         Call<String> call = service.loginUser(email, pass);
+//        try {
+//            Response<String> response = call.execute();
+//            if (response.body() != null) {
+//                if ("Пароль не соответствует, вход невозможен".equals(response.body().toString())) {
+//                    flag = false;
+//                } else if ("Пользователя не существует".equals(response.body().toString())) {
+//                    flag = false;
+//                } else {
+//                    UserEntity user = UserEntityMapper.toUserEntityFormUserServ(
+//                            (new Gson()).fromJson(response.body(), UserServ.class),
+//                            true
+//                    );
+//                    AppStart.setUser(user);
+//                    flag = true;
+//                }
+//            }
+//        }catch (IOException e){
+//            e.printStackTrace();
+//            return false;
+//        }
+
+
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -162,6 +185,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
             }
         });
         return flag[0];
+//        return flag;
     }
 
 

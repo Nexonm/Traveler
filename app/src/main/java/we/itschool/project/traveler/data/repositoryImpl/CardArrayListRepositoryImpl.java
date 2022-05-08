@@ -40,28 +40,12 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     //only for test!!!
     private static int USER_ID_FOR_TEST = 22;
 
-    private static final int NUM_OF_CARDS_TO_DO;
+    private static int NUM_OF_CARDS_TO_DO;
 
     static {
-        NUM_OF_CARDS_TO_DO = 9;
+        NUM_OF_CARDS_TO_DO = 6;
     }
 
-    {
-        AsyncTask.execute(() -> {
-            Log.v("retrofitLogger", "start getting data from server");
-            //sendNewCardToSeverRetrofit(21l);
-            for (int i = 6; i <= NUM_OF_CARDS_TO_DO; i++) {
-                try {
-                    loadDataRetrofit(i);
-                    Thread.sleep(500);
-//                uploadPhotoToCard(i);
-                } catch (InterruptedException e) {
-                    loadDataRetrofit(i);
-//                uploadPhotoToCard(i);
-                }
-            }
-        });
-    }
 
     public void uploadPhotoToCard(String path, int cid) {
         AsyncTask.execute(() -> {
@@ -114,7 +98,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
                     if (response.body() != null) {
                         String str = response.body().toString();
                         Log.v("retrofitLogger", "card.toString():" + str);
-                        cardAddNew(CardEntityMapper.toCardEntityFormCardServ(
+                        addCardToMutableData(CardEntityMapper.toCardEntityFormCardServ(
                                 (new Gson()).fromJson(str, CardServ.class)
                                 , true));
 
@@ -130,14 +114,13 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
                 }
             });
 //        });
-        // Log.v(MainActivity.TAG, "passed main-response methods");
     }
 
 
     private void updateLiveData() {
-        AsyncTask.execute(() -> {
-            dataLiveData.postValue(new ArrayList<>(data));
-        });
+//        AsyncTask.execute(() -> {
+            dataLiveData.postValue(data);
+//        });
     }
 
     /**
@@ -172,12 +155,14 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
         });
     }
 
-    @Override
-    public void cardAddNew(CardEntity card) {
-        if (card.get_id() == CardEntity.UNDEFINED_ID)
-            card.set_id(autoIncrementId++);
+    private void addCardToMutableData(CardEntity card){
         data.add(card);
         updateLiveData();
+    }
+
+    @Override
+    public void cardAddNew() {
+        loadDataRetrofit(++NUM_OF_CARDS_TO_DO);
     }
 
     @Override
@@ -190,7 +175,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     public void cardEditById(CardEntity card) {
         CardEntity card_old = cardGetById(card.get_id());
         cardDeleteById(card_old);
-        cardAddNew(card);
+        addCardToMutableData(card);
     }
 
     @Override

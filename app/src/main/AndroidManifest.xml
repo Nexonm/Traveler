@@ -14,7 +14,13 @@
         android:theme="@style/Theme.Traveler"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.activity.MainActivity"
+            android:screenOrientation="locked"
+            android:exported="false"
+            android:parentActivityName=".presentation.activity.LoginActivity">
+        </activity>
+        <activity
+            android:name=".presentation.activity.LoginActivity"
             android:screenOrientation="locked"
             android:exported="true">
             <intent-filter>

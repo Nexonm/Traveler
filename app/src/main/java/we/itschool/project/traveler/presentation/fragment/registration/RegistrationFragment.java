@@ -1,6 +1,7 @@
 package we.itschool.project.traveler.presentation.fragment.registration;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,7 +17,8 @@ import androidx.fragment.app.Fragment;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.presentation.MainActivity;
+import we.itschool.project.traveler.presentation.activity.LoginActivity;
+import we.itschool.project.traveler.presentation.activity.MainActivity;
 
 public class RegistrationFragment extends Fragment {
 
@@ -61,7 +63,10 @@ public class RegistrationFragment extends Fragment {
         et_phone = view.findViewById(R.id.et_reg_field_phone_number);
         bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
-            checkAllData();
+            if(checkAllData()){
+                Intent intent = new Intent(this.getActivity().getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
         });
     }
 
@@ -113,17 +118,12 @@ public class RegistrationFragment extends Fragment {
         return false;
     }
     private void savePrefs() {
-        //make object of SharedPreferences, in case we have just one file we call
-        //getPreferences() passing with context of app/activity
         SharedPreferences pref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
-        //make object of SharedPreferences.Editor which provides methods to edit data
+
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString(MainActivity.KEY_PREF_USER_PASSWORD, et_password.getText().toString());
-        editor.putString(MainActivity.KEY_PREF_USER_EMAIL, et_email.getText().toString());
-        //use either apply() or commit()
-        //apply() changes the in-memory SharedPreferences object immediately but writes the updates to disk asynchronously
+        editor.putString(LoginActivity.KEY_PREF_USER_PASSWORD, et_password.getText().toString());
+        editor.putString(LoginActivity.KEY_PREF_USER_EMAIL, et_email.getText().toString());
+
         editor.apply();
-        //commit() is synchronous, you should avoid calling it from your main thread because it could pause your UI rendering
-        //editor.commit();
     }
 }

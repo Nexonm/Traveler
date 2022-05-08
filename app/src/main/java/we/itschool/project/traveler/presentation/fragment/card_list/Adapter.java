@@ -87,6 +87,10 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
         );
     }
 
+    public void updateSet(){
+        notifyDataSetChanged();
+    }
+
     interface OnCardClickListener {
         void onCardClick(CardEntity card);
     }

@@ -11,7 +11,7 @@ public class CardAddNewUseCase {
         this.repository = repository;
     }
 
-    public void cardAddNew(CardEntity card){
-        repository.cardAddNew(card);
+    public void cardAddNew(){
+        repository.cardAddNew();
     }
 }

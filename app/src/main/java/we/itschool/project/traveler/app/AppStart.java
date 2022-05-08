@@ -68,6 +68,8 @@ public class AppStart extends Application {
         personEditByIdUC = new UserEditByIdUseCase(imp1);
         personDeleteByIdUC = new UserDeleteByIdUseCase(imp1);
         loginUC = new UserLoginUseCase(imp1);
+
+        user = null;
     }
 
 
@@ -80,10 +82,11 @@ public class AppStart extends Application {
     }
 
     public static UserEntity getUser() {
-        return user;
+        return AppStart.user;
     }
 
     public static void setUser(UserEntity user) {
+        if (AppStart.user==null)
         AppStart.user = user;
     }
 

@@ -12,16 +12,18 @@ import we.itschool.project.traveler.domain.usecases.CardGetAllUseCase;
 
 public class CardListViewModel extends ViewModel {
 
+    private final CardAddNewUseCase addNewCard = AppStart.cardAddNewUC;
     private final CardGetAllUseCase getAll = AppStart.cardGetAllUC;
 
+    private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList;
+
     protected MutableLiveData<ArrayList<CardEntity>> getCardList(){
-        return getAll.cardGetAll();
+        cardsLiveDataList = getAll.cardGetAll();
+        return cardsLiveDataList;
     }
 
-    private final CardAddNewUseCase addNewCard = AppStart.cardAddNewUC;
-
-    protected void addNewCard(CardEntity card){
-        addNewCard.cardAddNew(card);
+    protected void addNewCard(){
+        addNewCard.cardAddNew();
     }
 
 }

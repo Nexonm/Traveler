@@ -1,6 +1,8 @@
 package we.itschool.project.traveler.presentation.fragment.card_list;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +78,7 @@ public class CardListFragment extends Fragment {
         initAdapter();
         initViewModel();
         initView(view);
+        addData();
     }
 
     private void initAdapter() {
@@ -85,9 +88,10 @@ public class CardListFragment extends Fragment {
 
     private void initViewModel() {
         viewModel = new ViewModelProvider(this).get(CardListViewModel.class);
-        viewModel.getCardList().observe(getViewLifecycleOwner(), cards -> {
-            adapter.submitList(cards);
-        });
+        viewModel.getCardList().observe(
+                getViewLifecycleOwner(),
+                cards -> adapter.submitList(cards)
+        );
     }
 
     private void initView(View view) {
@@ -95,6 +99,26 @@ public class CardListFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.getRecycledViewPool().setMaxRecycledViews(
                 Adapter.VIEW_TYPE_CARD_VISITOR, Adapter.MAX_POOL_SIZE);
+    }
+
+    private void addData() {
+        AsyncTask.execute(()->{
+
+                int num = 0;
+                while (num < 10)
+                    try {
+                        Log.v("OkHttpClient nik", "запрос отправляю " + num);
+                        viewModel.addNewCard();
+                        num++;
+                        Thread.sleep(1000);
+//                        runOnUiThread(new Runnable(){
+//                            adapter.notifyDataSetChanged())
+//                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+        });
     }
 
     private void startCardFragment(CardEntity card) {

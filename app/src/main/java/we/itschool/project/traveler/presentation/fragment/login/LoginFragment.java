@@ -1,5 +1,8 @@
 package we.itschool.project.traveler.presentation.fragment.login;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +19,8 @@ import androidx.fragment.app.FragmentManager;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.FragmentLoginBinding;
+import we.itschool.project.traveler.presentation.activity.LoginActivity;
+import we.itschool.project.traveler.presentation.activity.MainActivity;
 import we.itschool.project.traveler.presentation.fragment.registration.RegistrationFragment;
 
 
@@ -65,6 +70,9 @@ public class LoginFragment extends Fragment {
         bt_login.setOnClickListener(v -> {
             if (checkLoginData()) {
                 AppStart.loginUC.login(et_email.getText().toString(), et_password.getText().toString());
+                savePrefs();
+                Intent intent = new Intent(this.getActivity().getBaseContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
         bt_to_reg = view.findViewById(R.id.bt_login_register);
@@ -86,6 +94,21 @@ public class LoginFragment extends Fragment {
             et_password.setHint(R.string.login_password);
         }
         return check;
+    }
+
+    private void savePrefs() {
+        //make object of SharedPreferences, in case we have just one file we call
+        //getPreferences() passing with context of app/activity
+        SharedPreferences pref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        //make object of SharedPreferences.Editor which provides methods to edit data
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(LoginActivity.KEY_PREF_USER_PASSWORD, et_password.getText().toString());
+        editor.putString(LoginActivity.KEY_PREF_USER_EMAIL, et_email.getText().toString());
+        //use either apply() or commit()
+        //apply() changes the in-memory SharedPreferences object immediately but writes the updates to disk asynchronously
+        editor.apply();
+        //commit() is synchronous, you should avoid calling it from your main thread because it could pause your UI rendering
+        //editor.commit();
     }
 
     private void startRegistrationActivity() {
