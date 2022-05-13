@@ -11,62 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/container_card_big_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv_main_image_big_card"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/a001" />
-
-            <LinearLayout
-                android:id="@+id/avatar_card_layout_big_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/iv_avatar_image_big_card"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:padding="8dp"
-                    tools:src="@drawable/a001" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_avatar_profile_data_small_FN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SomeText"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tv_avatar_profile_data_small_SN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SomeText"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_description_long"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SomeText"
-                android:textSize="16sp" />
-
-        </LinearLayout>
+        <!-- Rectangle 12 -->
+        <View
+            android:id="@+id/rectangle_1"
+            android:layout_width="361dp"
+            android:layout_height="977dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="-24dp"
+            android:background="@drawable/rectangle_1"
+            />
 
     </ScrollView>
 

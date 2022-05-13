@@ -4,25 +4,293 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/a001"
-            android:title="@string/menu_profile" />
-        <item
-            android:id="@+id/nav_main"
-            android:icon="@drawable/a001"
-            android:title="@string/menu_main" />
-        <item
-            android:id="@+id/nav_chats"
-            android:icon="@drawable/a001"
-            android:title="@string/menu_chats" />
-        <item
-            android:id="@+id/nav_my_cards"
-            android:icon="@drawable/a001"
-            android:title="@string/menu_my_cards" />
-        <item
-            android:id="@+id/nav_favourites"
-            android:icon="@drawable/a001"
-            android:title="@string/menu_favourites" />
+        <!-- Профиль -->
+        <TextView
+            android:id="@+id/some_id"
+            android:layout_width="140dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="81dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="81dp"
+            android:text="@string/some_id"
+            android:textAppearance="@style/some_id"
+            android:gravity="top"
+            />
+
+        <!--
+        Font family: Montserrat
+        Line height: 35sp
+        -->
+        <!-- styles.xml -->
+        <style name="some_id">
+
+            <item name="android:textSize">
+                29sp
+            </item>
+
+            <item name="android:textColor">
+                #FFFFFF
+            </item>
+
+        </style>
+
+
+        <!-- strings.xml -->
+        <string name="some_id">
+
+            \u00D0\u009F\u00D1\u0080\u00D0\u00BE\u00D1\u0084\u00D0\u00B8\u00D0\u00BB\u00D1\u008C
+        </string>
+
+
+
+
+        <!-- настройки для прилаги 1 -->
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/some_id"
+            android:layout_width="32dp"
+            android:layout_height="28dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="33dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="292dp"
+            android:clipToOutline="true"
+            android:background="@drawable/some_id"
+            />
+
+
+        <!-- drawable/some_id.xml -->
+        <vector
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:aapt="http://schemas.android.com/aapt"
+            android:width="32dp"
+            android:height="28dp"
+            android:viewportWidth="32"
+            android:viewportHeight="28"
+            >
+
+            <group>
+
+                <clip-path
+                    android:pathData="M0 0H32V28H0V0Z"
+                    />
+
+            </group>
+
+        </vector>
+
+
+
+        <!-- Group 1 -->
+        <View
+            android:id="@+id/group_1"
+            android:layout_width="166dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="83dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="288dp"
+            android:background="#00000000"
+            />
+
+
+
+
+        <!-- стрелка для прилаги 1 -->
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/some_id"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="-3dp"
+            android:clipToOutline="true"
+            android:background="@drawable/some_id"
+            />
+
+
+        <!-- drawable/some_id.xml -->
+        <vector
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:aapt="http://schemas.android.com/aapt"
+            android:width="43dp"
+            android:height="43dp"
+            android:viewportWidth="43"
+            android:viewportHeight="43"
+            >
+
+            <group>
+
+                <clip-path
+                    android:pathData="M0 0H43V43H0V0Z"
+                    />
+
+            </group>
+
+        </vector>
+
+
+
+        <!-- чел 1 -->
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/some_id"
+            android:layout_width="29dp"
+            android:layout_height="28dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="31dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="81dp"
+            android:clipToOutline="true"
+            android:background="@drawable/some_id"
+            />
+
+
+        <!-- drawable/some_id.xml -->
+        <vector
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:aapt="http://schemas.android.com/aapt"
+            android:width="29dp"
+            android:height="28dp"
+            android:viewportWidth="29"
+            android:viewportHeight="28"
+            >
+
+            <group>
+
+                <clip-path
+                    android:pathData="M0 0H29V28H0V0Z"
+                    />
+
+            </group>
+
+        </vector>
+
+
+
+        <!-- Мои карточки -->
+        <TextView
+            android:id="@+id/some_id"
+            android:layout_width="213dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="81dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="150dp"
+            android:text="@string/some_id"
+            android:textAppearance="@style/some_id"
+            android:gravity="top"
+            />
+
+        <!--
+        Font family: Montserrat
+        Line height: 35sp
+        -->
+        <!-- styles.xml -->
+        <style name="some_id">
+
+            <item name="android:textSize">
+                29sp
+            </item>
+
+            <item name="android:textColor">
+                #FFFFFF
+            </item>
+
+        </style>
+
+
+        <!-- strings.xml -->
+        <string name="some_id">
+
+            \u00D0\u009C\u00D0\u00BE\u00D0\u00B8 \u00D0\u00BA\u00D0\u00B0\u00D1\u0080\u00D1\u0082\u00D0\u00BE\u00D1\u0087\u00D0\u00BA\u00D0\u00B8
+        </string>
+
+
+
+
+        <!-- Избранное -->
+        <TextView
+            android:id="@+id/some_id"
+            android:layout_width="171dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="81dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="219dp"
+            android:text="@string/some_id"
+            android:textAppearance="@style/some_id"
+            android:gravity="top"
+            />
+
+        <!--
+        Font family: Montserrat
+        Line height: 35sp
+        -->
+        <!-- styles.xml -->
+        <style name="some_id">
+
+            <item name="android:textSize">
+                29sp
+            </item>
+
+            <item name="android:textColor">
+                #FFFFFF
+            </item>
+
+        </style>
+
+
+        <!-- strings.xml -->
+        <string name="some_id">
+
+            \u00D0\u0098\u00D0\u00B7\u00D0\u00B1\u00D1\u0080\u00D0\u00B0\u00D0\u00BD\u00D0\u00BD\u00D0\u00BE\u00D0\u00B5
+        </string>
+
+
+
+
+        <!-- free-icon-font-credit-card-3916663 1 -->
+
+
+
+
+        <!-- free-icon-font-heart-3916579 1 -->
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/free_icon_f"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="32dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="222dp"
+            android:clipToOutline="true"
+            android:background="@drawable/free_icon_f"
+            />
+
+
+        <!-- drawable/free_icon_f.xml -->
+        <vector
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:aapt="http://schemas.android.com/aapt"
+            android:width="28dp"
+            android:height="28dp"
+            android:viewportWidth="28"
+            android:viewportHeight="28"
+            >
+
+            <group>
+
+                <clip-path
+                    android:pathData="M0 0H28V28H0V0Z"
+                    />
+
+            </group>
+
+        </vector>
     </group>
 </menu>
