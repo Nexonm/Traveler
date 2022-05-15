@@ -23,7 +23,7 @@
         app:itemTextColor="@color/white"
         android:background="@drawable/rectangle_2"
         app:itemVerticalPadding="15dp"
-        app:itemTextAppearance="@style/text_style_2"
+        app:itemTextAppearance="@style/text_style_3"
         app:itemIconSize="29sp"
         app:itemIconPadding="15dp"
         app:menu="@menu/activity_main_drawer" />

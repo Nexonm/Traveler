@@ -21,8 +21,10 @@
 
     <!-- login strings -->
     <string name="login_title">Добро пожаловать в Traveler!</string>
-    <string name="login_email">Email</string>
-    <string name="login_password">Пароль</string>
+    <string name="login_email_tv">Введите email</string>
+    <string name="login_email_ev">Email</string>
+    <string name="login_password_tv">Введите пароль</string>
+    <string name="login_password_ev">Пароль</string>
     <string name="login_sign_in">ВОЙТИ</string>
     <string name="login_or">Или</string>
     <string name="login_register">РЕГИСТРАЦИЯ</string>
@@ -36,4 +38,14 @@
     <string name="reg_title_password_repeat_not_match">Пароли не совпадают</string>
     <string name="reg_title_date_of_birth_hint">Дата рождения</string>
     <string name="reg_title_phone_number">Номер телефона</string>
+    <!-- profile strings -->
+    <string name="profile_first_name">Имя</string>
+    <string name="profile_second_name">Фамилия</string>
+    <string name="profile_phone_number">Телефон</string>
+    <string name="profile_email">Почта</string>
+    <string name="profile_is_male_null">Пол</string>
+    <string name="profile_date_of_birth_null">День рождения</string>
+    <string name="profile_is_male"><u>Пол</u></string>
+    <string name="profile_date_of_birth"><u>День рождения</u></string>
+    <string name="icon">Иконка</string>
 </resources>
