@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/a001"
+            android:icon="@drawable/profile_icon"
             android:title="@string/menu_profile" />
         <item
             android:id="@+id/nav_main"
@@ -18,11 +18,11 @@
             android:title="@string/menu_chats" />
         <item
             android:id="@+id/nav_my_cards"
-            android:icon="@drawable/a001"
+            android:icon="@drawable/my_cards_icon"
             android:title="@string/menu_my_cards" />
         <item
             android:id="@+id/nav_favourites"
-            android:icon="@drawable/a001"
+            android:icon="@drawable/favourites_icon"
             android:title="@string/menu_favourites" />
     </group>
 </menu>
