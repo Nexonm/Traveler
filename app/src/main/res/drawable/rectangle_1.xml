@@ -1,60 +1,46 @@
-<!-- drawable/rectangle_1.xml -->
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:width="361dp"
-    android:height="977dp"
+    android:height="965dp"
     android:viewportWidth="361"
-    android:viewportHeight="977"
+    android:viewportHeight="965"
     >
-
   <group>
-
     <clip-path
-        android:pathData="M20 0H341C352.046 0 361 8.95431 361 20V957C361 968.046 352.046 977 341 977H20C8.95431 977 0 968.046 0 957V20C0 8.95431 8.95431 0 20 0Z"
+        android:pathData="M0 0H361V965H0V0Z"
         />
-
     <group
-        android:translateX="0.749"
-        android:translateY="0.162"
+        android:translateX="0.311"
+        android:translateY="0.044"
         android:pivotX="180.5"
-        android:pivotY="488.5"
-        android:scaleX="3.356"
-        android:scaleY="2.298"
-        android:rotation="41.96"
+        android:pivotY="482.5"
+        android:scaleX="2.595"
+        android:scaleY="1.679"
+        android:rotation="38.511"
         >
-
       <path
-          android:pathData="M0 0V977H361V0"
+          android:pathData="M0 0V965H361V0"
           >
-
         <aapt:attr name="android:fillColor">
-
           <gradient
               android:type="linear"
               android:startX="90.25"
-              android:startY="488.5"
+              android:startY="482.5"
               android:endX="270.75"
-              android:endY="488.5"
+              android:endY="482.5"
               >
-
             <item
-                android:color="#FFDD87"
+                android:color="#7BBCEB"
                 android:offset="0"
                 />
-
             <item
-                android:color="#F05C53"
+                android:color="#D590E8"
                 android:offset="1"
                 />
-
           </gradient>
-
         </aapt:attr>
-
       </path>
-
     </group>
-
   </group>
-
 </vector>

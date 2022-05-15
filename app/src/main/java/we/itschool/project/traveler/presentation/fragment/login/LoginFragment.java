@@ -119,7 +119,7 @@ public class LoginFragment extends Fragment {
         fragmentManager
                 .beginTransaction()
                 .addToBackStack("null")
-                .replace(R.id.nav_host_fragment_content_main, fragment, null)
+                .replace(R.id.fcv_login, fragment, null)
                 .commit();
     }
 }

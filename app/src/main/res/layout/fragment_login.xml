@@ -1,95 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rectangle_1"
     tools:context=".presentation.fragment.login.LoginFragment">
-
 
     <TextView
         android:id="@+id/tv_login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_title"
-        app:layout_constraintBottom_toTopOf="@+id/tv_login_email"
+        android:textAppearance="@style/text_style_1"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/et_login_field_email"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.113" />
+        app:layout_constraintVertical_bias="0.408" />
 
     <TextView
         android:id="@+id/tv_login_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_email"
+        android:textAppearance="@style/text_style_1"
         app:layout_constraintBottom_toTopOf="@+id/et_login_field_email"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_title"
+        app:layout_constraintVertical_bias="0.737" />
 
     <EditText
         android:id="@+id/et_login_field_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
         android:hint="@string/login_email"
-        app:layout_constraintBottom_toTopOf="@+id/tv_login_title_password"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_email"
+        android:inputType="textEmailAddress"
+        android:textAppearance="@style/text_style_1"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/et_login_field_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_login_title_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_password"
+        android:textAppearance="@style/text_style_1"
         app:layout_constraintBottom_toTopOf="@+id/et_login_field_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_login_field_email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_field_email"
+        app:layout_constraintVertical_bias="0.53" />
 
     <EditText
         android:id="@+id/et_login_field_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="316dp"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="@string/login_password"
-        app:layout_constraintBottom_toTopOf="@+id/bt_login_sign_in"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_title_password"
+        android:inputType="textPassword"
+        android:textAppearance="@style/text_style_1"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/bt_login_sign_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:text="@string/login_sign_in"
-        app:layout_constraintBottom_toTopOf="@+id/tv_login_or"
-        app:layout_constraintTop_toBottomOf="@+id/et_login_field_password"
+        android:textAppearance="@style/text_style_1"
+        app:layout_constraintBottom_toTopOf="@+id/bt_login_register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_field_password"
+        app:layout_constraintVertical_bias="0.613"
+        app:cornerRadius="17dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp" />
 
     <TextView
         android:id="@+id/tv_login_or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_or"
+        android:textAppearance="@style/text_style_1"
         app:layout_constraintBottom_toTopOf="@+id/bt_login_register"
-        app:layout_constraintTop_toBottomOf="@+id/bt_login_sign_in"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_login_sign_in" />
 
     <Button
         android:id="@+id/bt_login_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
         android:text="@string/login_register"
+        android:textAppearance="@style/text_style_1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_or"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_field_password"
+        app:layout_constraintVertical_bias="0.684"
+        app:cornerRadius="17dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,4 +5,20 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/divider_color</item>
     </style>
+    <style name="text_style_1">
+        <item name="android:textSize">
+            20sp
+        </item>
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+    </style>
+    <style name="text_style_2">
+        <item name="android:textSize">
+            29sp
+        </item>
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+    </style>
 </resources>
