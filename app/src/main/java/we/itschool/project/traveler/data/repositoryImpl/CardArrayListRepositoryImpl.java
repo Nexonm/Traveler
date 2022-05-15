@@ -16,6 +16,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.data.api.APIServiceConstructor;
 import we.itschool.project.traveler.data.api.entityserv.CardServ;
 import we.itschool.project.traveler.data.api.mapper.CardEntityMapper;
@@ -131,7 +132,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     public void cardCreateNew(CardModelPOJO model) {
         AsyncTask.execute(() -> {
             APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
-            Call<String> call = service.addNewCardGson(USER_ID_FOR_TEST, CardEntityMapper.toCardServFromCardModelPOJO(model));
+            Call<String> call = service.addNewCardGson(AppStart.getUser().get_id(), CardEntityMapper.toCardServFromCardModelPOJO(model));
             call.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
