@@ -43,7 +43,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     private static int NUM_OF_CARDS_TO_DO;
 
     static {
-        NUM_OF_CARDS_TO_DO = 6;
+        NUM_OF_CARDS_TO_DO = 0;
     }
 
 
@@ -162,6 +162,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
 
     @Override
     public void cardAddNew() {
+        if (NUM_OF_CARDS_TO_DO==2) NUM_OF_CARDS_TO_DO = 13;
         loadDataRetrofit(++NUM_OF_CARDS_TO_DO);
     }
 
