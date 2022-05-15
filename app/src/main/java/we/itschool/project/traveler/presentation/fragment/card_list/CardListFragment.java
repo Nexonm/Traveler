@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.databinding.FragmentMainBinding;
 import we.itschool.project.traveler.domain.entity.CardEntity;
@@ -101,19 +103,23 @@ public class CardListFragment extends Fragment {
                 Adapter.VIEW_TYPE_CARD_VISITOR, Adapter.MAX_POOL_SIZE);
     }
 
+    //TODO сделать загрузку данных другим способом, в зависимости от прокрутки пользователем странницы
     private void addData() {
         AsyncTask.execute(()->{
 
                 int num = 0;
-                while (num < 10)
+                while (num < 5)
                     try {
                         Log.v("OkHttpClient nik", "запрос отправляю " + num);
                         viewModel.addNewCard();
                         num++;
-                        Thread.sleep(1000);
-//                        runOnUiThread(new Runnable(){
-//                            adapter.notifyDataSetChanged())
-//                        });
+                        Thread.sleep(2500);
+                        //write submit list to add new list made from main list with cards
+                        adapter.submitList(new ArrayList<>(viewModel.getCardList().getValue()));
+//                        adapter.onCurrentListChanged(adapter.getCurrentList(), viewModel.getCardList().getValue());
+                        try{
+                            num = viewModel.getCardList().getValue().size();
+                        }catch (NullPointerException ignored){}
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
