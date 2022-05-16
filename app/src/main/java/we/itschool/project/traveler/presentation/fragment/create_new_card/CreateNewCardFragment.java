@@ -27,12 +27,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
-
-import java.util.Objects;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
@@ -74,20 +71,13 @@ public class CreateNewCardFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(
-                R.layout.fragment_create_new_card,
-                container,
-                false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_create_new_card, container, false);
     }
 
     @Override
-    public void onViewCreated(
-            @NonNull View view,
-            @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         context = this.requireActivity().getBaseContext();
         initView(view);

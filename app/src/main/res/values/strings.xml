@@ -64,4 +64,10 @@
     <string name="cnc_few_information">Краткая информация</string>
     <string name="cnc_many_information">Полная информация</string>
     <string name="cnc_btn_add_card">ДОБАВИТЬ КАРТОЧКУ</string>
+
+    <!-- card big view (cbv) strings -->
+    <string name="cbv_name">Имя</string>
+    <string name="cbv_second_name">Фамилия</string>
+    <string name="cbv_description_photo">Фотография карточки</string>
+    <string name="cbv_text_from_author">текст от автора</string>
 </resources>

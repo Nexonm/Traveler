@@ -35,18 +35,15 @@
             android:textAppearance="@style/text_style_2" />
     </LinearLayout>
 
-
     <ImageView
         android:id="@+id/iv_profile_avatar"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
-        app:border_color="@color/white"
-        app:border_width="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars"
+        tools:src="@drawable/singap"
         android:contentDescription="@string/profile_description_photo"/>
 
     <TableLayout
@@ -111,7 +108,7 @@
                 android:src="@drawable/is_male_icon" />
 
             <TextView
-                android:id="@+id/tv_profile_is_male_null"
+                android:id="@+id/tv_profile_is_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
@@ -134,7 +131,7 @@
                 android:src="@drawable/birthday_icon" />
 
             <TextView
-                android:id="@+id/tv_profile_birthday_null"
+                android:id="@+id/tv_profile_birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
