@@ -27,13 +27,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 
+import java.util.Objects;
+
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.data.datamodel.CardModelPOJO;
+import we.itschool.project.traveler.databinding.FragmentCreateNewCardBinding;
 import we.itschool.project.traveler.presentation.fragment.my_cards.MyCardsFragment;
 
 public class CreateNewCardFragment extends Fragment {
@@ -52,6 +56,7 @@ public class CreateNewCardFragment extends Fragment {
 
     private String bufString = "null";
 
+    private FragmentCreateNewCardBinding binding;
     private boolean paymentIsFixed;
     private static final int IMAGE_PIC_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
@@ -113,10 +118,9 @@ public class CreateNewCardFragment extends Fragment {
         Button bt_new_card = view.findViewById(R.id.bt_new_card_add_new_card);
         //main onClick method
         bt_new_card.setOnClickListener(v -> {
-//            if (checkAllData()) {
-//                getActivity().getFragmentManager().popBackStack();
-//            }
-            checkAllData();
+            if (checkAllData()) {
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
         });
 
         //EditText's data
@@ -151,7 +155,7 @@ public class CreateNewCardFragment extends Fragment {
      * Checks all the fields in fragment and sends to server new card
      *
      */
-    private void checkAllData() {
+    private boolean checkAllData() {
         boolean check = true;
         //city
         if (!(et_city.getText().length() > 0)) {
@@ -175,19 +179,19 @@ public class CreateNewCardFragment extends Fragment {
         if (!(et_short_desc.getText().length() > 0)) {
             check = false;
             et_short_desc.setHintTextColor(Color.RED);
-            et_short_desc.setHint("Кратко опишите ваше предложение");
+            et_short_desc.setHint("Опишите ваше предложение");
         }
         //full description
         if (!(et_full_desc.getText().length() > 0)) {
             check = false;
             et_full_desc.setHintTextColor(Color.RED);
-            et_full_desc.setHint("Опишите ваше предложение");
+            et_full_desc.setHint("Подробно опишите ваше предложение");
         }
         //coast
         if (paymentIsFixed && !(et_coast.getText().length() > 0 && isNum(et_coast.getText().toString()))) {
             check = false;
             et_coast.setHintTextColor(Color.RED);
-            et_coast.setHint("Введите плату цифрами");
+            et_coast.setHint("Введите плату");
         }
         if ("null".equals(bufString)){
             check = false;
@@ -225,7 +229,9 @@ public class CreateNewCardFragment extends Fragment {
                         )
                 );
             }
+            return true;
         }
+        return false;
     }
 
     private boolean isNum(String a) {
@@ -321,4 +327,9 @@ public class CreateNewCardFragment extends Fragment {
                 .commit();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

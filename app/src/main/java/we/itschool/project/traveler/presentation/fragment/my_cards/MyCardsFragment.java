@@ -1,10 +1,13 @@
 package we.itschool.project.traveler.presentation.fragment.my_cards;
 
 
+import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,8 +24,8 @@ public class MyCardsFragment extends Fragment {
 
     private FragmentMyCardsBinding binding;
 
-    private FloatingActionButton fb_new_card;
-
+    private ImageButton ib_new_card;
+    private Context context;
     public static MyCardsFragment newInstance(){
         return new MyCardsFragment();
     }
@@ -45,21 +48,19 @@ public class MyCardsFragment extends Fragment {
             @NonNull View view,
             @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        context = this.requireActivity().getBaseContext();
         initView(view);
     }
 
     private void initView(View view) {
-        fb_new_card = view.findViewById(R.id.fb_my_cards_create_new_card);
-        fb_new_card.setOnClickListener(v -> {
-            startCreateNewCardFragment();
-        });
+        ib_new_card = view.findViewById(R.id.ib_my_cards_create_new_card);
+        ib_new_card.setOnClickListener(v -> startCreateNewCardFragment());
     }
 
     private void startCreateNewCardFragment(){
         Fragment fragment = CreateNewCardFragment.newInstance();
 
         FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager.popBackStack();
         fragmentManager
                 .beginTransaction()
                 .addToBackStack("null")

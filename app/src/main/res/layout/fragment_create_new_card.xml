@@ -18,7 +18,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:showDividers="middle"
-            android:divider="@drawable/empty_tall_divider"
+            android:divider="@drawable/empty_tall_divider_cnc"
             android:layout_marginTop="15dp">
 
             <EditText

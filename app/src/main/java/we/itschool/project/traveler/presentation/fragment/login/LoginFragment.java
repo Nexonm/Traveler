@@ -16,8 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import java.util.Objects;
-
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.FragmentLoginBinding;
@@ -47,14 +45,6 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-//        binding = FragmentLoginBinding.inflate(inflater, container, false);
-//
-//        View root = binding.getRoot();
-//        root.findViewById(R.id.toolbar).setTooltipText("Registration");
-//        return root;
-
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
