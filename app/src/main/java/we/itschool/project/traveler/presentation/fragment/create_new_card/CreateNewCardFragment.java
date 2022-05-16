@@ -49,6 +49,7 @@ public class CreateNewCardFragment extends Fragment {
     private EditText et_country;
     private EditText et_address;
     private EditText et_coast;
+    private EditText et_null;
     private EditText et_short_desc;
     private EditText et_full_desc;
 
@@ -104,6 +105,8 @@ public class CreateNewCardFragment extends Fragment {
                     requestPermissionsMy();
                 } else {
                     //permission Granted we can pick image
+                    iv_card_photo.getLayoutParams().height = 300;
+                    iv_card_photo.getLayoutParams().width = 300;
                     pickImageFromGallery();
                 }
             }catch (Exception ignored){}
@@ -126,15 +129,22 @@ public class CreateNewCardFragment extends Fragment {
         et_short_desc = view.findViewById(R.id.et_new_card_short_description);
         et_full_desc = view.findViewById(R.id.et_new_card_full_description);
         et_coast = view.findViewById(R.id.et_new_card_cost);
+        et_coast.setWidth(1);
+        et_coast.setHeight(1);
+        et_null = view.findViewById(R.id.null_object);
         sw_payment = view.findViewById(R.id.sw_new_card_payment_is_fixed);
         sw_payment.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    et_coast.setWidth(et_null.getWidth());
+                    et_coast.setHeight(et_null.getHeight());
                     et_coast.setVisibility(View.VISIBLE);
                     et_coast.setClickable(true);
                     paymentIsFixed = true;
                 } else {
+                    et_coast.setWidth(1);
+                    et_coast.setHeight(1);
                     et_coast.setVisibility(View.INVISIBLE);
                     et_coast.setClickable(false);
                     paymentIsFixed = false;

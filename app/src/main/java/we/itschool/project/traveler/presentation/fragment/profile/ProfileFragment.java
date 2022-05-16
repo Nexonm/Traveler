@@ -21,7 +21,7 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textProfile;
+        final TextView textView = binding.tvProfilePhone;
         String str = "This is profile fragment";
         textView.setText(str);
         return root;

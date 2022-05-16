@@ -38,6 +38,7 @@
     <string name="reg_title_password_repeat_not_match">Пароли не совпадают</string>
     <string name="reg_title_date_of_birth_hint">Дата рождения</string>
     <string name="reg_title_phone_number">Номер телефона</string>
+    <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
     <!-- profile strings -->
     <string name="profile_first_name">Имя</string>
     <string name="profile_second_name">Фамилия</string>
@@ -48,4 +49,15 @@
     <string name="profile_is_male"><u>Пол</u></string>
     <string name="profile_date_of_birth"><u>День рождения</u></string>
     <string name="icon">Иконка</string>
+    <!-- create new card (cnc) strings -->
+    <string name="cnc_city">Город</string>
+    <string name="cnc_upload">ЗАГРУЗИТЬ</string>
+    <string name="cnc_description_photo">Добавьте фотографию</string>
+    <string name="cnc_country">Страна</string>
+    <string name="cnc_address">Адрес</string>
+    <string name="cnc_is_exact_money">Будет ли взиматься конкретная плата</string>
+    <string name="cnc_money">Плата</string>
+    <string name="cnc_few_information">Краткая информация</string>
+    <string name="cnc_many_information">Полная информация</string>
+    <string name="cnc_btn_add_card">ДОБАВИТЬ КАРТОЧКУ</string>
 </resources>

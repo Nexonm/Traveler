@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.util.Objects;
+
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.FragmentLoginBinding;
@@ -71,14 +73,12 @@ public class LoginFragment extends Fragment {
             if (checkLoginData()) {
                 AppStart.loginUC.login(et_email.getText().toString(), et_password.getText().toString());
                 savePrefs();
-                Intent intent = new Intent(this.getActivity().getBaseContext(), MainActivity.class);
+                Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
         bt_to_reg = view.findViewById(R.id.bt_login_register);
-        bt_to_reg.setOnClickListener(v -> {
-            startRegistrationActivity();
-        });
+        bt_to_reg.setOnClickListener(v -> startRegistrationActivity());
     }
 
     private boolean checkLoginData() {
@@ -86,12 +86,12 @@ public class LoginFragment extends Fragment {
         if (et_email.getText().length() <= 0) {
             check = false;
             et_email.setHintTextColor(Color.RED);
-            et_email.setHint(R.string.login_email);
+            et_email.setHint(R.string.login_email_ev);
         }
         if (et_password.getText().length() <= 0) {
             check = false;
             et_password.setHintTextColor(Color.RED);
-            et_password.setHint(R.string.login_password);
+            et_password.setHint(R.string.login_password_ev);
         }
         return check;
     }
@@ -99,7 +99,7 @@ public class LoginFragment extends Fragment {
     private void savePrefs() {
         //make object of SharedPreferences, in case we have just one file we call
         //getPreferences() passing with context of app/activity
-        SharedPreferences pref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences pref = this.requireActivity().getPreferences(Context.MODE_PRIVATE);
         //make object of SharedPreferences.Editor which provides methods to edit data
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(LoginActivity.KEY_PREF_USER_PASSWORD, et_password.getText().toString());
