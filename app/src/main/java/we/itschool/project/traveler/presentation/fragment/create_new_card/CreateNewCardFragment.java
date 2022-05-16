@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -39,8 +38,6 @@ import we.itschool.project.traveler.presentation.fragment.my_cards.MyCardsFragme
 
 public class CreateNewCardFragment extends Fragment {
 
-    private Button bt_new_card;
-    private Button bt_upload_photo;
     private Context context;
     private ImageView iv_card_photo;
     private Switch sw_payment;
@@ -87,7 +84,7 @@ public class CreateNewCardFragment extends Fragment {
             @NonNull View view,
             @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        context = this.getActivity().getBaseContext();
+        context = this.requireActivity().getBaseContext();
         initView(view);
     }
 
@@ -96,7 +93,7 @@ public class CreateNewCardFragment extends Fragment {
         //card photo that must be downloaded by user
         iv_card_photo = view.findViewById(R.id.iv_new_card_photo);
         //on this button's click photo must be found
-        bt_upload_photo = view.findViewById(R.id.bt_new_card_upload_photo);
+        Button bt_upload_photo = view.findViewById(R.id.bt_new_card_upload_photo);
         //it was clicked, start finding photo
         bt_upload_photo.setOnClickListener(v -> {
             //check runtime permission
@@ -113,7 +110,7 @@ public class CreateNewCardFragment extends Fragment {
 
         });
         //create new card button, on this click all check are made and data sends
-        bt_new_card = view.findViewById(R.id.bt_new_card_add_new_card);
+        Button bt_new_card = view.findViewById(R.id.bt_new_card_add_new_card);
         //main onClick method
         bt_new_card.setOnClickListener(v -> {
 //            if (checkAllData()) {
@@ -133,22 +130,19 @@ public class CreateNewCardFragment extends Fragment {
         et_coast.setHeight(1);
         et_null = view.findViewById(R.id.null_object);
         sw_payment = view.findViewById(R.id.sw_new_card_payment_is_fixed);
-        sw_payment.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    et_coast.setWidth(et_null.getWidth());
-                    et_coast.setHeight(et_null.getHeight());
-                    et_coast.setVisibility(View.VISIBLE);
-                    et_coast.setClickable(true);
-                    paymentIsFixed = true;
-                } else {
-                    et_coast.setWidth(1);
-                    et_coast.setHeight(1);
-                    et_coast.setVisibility(View.INVISIBLE);
-                    et_coast.setClickable(false);
-                    paymentIsFixed = false;
-                }
+        sw_payment.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                et_coast.setWidth(et_null.getWidth());
+                et_coast.setHeight(et_null.getHeight());
+                et_coast.setVisibility(View.VISIBLE);
+                et_coast.setClickable(true);
+                paymentIsFixed = true;
+            } else {
+                et_coast.setWidth(1);
+                et_coast.setHeight(1);
+                et_coast.setVisibility(View.INVISIBLE);
+                et_coast.setClickable(false);
+                paymentIsFixed = false;
             }
         });
     }
@@ -156,9 +150,8 @@ public class CreateNewCardFragment extends Fragment {
     /**
      * Checks all the fields in fragment and sends to server new card
      *
-     * @return is all data complete
      */
-    private boolean checkAllData() {
+    private void checkAllData() {
         boolean check = true;
         //city
         if (!(et_city.getText().length() > 0)) {
@@ -232,14 +225,12 @@ public class CreateNewCardFragment extends Fragment {
                         )
                 );
             }
-            return check;
         }
-        return check;
     }
 
     private boolean isNum(String a) {
         try {
-            int c = Integer.parseInt(a);
+            Integer.parseInt(a);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -272,6 +263,7 @@ public class CreateNewCardFragment extends Fragment {
                 public void onActivityResult(ActivityResult result) {
                     if (result != null) {
                         try {
+                            assert result.getData() != null;
                             Uri imageUri = result.getData().getData();
                             bufString = getRealPathFromURI(imageUri);
                             Log.v("fileName", "the file path: "+ bufString);
@@ -289,7 +281,7 @@ public class CreateNewCardFragment extends Fragment {
     );
 
     private String getRealPathFromURI(Uri uri) {
-        Cursor cursor = this.getActivity().getContentResolver().query(uri, null, null, null, null);
+        Cursor cursor = this.requireActivity().getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
@@ -301,7 +293,7 @@ public class CreateNewCardFragment extends Fragment {
      */
     private boolean hasPermissions() {
         return ActivityCompat.checkSelfPermission(
-                this.getActivity().getBaseContext(),
+                this.requireActivity().getBaseContext(),
                 Manifest.permission.READ_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED;
     }
