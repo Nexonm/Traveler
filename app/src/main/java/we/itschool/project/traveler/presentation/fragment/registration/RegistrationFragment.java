@@ -111,7 +111,14 @@ public class RegistrationFragment extends Fragment {
             et_phone.setHint(R.string.reg_title_phone_number);
         }
         if (check) {
-            AppStart.personAddNewUC.userAddNew(et_email.getText().toString(), et_password.getText().toString());
+            AppStart.personAddNewUC.userAddNew(new String[]{
+                    et_email.getText().toString(),
+                    et_password.getText().toString(),
+                    et_first_name.getText().toString(),
+                    et_second_name.getText().toString(),
+                    et_birth_date.getText().toString(),
+                    et_phone.getText().toString()
+            });
             savePrefs();
         }
 

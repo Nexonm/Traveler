@@ -10,7 +10,7 @@ public interface UserDomainRepository {
 
     boolean login(String email, String pass);
 
-    void userAddNew(String email, String pass);
+    void userAddNew(String[] data);
 
     void userDeleteById(UserEntity user);
 
