@@ -31,4 +31,11 @@ public interface APIServiceStorage {
             @Part ("cid") RequestBody cid
     );
 
+    @Multipart
+    @POST("storage/upload-file-user")
+    Call<String> uploadPhotoToUser(
+            @Part MultipartBody.Part file,
+            @Part ("uid") RequestBody uid
+    );
+
 }
