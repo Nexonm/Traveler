@@ -50,21 +50,17 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
 //        addSomeDataToUser();
     }
 
-    private void addNewUserRetrofit(String email, String password) {
+    private void addNewUserRetrofit(String[] data) {
         APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
 
-        //email is provided
-        String firstName = "some FirstName";
-        String secondName = "some SecondName";
-        //password is provided
-        String dateOfBirth = "20.09.2011";
         JSONObject json = new JSONObject();
         try {
-            json.put("password", password);
-            json.put("firstName", firstName);
-            json.put("secondName", secondName);
-            json.put("email", email);
-            json.put("dateOfBirth", dateOfBirth);
+            json.put("email", data[0]);
+            json.put("password", data[1]);
+            json.put("firstName", data[2]);
+            json.put("secondName", data[3]);
+            json.put("dateOfBirth", data[4]);
+            json.put("phone", data[5]);
         } catch (JSONException e) {
             Log.v("retrofitLogger", "some mistake JSONObject" + e.getMessage());
             e.printStackTrace();
@@ -197,8 +193,8 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
     }
 
     @Override
-    public void userAddNew(String email, String password) {
-        addNewUserRetrofit(email, password);
+    public void userAddNew(String[] data) {
+        addNewUserRetrofit(data);
     }
 
     @Override
@@ -212,7 +208,6 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
         UserEntity user_old = userGetById(user.get_id());
         userDeleteById(user_old);
         //TODO when user will be edited make some working logic here
-        userAddNew("null", "null");
     }
 
     @Override

@@ -10,7 +10,7 @@ public class UserAddNewUseCase {
         this.repository = repository;
     }
 
-    public void userAddNew(String email, String pass){
-        repository.userAddNew(email, pass);
+    public void userAddNew(String[] data){
+        repository.userAddNew(data);
     }
 }
