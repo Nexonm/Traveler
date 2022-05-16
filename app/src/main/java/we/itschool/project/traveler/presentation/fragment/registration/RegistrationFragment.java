@@ -21,7 +21,6 @@ import we.itschool.project.traveler.presentation.activity.LoginActivity;
 import we.itschool.project.traveler.presentation.activity.MainActivity;
 
 public class RegistrationFragment extends Fragment {
-
     EditText et_first_name;
     EditText et_second_name;
     EditText et_email;
@@ -64,7 +63,7 @@ public class RegistrationFragment extends Fragment {
         bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
             if(checkAllData()){
-                Intent intent = new Intent(this.getActivity().getBaseContext(), MainActivity.class);
+                Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -72,7 +71,6 @@ public class RegistrationFragment extends Fragment {
 
     private boolean checkAllData() {
         boolean check = true;
-
         if (et_first_name.getText().length() <= 0) {
             check = false;
             et_first_name.setHintTextColor(Color.RED);
@@ -88,22 +86,32 @@ public class RegistrationFragment extends Fragment {
             et_email.setHintTextColor(Color.RED);
             et_email.setHint(R.string.reg_title_email);
         }
+        boolean can1 = true, can2 = true;
+        if (et_password.getText().length() <= 0) {
+            can1 = false;
+            check = false;
+            et_password.setHintTextColor(Color.RED);
+            et_password.setHint(R.string.reg_title_password);
+        }
+        if (et_password_check.getText().length() <= 0) {
+            can2 = false;
+            check = false;
+            et_password_check.setHintTextColor(Color.RED);
+            et_password_check.setHint(R.string.reg_title_password_repeat);
+        }
+        if (can1 && can2 && !et_password.getText().toString().equals(et_password_check.getText().toString())) {
+            check = false;
+            et_password.setHintTextColor(Color.RED);
+            et_password.setText("");
+            et_password.setHint(R.string.reg_title_password);
+            et_password_check.setHintTextColor(Color.RED);
+            et_password_check.setText("");
+            et_password_check.setHint(R.string.reg_title_password_repeat_not_match);
+        }
         if (et_birth_date.getText().length() <= 0) {
             check = false;
             et_birth_date.setHintTextColor(Color.RED);
             et_birth_date.setHint(R.string.reg_title_date_of_birth_hint);
-        }
-        if (et_password.getText().length() <= 0) {
-            check = false;
-            et_password.setHintTextColor(Color.RED);
-            et_password.setHint(R.string.reg_title_password);
-            if (et_password_check.getText().length() <= 0 && !et_password.getText().equals(et_password_check.getText())) {
-                check = false;
-                et_password_check.setHintTextColor(Color.RED);
-                //TODO сделать проверку на схожесть паролей и указать пользователю, что есть различие, setText не работает
-                et_password_check.setText("");
-                et_password_check.setHint(R.string.reg_title_password_repeat_not_match);
-            }
         }
         if (et_phone.getText().length() <= 0) {
             check = false;
@@ -114,11 +122,10 @@ public class RegistrationFragment extends Fragment {
             AppStart.personAddNewUC.userAddNew(et_email.getText().toString(), et_password.getText().toString());
             savePrefs();
         }
-
-        return false;
+        return check;
     }
     private void savePrefs() {
-        SharedPreferences pref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences pref = this.requireActivity().getPreferences(Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(LoginActivity.KEY_PREF_USER_PASSWORD, et_password.getText().toString());
