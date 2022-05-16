@@ -26,6 +26,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'we.itschool.project.traveler'
 }
 
 dependencies {

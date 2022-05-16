@@ -6,6 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="icon">Иконка</string>
 
 
     <!-- labels for fragments -->
@@ -28,6 +29,7 @@
     <string name="login_sign_in">ВОЙТИ</string>
     <string name="login_or">Или</string>
     <string name="login_register">РЕГИСТРАЦИЯ</string>
+
     <!-- registration strings -->
     <string name="reg_main_title">Регистрация</string>
     <string name="reg_title_first_name">Имя</string>
@@ -39,6 +41,7 @@
     <string name="reg_title_date_of_birth_hint">Дата рождения</string>
     <string name="reg_title_phone_number">Номер телефона</string>
     <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
+
     <!-- profile strings -->
     <string name="profile_first_name">Имя</string>
     <string name="profile_second_name">Фамилия</string>
@@ -48,7 +51,8 @@
     <string name="profile_date_of_birth_null">День рождения</string>
     <string name="profile_is_male"><u>Пол</u></string>
     <string name="profile_date_of_birth"><u>День рождения</u></string>
-    <string name="icon">Иконка</string>
+    <string name="profile_description_photo">Ваша фотография</string>
+
     <!-- create new card (cnc) strings -->
     <string name="cnc_city">Город</string>
     <string name="cnc_upload">ЗАГРУЗИТЬ</string>
