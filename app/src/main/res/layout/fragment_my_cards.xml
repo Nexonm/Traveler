@@ -7,6 +7,17 @@
     android:background="@drawable/rectangle_1"
     tools:context=".presentation.fragment.my_cards.MyCardsFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_card_list_my_cards"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/fragment_card_list_item_visitor"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
     <ImageButton
         android:id="@+id/ib_my_cards_create_new_card"
         android:layout_width="wrap_content"
