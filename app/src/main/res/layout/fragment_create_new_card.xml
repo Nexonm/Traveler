@@ -41,13 +41,11 @@
                 app:cornerRadius="17dp"
                 app:strokeColor="@color/white"
                 app:strokeWidth="3dp" />
-
             <ImageView
                 android:id="@+id/iv_new_card_photo"
-                android:layout_width="3dp"
-                android:layout_height="0dp"
-                android:contentDescription="@string/cnc_description_photo"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:contentDescription="@string/cnc_description_photo" />
             <EditText
                 android:id="@+id/et_new_card_country"
                 android:layout_width="wrap_content"
@@ -125,6 +123,7 @@
                 android:layout_height="49dp"
                 android:text="@string/cnc_btn_add_card"
                 android:textAppearance="@style/text_style_1"
+                android:backgroundTint="@color/button"
                 app:cornerRadius="17dp"
                 app:strokeColor="@color/white"
                 app:strokeWidth="3dp" />

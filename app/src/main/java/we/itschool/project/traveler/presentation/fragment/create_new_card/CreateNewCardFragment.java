@@ -97,8 +97,8 @@ public class CreateNewCardFragment extends Fragment {
                     requestPermissionsMy();
                 } else {
                     //permission Granted we can pick image
-                    iv_card_photo.getLayoutParams().height = 300;
-                    iv_card_photo.getLayoutParams().width = 300;
+                    iv_card_photo.getLayoutParams().height = AppStart.getInstance().getDisplayHeight() / 2;
+                    iv_card_photo.getLayoutParams().width = AppStart.getInstance().getDisplayWidth() / 2;
                     pickImageFromGallery();
                 }
             }catch (Exception ignored){}

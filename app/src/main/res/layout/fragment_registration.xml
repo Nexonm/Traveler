@@ -133,6 +133,7 @@
         android:layout_height="52dp"
         android:text="@string/reg_btn_register"
         android:textAppearance="@style/text_style_1"
+        android:backgroundTint="@color/button"
         app:cornerRadius="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
