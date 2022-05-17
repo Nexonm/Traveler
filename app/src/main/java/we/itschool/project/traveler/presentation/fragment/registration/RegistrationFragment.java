@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,13 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.datepicker.CalendarConstraints;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
@@ -113,6 +121,12 @@ public class RegistrationFragment extends Fragment {
             et_birth_date.setHintTextColor(Color.RED);
             et_birth_date.setHint(R.string.reg_title_date_of_birth_hint);
         }
+        else if (!isValid(et_birth_date.getText().toString())){
+            check = false;
+            et_birth_date.setHintTextColor(Color.RED);
+            et_birth_date.setText("");
+            et_birth_date.setHint(R.string.reg_title_incorrect_date_of_birth_hint);
+        }
         if (et_phone.getText().length() <= 0) {
             check = false;
             et_phone.setHintTextColor(Color.RED);
@@ -131,6 +145,32 @@ public class RegistrationFragment extends Fragment {
         }
         return check;
     }
+
+    public boolean isValid(String dateStr) {
+        try {
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            LocalDate.parse(dateStr, dateFormatter);
+        } catch (DateTimeParseException e) {
+            try {
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+                LocalDate.parse(dateStr, dateFormatter);
+            } catch (DateTimeParseException e1) {
+                try {
+                    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+                    LocalDate.parse(dateStr, dateFormatter);
+                } catch (DateTimeParseException e2) {
+                    try {
+                        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+                        LocalDate.parse(dateStr, dateFormatter);
+                    } catch (DateTimeParseException e3) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     private void savePrefs() {
         SharedPreferences pref = this.requireActivity().getPreferences(Context.MODE_PRIVATE);
 

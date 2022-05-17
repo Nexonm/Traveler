@@ -105,7 +105,6 @@ public class LoginFragment extends Fragment {
         Fragment fragment = RegistrationFragment.newInstance();
 
         FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager.popBackStack();
         fragmentManager
                 .beginTransaction()
                 .addToBackStack("null")

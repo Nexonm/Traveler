@@ -39,6 +39,7 @@
     <string name="reg_title_password_repeat">Повторите пароль</string>
     <string name="reg_title_password_repeat_not_match">Пароли не совпадают</string>
     <string name="reg_title_date_of_birth_hint">Дата рождения</string>
+    <string name="reg_title_incorrect_date_of_birth_hint">Некорректная дата рождения</string>
     <string name="reg_title_phone_number">Номер телефона</string>
     <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
 
@@ -70,6 +71,7 @@
     <string name="cbv_second_name">Фамилия</string>
     <string name="cbv_description_photo">Фотография карточки</string>
     <string name="cbv_text_from_author">текст от автора</string>
+    <string name="cbv_name_of_city">Сингапур</string>
 
     <!-- card list item visitor (cliv) strings -->
     <string name="cliv_name_of_city">Сингапур</string>
