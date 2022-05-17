@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +14,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import we.itschool.project.traveler.R;
@@ -28,7 +28,7 @@ public class MyCardsFragment extends Fragment {
 
     private FragmentMyCardsBinding binding;
 
-    private FloatingActionButton fb_new_card;
+    private ImageButton ib_new_card;
 
     private CardListViewModelMyCards viewModel;
     private RecyclerView recyclerView;
@@ -75,8 +75,8 @@ public class MyCardsFragment extends Fragment {
     }
 
     private void initView(View view) {
-        fb_new_card = view.findViewById(R.id.fb_my_cards_create_new_card);
-        fb_new_card.setOnClickListener(v -> {
+        ib_new_card = view.findViewById(R.id.ib_my_cards_create_new_card);
+        ib_new_card.setOnClickListener(v -> {
             startCreateNewCardFragment();
         });
 
