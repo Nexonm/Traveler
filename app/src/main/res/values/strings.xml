@@ -70,4 +70,9 @@
     <string name="cbv_second_name">Фамилия</string>
     <string name="cbv_description_photo">Фотография карточки</string>
     <string name="cbv_text_from_author">текст от автора</string>
+
+    <!-- card list item visitor (cliv) strings -->
+    <string name="cliv_name_of_city">Сингапур</string>
+    <string name="cliv_dop_info">город прогресса</string>
+
 </resources>
