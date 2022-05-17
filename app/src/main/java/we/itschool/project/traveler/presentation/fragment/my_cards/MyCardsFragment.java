@@ -47,8 +47,7 @@ public class MyCardsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentMyCardsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -76,9 +75,7 @@ public class MyCardsFragment extends Fragment {
 
     private void initView(View view) {
         ib_new_card = view.findViewById(R.id.ib_my_cards_create_new_card);
-        ib_new_card.setOnClickListener(v -> {
-            startCreateNewCardFragment();
-        });
+        ib_new_card.setOnClickListener(v -> startCreateNewCardFragment());
 
         recyclerView = view.findViewById(R.id.rv_card_list_my_cards);
         recyclerView.setAdapter(adapter);
@@ -90,7 +87,6 @@ public class MyCardsFragment extends Fragment {
         Fragment fragment = CreateNewCardFragment.newInstance();
 
         FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager.popBackStack();
         fragmentManager
                 .beginTransaction()
                 .addToBackStack("null")
