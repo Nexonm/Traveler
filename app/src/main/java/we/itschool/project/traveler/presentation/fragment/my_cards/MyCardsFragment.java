@@ -1,8 +1,6 @@
 package we.itschool.project.traveler.presentation.fragment.my_cards;
 
 
-import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.databinding.FragmentMyCardsBinding;
+import we.itschool.project.traveler.domain.entity.CardEntity;
+import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
+import we.itschool.project.traveler.presentation.fragment.card_list.Adapter;
+import we.itschool.project.traveler.presentation.fragment.card_list.DiffCallback;
 import we.itschool.project.traveler.presentation.fragment.create_new_card.CreateNewCardFragment;
 
 public class MyCardsFragment extends Fragment {
@@ -25,7 +29,11 @@ public class MyCardsFragment extends Fragment {
     private FragmentMyCardsBinding binding;
 
     private ImageButton ib_new_card;
-    private Context context;
+
+    private CardListViewModelMyCards viewModel;
+    private RecyclerView recyclerView;
+    private Adapter adapter;
+
     public static MyCardsFragment newInstance(){
         return new MyCardsFragment();
     }
@@ -48,19 +56,41 @@ public class MyCardsFragment extends Fragment {
             @NonNull View view,
             @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        context = this.requireActivity().getBaseContext();
+        initAdapter();
+        initViewModel();
         initView(view);
+    }
+
+    private void initAdapter() {
+        adapter = new Adapter(new DiffCallback());
+        adapter.cardClickListener = this::startCardFragment;
+    }
+
+    private void initViewModel() {
+        viewModel = new ViewModelProvider(this).get(CardListViewModelMyCards.class);
+        viewModel.getCardList().observe(
+                getViewLifecycleOwner(),
+                cards -> adapter.submitList(cards)
+        );
     }
 
     private void initView(View view) {
         ib_new_card = view.findViewById(R.id.ib_my_cards_create_new_card);
-        ib_new_card.setOnClickListener(v -> startCreateNewCardFragment());
+        ib_new_card.setOnClickListener(v -> {
+            startCreateNewCardFragment();
+        });
+
+        recyclerView = view.findViewById(R.id.rv_card_list_my_cards);
+        recyclerView.setAdapter(adapter);
+        recyclerView.getRecycledViewPool().setMaxRecycledViews(
+                Adapter.VIEW_TYPE_CARD_VISITOR, Adapter.MAX_POOL_SIZE);
     }
 
     private void startCreateNewCardFragment(){
         Fragment fragment = CreateNewCardFragment.newInstance();
 
         FragmentManager fragmentManager = getParentFragmentManager();
+        fragmentManager.popBackStack();
         fragmentManager
                 .beginTransaction()
                 .addToBackStack("null")
@@ -72,5 +102,19 @@ public class MyCardsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void startCardFragment(CardEntity card) {
+
+        Fragment fragment = CardFragment.newInstance(
+                (new Gson()).toJson(card)
+        );
+        FragmentManager fragmentManager = getParentFragmentManager();
+        fragmentManager.popBackStack();
+        fragmentManager
+                .beginTransaction()
+                .addToBackStack("null")
+                .replace(R.id.nav_host_fragment_content_main, fragment, null)
+                .commit();
     }
 }
