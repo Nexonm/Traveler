@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -35,12 +34,11 @@ import com.bumptech.glide.Glide;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.data.datamodel.CardModelPOJO;
+import we.itschool.project.traveler.databinding.FragmentCreateNewCardBinding;
 import we.itschool.project.traveler.presentation.fragment.my_cards.MyCardsFragment;
 
 public class CreateNewCardFragment extends Fragment {
 
-    private Button bt_new_card;
-    private Button bt_upload_photo;
     private Context context;
     private ImageView iv_card_photo;
     private Switch sw_payment;
@@ -49,11 +47,13 @@ public class CreateNewCardFragment extends Fragment {
     private EditText et_country;
     private EditText et_address;
     private EditText et_coast;
+    private EditText et_null;
     private EditText et_short_desc;
     private EditText et_full_desc;
 
     private String bufString = "null";
 
+    private FragmentCreateNewCardBinding binding;
     private boolean paymentIsFixed;
     private static final int IMAGE_PIC_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
@@ -71,22 +71,15 @@ public class CreateNewCardFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(
-                R.layout.fragment_create_new_card,
-                container,
-                false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_create_new_card, container, false);
     }
 
     @Override
-    public void onViewCreated(
-            @NonNull View view,
-            @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        context = this.getActivity().getBaseContext();
+        context = this.requireActivity().getBaseContext();
         initView(view);
     }
 
@@ -95,7 +88,7 @@ public class CreateNewCardFragment extends Fragment {
         //card photo that must be downloaded by user
         iv_card_photo = view.findViewById(R.id.iv_new_card_photo);
         //on this button's click photo must be found
-        bt_upload_photo = view.findViewById(R.id.bt_new_card_upload_photo);
+        Button bt_upload_photo = view.findViewById(R.id.bt_new_card_upload_photo);
         //it was clicked, start finding photo
         bt_upload_photo.setOnClickListener(v -> {
             //check runtime permission
@@ -104,19 +97,20 @@ public class CreateNewCardFragment extends Fragment {
                     requestPermissionsMy();
                 } else {
                     //permission Granted we can pick image
+                    iv_card_photo.getLayoutParams().height = 300;
+                    iv_card_photo.getLayoutParams().width = 300;
                     pickImageFromGallery();
                 }
             }catch (Exception ignored){}
 
         });
         //create new card button, on this click all check are made and data sends
-        bt_new_card = view.findViewById(R.id.bt_new_card_add_new_card);
+        Button bt_new_card = view.findViewById(R.id.bt_new_card_add_new_card);
         //main onClick method
         bt_new_card.setOnClickListener(v -> {
-//            if (checkAllData()) {
-//                getActivity().getFragmentManager().popBackStack();
-//            }
-            checkAllData();
+            if (checkAllData()) {
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
         });
 
         //EditText's data
@@ -126,19 +120,23 @@ public class CreateNewCardFragment extends Fragment {
         et_short_desc = view.findViewById(R.id.et_new_card_short_description);
         et_full_desc = view.findViewById(R.id.et_new_card_full_description);
         et_coast = view.findViewById(R.id.et_new_card_cost);
+        et_coast.setWidth(1);
+        et_coast.setHeight(1);
+        et_null = view.findViewById(R.id.null_object);
         sw_payment = view.findViewById(R.id.sw_new_card_payment_is_fixed);
-        sw_payment.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    et_coast.setVisibility(View.VISIBLE);
-                    et_coast.setClickable(true);
-                    paymentIsFixed = true;
-                } else {
-                    et_coast.setVisibility(View.INVISIBLE);
-                    et_coast.setClickable(false);
-                    paymentIsFixed = false;
-                }
+        sw_payment.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                et_coast.setWidth(et_null.getWidth());
+                et_coast.setHeight(et_null.getHeight());
+                et_coast.setVisibility(View.VISIBLE);
+                et_coast.setClickable(true);
+                paymentIsFixed = true;
+            } else {
+                et_coast.setWidth(1);
+                et_coast.setHeight(1);
+                et_coast.setVisibility(View.INVISIBLE);
+                et_coast.setClickable(false);
+                paymentIsFixed = false;
             }
         });
     }
@@ -146,7 +144,6 @@ public class CreateNewCardFragment extends Fragment {
     /**
      * Checks all the fields in fragment and sends to server new card
      *
-     * @return is all data complete
      */
     private boolean checkAllData() {
         boolean check = true;
@@ -172,19 +169,19 @@ public class CreateNewCardFragment extends Fragment {
         if (!(et_short_desc.getText().length() > 0)) {
             check = false;
             et_short_desc.setHintTextColor(Color.RED);
-            et_short_desc.setHint("Кратко опишите ваше предложение");
+            et_short_desc.setHint("Опишите ваше предложение");
         }
         //full description
         if (!(et_full_desc.getText().length() > 0)) {
             check = false;
             et_full_desc.setHintTextColor(Color.RED);
-            et_full_desc.setHint("Опишите ваше предложение");
+            et_full_desc.setHint("Подробно опишите ваше предложение");
         }
         //coast
         if (paymentIsFixed && !(et_coast.getText().length() > 0 && isNum(et_coast.getText().toString()))) {
             check = false;
             et_coast.setHintTextColor(Color.RED);
-            et_coast.setHint("Введите плату цифрами");
+            et_coast.setHint("Введите плату");
         }
         if ("null".equals(bufString)){
             check = false;
@@ -222,14 +219,14 @@ public class CreateNewCardFragment extends Fragment {
                         )
                 );
             }
-            return check;
+            return true;
         }
-        return check;
+        return false;
     }
 
     private boolean isNum(String a) {
         try {
-            int c = Integer.parseInt(a);
+            Integer.parseInt(a);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -262,6 +259,7 @@ public class CreateNewCardFragment extends Fragment {
                 public void onActivityResult(ActivityResult result) {
                     if (result != null) {
                         try {
+                            assert result.getData() != null;
                             Uri imageUri = result.getData().getData();
                             bufString = getRealPathFromURI(imageUri);
                             Log.v("fileName", "the file path: "+ bufString);
@@ -279,7 +277,7 @@ public class CreateNewCardFragment extends Fragment {
     );
 
     private String getRealPathFromURI(Uri uri) {
-        Cursor cursor = this.getActivity().getContentResolver().query(uri, null, null, null, null);
+        Cursor cursor = this.requireActivity().getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
@@ -291,7 +289,7 @@ public class CreateNewCardFragment extends Fragment {
      */
     private boolean hasPermissions() {
         return ActivityCompat.checkSelfPermission(
-                this.getActivity().getBaseContext(),
+                this.requireActivity().getBaseContext(),
                 Manifest.permission.READ_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED;
     }
@@ -319,4 +317,9 @@ public class CreateNewCardFragment extends Fragment {
                 .commit();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

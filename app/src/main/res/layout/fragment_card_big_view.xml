@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_card_big_view"
+    android:background="@drawable/rectangle_1"
     android:padding="8dp">
 
     <ScrollView
@@ -13,8 +14,11 @@
 
         <LinearLayout
             android:id="@+id/container_card_big_view"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:gravity="center|top"
             android:orientation="vertical">
 
             <ImageView
@@ -22,39 +26,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/a001" />
+                app:srcCompat="@drawable/singap"
+                android:contentDescription="@string/cbv_description_photo" />
 
             <LinearLayout
                 android:id="@+id/avatar_card_layout_big_card"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:showDividers="middle"
+                android:divider="@drawable/empty_tall_divider_card_big_view"
+                android:layout_marginTop="15dp">
 
                 <ImageView
                     android:id="@+id/iv_avatar_image_big_card"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:padding="8dp"
-                    tools:src="@drawable/a001" />
+                    tools:src="@drawable/profile_icon" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:showDividers="middle"
+                    android:divider="@drawable/empty_tall_divider_cnc"
 
+                    android:orientation="vertical">
                     <TextView
                         android:id="@+id/tv_avatar_profile_data_small_FN"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SomeText"
-                        android:textSize="20sp" />
+                        android:text="@string/cbv_name"
+                        android:textAppearance="@style/text_style_2" />
 
                     <TextView
                         android:id="@+id/tv_avatar_profile_data_small_SN"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SomeText"
-                        android:textSize="20sp" />
+                        android:text="@string/cbv_second_name"
+                        android:textAppearance="@style/text_style_2" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -63,8 +76,10 @@
                 android:id="@+id/tv_description_long"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SomeText"
-                android:textSize="16sp" />
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="@string/cbv_text_from_author"
+                android:textAppearance="@style/text_style_2"/>
 
         </LinearLayout>
 

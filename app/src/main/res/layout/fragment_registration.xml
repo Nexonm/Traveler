@@ -4,129 +4,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/rectangle_1"
     tools:context=".presentation.fragment.registration.RegistrationFragment">
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/et_reg_field_firs_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:autofillHints="name"
+        android:hint="@string/reg_title_first_name"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/text_style_1"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <EditText
+        android:id="@+id/et_reg_field_second_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/reg_title_second_name"
+        android:autofillHints=""
+        android:inputType="textPersonName"
+        android:textAppearance="@style/text_style_1"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_field_firs_name" />
 
-            <TextView
-                android:id="@+id/tv_reg_title_main"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reg_main_title" />
+    <EditText
+        android:id="@+id/et_reg_field_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/reg_title_email"
+        android:autofillHints="emailAddress"
+        android:inputType="textEmailAddress"
+        android:textAppearance="@style/text_style_1"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_field_second_name" />
 
-            <TextView
-                android:id="@+id/tv_reg_title_first_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/reg_title_first_name" />
+    <EditText
+        android:id="@+id/et_reg_field_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/reg_title_password"
+        android:autofillHints="password"
+        android:inputType="textPassword"
+        android:textAppearance="@style/text_style_1"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_field_email" />
 
-            <EditText
-                android:id="@+id/et_reg_field_firs_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/reg_title_first_name"
-                android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/et_reg_field_password_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/reg_title_password_repeat"
+        android:autofillHints=""
+        android:inputType="textPassword"
+        android:textAppearance="@style/text_style_1"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_field_password" />
 
-            <TextView
-                android:id="@+id/tv_reg_title_second_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reg_title_second_name" />
+    <EditText
+        android:id="@+id/et_reg_field_date_of_birth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/reg_title_date_of_birth_hint"
+        android:autofillHints=""
+        android:inputType="date"
+        android:textAppearance="@style/text_style_1"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_field_password_two" />
 
-            <EditText
-                android:id="@+id/et_reg_field_second_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/reg_title_second_name" />
+    <EditText
+        android:id="@+id/et_reg_field_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/reg_title_phone_number"
+        android:autofillHints="phone"
+        android:inputType="phone"
+        android:textAppearance="@style/text_style_1"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_field_date_of_birth" />
 
-            <TextView
-                android:id="@+id/tv_reg_title_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reg_title_email" />
+    <Button
+        android:id="@+id/bt_reg_register_new_user"
+        android:layout_width="208dp"
+        android:layout_height="52dp"
+        android:text="@string/reg_btn_register"
+        android:textAppearance="@style/text_style_1"
+        app:cornerRadius="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_field_phone_number"
+        app:layout_constraintVertical_bias="0.375"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp" />
 
-            <EditText
-                android:id="@+id/et_reg_field_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/reg_title_email"
-                android:inputType="textEmailAddress" />
-
-            <TextView
-                android:id="@+id/tv_reg_title_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reg_title_password" />
-
-            <EditText
-                android:id="@+id/et_reg_field_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/reg_title_password"
-                android:inputType="textPassword" />
-
-            <TextView
-                android:id="@+id/tv_reg_title_password_two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reg_title_password_repeat" />
-
-            <EditText
-                android:id="@+id/et_reg_field_password_two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/reg_title_password"
-                android:inputType="textPassword" />
-
-            <TextView
-                android:id="@+id/tv_reg_title_date_of_birt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reg_title_date_of_birth" />
-
-            <EditText
-                android:id="@+id/et_reg_field_date_of_birth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/reg_title_date_of_birth_hint"
-                android:inputType="date" />
-
-            <TextView
-                android:id="@+id/tv_reg_title_phone_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/reg_title_phone_number" />
-
-            <EditText
-                android:id="@+id/et_reg_field_phone_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/reg_title_phone_number"
-                android:inputType="phone" />
-
-            <Button
-                android:id="@+id/bt_reg_register_new_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/login_register" />
-
-        </LinearLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
