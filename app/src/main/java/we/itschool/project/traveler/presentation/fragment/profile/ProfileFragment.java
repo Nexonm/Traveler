@@ -28,6 +28,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -64,26 +66,33 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initView(View view) {
-//        iv_avatar = view.findViewById(R.id.iv_profile_avatar);
-//        tv_first_name = view.findViewById(R.id.tv_profile_first_name);
-//        tv_second_name = view.findViewById(R.id.tv_profile_second_name);
-//        tv_phone = view.findViewById(R.id.tv_profile_phone);
-//        tv_email = view.findViewById(R.id.tv_profile_email);
-//        tv_is_male = view.findViewById(R.id.tv_profile_is_male);
-//        tv_birthday = view.findViewById(R.id.tv_profile_birthday);
-//
+        iv_avatar = view.findViewById(R.id.iv_profile_avatar);
+
+        tv_first_name = view.findViewById(R.id.tv_profile_first_name);
+        tv_first_name.setText(AppStart.getUser().getUserInfo().getFirstName());
+        tv_second_name = view.findViewById(R.id.tv_profile_second_name);
+        tv_second_name.setText(AppStart.getUser().getUserInfo().getSecondName());
+        tv_phone = view.findViewById(R.id.tv_profile_phone);
+        tv_phone.setText(AppStart.getUser().getUserInfo().getPhoneNumber());
+        tv_email = view.findViewById(R.id.tv_profile_email);
+        tv_email.setText(AppStart.getUser().getUserInfo().getEmail());
+        tv_is_male = view.findViewById(R.id.tv_profile_is_male);
+        tv_is_male.setText(AppStart.getUser().getUserInfo().isMale()?"Мужской":"Женский");
+        tv_birthday = view.findViewById(R.id.tv_profile_birthday);
+        tv_birthday.setText(AppStart.getUser().getUserInfo().getDateOfBirth());
+
 //        fab_edit_avatar = view.findViewById(R.id.fab_profile_edit_avatar);
-        fab_edit_avatar.setOnClickListener(v -> {
-            try {
-                if (!hasPermissions()) {
-                    requestPermissionsMy();
-                } else {
-                    //permission Granted we can pick image
-                    pickImageFromGallery();
-                }
-                //TODO send file to server
-            }catch (Exception ignored){}
-        });
+//        fab_edit_avatar.setOnClickListener(v -> {
+//            try {
+//                if (!hasPermissions()) {
+//                    requestPermissionsMy();
+//                } else {
+//                    //permission Granted we can pick image
+//                    pickImageFromGallery();
+//                }
+//                //TODO send file to server
+//            }catch (Exception ignored){}
+//        });
     }
 
 
