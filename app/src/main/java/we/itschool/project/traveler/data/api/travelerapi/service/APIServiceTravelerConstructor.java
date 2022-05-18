@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.data.api.travelerapi;
+package we.itschool.project.traveler.data.api.travelerapi.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,6 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+import we.itschool.project.traveler.data.api.travelerapi.APIConfigTraveler;
 
 public class APIServiceTravelerConstructor {
 

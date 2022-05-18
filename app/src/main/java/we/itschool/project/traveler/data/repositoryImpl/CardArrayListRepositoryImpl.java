@@ -17,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.api.travelerapi.APIServiceTravelerConstructor;
+import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceTravelerConstructor;
 import we.itschool.project.traveler.data.api.travelerapi.entityserv.CardServ;
 import we.itschool.project.traveler.data.api.travelerapi.mapper.CardEntityMapper;
 import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceCard;
