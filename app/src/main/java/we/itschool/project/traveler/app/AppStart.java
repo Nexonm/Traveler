@@ -2,9 +2,12 @@ package we.itschool.project.traveler.app;
 
 import android.app.Application;
 
+import java.util.ArrayList;
+
 import we.itschool.project.traveler.data.repositoryImpl.CardArrayListRepositoryImpl;
 import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.usecases.CardAddNewUseCase;
+import we.itschool.project.traveler.domain.usecases.CardAddOneToMutableListUseCase;
 import we.itschool.project.traveler.domain.usecases.CardCreateNewUseCase;
 import we.itschool.project.traveler.domain.usecases.CardDeleteByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.CardEditByIdUseCase;
@@ -15,6 +18,7 @@ import we.itschool.project.traveler.domain.usecases.UserAddNewUseCase;
 import we.itschool.project.traveler.domain.usecases.UserDeleteByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.UserEditByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.UserGetAllUseCase;
+import we.itschool.project.traveler.domain.usecases.CardGetAllUserCardsUseCase;
 import we.itschool.project.traveler.domain.usecases.UserGetByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.UserLoginUseCase;
 
@@ -29,6 +33,8 @@ public class AppStart extends Application {
     public static CardCreateNewUseCase cardCreateNewUC;
     public static CardEditByIdUseCase cardEditByIdUC;
     public static CardDeleteByIdUseCase cardDeleteByIdUC;
+    public static CardGetAllUserCardsUseCase userGetCardsUC;
+    public static CardAddOneToMutableListUseCase addToMListUC;
 
     public static UserArrayListRepositoryImpl imp1;
 
@@ -60,6 +66,8 @@ public class AppStart extends Application {
         cardCreateNewUC = new CardCreateNewUseCase(imp);
         cardEditByIdUC = new CardEditByIdUseCase(imp);
         cardDeleteByIdUC = new CardDeleteByIdUseCase(imp);
+        userGetCardsUC = new CardGetAllUserCardsUseCase(imp);
+        addToMListUC = new CardAddOneToMutableListUseCase(imp);
 
         imp1 = new UserArrayListRepositoryImpl();
         personGetAllUC = new UserGetAllUseCase(imp1);
@@ -88,6 +96,8 @@ public class AppStart extends Application {
     public static void setUser(UserEntity user) {
         if (AppStart.user==null)
         AppStart.user = user;
+        if (AppStart.user.getUserInfo().getUserCards()==null)
+            AppStart.user.getUserInfo().setUserCards(new ArrayList<>());
     }
 
     public int getDisplayHeight() {
