@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.data.api.traveler_api.service;
+package we.itschool.project.traveler.data.api.travelerapi.service;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

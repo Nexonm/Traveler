@@ -1,9 +1,9 @@
-package we.itschool.project.traveler.data.api.traveler_api.mapper;
+package we.itschool.project.traveler.data.api.travelerapi.mapper;
 
 
 import com.google.gson.Gson;
 
-import we.itschool.project.traveler.data.api.traveler_api.entityserv.CardServ;
+import we.itschool.project.traveler.data.api.travelerapi.entityserv.CardServ;
 import we.itschool.project.traveler.data.datamodel.CardModelPOJO;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.entity.CardInfo;

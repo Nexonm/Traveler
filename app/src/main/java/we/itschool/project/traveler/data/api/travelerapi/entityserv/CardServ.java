@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.data.api.traveler_api.entityserv;
+package we.itschool.project.traveler.data.api.travelerapi.entityserv;
 
 
 import com.google.gson.annotations.Expose;

@@ -15,10 +15,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.api.traveler_api.APIServiceTravelerConstructor;
-import we.itschool.project.traveler.data.api.traveler_api.entityserv.UserServ;
-import we.itschool.project.traveler.data.api.traveler_api.mapper.UserEntityMapper;
-import we.itschool.project.traveler.data.api.traveler_api.service.APIServiceUser;
+import we.itschool.project.traveler.data.api.travelerapi.APIServiceTravelerConstructor;
+import we.itschool.project.traveler.data.api.travelerapi.entityserv.UserServ;
+import we.itschool.project.traveler.data.api.travelerapi.mapper.UserEntityMapper;
+import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceUser;
 import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
 

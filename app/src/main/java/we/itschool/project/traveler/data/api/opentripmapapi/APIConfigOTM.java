@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.data.api.opentripmap_api;
+package we.itschool.project.traveler.data.api.opentripmapapi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
