@@ -7,17 +7,17 @@ import java.util.ArrayList;
 
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.domain.entity.CardEntity;
+import we.itschool.project.traveler.domain.usecases.CardAddOneToMutableListUseCase;
+import we.itschool.project.traveler.domain.usecases.CardGetAllUserCardsUseCase;
 
 public class CardListViewModelMyCards extends ViewModel {
 
     private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList;
+    CardGetAllUserCardsUseCase getCardsUC = AppStart.userGetCardsUC;
+    CardAddOneToMutableListUseCase addOneUC = AppStart.addToMListUC;
 
     public MutableLiveData<ArrayList<CardEntity>> getCardList(){
-        cardsLiveDataList = new MutableLiveData<>(
-                new ArrayList<>(
-                        AppStart.getUser().getUserInfo().getUserCards()
-                )
-        );
+        cardsLiveDataList = getCardsUC.getUserCards();
         return cardsLiveDataList;
     }
 }

@@ -1,6 +1,7 @@
 package we.itschool.project.traveler.presentation.fragment.my_cards;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +15,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
+import java.util.ArrayList;
 
 import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.FragmentMyCardsBinding;
 import we.itschool.project.traveler.domain.entity.CardEntity;
-import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
 import we.itschool.project.traveler.presentation.fragment.card_list.Adapter;
 import we.itschool.project.traveler.presentation.fragment.card_list.DiffCallback;
 import we.itschool.project.traveler.presentation.fragment.create_new_card.CreateNewCardFragment;
@@ -58,6 +59,7 @@ public class MyCardsFragment extends Fragment {
         initAdapter();
         initViewModel();
         initView(view);
+        addData();
     }
 
     private void initAdapter() {
@@ -67,6 +69,11 @@ public class MyCardsFragment extends Fragment {
 
     private void initViewModel() {
         viewModel = new ViewModelProvider(this).get(CardListViewModelMyCards.class);
+
+        //add cards to mutable data for better representation
+        for (CardEntity card : AppStart.getUser().getUserInfo().getUserCards())
+            viewModel.addOneUC.cardAddUserCardToMutableList(card);
+
         viewModel.getCardList().observe(
                 getViewLifecycleOwner(),
                 cards -> adapter.submitList(cards)
@@ -100,17 +107,35 @@ public class MyCardsFragment extends Fragment {
         binding = null;
     }
 
+    private void addData(){
+        AppStart.getUser().getUserInfo().getUserCards();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        AsyncTask.execute(() ->{
+        try{
+            Thread.sleep(3500);
+            adapter.submitList(new ArrayList<>(viewModel.getCardList().getValue()));
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        });
+    }
+
     private void startCardFragment(CardEntity card) {
 
-        Fragment fragment = CardFragment.newInstance(
-                (new Gson()).toJson(card)
-        );
-        FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager.popBackStack();
-        fragmentManager
-                .beginTransaction()
-                .addToBackStack("null")
-                .replace(R.id.nav_host_fragment_content_main, fragment, null)
-                .commit();
+//        Log.e("CARD FRAGMENT", "TRYING TO GO TO BIG CARD");
+//        Fragment fragment = CardFragment.newInstance(
+//                (new Gson()).toJson(card)
+//        );
+//        FragmentManager fragmentManager = getParentFragmentManager();
+//        fragmentManager.popBackStack();
+//        fragmentManager
+//                .beginTransaction()
+//                .addToBackStack("null")
+//                .replace(R.id.nav_host_fragment_content_main, fragment, null)
+//                .commit();
     }
 }

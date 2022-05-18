@@ -29,11 +29,17 @@ import we.itschool.project.traveler.domain.repository.CardDomainRepository;
 public class CardArrayListRepositoryImpl implements CardDomainRepository {
 
     private final MutableLiveData<ArrayList<CardEntity>> dataLiveData;
+    private final MutableLiveData<ArrayList<CardEntity>> dataLiveDataUserCards;
     private final ArrayList<CardEntity> data;
+    private final ArrayList<CardEntity> dataUserCards;
 
     {
         data = new ArrayList<>();
+        dataUserCards = new ArrayList<>();
         dataLiveData = new MutableLiveData<>();
+        dataLiveData.postValue(data);
+        dataLiveDataUserCards = new MutableLiveData<>();
+        dataLiveDataUserCards.postValue(dataUserCards);
     }
 
     private static int autoIncrementId = 0;
@@ -47,31 +53,40 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
         NUM_OF_CARDS_TO_DO = 0;
     }
 
-
+    /**
+     * Sends photo to created card as a resource.
+     * Then sends http request to add new card to user cards for MyCardsFragment
+     *
+     * @param path path to photo in user app
+     * @param cid  card id
+     */
     public void uploadPhotoToCard(String path, int cid) {
         AsyncTask.execute(() -> {
 
             APIServiceStorage service = APIServiceConstructor.CreateService(APIServiceStorage.class);
             //pass it like this
-            Log.v("retrofitLogger", "get file from image");
+//            Log.v("retrofitLogger", "get file from image");
             File file = new File(path);
-            Log.v("retrofitLogger", "fill it in request Body");
+//            Log.v("retrofitLogger", "fill it in request Body");
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
 // MultipartBody.Part is used to send also the actual file name
-            Log.v("retrofitLogger", "fill it in multipart Body");
+//            Log.v("retrofitLogger", "fill it in multipart Body");
             MultipartBody.Part body =
                     MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-            Log.v("retrofitLogger", "Make call");
+//            Log.v("retrofitLogger", "Make call");
             RequestBody cidBody = RequestBody.create(MediaType.parse("multipart/from-data"), String.valueOf(cid));
             Call<String> call = service.uploadPhotoToCard2(body, cidBody);
-            Log.v("retrofitLogger", "trying to send data");
+//            Log.v("retrofitLogger", "trying to send data");
             call.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if (response.body() != null) {
                         Log.v("retrofitLogger", "IMAGE_SENT:" + response.body().toString());
+                        //add new card to users account
+                        loadCardToUser(cid);
+
                     } else {
                         Log.v("retrofitLogger", "null response.body on IMAGE_SENT");
                     }
@@ -87,45 +102,92 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
         });
     }
 
+    /**
+     * loads new card from server for user cards
+     *
+     * @param id card id
+     */
+    private void loadCardToUser(int id) {
+//        AsyncTask.execute(() -> {
+
+        APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
+        Call<String> call = service.getOneCardById(id);
+        //Log.v(MainActivity.TAG, "start catching the answer");
+        call.enqueue(new retrofit2.Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                if (response.body() != null) {
+                    String str = response.body().toString();
+                    Log.v("retrofitLogger", "card.toString():" + str);
+                    addCardToMutableDataUserCards(CardEntityMapper.toCardEntityFormCardServ(
+                            (new Gson()).fromJson(str, CardServ.class)
+                            , true));
+
+                } else {
+                    Log.v("retrofitLogger", "null response.body on loadDataRetrofit");
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<String> call, Throwable t) {
+                Log.v("retrofitLogger", "some error!!! on failure id:" + id +
+                        " t:" + t.getMessage());
+            }
+        });
+//        });
+    }
+
+    /**
+     * loads new card from server for main feed
+     *
+     * @param id card id to load
+     */
     private void loadDataRetrofit(int id) {
 //        AsyncTask.execute(() -> {
 
-            APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
-            Call<String> call = service.getOneCardById(id);
-            //Log.v(MainActivity.TAG, "start catching the answer");
-            call.enqueue(new retrofit2.Callback<String>() {
-                @Override
-                public void onResponse(Call<String> call, retrofit2.Response<String> response) {
-                    if (response.body() != null) {
-                        String str = response.body().toString();
-                        Log.v("retrofitLogger", "card.toString():" + str);
-                        addCardToMutableData(CardEntityMapper.toCardEntityFormCardServ(
-                                (new Gson()).fromJson(str, CardServ.class)
-                                , true));
+        APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
+        Call<String> call = service.getOneCardById(id);
+        //Log.v(MainActivity.TAG, "start catching the answer");
+        call.enqueue(new retrofit2.Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                if (response.body() != null) {
+                    String str = response.body().toString();
+                    Log.v("retrofitLogger", "card.toString():" + str);
+                    addCardToMutableData(CardEntityMapper.toCardEntityFormCardServ(
+                            (new Gson()).fromJson(str, CardServ.class)
+                            , true));
 
-                    } else {
-                        Log.v("retrofitLogger", "null response.body on loadDataRetrofit");
-                    }
+                } else {
+                    Log.v("retrofitLogger", "null response.body on loadDataRetrofit");
                 }
+            }
 
-                @Override
-                public void onFailure(retrofit2.Call<String> call, Throwable t) {
-                    Log.v("retrofitLogger", "some error!!! on failure id:" + id +
-                            " t:" + t.getMessage());
-                }
-            });
+            @Override
+            public void onFailure(retrofit2.Call<String> call, Throwable t) {
+                Log.v("retrofitLogger", "some error!!! on failure id:" + id +
+                        " t:" + t.getMessage());
+            }
+        });
 //        });
     }
 
 
     private void updateLiveData() {
 //        AsyncTask.execute(() -> {
-            dataLiveData.postValue(data);
+        dataLiveData.postValue(data);
+//        });
+    }
+
+    private void updateLiveDataUserCards() {
+//        AsyncTask.execute(() -> {
+        dataLiveDataUserCards.postValue(dataUserCards);
 //        });
     }
 
     /**
      * Method creates new card. All data represent using CardModel as a POJO
+     *
      * @param model of card created by user
      */
     @Override
@@ -161,10 +223,20 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
         updateLiveData();
     }
 
+    private void addCardToMutableDataUserCards(CardEntity card) {
+        dataUserCards.add(card);
+        updateLiveDataUserCards();
+    }
+
     @Override
     public void cardAddNew() {
-        if (NUM_OF_CARDS_TO_DO==2) NUM_OF_CARDS_TO_DO = 13;
+        if (NUM_OF_CARDS_TO_DO == 2) NUM_OF_CARDS_TO_DO = 13;
         loadDataRetrofit(++NUM_OF_CARDS_TO_DO);
+    }
+
+    @Override
+    public void cardAddUserCardToMutableList(CardEntity card){
+        addCardToMutableData(card);
     }
 
     @Override
@@ -183,6 +255,11 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     @Override
     public MutableLiveData<ArrayList<CardEntity>> cardGetAll() {
         return dataLiveData;
+    }
+
+    @Override
+    public MutableLiveData<ArrayList<CardEntity>> getUserCards() {
+        return dataLiveDataUserCards;
     }
 
     @Override
