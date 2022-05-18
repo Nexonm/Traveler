@@ -51,7 +51,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
             json.put("firstName", data[2]);
             json.put("secondName", data[3]);
             json.put("dateOfBirth", data[4]);
-            json.put("phone", data[5]);
+            json.put("phoneNumber", data[5]);
         } catch (JSONException e) {
             Log.v("retrofitLogger", "some mistake JSONObject" + e.getMessage());
             e.printStackTrace();
@@ -96,6 +96,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
             json.put("phoneNumber", phoneNumber);
             json.put("socialContacts", socialContacts);
             json.put("isMale", isMale);
+            json.put("email", email);
             json.put("email", email);
         } catch (JSONException e) {
             Log.v("retrofitLogger", "some mistake JSONObject" + e.getMessage());
