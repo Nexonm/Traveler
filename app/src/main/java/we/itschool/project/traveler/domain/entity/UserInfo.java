@@ -1,5 +1,6 @@
 package we.itschool.project.traveler.domain.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserInfo {private final String firstName;
@@ -10,8 +11,8 @@ public class UserInfo {private final String firstName;
     private final String pathToPhoto;
     private final String dateOfBirth;
     private final boolean isMale;
-    private final List<CardEntity> userCards;
-    private final List<Long> userFavoritesCards;
+    private List<CardEntity> userCards;
+    private List<Long> userFavoritesCards;
 
 
     public UserInfo(
@@ -71,6 +72,10 @@ public class UserInfo {private final String firstName;
 
     public List<CardEntity> getUserCards() {
         return userCards;
+    }
+
+    public void setUserCards(ArrayList<CardEntity> cards){
+        this.userCards = cards;
     }
 
     public List<Long> getUserFavoritesCards() {
