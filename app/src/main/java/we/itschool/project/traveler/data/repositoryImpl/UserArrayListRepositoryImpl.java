@@ -41,6 +41,10 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
     }
 
 
+    /**
+     * Sends json str to server in attempt to register new user
+     * @param data email, password, firstName, secondName, dateOfBirth, phoneNumber
+     */
     private void addNewUserRetrofit(String[] data) {
         APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
 
