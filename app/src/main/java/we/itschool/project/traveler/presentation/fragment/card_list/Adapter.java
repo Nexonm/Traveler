@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.api.APIConfig;
+import we.itschool.project.traveler.data.api.traveler_api.APIConfig;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 
 public class Adapter extends ListAdapter<CardEntity, ViewHolder> {

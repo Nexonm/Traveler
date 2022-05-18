@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.data.api.entityserv;
+package we.itschool.project.traveler.data.api.traveler_api.entityserv;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.data.api.service;
+package we.itschool.project.traveler.data.api.traveler_api.service;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

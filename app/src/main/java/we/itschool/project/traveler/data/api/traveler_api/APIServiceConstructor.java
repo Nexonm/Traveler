@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.data.api;
+package we.itschool.project.traveler.data.api.traveler_api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.data.api;
+package we.itschool.project.traveler.data.api.traveler_api;
 
 public class APIConfig {
     public static final String HOST_URL = "http://51.250.110.228:8080/";
