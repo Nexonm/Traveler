@@ -34,7 +34,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     // Lifecycle ViewModel and LiveData
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
@@ -55,7 +55,7 @@ dependencies {
     //picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'de.hdodenhof:circleimageview:1.1.0'
-    //bottomsheet
+//    //bottomsheet
     implementation 'com.cocosw:bottomsheet:1.+@aar'
     //yandex map api
     implementation 'com.yandex.android:maps.mobile:4.0.0-lite'
