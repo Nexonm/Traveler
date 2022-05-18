@@ -11,7 +11,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class APIServiceConstructor {
+public class APIServiceTravelerConstructor {
 
     public static <T> T CreateService(Class<T> serviceClass) {
 
@@ -30,7 +30,7 @@ public class APIServiceConstructor {
 
         //create main retrofit builder
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIConfig.HOST_URL)
+                .baseUrl(APIConfigTraveler.HOST_URL)
                 .client(client)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))

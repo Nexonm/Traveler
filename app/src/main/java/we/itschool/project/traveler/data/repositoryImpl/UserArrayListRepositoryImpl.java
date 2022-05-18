@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.api.traveler_api.APIServiceConstructor;
+import we.itschool.project.traveler.data.api.traveler_api.APIServiceTravelerConstructor;
 import we.itschool.project.traveler.data.api.traveler_api.entityserv.UserServ;
 import we.itschool.project.traveler.data.api.traveler_api.mapper.UserEntityMapper;
 import we.itschool.project.traveler.data.api.traveler_api.service.APIServiceUser;
@@ -46,7 +46,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
      * @param data email, password, firstName, secondName, dateOfBirth, phoneNumber
      */
     private void addNewUserRetrofit(String[] data) {
-        APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
+        APIServiceUser service = APIServiceTravelerConstructor.CreateService(APIServiceUser.class);
 
         JSONObject json = new JSONObject();
         try {
@@ -89,7 +89,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
     }
 
     private void addSomeDataToUser() {
-        APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
+        APIServiceUser service = APIServiceTravelerConstructor.CreateService(APIServiceUser.class);
 
         String phoneNumber = "some password";
         String socialContacts = "some FirstName";
@@ -137,7 +137,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
      */
     @Override
     public boolean login(String email, String pass) {
-        APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
+        APIServiceUser service = APIServiceTravelerConstructor.CreateService(APIServiceUser.class);
         final boolean[] flag = {false};
 
         Call<String> call = service.loginUser(email, pass);
