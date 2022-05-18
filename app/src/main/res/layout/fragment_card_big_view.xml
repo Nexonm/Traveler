@@ -20,7 +20,14 @@
             android:layout_gravity="center|top"
             android:gravity="center|top"
             android:orientation="vertical">
-
+            <TextView
+                android:id="@+id/tv_name_of_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/cbv_name_of_city"
+                android:textAppearance="@style/text_style_3"
+                android:textSize="33sp"/>
             <ImageView
                 android:id="@+id/iv_main_image_big_card"
                 android:layout_width="match_parent"
@@ -45,6 +52,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:padding="8dp"
+                    android:contentDescription="@string/cbv_description_photo"
                     tools:src="@drawable/profile_icon" />
 
                 <LinearLayout
