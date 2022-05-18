@@ -13,9 +13,8 @@ public class CardListViewModelMyCards extends ViewModel {
     private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList;
 
     public MutableLiveData<ArrayList<CardEntity>> getCardList(){
-        cardsLiveDataList = new MutableLiveData<ArrayList<CardEntity>>(
+        cardsLiveDataList = new MutableLiveData<>(
                 new ArrayList<>(
-                        //TODO make check if user data is not downloaded from server yet
                         AppStart.getUser().getUserInfo().getUserCards()
                 )
         );
