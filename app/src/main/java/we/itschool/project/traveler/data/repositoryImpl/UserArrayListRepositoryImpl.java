@@ -124,6 +124,12 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
 
     }
 
+    /**
+     * Sends data to server as email and pass. Server sends UserEntity if user exists
+     * @param email email or login (actually same)
+     * @param pass password
+     * @return true, if user exists
+     */
     @Override
     public boolean login(String email, String pass) {
         APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
