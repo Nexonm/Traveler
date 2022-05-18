@@ -40,15 +40,6 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
         NUM_OF_PEOPLE_TO_DO = 10;
     }
 
-    {
-        for (int i = 0; i < NUM_OF_PEOPLE_TO_DO; i++) {
-//            userAddNew(
-//                    NewData.newUser()
-//            );
-        }
-//        addNewUserRetrofit();
-//        addSomeDataToUser();
-    }
 
     private void addNewUserRetrofit(String[] data) {
         APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
