@@ -19,6 +19,7 @@ import we.itschool.project.traveler.data.api.APIServiceConstructor;
 import we.itschool.project.traveler.data.api.entityserv.UserServ;
 import we.itschool.project.traveler.data.api.mapper.UserEntityMapper;
 import we.itschool.project.traveler.data.api.service.APIServiceUser;
+import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
 
@@ -155,6 +156,10 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
                                 true
                         );
                         AppStart.setUser(user);
+                        //add user cards to mutable data
+                        for (CardEntity card : AppStart.getUser().getUserInfo().getUserCards()) {
+                            AppStart.imp.addCardToMutableDataUserCards(card);
+                        }
                         flag[0] = true;
                     }
                 }

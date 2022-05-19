@@ -223,14 +223,14 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
         updateLiveData();
     }
 
-    private void addCardToMutableDataUserCards(CardEntity card) {
+    protected void addCardToMutableDataUserCards(CardEntity card) {
         dataUserCards.add(card);
         updateLiveDataUserCards();
     }
 
     @Override
     public void cardAddNew() {
-        if (NUM_OF_CARDS_TO_DO == 2) NUM_OF_CARDS_TO_DO = 13;
+//        if (NUM_OF_CARDS_TO_DO == 2) NUM_OF_CARDS_TO_DO = 13;
         loadDataRetrofit(++NUM_OF_CARDS_TO_DO);
     }
 
