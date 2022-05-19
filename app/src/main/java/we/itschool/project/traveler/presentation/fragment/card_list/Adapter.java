@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.api.APIConfig;
+import we.itschool.project.traveler.data.api.travelerapi.APIConfigTraveler;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 
 public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
@@ -70,7 +70,7 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
         //TODO  asynk Picasso
         Context context = viewHolder.itemView.getContext();
         Picasso.with(context)
-                .load(APIConfig.STORAGE_CARD_PHOTO_METHOD+card.get_id())
+                .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD+card.get_id())
                 .resize(
                         AppStart.getInstance().getDisplayHeight()/2,
                         AppStart.getInstance().getDisplayHeight()/2

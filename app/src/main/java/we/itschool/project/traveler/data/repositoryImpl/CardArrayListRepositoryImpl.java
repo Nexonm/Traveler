@@ -17,11 +17,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.api.APIServiceConstructor;
-import we.itschool.project.traveler.data.api.entityserv.CardServ;
-import we.itschool.project.traveler.data.api.mapper.CardEntityMapper;
-import we.itschool.project.traveler.data.api.service.APIServiceCard;
-import we.itschool.project.traveler.data.api.service.APIServiceStorage;
+import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceTravelerConstructor;
+import we.itschool.project.traveler.data.api.travelerapi.entityserv.CardServ;
+import we.itschool.project.traveler.data.api.travelerapi.mapper.CardEntityMapper;
+import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceCard;
+import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceStorage;
 import we.itschool.project.traveler.data.datamodel.CardModelPOJO;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.repository.CardDomainRepository;
@@ -63,7 +63,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     public void uploadPhotoToCard(String path, int cid) {
         AsyncTask.execute(() -> {
 
-            APIServiceStorage service = APIServiceConstructor.CreateService(APIServiceStorage.class);
+            APIServiceStorage service = APIServiceTravelerConstructor.CreateService(APIServiceStorage.class);
             //pass it like this
 //            Log.v("retrofitLogger", "get file from image");
             File file = new File(path);
@@ -110,7 +110,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     private void loadCardToUser(int id) {
 //        AsyncTask.execute(() -> {
 
-        APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
+        APIServiceCard service = APIServiceTravelerConstructor.CreateService(APIServiceCard.class);
         Call<String> call = service.getOneCardById(id);
         //Log.v(MainActivity.TAG, "start catching the answer");
         call.enqueue(new retrofit2.Callback<String>() {
@@ -145,7 +145,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     private void loadDataRetrofit(int id) {
 //        AsyncTask.execute(() -> {
 
-        APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
+        APIServiceCard service = APIServiceTravelerConstructor.CreateService(APIServiceCard.class);
         Call<String> call = service.getOneCardById(id);
         //Log.v(MainActivity.TAG, "start catching the answer");
         call.enqueue(new retrofit2.Callback<String>() {
@@ -193,7 +193,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     @Override
     public void cardCreateNew(CardModelPOJO model) {
         AsyncTask.execute(() -> {
-            APIServiceCard service = APIServiceConstructor.CreateService(APIServiceCard.class);
+            APIServiceCard service = APIServiceTravelerConstructor.CreateService(APIServiceCard.class);
             Call<String> call = service.addNewCardGson(AppStart.getUser().get_id(), CardEntityMapper.toCardServFromCardModelPOJO(model));
             call.enqueue(new Callback<String>() {
                 @Override

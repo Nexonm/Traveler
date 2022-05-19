@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.data.api.service;
+package we.itschool.project.traveler.data.api.travelerapi.service;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -10,7 +10,7 @@ import we.itschool.project.traveler.domain.entity.UserEntity;
 public interface APIServiceUser {
 
     @GET("people/get/")
-    Call<UserEntity> getUser(
+    public Call<UserEntity> getUser(
             @Query("id") int id
     );
 
@@ -29,7 +29,7 @@ public interface APIServiceUser {
      * @return String answer from server
      */
     @POST("people/reg-main")
-    Call<String> regUserMain(
+    public Call<String> regUserMain(
             @Body String gsonStr
     );
 
@@ -48,12 +48,12 @@ public interface APIServiceUser {
      * @return String answer from server
      */
     @POST("people/reg-add")
-    Call<String> regUserAdd(
+    public Call<String> regUserAdd(
             @Body String gsonStr
     );
 
     @GET("people/login")
-    Call<String> loginUser(
+    public Call<String> loginUser(
         @Query(value = "email") String email,
         @Query(value = "pass") String pass
     );

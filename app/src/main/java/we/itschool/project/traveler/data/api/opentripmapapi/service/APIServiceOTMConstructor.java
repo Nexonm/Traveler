@@ -1,4 +1,6 @@
-package we.itschool.project.traveler.data.api;
+package we.itschool.project.traveler.data.api.opentripmapapi.service;
+
+
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,8 +12,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+import we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM;
 
-public class APIServiceConstructor {
+public class APIServiceOTMConstructor {
 
     public static <T> T CreateService(Class<T> serviceClass) {
 
@@ -30,11 +33,12 @@ public class APIServiceConstructor {
 
         //create main retrofit builder
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIConfig.HOST_URL)
+                .baseUrl(APIConfigOTM.HOST_URL)
                 .client(client)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         return retrofit.create(serviceClass);
     }
+
 }

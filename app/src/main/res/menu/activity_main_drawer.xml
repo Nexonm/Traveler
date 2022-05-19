@@ -24,5 +24,9 @@
             android:id="@+id/nav_favourites"
             android:icon="@drawable/favourites_icon"
             android:title="@string/menu_favourites" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/favourites_icon"
+            android:title="карта" />
     </group>
 </menu>
