@@ -77,4 +77,14 @@
     <string name="cliv_name_of_city">Сингапур</string>
     <string name="cliv_dop_info">город прогресса</string>
 
+    <!-- map fragment strings -->
+    <string name="error_permission_map">пермышын дениед</string>
+    <string name="addToFavorite">в планы</string>
+    <string name="alreadyInFavorite">уже в планах</string>
+    <string name="ok">применить</string>
+    <string name="error_permission_map_eng">permission denied</string>
+    <string name="addToFavorite_eng">add to favorite</string>
+    <string name="alreadyInFavorite_eng">already in favorite</string>
+    <string name="ok_eng">apply</string>
+
 </resources>
