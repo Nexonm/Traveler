@@ -15,10 +15,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.api.APIServiceConstructor;
-import we.itschool.project.traveler.data.api.entityserv.UserServ;
-import we.itschool.project.traveler.data.api.mapper.UserEntityMapper;
-import we.itschool.project.traveler.data.api.service.APIServiceUser;
+import we.itschool.project.traveler.data.api.travelerapi.entityserv.UserServ;
+import we.itschool.project.traveler.data.api.travelerapi.mapper.UserEntityMapper;
+import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceTravelerConstructor;
+import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceUser;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
@@ -47,7 +47,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
      * @param data email, password, firstName, secondName, dateOfBirth, phoneNumber
      */
     private void addNewUserRetrofit(String[] data) {
-        APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
+        APIServiceUser service = APIServiceTravelerConstructor.CreateService(APIServiceUser.class);
 
         JSONObject json = new JSONObject();
         try {
@@ -90,7 +90,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
     }
 
     private void addSomeDataToUser() {
-        APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
+        APIServiceUser service = APIServiceTravelerConstructor.CreateService(APIServiceUser.class);
 
         String phoneNumber = "some password";
         String socialContacts = "some FirstName";
@@ -138,7 +138,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
      */
     @Override
     public boolean login(String email, String pass) {
-        APIServiceUser service = APIServiceConstructor.CreateService(APIServiceUser.class);
+        APIServiceUser service = APIServiceTravelerConstructor.CreateService(APIServiceUser.class);
         final boolean[] flag = {false};
 
         Call<String> call = service.loginUser(email, pass);
