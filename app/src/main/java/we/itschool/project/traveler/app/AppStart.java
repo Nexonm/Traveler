@@ -1,6 +1,10 @@
 package we.itschool.project.traveler.app;
 
+import static we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM.API_YANDEX_MAP_KEY;
+
 import android.app.Application;
+
+import com.yandex.mapkit.MapKitFactory;
 
 import java.util.ArrayList;
 
@@ -78,6 +82,9 @@ public class AppStart extends Application {
         loginUC = new UserLoginUseCase(imp1);
 
         user = null;
+
+        //set and init mapkit_api before creating view with map
+        MapKitFactory.setApiKey(API_YANDEX_MAP_KEY);
     }
 
 

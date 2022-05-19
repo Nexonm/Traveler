@@ -1,7 +1,7 @@
 package we.itschool.project.traveler.presentation.fragment.map;
 
 import static we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM.LANGUAGE;
-import static we.itschool.project.traveler.presentation.fragment.map.MapFragment.ll;
+import static we.itschool.project.traveler.presentation.fragment.map.MapFragment.cl;
 import static we.itschool.project.traveler.presentation.fragment.map.MapFragment.tx_town;
 
 import android.annotation.SuppressLint;
@@ -60,7 +60,7 @@ public class GetGeoLocation extends AsyncTask<String, Void, ArrayList<String>> {
     protected void onPostExecute(ArrayList<String> result) {
         super.onPostExecute(result);
         mapFragment.regions = result;
-        if (ll.findViewById(1) instanceof TextView){
+        if (cl.findViewById(1) instanceof TextView){
             tx_town.setText(result.get(0));
         } else if (result.size() > 0){
             tx_town.setTextSize(30);
@@ -72,7 +72,7 @@ public class GetGeoLocation extends AsyncTask<String, Void, ArrayList<String>> {
             tx_town.setText(result.get(0));
 
             tx_town.setGravity(Gravity.TOP);
-            ll.addView(tx_town);
+            cl.addView(tx_town);
         }
     }
 }
