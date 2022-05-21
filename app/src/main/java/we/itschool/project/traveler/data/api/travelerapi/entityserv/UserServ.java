@@ -32,6 +32,12 @@ public class UserServ {
     @SerializedName("male")
     @Expose
     private boolean male;
+    @SerializedName("interests")
+    @Expose
+    private String interests;
+    @SerializedName("characteristics")
+    @Expose
+    private String characteristics;
     @SerializedName("userCards")
     @Expose
     private String userCards;
@@ -104,6 +110,22 @@ public class UserServ {
         this.male = male;
     }
 
+    public String getInterests() {
+        return interests;
+    }
+
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
+
+    public String getCharacteristics() {
+        return characteristics;
+    }
+
+    public void setCharacteristics(String characteristics) {
+        this.characteristics = characteristics;
+    }
+
     public String getUserCards() {
         return userCards;
     }
@@ -134,31 +156,31 @@ public class UserServ {
         StringBuilder sb = new StringBuilder();
         sb.append("firstName");
         sb.append('=');
-        sb.append(((this.firstName == null)?"<null>":this.firstName));
+        sb.append(((this.firstName == null) ? "<null>" : this.firstName));
         sb.append(',');
         sb.append("secondName");
         sb.append('=');
-        sb.append(((this.secondName == null)?"<null>":this.secondName));
+        sb.append(((this.secondName == null) ? "<null>" : this.secondName));
         sb.append(',');
         sb.append("email");
         sb.append('=');
-        sb.append(((this.email == null)?"<null>":this.email));
+        sb.append(((this.email == null) ? "<null>" : this.email));
         sb.append(',');
         sb.append("phoneNumber");
         sb.append('=');
-        sb.append(((this.phoneNumber == null)?"<null>":this.phoneNumber));
+        sb.append(((this.phoneNumber == null) ? "<null>" : this.phoneNumber));
         sb.append(',');
         sb.append("socialContacts");
         sb.append('=');
-        sb.append(((this.socialContacts == null)?"<null>":this.socialContacts));
+        sb.append(((this.socialContacts == null) ? "<null>" : this.socialContacts));
         sb.append(',');
         sb.append("pathToPhoto");
         sb.append('=');
-        sb.append(((this.pathToPhoto == null)?"<null>":this.pathToPhoto));
+        sb.append(((this.pathToPhoto == null) ? "<null>" : this.pathToPhoto));
         sb.append(',');
         sb.append("dateOfBirth");
         sb.append('=');
-        sb.append(((this.dateOfBirth == null)?"<null>":this.dateOfBirth));
+        sb.append(((this.dateOfBirth == null) ? "<null>" : this.dateOfBirth));
         sb.append(',');
         sb.append("male");
         sb.append('=');
@@ -166,18 +188,18 @@ public class UserServ {
         sb.append(',');
         sb.append("userCards");
         sb.append('=');
-        sb.append(((this.userCards == null)?"<null>":this.userCards));
+        sb.append(((this.userCards == null) ? "<null>" : this.userCards));
         sb.append(',');
         sb.append("userFavoriteCards");
         sb.append('=');
-        sb.append(((this.userFavoriteCards == null)?"<null>":this.userFavoriteCards));
+        sb.append(((this.userFavoriteCards == null) ? "<null>" : this.userFavoriteCards));
         sb.append(',');
         sb.append("id");
         sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
+        sb.append(((this.id == null) ? "<null>" : this.id));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }

@@ -10,9 +10,7 @@ public class CardModelPOJO {
     private String shortDescription;
     private String address;
     private String pathToPhoto;
-    private boolean isPaymentFixed;
-    private int cost;
-    private boolean male;
+    private String hashtag;
 
 
     //methods
@@ -28,9 +26,7 @@ public class CardModelPOJO {
             String shortDescription,
             String address,
             String pathToPhoto,
-            boolean isPaymentFixed,
-            int cost,
-            boolean male
+            String hashtag
     ) {
         this.city = city;
         this.country = country;
@@ -38,9 +34,7 @@ public class CardModelPOJO {
         this.shortDescription = shortDescription;
         this.address = address;
         this.pathToPhoto = pathToPhoto;
-        this.isPaymentFixed = isPaymentFixed;
-        this.cost = cost;
-        this.male = male;
+        this.hashtag = hashtag;
     }
 
 
@@ -94,27 +88,11 @@ public class CardModelPOJO {
         this.pathToPhoto = pathToPhoto;
     }
 
-    public boolean isPaymentFixed() {
-        return isPaymentFixed;
+    public String getHashtag() {
+        return hashtag;
     }
 
-    public void setPaymentFixed(boolean paymentFixed) {
-        isPaymentFixed = paymentFixed;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
-    public boolean isMale() {
-        return male;
-    }
-
-    public void setMale(boolean male) {
-        this.male = male;
+    public void setHashtag(String hashtag) {
+        this.hashtag = hashtag;
     }
 }

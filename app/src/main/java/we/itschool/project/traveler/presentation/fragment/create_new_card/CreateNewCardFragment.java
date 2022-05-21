@@ -188,6 +188,7 @@ public class CreateNewCardFragment extends Fragment {
             Toast.makeText(context, "Не забудьте выбрать фото! :)", Toast.LENGTH_LONG).show();
         }
         if (check) {
+            //TODO удалить нафиг про цену и сделать один конструктор
             if (!paymentIsFixed) {
                 AppStart.cardCreateNewUC.cardCreateNew(
                         new CardModelPOJO(
@@ -197,10 +198,8 @@ public class CreateNewCardFragment extends Fragment {
                                 et_short_desc.getText().toString() + "",
                                 et_address.getText().toString() + "",
                                 bufString,
-                                paymentIsFixed,
-                                0,
-                                //TODO when user data is stored in app set user.getInfo().isMale()
-                                false
+//                                hashtag, TODO леха, тут нужно поле под хэштеги
+                                ""
                         )
                 );
             } else {
@@ -212,10 +211,8 @@ public class CreateNewCardFragment extends Fragment {
                                 et_short_desc.getText().toString() + "",
                                 et_address.getText().toString() + "",
                                 bufString,
-                                paymentIsFixed,
-                                getNum(et_coast.getText().toString()),
-                                //TODO when user data is stored in app set user.getInfo().isMale()
-                                false
+//                                hashtag, TODO леха, тут нужно поле под хэштеги
+                                ""
                         )
                 );
             }

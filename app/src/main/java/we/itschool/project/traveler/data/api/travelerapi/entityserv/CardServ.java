@@ -30,15 +30,9 @@ public class CardServ {
     @SerializedName("pathToPhoto")
     @Expose
     private String pathToPhoto;
-    @SerializedName("cost")
+    @SerializedName("hashtag")
     @Expose
-    private Integer cost;
-    @SerializedName("male")
-    @Expose
-    private Boolean male;
-    @SerializedName("isPaymentFixed")
-    @Expose
-    private Boolean paymentFixed;
+    private String hashtag;
 
     public UserServ getUser() {
         return user;
@@ -48,12 +42,8 @@ public class CardServ {
         this.id = id;
     }
 
-    public Boolean getMale() {
-        return male;
-    }
-
-    public Boolean getPaymentFixed() {
-        return paymentFixed;
+    public int getId() {
+        return id;
     }
 
     public void setUser(UserServ user) {
@@ -108,36 +98,12 @@ public class CardServ {
         this.pathToPhoto = pathToPhoto;
     }
 
-    public Integer getCost() {
-        return cost;
+    public String getHashtag() {
+        return hashtag;
     }
 
-    public void setCost(Integer cost) {
-        this.cost = cost;
-    }
-
-    public Boolean isMale() {
-        return male;
-    }
-
-    public void setMale(Boolean male) {
-        this.male = male;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Boolean isPaymentFixed() {
-        return paymentFixed;
-    }
-
-    public void setPaymentFixed(Boolean paymentFixed) {
-        this.paymentFixed = paymentFixed;
+    public void setHashtag(String hashtag) {
+        this.hashtag = hashtag;
     }
 
     @Override
@@ -146,50 +112,34 @@ public class CardServ {
         sb.append(CardServ.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("user");
         sb.append('=');
-        sb.append(((this.user == null)?"<null>":this.user));
+        sb.append(((this.user == null) ? "<null>" : this.user));
         sb.append(',');
         sb.append("city");
         sb.append('=');
-        sb.append(((this.city == null)?"<null>":this.city));
+        sb.append(((this.city == null) ? "<null>" : this.city));
         sb.append(',');
         sb.append("country");
         sb.append('=');
-        sb.append(((this.country == null)?"<null>":this.country));
+        sb.append(((this.country == null) ? "<null>" : this.country));
         sb.append(',');
         sb.append("fullDescription");
         sb.append('=');
-        sb.append(((this.fullDescription == null)?"<null>":this.fullDescription));
+        sb.append(((this.fullDescription == null) ? "<null>" : this.fullDescription));
         sb.append(',');
         sb.append("shortDescription");
         sb.append('=');
-        sb.append(((this.shortDescription == null)?"<null>":this.shortDescription));
+        sb.append(((this.shortDescription == null) ? "<null>" : this.shortDescription));
         sb.append(',');
         sb.append("address");
         sb.append('=');
-        sb.append(((this.address == null)?"<null>":this.address));
+        sb.append(((this.address == null) ? "<null>" : this.address));
         sb.append(',');
         sb.append("pathToPhoto");
         sb.append('=');
-        sb.append(((this.pathToPhoto == null)?"<null>":this.pathToPhoto));
+        sb.append(((this.pathToPhoto == null) ? "<null>" : this.pathToPhoto));
         sb.append(',');
-        sb.append("cost");
-        sb.append('=');
-        sb.append(((this.cost == null)?"<null>":this.cost));
-        sb.append(',');
-        sb.append("male");
-        sb.append('=');
-        sb.append(((this.male == null)?"<null>":this.male));
-        sb.append(',');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == 0)?"<null>":this.id));
-        sb.append(',');
-        sb.append("paymentFixed");
-        sb.append('=');
-        sb.append(((this.paymentFixed == null)?"<null>":this.paymentFixed));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }

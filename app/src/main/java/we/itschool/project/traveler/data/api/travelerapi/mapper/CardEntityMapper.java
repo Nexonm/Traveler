@@ -25,9 +25,7 @@ public class CardEntityMapper {
                         cServ.getShortDescription() + "",
                         cServ.getAddress() + "",
                         cServ.getPathToPhoto() + "",
-                        cServ.getCost()+0,
-                        cServ.isMale(),
-                        cServ.isPaymentFixed()
+                        cServ.getHashtag()
                         ),
                 cServ.getId()
         );
@@ -43,9 +41,7 @@ public class CardEntityMapper {
                         entity.getCardInfo().getShortDescription()+"",
                         entity.getCardInfo().getAddress()+"",
                         entity.getCardInfo().getPathToPhoto(),
-                        entity.getCardInfo().isPaymentFixed(),
-                        entity.getCardInfo().getCost(),
-                        entity.getCardInfo().isMale()
+                        entity.getCardInfo().getHashtag()
                 )
         );
     }

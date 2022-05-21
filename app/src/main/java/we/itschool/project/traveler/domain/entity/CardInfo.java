@@ -10,9 +10,7 @@ public class CardInfo {
     private final String shortDescription;
     private final String address;
     private final String pathToPhoto;
-    private final int cost;
-    private final boolean isMale;
-    private final boolean paymentFixed;
+    private final String hashtag;
     private File file;
 
     public CardInfo(
@@ -23,9 +21,8 @@ public class CardInfo {
             String shortDescription,
             String address,
             String pathToPhoto,
-            int cost,
-            boolean isMale,
-            boolean paymentFixed) {
+            String hashtag
+    ) {
         this.user = user;
         this.city = city;
         this.country = country;
@@ -33,9 +30,7 @@ public class CardInfo {
         this.shortDescription = shortDescription;
         this.address = address;
         this.pathToPhoto = pathToPhoto;
-        this.cost = cost;
-        this.isMale = isMale;
-        this.paymentFixed = paymentFixed;
+        this.hashtag = hashtag;
     }
 
     public UserEntity getUser() {
@@ -66,16 +61,8 @@ public class CardInfo {
         return country;
     }
 
-    public int getCost() {
-        return cost;
-    }
-
-    public boolean isMale() {
-        return isMale;
-    }
-
-    public boolean isPaymentFixed() {
-        return paymentFixed;
+    public String getHashtag() {
+        return hashtag;
     }
 
     public File getFile() {

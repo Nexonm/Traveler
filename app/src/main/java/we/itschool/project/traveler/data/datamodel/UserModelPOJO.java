@@ -9,6 +9,8 @@ public class UserModelPOJO {
     private String pathToPhoto;
     private String dateOfBirth;
     private boolean male;
+    private String interests;
+    private String characteristics;
     private String userCards;
     private String userFavoriteCards;
     private String password;
@@ -120,6 +122,22 @@ public class UserModelPOJO {
 
     public void setMale(boolean male) {
         this.male = male;
+    }
+
+    public String getInterests() {
+        return interests;
+    }
+
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
+
+    public String getCharacteristics() {
+        return characteristics;
+    }
+
+    public void setCharacteristics(String characteristics) {
+        this.characteristics = characteristics;
     }
 
     public String getUserCards() {

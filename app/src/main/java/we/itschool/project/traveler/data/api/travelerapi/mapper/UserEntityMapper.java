@@ -28,6 +28,8 @@ public class UserEntityMapper {
                             uServ.getPathToPhoto() + "",
                             uServ.getDateOfBirth() + "",
                             uServ.isMale(),
+                            uServ.getInterests() + "",
+                            uServ.getCharacteristics() + "",
                             //making card entities
                             getCardEntityListFromCardServList(
                                     (new Gson()).fromJson(
@@ -56,6 +58,8 @@ public class UserEntityMapper {
                             uServ.getPathToPhoto() + "",
                             uServ.getDateOfBirth() + "",
                             uServ.isMale(),
+                            uServ.getInterests() + "",
+                            uServ.getCharacteristics() + "",
                             null,
                             null
                     ),
@@ -75,7 +79,7 @@ public class UserEntityMapper {
             return null;
     }
 
-    public static String toUserServFromUserModelPOJO(UserModelPOJO model){
+    public static String toUserServFromUserModelPOJO(UserModelPOJO model) {
         return (new Gson()).toJson(model);
     }
 

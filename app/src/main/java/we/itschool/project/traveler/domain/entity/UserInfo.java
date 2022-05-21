@@ -11,6 +11,8 @@ public class UserInfo {private final String firstName;
     private final String pathToPhoto;
     private final String dateOfBirth;
     private final boolean isMale;
+    private final String interests;
+    private final String characteristics;
     private List<CardEntity> userCards;
     private List<Long> userFavoritesCards;
 
@@ -24,6 +26,8 @@ public class UserInfo {private final String firstName;
             String pathToPhoto,
             String dateOfBirth,
             boolean isMale,
+            String interests,
+            String characteristics,
             List<CardEntity> userCards,
             List<Long> userFavoritesCards) {
         this.firstName = firstName;
@@ -34,6 +38,8 @@ public class UserInfo {private final String firstName;
         this.dateOfBirth = dateOfBirth;
         this.pathToPhoto = pathToPhoto;
         this.isMale = isMale;
+        this.interests = interests;
+        this.characteristics = characteristics;
         this.userCards = userCards;
         this.userFavoritesCards = userFavoritesCards;
     }
@@ -68,6 +74,14 @@ public class UserInfo {private final String firstName;
 
     public boolean isMale() {
         return isMale;
+    }
+
+    public String getInterests() {
+        return interests;
+    }
+
+    public String getCharacteristics() {
+        return characteristics;
     }
 
     public List<CardEntity> getUserCards() {
