@@ -189,7 +189,6 @@ public class CreateNewCardFragment extends Fragment {
         }
         if (check) {
             //TODO удалить нафиг про цену и сделать один конструктор
-            if (!paymentIsFixed) {
                 AppStart.cardCreateNewUC.cardCreateNew(
                         new CardModelPOJO(
                                 et_city.getText().toString() + "",
@@ -202,20 +201,6 @@ public class CreateNewCardFragment extends Fragment {
                                 ""
                         )
                 );
-            } else {
-                AppStart.cardCreateNewUC.cardCreateNew(
-                        new CardModelPOJO(
-                                et_city.getText().toString() + "",
-                                et_country.getText().toString() + "",
-                                et_full_desc.getText().toString() + "",
-                                et_short_desc.getText().toString() + "",
-                                et_address.getText().toString() + "",
-                                bufString,
-//                                hashtag, TODO леха, тут нужно поле под хэштеги
-                                ""
-                        )
-                );
-            }
             return true;
         }
         return false;
