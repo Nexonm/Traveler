@@ -13,9 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
+import we.itschool.project.traveler.data.api.travelerapi.APIConfigTraveler;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 
 public class CardFragment extends Fragment {
@@ -89,8 +91,14 @@ public class CardFragment extends Fragment {
                 view.getContext().getPackageName()
         );
 
-        ((ImageView) view.findViewById(R.id.iv_main_image_big_card))
-                .setImageResource(resIDCard);
+        Picasso.with(this.getContext())
+                .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD+card.get_id())
+                .resize(
+                        AppStart.getInstance().getDisplayHeight()/2,
+                        AppStart.getInstance().getDisplayHeight()/2
+                ).into(
+                        ((ImageView) view.findViewById(R.id.iv_main_image_big_card))
+                );
         ((ImageView) view.findViewById(R.id.iv_avatar_image_big_card))
                 .setImageResource(resIDUser);
         ((TextView) view.findViewById(R.id.tv_avatar_profile_data_small_FN))
@@ -103,6 +111,8 @@ public class CardFragment extends Fragment {
                         card.getCardInfo()
                                 .getUser().getUserInfo().getSecondName()
                 );
+        ((TextView) view.findViewById(R.id.tv_name_of_city))
+                .setText(card.getCardInfo().getCity());
         ((TextView) view.findViewById(R.id.tv_description_long))
                 .setText(card.getCardInfo().getFullDescription());
     }
