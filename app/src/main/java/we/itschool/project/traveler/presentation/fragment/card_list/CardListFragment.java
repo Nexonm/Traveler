@@ -36,6 +36,8 @@ public class CardListFragment extends Fragment {
 
     private FragmentMainBinding binding;
 
+    private boolean going;
+
     View root;
 
     public static CardListFragment newInstance() {
@@ -80,6 +82,7 @@ public class CardListFragment extends Fragment {
         initAdapter();
         initViewModel();
         initView(view);
+        going = true;
         addData();
     }
 
@@ -108,7 +111,7 @@ public class CardListFragment extends Fragment {
         AsyncTask.execute(()->{
 
                 int num = 0;
-                while (num < 5)
+                while (num < 5 && going)
                     try {
                         Log.v("OkHttpClient nik", "запрос отправляю " + num);
                         viewModel.addNewCard();
@@ -125,6 +128,18 @@ public class CardListFragment extends Fragment {
                     }
 
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        going = false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        going = false;
     }
 
     private void startCardFragment(CardEntity card) {
