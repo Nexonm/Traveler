@@ -25,11 +25,6 @@
             app:destination="@id/nav_big_card" />
     </fragment>
     <fragment
-        android:id="@+id/nav_chats"
-        android:name="we.itschool.project.traveler.presentation.fragment.chats.ChatsFragment"
-        android:label="@string/menu_chats"
-        tools:layout="@layout/fragment_chats" />
-    <fragment
         android:id="@+id/nav_my_cards"
         android:name="we.itschool.project.traveler.presentation.fragment.my_cards.MyCardsFragment"
         android:label="@string/menu_my_cards"
@@ -48,7 +43,11 @@
         android:name="we.itschool.project.traveler.presentation.fragment.favourites.FavouritesFragment"
         android:label="@string/menu_favourites"
         tools:layout="@layout/fragment_favourites" />
-
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="we.itschool.project.traveler.presentation.fragment.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_chats" />
     <fragment
         android:id="@+id/nav_login"
         android:name="we.itschool.project.traveler.presentation.fragment.login.LoginFragment"

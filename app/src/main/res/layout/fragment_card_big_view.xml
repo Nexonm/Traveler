@@ -9,17 +9,21 @@
     android:padding="8dp">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
 
         <LinearLayout
             android:id="@+id/container_card_big_view"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
+            android:layout_marginTop="20dp"
             android:gravity="center|top"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tv_name_of_city"
                 android:layout_width="wrap_content"
@@ -27,42 +31,44 @@
                 android:layout_gravity="center"
                 android:text="@string/cbv_name_of_city"
                 android:textAppearance="@style/text_style_3"
-                android:textSize="33sp"/>
+                android:textSize="33sp" />
+
             <ImageView
                 android:id="@+id/iv_main_image_big_card"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/singap"
-                android:contentDescription="@string/cbv_description_photo" />
+                android:contentDescription="@string/cbv_description_photo"
+                app:srcCompat="@drawable/singap" />
 
             <LinearLayout
                 android:id="@+id/avatar_card_layout_big_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_gravity="center"
-                android:showDividers="middle"
+                android:layout_marginTop="15dp"
                 android:divider="@drawable/empty_tall_divider_card_big_view"
-                android:layout_marginTop="15dp">
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:showDividers="middle">
 
                 <ImageView
                     android:id="@+id/iv_avatar_image_big_card"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:padding="8dp"
                     android:contentDescription="@string/cbv_description_photo"
+                    android:padding="8dp"
                     tools:src="@drawable/profile_icon" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:showDividers="middle"
                     android:divider="@drawable/empty_tall_divider_cnc"
+                    android:gravity="center"
+                    android:orientation="vertical"
 
-                    android:orientation="vertical">
+                    android:showDividers="middle">
+
                     <TextView
                         android:id="@+id/tv_avatar_profile_data_small_FN"
                         android:layout_width="wrap_content"
@@ -87,11 +93,19 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:text="@string/cbv_text_from_author"
-                android:textAppearance="@style/text_style_2"/>
+                android:textAppearance="@style/text_style_2" />
 
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/bt_cbv_add_to_favourites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cbv_add_to_favourites"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

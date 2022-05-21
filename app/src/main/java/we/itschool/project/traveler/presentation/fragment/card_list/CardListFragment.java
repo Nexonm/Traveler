@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.databinding.FragmentMainBinding;
@@ -118,7 +119,7 @@ public class CardListFragment extends Fragment {
                         num++;
                         Thread.sleep(2500);
                         //write submit list to add new list made from main list with cards
-                        adapter.submitList(new ArrayList<>(viewModel.getCardList().getValue()));
+                        adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
 //                        adapter.onCurrentListChanged(adapter.getCurrentList(), viewModel.getCardList().getValue());
                         try{
                             num = viewModel.getCardList().getValue().size();

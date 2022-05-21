@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.util.Objects;
+
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.FragmentLoginBinding;
@@ -26,6 +28,9 @@ import we.itschool.project.traveler.presentation.fragment.registration.Registrat
 
 public class LoginFragment extends Fragment {
 
+    public static final String KEY_PREF_USER_EMAIL = "UserEmail";
+    public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
+    private boolean f;
     EditText et_email;
     EditText et_password;
     Button bt_login;
@@ -55,6 +60,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void initView(View view) {
+        f = true;
         et_email = view.findViewById(R.id.et_login_field_email);
         et_password = view.findViewById(R.id.et_login_field_password);
         et_password = view.findViewById(R.id.et_login_field_password);
@@ -103,12 +109,32 @@ public class LoginFragment extends Fragment {
 
     private void startRegistrationActivity() {
         Fragment fragment = RegistrationFragment.newInstance();
-
+        f = false;
         FragmentManager fragmentManager = getParentFragmentManager();
         fragmentManager
                 .beginTransaction()
                 .addToBackStack("null")
                 .replace(R.id.fcv_login, fragment, null)
                 .commit();
+    }
+
+    private boolean userLogged() {
+        //make object of SharedPreferences, in case we have just one file we call
+        //getPreferences() passing with context of app/activity
+        SharedPreferences pref = this.requireActivity().getPreferences(Context.MODE_PRIVATE);
+        //check if there is needed data
+        return pref.contains(KEY_PREF_USER_EMAIL) && pref.contains(KEY_PREF_USER_PASSWORD);
+    }
+    private void closeActivity() {
+        this.requireActivity().finish();
+    }
+    @Override
+    public void onDestroyView() {
+        if (f) {
+            System.out.println(67);
+            closeActivity();
+        }
+        super.onDestroyView();
+        binding = null;
     }
 }

@@ -1,90 +1,84 @@
 <resources>
     <string name="app_name">Traveler</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-    <string name="icon">Иконка</string>
+    <string name="icon">Icon</string>
 
-
+    <!-- en string-pack -->
     <!-- labels for fragments -->
-    <string name="menu_profile">Профиль</string>
-    <string name="menu_main">Лента</string>
-    <string name="menu_chats">Чаты</string>
-    <string name="menu_my_cards">Мои карточки</string>
-    <string name="menu_favourites">Избранное</string>
-    <string name="menu_big_card">Карточка</string>
-    <string name="menu_create_new_card">Создание карточки</string>
-    <string name="menu_login">Вход</string>
-    <string name="menu_registration">Регистрация</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_main">Feed</string>
+    <string name="menu_my_cards">My cards</string>
+    <string name="menu_favourites">Favorites</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_big_card">Card</string>
+    <string name="menu_create_new_card">Creating a card</string>
+    <string name="menu_login">Input</string>
+    <string name="menu_registration">Registration</string>
 
-    <!-- login strings -->
-    <string name="login_title">Добро пожаловать в Traveler!</string>
-    <string name="login_email_tv">Введите email</string>
+    <!-- login -->
+    <string name="login_title">Welcome to the Traveler!</string>
+    <string name="login_email_tv">Enter email</string>
     <string name="login_email_ev">Email</string>
-    <string name="login_password_tv">Введите пароль</string>
-    <string name="login_password_ev">Пароль</string>
-    <string name="login_sign_in">ВОЙТИ</string>
-    <string name="login_or">Или</string>
-    <string name="login_register">РЕГИСТРАЦИЯ</string>
+    <string name="login_password_tv">Enter the password</string>
+    <string name="login_password_ev">Password</string>
+    <string name="login_sign_in">LOG IN</string>
+    <string name="login_or">Or</string>
+    <string name="login_register">REGISTRATION</string>
 
-    <!-- registration strings -->
-    <string name="reg_main_title">Регистрация</string>
-    <string name="reg_title_first_name">Имя</string>
-    <string name="reg_title_second_name">Фамилия</string>
+    <!-- registration -->
+    <string name="reg_main_title">Registration</string>
+    <string name="reg_title_first_name">Name</string>
+    <string name="reg_title_second_name">Last name</string>
     <string name="reg_title_email">Email</string>
-    <string name="reg_title_password">Пароль</string>
-    <string name="reg_title_password_repeat">Повторите пароль</string>
-    <string name="reg_title_password_repeat_not_match">Пароли не совпадают</string>
-    <string name="reg_title_date_of_birth_hint">Дата рождения</string>
-    <string name="reg_title_incorrect_date_of_birth_hint">Некорректная дата рождения</string>
-    <string name="reg_title_phone_number">Номер телефона</string>
-    <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
+    <string name="reg_title_password">Password</string>
+    <string name="reg_title_password_repeat">Repeat the password</string>
+    <string name="reg_title_password_repeat_not_match">Passwords don\'t match</string>
+    <string name="reg_title_date_of_birth_hint">Date of birth</string>
+    <string name="reg_title_incorrect_date_of_birth_hint">Invalid date of birth</string>
+    <string name="reg_title_phone_number">Phone number</string>
+    <string name="reg_btn_register">REGISTRATION</string>
 
-    <!-- profile strings -->
-    <string name="profile_first_name">Имя</string>
-    <string name="profile_second_name">Фамилия</string>
-    <string name="profile_phone_number">Телефон</string>
-    <string name="profile_email">Почта</string>
-    <string name="profile_is_male_null">Пол</string>
-    <string name="profile_date_of_birth_null">День рождения</string>
-    <string name="profile_is_male"><u>Пол</u></string>
-    <string name="profile_date_of_birth"><u>День рождения</u></string>
-    <string name="profile_description_photo">Ваша фотография</string>
+    <!-- profile -->
+    <string name="profile_first_name">Name</string>
+    <string name="profile_second_name">Last name</string>
+    <string name="profile_phone_number">Phone</string>
+    <string name="profile_email">Mail</string>
+    <string name="profile_is_male_null">Gender</string>
+    <string name="profile_date_of_birth_null">birthday</string>
+    <string name="profile_is_male"><u>Gender</u></string>
+    <string name="profile_date_of_birth"><u>Birthday</u></string>
+    <string name="profile_description_photo">Your photo</string>
 
-    <!-- create new card (cnc) strings -->
-    <string name="cnc_city">Город</string>
-    <string name="cnc_upload">ЗАГРУЗИТЬ</string>
-    <string name="cnc_description_photo">Добавьте фотографию</string>
-    <string name="cnc_country">Страна</string>
-    <string name="cnc_address">Адрес</string>
-    <string name="cnc_is_exact_money">Будет ли взиматься конкретная плата</string>
-    <string name="cnc_money">Плата</string>
-    <string name="cnc_few_information">Краткая информация</string>
-    <string name="cnc_many_information">Полная информация</string>
-    <string name="cnc_btn_add_card">ДОБАВИТЬ КАРТОЧКУ</string>
+    <!-- create a new map (cnc) -->
+    <string name="cnc_city">City</string>
+    <string name="cnc_upload">UPLOAD</string>
+    <string name="cnc_description_photo">Add a photo</string>
+    <string name="cnc_country">Country</string>
+    <string name="cnc_address">Address</string>
+    <string name="cnc_is_exact_money">Will a specific fee be charged</string>
+    <string name="cnc_money">Board</string>
+    <string name="cnc_few_information">Brief information</string>
+    <string name="cnc_many_information">Full information</string>
+    <string name="cnc_btn_add_card">ADD CARD</string>
 
-    <!-- card big view (cbv) strings -->
-    <string name="cbv_name">Имя</string>
-    <string name="cbv_second_name">Фамилия</string>
-    <string name="cbv_description_photo">Фотография карточки</string>
-    <string name="cbv_text_from_author">текст от автора</string>
-    <string name="cbv_name_of_city">Сингапур</string>
+    <!-- large map view (cbv) -->
+    <string name="cbv_name_of_city">Singapore</string>
+    <string name="cbv_name">Name</string>
+    <string name="cbv_second_name">Last name</string>
+    <string name="cbv_description_photo">Card photo</string>
+    <string name="cbv_text_from_author">text from the author</string>
+    <string name="cbv_add_to_favourites">Add to favourites</string>
 
-    <!-- card list item visitor (cliv) strings -->
-    <string name="cliv_name_of_city">Сингапур</string>
-    <string name="cliv_dop_info">город прогресса</string>
+    <!-- card list item visitor (cliv) -->
+    <string name="cliv_name_of_city">Singapore</string>
+    <string name="cliv_dop_info">progress city</string>
 
-    <!-- map fragment strings -->
-    <string name="error_permission_map">пермышын дениед</string>
-    <string name="addToFavorite">в планы</string>
-    <string name="alreadyInFavorite">уже в планах</string>
-    <string name="ok">применить</string>
-    <string name="error_permission_map_eng">permission denied</string>
-    <string name="addToFavorite_eng">add to favorite</string>
-    <string name="alreadyInFavorite_eng">already in favorite</string>
-    <string name="ok_eng">apply</string>
+    <!-- map -->
+    <string name="error_permission_map">permyshyn denied</string>
+    <string name="addToFavorite">in plans</string>
+    <string name="alreadyInFavorite">already in the plans</string>
+    <string name="ok">apply</string>
 
+    <!-- settings -->
+    <string name="settings_language">Change the language</string>
 </resources>
