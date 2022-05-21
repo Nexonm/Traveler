@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +14,10 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.google.android.material.datepicker.CalendarConstraints;
+import androidx.fragment.app.FragmentManager;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 
 import we.itschool.project.traveler.R;
@@ -70,7 +67,10 @@ public class RegistrationFragment extends Fragment {
         et_phone = view.findViewById(R.id.et_reg_field_phone_number);
         bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
-            if(checkAllData()){
+            if(checkAllData()) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
+                fragmentManager.popBackStack();
                 Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
                 startActivity(intent);
             }

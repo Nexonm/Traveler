@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">Traveler</string>
+    <string name="icon">Иконка</string>
+
+    <!-- ru string-pack -->
+    <!-- labels for fragments -->
+    <string name="menu_profile">Профиль</string>
+    <string name="menu_main">Лента</string>
+    <string name="menu_my_cards">Мои карточки</string>
+    <string name="menu_favourites">Избранное</string>
+    <string name="menu_map">Карта</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_big_card">Карточка</string>
+    <string name="menu_create_new_card">Создание карточки</string>
+    <string name="menu_login">Вход</string>
+    <string name="menu_registration">Регистрация</string>
+
+    <!-- login -->
+    <string name="login_title">Добро пожаловать в Traveler!</string>
+    <string name="login_email_tv">Введите email</string>
+    <string name="login_email_ev">Email</string>
+    <string name="login_password_tv">Введите пароль</string>
+    <string name="login_password_ev">Пароль</string>
+    <string name="login_sign_in">ВОЙТИ</string>
+    <string name="login_or">Или</string>
+    <string name="login_register">РЕГИСТРАЦИЯ</string>
+
+    <!-- registration -->
+    <string name="reg_main_title">Регистрация</string>
+    <string name="reg_title_first_name">Имя</string>
+    <string name="reg_title_second_name">Фамилия</string>
+    <string name="reg_title_email">Email</string>
+    <string name="reg_title_password">Пароль</string>
+    <string name="reg_title_password_repeat">Повторите пароль</string>
+    <string name="reg_title_password_repeat_not_match">Пароли не совпадают</string>
+    <string name="reg_title_date_of_birth_hint">Дата рождения</string>
+    <string name="reg_title_incorrect_date_of_birth_hint">Некорректная дата рождения</string>
+    <string name="reg_title_phone_number">Номер телефона</string>
+    <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
+
+    <!-- profile -->
+    <string name="profile_first_name">Имя</string>
+    <string name="profile_second_name">Фамилия</string>
+    <string name="profile_phone_number">Телефон</string>
+    <string name="profile_email">Почта</string>
+    <string name="profile_is_male_null">Пол</string>
+    <string name="profile_date_of_birth_null">День рождения</string>
+    <string name="profile_is_male"><u>Пол</u></string>
+    <string name="profile_date_of_birth"><u>День рождения</u></string>
+    <string name="profile_description_photo">Ваша фотография</string>
+
+    <!-- create new card (cnc) -->
+    <string name="cnc_city">Город</string>
+    <string name="cnc_upload">ЗАГРУЗИТЬ</string>
+    <string name="cnc_description_photo">Добавьте фотографию</string>
+    <string name="cnc_country">Страна</string>
+    <string name="cnc_address">Адрес</string>
+    <string name="cnc_is_exact_money">Будет ли взиматься конкретная плата</string>
+    <string name="cnc_money">Плата</string>
+    <string name="cnc_few_information">Краткая информация</string>
+    <string name="cnc_many_information">Полная информация</string>
+    <string name="cnc_btn_add_card">ДОБАВИТЬ КАРТОЧКУ</string>
+
+    <!-- card big view (cbv) -->
+    <string name="cbv_name_of_city">Сингапур</string>
+    <string name="cbv_name">Имя</string>
+    <string name="cbv_second_name">Фамилия</string>
+    <string name="cbv_description_photo">Фотография карточки</string>
+    <string name="cbv_text_from_author">текст от автора</string>
+    <string name="cbv_add_to_favourites">Добавить в избранное</string>
+
+
+    <!-- card list item visitor (cliv) -->
+    <string name="cliv_name_of_city">Сингапур</string>
+    <string name="cliv_dop_info">город прогресса</string>
+
+    <!-- map -->
+    <string name="error_permission_map">пермышын дениед</string>
+    <string name="addToFavorite">в планы</string>
+    <string name="alreadyInFavorite">уже в планах</string>
+    <string name="ok">применить</string>
+
+    <!-- settings -->
+    <string name="settings_language">Сменить язык</string>
+</resources>

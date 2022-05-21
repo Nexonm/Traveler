@@ -31,13 +31,18 @@ public class LoginActivity extends AppCompatActivity {
         if (userLogged()) {
             AppStart.loginUC.login(userDataFromSPEmail(), userDataFromSPPass());
             Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            closeActivity();
         } else {
             startLogInFragment();
         }
 
     }
 
+    private void closeActivity() {
+        this.finish();
+    }
 
     /**
      * Check if user registered on this gadget. If no user needs to log in or register.
