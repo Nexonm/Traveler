@@ -48,13 +48,38 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
     }
 
     @Override
+    public void userAddNewCardToFavorite(long cid) {
+        APIServiceUser service = APIServiceTravelerConstructor.CreateService(APIServiceUser.class);
+
+        Call<String> call = service.addCardIdToUserFavs(AppStart.getUser().get_id(), cid);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body() != null) {
+                    ArrayList<Long> list = (new Gson()).fromJson(response.body(), ArrayList.class);
+                    AppStart.getUser().getUserInfo().setUserFavoritesCards(list);
+                    Log.v("retrofitLogger", "add FAVS, answer:" + response.body() +
+                            ", user's:"+ AppStart.getUser().getUserInfo().getUserFavoritesCards());
+                } else {
+                    Log.v("retrofitLogger", "null response.body on addNewUserRetrofit");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
     public void addPhotoToUser(String pathToPhoto) {
         //as it called from ui thread make asynk
         AsyncTask.execute(() -> {
 
             APIServiceStorage service = APIServiceTravelerConstructor.CreateService(APIServiceStorage.class);
             //pass it like this
-            Log.v("retrofitLogger", "get file, pathToPhoto is: "+pathToPhoto);
+            Log.v("retrofitLogger", "get file, pathToPhoto is: " + pathToPhoto);
             File file = new File(pathToPhoto);
 //            Log.v("retrofitLogger", "fill it in request Body");
             RequestBody requestFile =
@@ -94,6 +119,7 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
 
     /**
      * Sends json str to server in attempt to register new user
+     *
      * @param data email, password, firstName, secondName, dateOfBirth, phoneNumber
      */
     private void addNewUserRetrofit(String[] data) {
@@ -141,8 +167,10 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
 
     /**
      * Sends data to server as email and pass. Server sends UserEntity if user exists
+     *
      * @param email email or login (actually same)
-     * @param pass password
+     * @param pass  password
+     *
      * @return true, if user exists
      */
     @Override

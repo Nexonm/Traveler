@@ -12,6 +12,8 @@ public interface UserDomainRepository {
 
     void userAddNew(String[] data);
 
+    void userAddNewCardToFavorite(long cid);
+
     void userDeleteById(UserEntity user);
 
     void userEditById(UserEntity user);
