@@ -2,7 +2,6 @@ package we.itschool.project.traveler.presentation.fragment.card_list;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,15 +113,18 @@ public class CardListFragment extends Fragment {
                 int num = 0;
                 while (num < 5 && going)
                     try {
-                        Log.v("OkHttpClient nik", "запрос отправляю " + num);
+//                        Log.v("OkHttpClient nik", "запрос отправляю " + num+", going="+going);
                         viewModel.addNewCard();
                         num++;
-                        Thread.sleep(2500);
+//                        Log.v("OkHttpClient nik", "ухожу спать" + num+", going="+going);
+                        Thread.sleep(1500);
+//                        Log.v("OkHttpClient nik", "проснулся" + num+", going="+going);
                         //write submit list to add new list made from main list with cards
                         adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
 //                        adapter.onCurrentListChanged(adapter.getCurrentList(), viewModel.getCardList().getValue());
                         try{
                             num = viewModel.getCardList().getValue().size();
+//                            Log.v("OkHttpClient nik", "получил карту num=" + num +", going="+going);
                         }catch (NullPointerException ignored){}
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -134,13 +136,15 @@ public class CardListFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+//        Log.v("OkHttpClient nik", "onPAUSE in ListFragment");
         going = false;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        going = false;
+//        Log.v("OkHttpClient nik", "onRESUME in ListFragment");
+        going = true;
     }
 
     private void startCardFragment(CardEntity card) {
