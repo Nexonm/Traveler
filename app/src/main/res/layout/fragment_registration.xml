@@ -134,14 +134,14 @@
         android:text="@string/reg_btn_register"
         android:textAppearance="@style/text_style_1"
         android:backgroundTint="@color/button"
-        app:cornerRadius="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_reg_field_phone_number"
         app:layout_constraintVertical_bias="0.375"
         app:strokeColor="@color/white"
-        app:strokeWidth="3dp" />
+        app:strokeWidth="3dp"
+        app:cornerRadius="17dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

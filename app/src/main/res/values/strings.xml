@@ -48,6 +48,7 @@
     <string name="profile_is_male"><u>Gender</u></string>
     <string name="profile_date_of_birth"><u>Birthday</u></string>
     <string name="profile_description_photo">Your photo</string>
+    <string name="profile_btn_update_photo">Update photo</string>
 
     <!-- create a new map (cnc) -->
     <string name="cnc_city">City</string>
