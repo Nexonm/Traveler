@@ -16,6 +16,8 @@ public interface UserDomainRepository {
 
     void userEditById(UserEntity user);
 
+    void addPhotoToUser(String pathToPhoto);
+
     MutableLiveData<ArrayList<UserEntity>> userGetAll();
 
     UserEntity userGetById(int id);
