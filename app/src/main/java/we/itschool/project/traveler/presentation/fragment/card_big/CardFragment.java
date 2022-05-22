@@ -99,8 +99,12 @@ public class CardFragment extends Fragment {
                 ).into(
                         ((ImageView) view.findViewById(R.id.iv_main_image_big_card))
                 );
-        ((ImageView) view.findViewById(R.id.iv_avatar_image_big_card))
-                .setImageResource(resIDUser);
+        Picasso.with(this.getContext())
+                .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD+card.getCardInfo().getUser().get_id())
+                .into(
+                        ((ImageView) view.findViewById(R.id.iv_avatar_image_big_card))
+                );
+
         ((TextView) view.findViewById(R.id.tv_avatar_profile_data_small_FN))
                 .setText(
                         card.getCardInfo()
