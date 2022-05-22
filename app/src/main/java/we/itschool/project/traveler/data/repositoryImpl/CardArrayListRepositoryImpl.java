@@ -61,7 +61,8 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
      * @param cid  card id
      */
     public void uploadPhotoToCard(String path, int cid) {
-        AsyncTask.execute(() -> {
+        //called from retrofit.execute so no need for extra thread!
+//        AsyncTask.execute(() -> {
 
             APIServiceStorage service = APIServiceTravelerConstructor.CreateService(APIServiceStorage.class);
             //pass it like this
@@ -71,7 +72,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
-// MultipartBody.Part is used to send also the actual file name
+//          MultipartBody.Part is used to send also the actual file name
 //            Log.v("retrofitLogger", "fill it in multipart Body");
             MultipartBody.Part body =
                     MultipartBody.Part.createFormData("file", file.getName(), requestFile);
@@ -99,7 +100,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
                             " t:" + t.getMessage());
                 }
             });
-        });
+//        });
     }
 
     /**
