@@ -38,6 +38,10 @@
     <string name="reg_title_phone_number">Номер телефона</string>
     <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
 
+    <!-- main -->
+    <string name="main_search">Искать</string>
+    <string name="main_search_text">Введите текст</string>
+
     <!-- profile -->
     <string name="profile_first_name">Имя</string>
     <string name="profile_second_name">Фамилия</string>
