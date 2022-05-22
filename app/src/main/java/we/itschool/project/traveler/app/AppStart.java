@@ -18,6 +18,7 @@ import we.itschool.project.traveler.domain.usecases.card.CardEditByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.card.CardGetAllUseCase;
 import we.itschool.project.traveler.domain.usecases.card.CardGetByIdUseCase;
 import we.itschool.project.traveler.data.repositoryImpl.UserArrayListRepositoryImpl;
+import we.itschool.project.traveler.domain.usecases.user.UserAddNewCardToFavoriteUseCase;
 import we.itschool.project.traveler.domain.usecases.user.UserAddNewUseCase;
 import we.itschool.project.traveler.domain.usecases.user.UserAddPhotoToUserUseCase;
 import we.itschool.project.traveler.domain.usecases.user.UserDeleteByIdUseCase;
@@ -50,6 +51,7 @@ public class AppStart extends Application {
     public static UserDeleteByIdUseCase personDeleteByIdUC;
     public static UserLoginUseCase loginUC;
     public static UserAddPhotoToUserUseCase addPhotoUC;
+    public static UserAddNewCardToFavoriteUseCase addNewCardToFavsUC;
 
     private static AppStart instance;
 
@@ -83,6 +85,7 @@ public class AppStart extends Application {
         personDeleteByIdUC = new UserDeleteByIdUseCase(imp1);
         loginUC = new UserLoginUseCase(imp1);
         addPhotoUC = new UserAddPhotoToUserUseCase(imp1);
+        addNewCardToFavsUC = new UserAddNewCardToFavoriteUseCase(imp1);
 
         user = null;
 

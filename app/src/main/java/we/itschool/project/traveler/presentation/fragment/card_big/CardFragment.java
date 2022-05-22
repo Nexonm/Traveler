@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ public class CardFragment extends Fragment {
     private static final String ARGUMENT_CARD_GSON = "card Gson";
 
     private CardEntity card;
+
+    private Button bt_add_favs;
 
     public static CardFragment newInstance(
             String cardGson
@@ -119,5 +122,10 @@ public class CardFragment extends Fragment {
                 .setText(card.getCardInfo().getCity());
         ((TextView) view.findViewById(R.id.tv_description_long))
                 .setText(card.getCardInfo().getFullDescription());
+
+        bt_add_favs = view.findViewById(R.id.bt_cbv_add_to_favourites);
+        bt_add_favs.setOnClickListener(v -> {
+            AppStart.addNewCardToFavsUC.userAddNewCardToFavorite(card.get_id());
+        });
     }
 }
