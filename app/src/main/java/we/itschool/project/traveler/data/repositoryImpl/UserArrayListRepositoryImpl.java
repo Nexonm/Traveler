@@ -1,5 +1,6 @@
 package we.itschool.project.traveler.data.repositoryImpl;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -9,14 +10,19 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.data.api.travelerapi.entityserv.UserServ;
 import we.itschool.project.traveler.data.api.travelerapi.mapper.UserEntityMapper;
+import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceStorage;
 import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceTravelerConstructor;
 import we.itschool.project.traveler.data.api.travelerapi.service.APIServiceUser;
 import we.itschool.project.traveler.domain.entity.CardEntity;
@@ -41,6 +47,50 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
         NUM_OF_PEOPLE_TO_DO = 10;
     }
 
+    @Override
+    public void addPhotoToUser(String pathToPhoto) {
+        //as it called from ui thread make asynk
+        AsyncTask.execute(() -> {
+
+            APIServiceStorage service = APIServiceTravelerConstructor.CreateService(APIServiceStorage.class);
+            //pass it like this
+            Log.v("retrofitLogger", "get file, pathToPhoto is: "+pathToPhoto);
+            File file = new File(pathToPhoto);
+//            Log.v("retrofitLogger", "fill it in request Body");
+            RequestBody requestFile =
+                    RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+//          MultipartBody.Part is used to send also the actual file name
+//            Log.v("retrofitLogger", "fill it in multipart Body");
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+//            Log.v("retrofitLogger", "Make call");
+            RequestBody cidBody = RequestBody.create(MediaType.parse("multipart/from-data"), String.valueOf(AppStart.getUser().get_id()));
+            Call<String> call = service.uploadPhotoToUser(body, cidBody);
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (response.body() != null) {
+                        Log.v("retrofitLogger", "IMAGE_SENT:" + response.body().toString());
+                        UserEntity user = UserEntityMapper.toUserEntityFormUserServ(
+                                (new Gson()).fromJson(response.body(), UserServ.class),
+                                true
+                        );
+                        AppStart.getUser().getUserInfo().setPathToPhoto(user.getUserInfo().getPathToPhoto());
+
+                    } else {
+                        Log.v("retrofitLogger", "null response.body on IMAGE_SENT");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Log.v("retrofitLogger", "some error!!! on failure IMAGE_SENT id:" + AppStart.getUser().get_id() +
+                            " t:" + t.getMessage());
+                }
+            });
+        });
+    }
 
     /**
      * Sends json str to server in attempt to register new user
@@ -77,47 +127,6 @@ public class UserArrayListRepositoryImpl implements UserDomainRepository {
                     Log.v("retrofitLogger", "add User to Server, answer" + response.body());
                 } else {
                     Log.v("retrofitLogger", "null response.body on addNewUserRetrofit");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.v("retrofitLogger", "some error!!! on failure, Cannot add new User toServer:" +
-                        " t:" + t.getMessage());
-            }
-        });
-
-    }
-
-    private void addSomeDataToUser() {
-        APIServiceUser service = APIServiceTravelerConstructor.CreateService(APIServiceUser.class);
-
-        String phoneNumber = "some password";
-        String socialContacts = "some FirstName";
-        boolean isMale = true;
-        String email = "someTestEmailFromServer@gmail.com";
-        JSONObject json = new JSONObject();
-        try {
-            json.put("phoneNumber", phoneNumber);
-            json.put("socialContacts", socialContacts);
-            json.put("isMale", isMale);
-            json.put("email", email);
-            json.put("email", email);
-        } catch (JSONException e) {
-            Log.v("retrofitLogger", "some mistake JSONObject" + e.getMessage());
-            e.printStackTrace();
-        }
-
-
-        Log.v("retrofitLogger", "add User to Server, model.toJson():" + json.toString());
-        Call<String> call = service.regUserAdd(json.toString());
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.body() != null) {
-                    Log.v("retrofitLogger", "additional User info to Server, answer" + response.body());
-                } else {
-                    Log.v("retrofitLogger", "null response.body on addSomeDataToUser");
                 }
             }
 

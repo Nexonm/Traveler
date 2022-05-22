@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,9 +28,11 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
+import we.itschool.project.traveler.data.api.travelerapi.APIConfigTraveler;
 import we.itschool.project.traveler.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -44,6 +47,8 @@ public class ProfileFragment extends Fragment {
     private TextView tv_email;
     private TextView tv_is_male;
     private TextView tv_birthday;
+
+    private Button bt_update_photo;
 
     private FloatingActionButton fab_edit_avatar;
 
@@ -62,12 +67,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        context = this.getContext();
         initView(view);
     }
 
     private void initView(View view) {
-        iv_avatar = view.findViewById(R.id.iv_profile_avatar);
-
         tv_first_name = view.findViewById(R.id.tv_profile_first_name);
         tv_first_name.setText(AppStart.getUser().getUserInfo().getFirstName());
         tv_second_name = view.findViewById(R.id.tv_profile_second_name);
@@ -77,9 +81,29 @@ public class ProfileFragment extends Fragment {
         tv_email = view.findViewById(R.id.tv_profile_email);
         tv_email.setText(AppStart.getUser().getUserInfo().getEmail());
         tv_is_male = view.findViewById(R.id.tv_profile_is_male);
-        tv_is_male.setText(AppStart.getUser().getUserInfo().isMale()?"Мужской":"Женский");
+        tv_is_male.setText(AppStart.getUser().getUserInfo().isMale() ? "Мужской" : "Женский");
         tv_birthday = view.findViewById(R.id.tv_profile_birthday);
         tv_birthday.setText(AppStart.getUser().getUserInfo().getDateOfBirth());
+
+        iv_avatar = view.findViewById(R.id.iv_profile_avatar);
+        Picasso.with(context)
+                .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD + AppStart.getUser().get_id())
+                .into(iv_avatar);
+
+        bt_update_photo = view.findViewById(R.id.bt_profile_update_photo);
+        bt_update_photo.setOnClickListener(v -> {
+            try {
+                if (!hasPermissions()) {
+                    requestPermissionsMy();
+                } else {
+                    //permission Granted we can pick image
+                    pickImageFromGallery();
+                }
+            } catch (Exception e) {
+                //TODO make String with this text
+                Toast.makeText(this.getContext(), "Поизошла ошибка, попробуйте снова", Toast.LENGTH_LONG).show();
+            }
+        });
 
 //        fab_edit_avatar = view.findViewById(R.id.fab_profile_edit_avatar);
 //        fab_edit_avatar.setOnClickListener(v -> {
@@ -116,11 +140,13 @@ public class ProfileFragment extends Fragment {
                         try {
                             Uri imageUri = result.getData().getData();
                             bufString = getRealPathFromURI(imageUri);
-                            Log.v("fileName", "the file path: "+ bufString);
+                            Log.v("fileName", "the file path: " + bufString);
                             Glide.with(context)
                                     .load(imageUri)
                                     .into(iv_avatar);
-                        }catch (NullPointerException e){
+                            //send data to server
+                            AppStart.addPhotoUC.addPhotoToUser(bufString);
+                        } catch (NullPointerException e) {
                             Toast.makeText(context, "Видимо вы прекратили выбор фото, не забудьте выбрать:)", Toast.LENGTH_LONG).show();
                         }
                     } else {
@@ -139,6 +165,7 @@ public class ProfileFragment extends Fragment {
 
     /**
      * Checking if there is permission to EXTERNAL_STORAGE
+     *
      * @return true if there is permission
      */
     private boolean hasPermissions() {
