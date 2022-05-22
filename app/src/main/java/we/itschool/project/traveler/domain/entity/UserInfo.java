@@ -99,4 +99,8 @@ public class UserInfo {private final String firstName;
     public List<Long> getUserFavoritesCards() {
         return userFavoritesCards;
     }
+
+    public void setUserFavoritesCards(List<Long> userFavoritesCards) {
+        this.userFavoritesCards = userFavoritesCards;
+    }
 }
