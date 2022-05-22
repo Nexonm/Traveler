@@ -58,4 +58,10 @@ public interface APIServiceUser {
         @Query(value = "pass") String pass
     );
 
+    @GET("people/add-to-favs")
+    public Call<String> addCardIdToUserFavs(
+            @Query(value = "uid") long uid,
+            @Query(value = "cid") long cid
+    );
+
 }
