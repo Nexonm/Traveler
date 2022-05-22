@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.domain.entity.CardEntity;
-import we.itschool.project.traveler.domain.usecases.CardAddNewUseCase;
-import we.itschool.project.traveler.domain.usecases.CardGetAllUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardAddNewUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardGetAllUseCase;
 
 public class CardListViewModel extends ViewModel {
 

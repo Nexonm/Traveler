@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.domain.usecases;
+package we.itschool.project.traveler.domain.usecases.user;
 
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
 

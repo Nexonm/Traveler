@@ -1,4 +1,4 @@
-package we.itschool.project.traveler.domain.usecases;
+package we.itschool.project.traveler.domain.usecases.card;
 
 import we.itschool.project.traveler.data.datamodel.CardModelPOJO;
 import we.itschool.project.traveler.domain.repository.CardDomainRepository;

@@ -1,18 +1,18 @@
-package we.itschool.project.traveler.domain.usecases;
+package we.itschool.project.traveler.domain.usecases.user;
 
 import we.itschool.project.traveler.domain.entity.UserEntity;
 import we.itschool.project.traveler.domain.repository.UserDomainRepository;
 
-public class UserGetByIdUseCase {
+public class UserEditByIdUseCase {
 
     private final UserDomainRepository repository;
 
-    public UserGetByIdUseCase(UserDomainRepository repository)   {
+    public UserEditByIdUseCase(UserDomainRepository repository) {
         this.repository = repository;
     }
 
-    UserEntity userGetById(int id) {
-        return repository.userGetById(id);
+    public void cardEditById(UserEntity user) {
+        repository.userEditById(user);
     }
 
 }

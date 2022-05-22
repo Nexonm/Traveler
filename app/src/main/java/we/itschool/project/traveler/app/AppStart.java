@@ -10,21 +10,21 @@ import java.util.ArrayList;
 
 import we.itschool.project.traveler.data.repositoryImpl.CardArrayListRepositoryImpl;
 import we.itschool.project.traveler.domain.entity.UserEntity;
-import we.itschool.project.traveler.domain.usecases.CardAddNewUseCase;
-import we.itschool.project.traveler.domain.usecases.CardAddOneToMutableListUseCase;
-import we.itschool.project.traveler.domain.usecases.CardCreateNewUseCase;
-import we.itschool.project.traveler.domain.usecases.CardDeleteByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.CardEditByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.CardGetAllUseCase;
-import we.itschool.project.traveler.domain.usecases.CardGetByIdUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardAddNewUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardAddOneToMutableListUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardCreateNewUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardDeleteByIdUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardEditByIdUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardGetAllUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardGetByIdUseCase;
 import we.itschool.project.traveler.data.repositoryImpl.UserArrayListRepositoryImpl;
-import we.itschool.project.traveler.domain.usecases.UserAddNewUseCase;
-import we.itschool.project.traveler.domain.usecases.UserDeleteByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.UserEditByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.UserGetAllUseCase;
-import we.itschool.project.traveler.domain.usecases.CardGetAllUserCardsUseCase;
-import we.itschool.project.traveler.domain.usecases.UserGetByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.UserLoginUseCase;
+import we.itschool.project.traveler.domain.usecases.user.UserAddNewUseCase;
+import we.itschool.project.traveler.domain.usecases.user.UserDeleteByIdUseCase;
+import we.itschool.project.traveler.domain.usecases.user.UserEditByIdUseCase;
+import we.itschool.project.traveler.domain.usecases.user.UserGetAllUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardGetAllUserCardsUseCase;
+import we.itschool.project.traveler.domain.usecases.user.UserGetByIdUseCase;
+import we.itschool.project.traveler.domain.usecases.user.UserLoginUseCase;
 
 public class AppStart extends Application {
     public static final boolean isLog = true;
