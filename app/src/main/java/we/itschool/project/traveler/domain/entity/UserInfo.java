@@ -8,7 +8,7 @@ public class UserInfo {private final String firstName;
     private final String email;
     private final String phoneNumber;
     private final String socialContacts;
-    private final String pathToPhoto;
+    private String pathToPhoto;
     private final String dateOfBirth;
     private final boolean isMale;
     private final String interests;
@@ -62,6 +62,10 @@ public class UserInfo {private final String firstName;
 
     public String getPathToPhoto() {
         return pathToPhoto;
+    }
+
+    public void setPathToPhoto(String pathToPhoto) {
+        this.pathToPhoto = pathToPhoto;
     }
 
     public String getDateOfBirth() {
