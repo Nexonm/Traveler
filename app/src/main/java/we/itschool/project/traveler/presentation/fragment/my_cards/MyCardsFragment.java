@@ -31,7 +31,7 @@ public class MyCardsFragment extends Fragment {
 
     private ImageButton ib_new_card;
 
-    private CardListViewModelMyCards viewModel;
+    private ViewModelMyCards viewModel;
     private RecyclerView recyclerView;
     private Adapter adapter;
 
@@ -68,11 +68,11 @@ public class MyCardsFragment extends Fragment {
     }
 
     private void initViewModel() {
-        viewModel = new ViewModelProvider(this).get(CardListViewModelMyCards.class);
+        viewModel = new ViewModelProvider(this).get(ViewModelMyCards.class);
 
         //add cards to mutable data for better representation
         for (CardEntity card : AppStart.getUser().getUserInfo().getUserCards())
-            viewModel.addOneUC.cardAddUserCardToMutableList(card);
+            viewModel.addOne(card);
 
         viewModel.getCardList().observe(
                 getViewLifecycleOwner(),

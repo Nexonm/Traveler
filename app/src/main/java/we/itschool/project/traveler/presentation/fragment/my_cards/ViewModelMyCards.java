@@ -10,7 +10,7 @@ import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.usecases.card.CardAddOneToMutableListUseCase;
 import we.itschool.project.traveler.domain.usecases.card.CardGetAllUserCardsUseCase;
 
-public class CardListViewModelMyCards extends ViewModel {
+public class ViewModelMyCards extends ViewModel {
 
     private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList;
     CardGetAllUserCardsUseCase getCardsUC = AppStart.userGetCardsUC;
@@ -19,5 +19,9 @@ public class CardListViewModelMyCards extends ViewModel {
     public MutableLiveData<ArrayList<CardEntity>> getCardList(){
         cardsLiveDataList = getCardsUC.getUserCards();
         return cardsLiveDataList;
+    }
+
+    protected void addOne(CardEntity card){
+        addOneUC.cardAddUserCardToMutableList(card);
     }
 }
