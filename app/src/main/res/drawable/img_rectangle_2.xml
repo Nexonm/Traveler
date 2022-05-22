@@ -31,11 +31,11 @@
               android:endY="482.5"
               >
             <item
-                android:color="#7BBCEB"
+                android:color="#00BCD4"
                 android:offset="0"
                 />
             <item
-                android:color="#D590E8"
+                android:color="#7BBCEB"
                 android:offset="1"
                 />
           </gradient>

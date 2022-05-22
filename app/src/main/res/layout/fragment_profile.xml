@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle_1"
+    android:background="@drawable/img_rectangle_1"
     tools:context=".presentation.fragment.profile.ProfileFragment">
 
     <LinearLayout
@@ -43,7 +43,6 @@
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/singap"
         android:contentDescription="@string/profile_description_photo"/>
 
     <TableLayout
@@ -65,7 +64,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/icon"
-                android:src="@drawable/phone_icon" />
+                android:src="@drawable/icon_phone" />
 
             <TextView
                 android:id="@+id/tv_profile_phone"
@@ -85,7 +84,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/icon"
-                android:src="@drawable/mail_icon" />
+                android:src="@drawable/icon_mail" />
 
             <TextView
                 android:id="@+id/tv_profile_email"
@@ -105,7 +104,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/icon"
-                android:src="@drawable/is_male_icon" />
+                android:src="@drawable/icon_gender" />
 
             <TextView
                 android:id="@+id/tv_profile_is_male"
@@ -128,7 +127,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/icon"
-                android:src="@drawable/birthday_icon" />
+                android:src="@drawable/icon_birthday" />
 
             <TextView
                 android:id="@+id/tv_profile_birthday"

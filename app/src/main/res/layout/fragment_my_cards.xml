@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle_1"
+    android:background="@drawable/img_rectangle_1"
     tools:context=".presentation.fragment.my_cards.MyCardsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -25,7 +25,7 @@
         android:clickable="true"
         android:focusable="true"
         android:backgroundTint="@android:color/transparent"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/icon_add"
         android:contentDescription="@string/icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

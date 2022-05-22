@@ -100,21 +100,21 @@ public class PlaceInfoDialogFragment extends DialogFragment {
         String kinds = response.body().getKinds();
         int bit;
         if (kinds.contains("historic")){
-                bit = R.drawable.monument;
+                bit = R.drawable.map_monument;
         }else if (kinds.contains("cultural")){
-                bit = R.drawable.historical;
+                bit = R.drawable.map_historical;
         }else if (kinds.contains("industrial_facilities")){
-                bit = R.drawable.industrial;
+                bit = R.drawable.map_industrial;
         }else if (response.body().getName().length() == 0){
-                bit = R.drawable.unknown;
+                bit = R.drawable.map_unknown;
         } else if (kinds.contains("natural")){
-                bit = R.drawable.nature;
+                bit = R.drawable.map_nature;
         } else if (kinds.contains("architecture")){
-                bit = R.drawable.buildings;
+                bit = R.drawable.map_buildings;
         }else if (kinds.contains("other")){
-                bit = R.drawable.forphoto;
+                bit = R.drawable.map_forphoto;
         }else{
-                bit = R.drawable.unknown;
+                bit = R.drawable.map_unknown;
         }
 
         AlertDialog.Builder placeInfo = new AlertDialog.Builder(getActivity());

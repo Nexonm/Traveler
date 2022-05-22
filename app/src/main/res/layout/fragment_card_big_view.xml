@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_card_big_view"
-    android:background="@drawable/rectangle_1"
+    android:background="@drawable/img_rectangle_1"
     android:padding="8dp">
 
     <ScrollView
@@ -38,8 +38,7 @@
                 android:layout_width="300dp"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:contentDescription="@string/cbv_description_photo"
-                app:srcCompat="@drawable/singap" />
+                android:contentDescription="@string/cbv_description_photo" />
 
             <LinearLayout
                 android:id="@+id/avatar_card_layout_big_card"
@@ -58,7 +57,7 @@
                     android:layout_height="100dp"
                     android:contentDescription="@string/cbv_description_photo"
                     android:padding="8dp"
-                    tools:src="@drawable/profile_icon" />
+                    tools:src="@drawable/icon_profile" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"

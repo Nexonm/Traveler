@@ -66,6 +66,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -118,6 +119,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
         //context needed for future usage
         context = this.getContext();
 
+        assert context != null;
         MapKitFactory.initialize(context);
         //inflate view with map
         return inflater.inflate(
@@ -147,7 +149,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
         cl = view.findViewById(R.id.cl_map_main);
         mf = this;
         //the map
-        mapView = (MapView) view.findViewById(R.id.mv_map_map);
+        mapView = view.findViewById(R.id.mv_map_map);
 
         tf = Typeface.createFromAsset(context.getAssets(), "karlocharm.otf");
 
@@ -156,7 +158,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
         bt_crop_user = view.findViewById(R.id.bt_map_crop);
         bt_crop_user.setOnClickListener(v -> {
             if (userLocationLayer.cameraPosition() != null) {
-                Point toPoint = userLocationLayer.cameraPosition().getTarget();
+                Point toPoint = Objects.requireNonNull(userLocationLayer.cameraPosition()).getTarget();
                 mapView.getMap().move(
                         new CameraPosition(toPoint, 14.5f, 0.0f, 0.0f),
                         new Animation(SMOOTH, 3),
@@ -166,7 +168,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
 
         mapView.setZoomFocusPoint(new ScreenPoint(5.f, 4.f));
-        mapView.getMap().addCameraListener((CameraListener) this);
+        mapView.getMap().addCameraListener(this);
 
         // check if all preferences were granted
         HandlerCheckAllAccess.removeCallbacks(CheckAllAccess);
@@ -242,25 +244,26 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
                         for (String str : CENSORED_KINDS_OF_PLACES) {
                             if (kinds.contains(str)) {
                                 flag = true;
+                                break;
                             }
                         }
                         if (flag) {
                             if (kinds.contains("historic")) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.monument)).getBitmap();
+                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_monument)).getBitmap();
                             } else if (kinds.contains("cultural")) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.historical)).getBitmap();
+                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_historical)).getBitmap();
                             } else if (kinds.contains("industrial_facilities")) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.industrial)).getBitmap();
+                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_industrial)).getBitmap();
                             } else if (card.properties.name.length() == 0) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.unknown)).getBitmap();
+                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_unknown)).getBitmap();
                             } else if (kinds.contains("natural")) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.nature)).getBitmap();
+                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_nature)).getBitmap();
                             } else if (kinds.contains("architecture")) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.buildings)).getBitmap();
+                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_buildings)).getBitmap();
                             } else if (kinds.contains("other")) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.forphoto)).getBitmap();
+                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_forphoto)).getBitmap();
                             } else {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.unknown)).getBitmap();
+                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_unknown)).getBitmap();
                             }
 
                             MapObjectTapListener mapObjectTapListener = (mapObject, point) -> {
@@ -285,7 +288,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
             @Override
             public void onFailure(@NonNull Call<ResponseOTM> call, @NonNull Throwable t) {
                 Log.e("!SomethingWentWrong(P)!", t.toString());
-                Toast.makeText(mf.getContext(), "[WARNING] " + t.toString(),
+                Toast.makeText(mf.getContext(), "[WARNING] " + t,
                         Toast.LENGTH_LONG).show();
             }
         });
@@ -313,14 +316,14 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
                             new Animation(SMOOTH, 5),
                             null);
                     PlaceInfoDialogFragment newFragment = new PlaceInfoDialogFragment(response, distance);
-                    newFragment.show(mf.getActivity().getSupportFragmentManager().beginTransaction(), "info");
+                    newFragment.show(mf.requireActivity().getSupportFragmentManager().beginTransaction(), "info");
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseOTMInfo> call, @NonNull Throwable t) {
                 Log.e("!SomethingWentWrong(I)!", t.toString());
-                Toast.makeText(mf.context, "[WARNING] " + t.toString(),
+                Toast.makeText(mf.context, "[WARNING] " + t,
                         Toast.LENGTH_LONG).show();
             }
         });
@@ -356,7 +359,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
     public boolean checkLocationAccess() {
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(mf.getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(mf.requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
             return false;
         }
         return checkLocation();
@@ -364,7 +367,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
     //check location???
     public boolean checkLocation() {
-        LocationManager locationManager = (LocationManager) mf.getActivity().getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) mf.requireActivity().getSystemService(Context.LOCATION_SERVICE);
         Log.e("checkLocation", "" + locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
@@ -372,17 +375,15 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
             final boolean[] result = new boolean[1];
             builder.setCancelable(false);
             builder.setMessage("Разрешите доступ к местоположению для работы карты");
-            builder.setPositiveButton("Разрешить", new DialogInterface.OnClickListener() {
-                public void onClick(final DialogInterface dialog, final int id) {
-                    startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                    checkLocation();
-                    result[0] = true;
-                }
+            builder.setPositiveButton("Разрешить", (dialog, id) -> {
+                startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                checkLocation();
+                result[0] = true;
             });
             final AlertDialog alert = builder.create();
             try {
                 alert.show();
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             return result[0];
         } else {
@@ -399,12 +400,10 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
             final boolean[] result = new boolean[1];
             builder.setCancelable(false)
                     .setMessage("Влючи инет по-братски, а")
-                    .setPositiveButton("Без б", new DialogInterface.OnClickListener() {
-                        public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                            startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
-                            checkConnection();
-                            result[0] = true;
-                        }
+                    .setPositiveButton("Без б", (dialog, id) -> {
+                        startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
+                        checkConnection();
+                        result[0] = true;
                     });
             final AlertDialog alert = builder.create();
             alert.show();
@@ -413,7 +412,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
     }
 
     public boolean hasConnection() {
-        ConnectivityManager cm = (ConnectivityManager) mf.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) mf.requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (wifiInfo != null && wifiInfo.isConnected()) return true;
 
@@ -441,7 +440,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
     @Override
     public void onObjectAdded(@NonNull UserLocationView userLocationView) {
         setAnchor();
-        @SuppressLint("UseCompatLoadingForDrawables") Drawable d = getResources().getDrawable(R.drawable.userpic);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable d = getResources().getDrawable(R.drawable.map_userpic);
         Bitmap bitmap1 = ((BitmapDrawable) d).getBitmap();
         userLocationView.getPin().setIcon(ImageProvider.fromBitmap(Bitmap.createScaledBitmap(bitmap1, 70, 70, true)));
         userLocationView.getArrow().setIcon(ImageProvider.fromBitmap(Bitmap.createScaledBitmap(bitmap1, 70, 70, true)));
@@ -456,7 +455,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
     }
 
     @Override
-    public void onCameraPositionChanged(Map m, CameraPosition cP, CameraUpdateReason cUR, boolean finished) {
+    public void onCameraPositionChanged(@NonNull Map m, @NonNull CameraPosition cP, @NonNull CameraUpdateReason cUR, boolean finished) {
         // Гениальный(sic!) текствью с описанием зума карты слева сверху
         if (regions != null && regions.size() > 0) {
             float zoom = cP.getZoom();
