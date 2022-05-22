@@ -38,6 +38,10 @@
     <string name="reg_title_phone_number">Phone number</string>
     <string name="reg_btn_register">REGISTRATION</string>
 
+    <!-- main -->
+    <string name="main_search">Search</string>
+    <string name="main_search_text">Write text</string>
+
     <!-- profile -->
     <string name="profile_first_name">Name</string>
     <string name="profile_second_name">Last name</string>
