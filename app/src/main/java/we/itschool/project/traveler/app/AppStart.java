@@ -16,9 +16,11 @@ import we.itschool.project.traveler.domain.usecases.card.CardCreateNewUseCase;
 import we.itschool.project.traveler.domain.usecases.card.CardDeleteByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.card.CardEditByIdUseCase;
 import we.itschool.project.traveler.domain.usecases.card.CardGetAllUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardGetAllUserFavoriteCardsUseCase;
 import we.itschool.project.traveler.domain.usecases.card.CardGetByIdUseCase;
 import we.itschool.project.traveler.data.repositoryImpl.UserArrayListRepositoryImpl;
 import we.itschool.project.traveler.domain.usecases.user.UserAddNewCardToFavoriteUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardAddNewFavoriteFromServerUseCase;
 import we.itschool.project.traveler.domain.usecases.user.UserAddNewUseCase;
 import we.itschool.project.traveler.domain.usecases.user.UserAddPhotoToUserUseCase;
 import we.itschool.project.traveler.domain.usecases.user.UserDeleteByIdUseCase;
@@ -41,6 +43,8 @@ public class AppStart extends Application {
     public static CardDeleteByIdUseCase cardDeleteByIdUC;
     public static CardGetAllUserCardsUseCase userGetCardsUC;
     public static CardAddOneToMutableListUseCase addToMListUC;
+    public static CardAddNewFavoriteFromServerUseCase cardAddNewFavCardFromServ;
+    public static CardGetAllUserFavoriteCardsUseCase cardGetUserFavsUC;
 
     public static UserArrayListRepositoryImpl imp1;
 
@@ -76,6 +80,8 @@ public class AppStart extends Application {
         cardDeleteByIdUC = new CardDeleteByIdUseCase(imp);
         userGetCardsUC = new CardGetAllUserCardsUseCase(imp);
         addToMListUC = new CardAddOneToMutableListUseCase(imp);
+        cardAddNewFavCardFromServ = new CardAddNewFavoriteFromServerUseCase(imp);
+        cardGetUserFavsUC = new CardGetAllUserFavoriteCardsUseCase(imp);
 
         imp1 = new UserArrayListRepositoryImpl();
         personGetAllUC = new UserGetAllUseCase(imp1);

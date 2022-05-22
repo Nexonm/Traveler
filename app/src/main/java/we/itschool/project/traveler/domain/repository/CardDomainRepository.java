@@ -13,6 +13,8 @@ public interface CardDomainRepository {
 
     void cardAddUserCardToMutableList(CardEntity card);
 
+    void cardAddNewFavsFromServ(long cid);
+
     void cardCreateNew(CardModelPOJO model);
 
     void cardDeleteById(CardEntity card);
@@ -22,6 +24,9 @@ public interface CardDomainRepository {
     MutableLiveData<ArrayList<CardEntity>> cardGetAll();
 
     MutableLiveData<ArrayList<CardEntity>> getUserCards();
+
+    MutableLiveData<ArrayList<CardEntity>> getUserFavCards();
+
     CardEntity cardGetById(int id);
 
 }

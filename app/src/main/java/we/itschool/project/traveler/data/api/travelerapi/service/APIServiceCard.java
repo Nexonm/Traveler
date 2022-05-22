@@ -10,7 +10,7 @@ public interface APIServiceCard {
 
     @GET("cards/get/")
     Call<String> getOneCardById(
-            @Query("id") int id
+            @Query("id") long id
     );
 
     @POST("cards/add/gson")

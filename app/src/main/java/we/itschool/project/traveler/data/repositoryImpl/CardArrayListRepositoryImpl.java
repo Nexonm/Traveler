@@ -30,16 +30,21 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
 
     private final MutableLiveData<ArrayList<CardEntity>> dataLiveData;
     private final MutableLiveData<ArrayList<CardEntity>> dataLiveDataUserCards;
+    private final MutableLiveData<ArrayList<CardEntity>> dataLiveDataFavs;
     private final ArrayList<CardEntity> data;
     private final ArrayList<CardEntity> dataUserCards;
+    private final ArrayList<CardEntity> dataFavs;
 
     {
         data = new ArrayList<>();
         dataUserCards = new ArrayList<>();
+        dataFavs = new ArrayList<>();
         dataLiveData = new MutableLiveData<>();
         dataLiveData.postValue(data);
         dataLiveDataUserCards = new MutableLiveData<>();
         dataLiveDataUserCards.postValue(dataUserCards);
+        dataLiveDataFavs = new MutableLiveData<>();
+        dataLiveDataFavs.postValue(dataFavs);
     }
 
     private static int autoIncrementId = 0;
@@ -53,6 +58,14 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
         NUM_OF_CARDS_TO_DO = 0;
     }
 
+
+    //RETROFIT
+    /*
+    TODO rewrite cards loadings from server
+    loadCardToUser, loadCardToUserFavorite, loadDataRetrofit are same methods
+    only the destination of card is different. Is there any more efficient way to do this?
+     */
+
     /**
      * Sends photo to created card as a resource.
      * Then sends http request to add new card to user cards for MyCardsFragment
@@ -60,7 +73,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
      * @param path path to photo in user app
      * @param cid  card id
      */
-    public void uploadPhotoToCard(String path, int cid) {
+    public void uploadPhotoToCard(String path, long cid) {
         //called from retrofit.execute so no need for extra thread!
 //        AsyncTask.execute(() -> {
 
@@ -108,7 +121,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
      *
      * @param id card id
      */
-    private void loadCardToUser(int id) {
+    private void loadCardToUser(long id) {
 //        AsyncTask.execute(() -> {
 
         APIServiceCard service = APIServiceTravelerConstructor.CreateService(APIServiceCard.class);
@@ -121,6 +134,41 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
                     String str = response.body().toString();
                     Log.v("retrofitLogger", "card.toString():" + str);
                     addCardToMutableDataUserCards(CardEntityMapper.toCardEntityFormCardServ(
+                            (new Gson()).fromJson(str, CardServ.class)
+                            , true));
+
+                } else {
+                    Log.v("retrofitLogger", "null response.body on loadDataRetrofit");
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<String> call, Throwable t) {
+                Log.v("retrofitLogger", "some error!!! on failure id:" + id +
+                        " t:" + t.getMessage());
+            }
+        });
+//        });
+    }
+
+    /**
+     * loads new card from server for user favorite cards
+     *
+     * @param id card id
+     */
+    private void loadCardToUserFavorite(long id) {
+//        AsyncTask.execute(() -> {
+
+        APIServiceCard service = APIServiceTravelerConstructor.CreateService(APIServiceCard.class);
+        Call<String> call = service.getOneCardById(id);
+        //Log.v(MainActivity.TAG, "start catching the answer");
+        call.enqueue(new retrofit2.Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                if (response.body() != null) {
+                    String str = response.body().toString();
+                    Log.v("retrofitLogger", "card.toString():" + str);
+                    addCardToMutableDataFavs(CardEntityMapper.toCardEntityFormCardServ(
                             (new Gson()).fromJson(str, CardServ.class)
                             , true));
 
@@ -173,19 +221,6 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
 //        });
     }
 
-
-    private void updateLiveData() {
-//        AsyncTask.execute(() -> {
-        dataLiveData.postValue(data);
-//        });
-    }
-
-    private void updateLiveDataUserCards() {
-//        AsyncTask.execute(() -> {
-        dataLiveDataUserCards.postValue(dataUserCards);
-//        });
-    }
-
     /**
      * Method creates new card. All data represent using CardModel as a POJO
      *
@@ -219,6 +254,27 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
         });
     }
 
+
+    //other methods
+
+    private void updateLiveData() {
+//        AsyncTask.execute(() -> {
+        dataLiveData.postValue(data);
+//        });
+    }
+
+    private void updateLiveDataUserCards() {
+//        AsyncTask.execute(() -> {
+        dataLiveDataUserCards.postValue(dataUserCards);
+//        });
+    }
+
+    private void updateLiveDataFavs() {
+//        AsyncTask.execute(() -> {
+        dataLiveDataFavs.postValue(dataFavs);
+//        });
+    }
+
     private void addCardToMutableData(CardEntity card){
         data.add(card);
         updateLiveData();
@@ -227,6 +283,11 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     protected void addCardToMutableDataUserCards(CardEntity card) {
         dataUserCards.add(card);
         updateLiveDataUserCards();
+    }
+
+    protected void addCardToMutableDataFavs(CardEntity card) {
+        dataFavs.add(card);
+        updateLiveDataFavs();
     }
 
     @Override
@@ -238,6 +299,11 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     @Override
     public void cardAddUserCardToMutableList(CardEntity card){
         addCardToMutableData(card);
+    }
+
+    @Override
+    public void cardAddNewFavsFromServ(long cid) {
+        loadCardToUserFavorite(cid);
     }
 
     @Override
@@ -261,6 +327,11 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     @Override
     public MutableLiveData<ArrayList<CardEntity>> getUserCards() {
         return dataLiveDataUserCards;
+    }
+
+    @Override
+    public MutableLiveData<ArrayList<CardEntity>> getUserFavCards() {
+        return dataLiveDataFavs;
     }
 
     @Override
