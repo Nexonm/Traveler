@@ -61,17 +61,25 @@
     <string name="profile_description_photo">Your photo</string>
     <string name="profile_btn_update_photo">Update photo</string>
 
-    <!-- create a new map (cnc) -->
+    <!-- create new card (cnc) -->
     <string name="cnc_city">City</string>
     <string name="cnc_upload">UPLOAD</string>
     <string name="cnc_description_photo">Add a photo</string>
     <string name="cnc_country">Country</string>
     <string name="cnc_address">Address</string>
-    <string name="cnc_is_exact_money">Will a specific fee be charged</string>
     <string name="cnc_money">Board</string>
     <string name="cnc_few_information">Brief information</string>
     <string name="cnc_many_information">Full information</string>
+    <string name="cnc_hashtags">Hashtags</string>
     <string name="cnc_btn_add_card">ADD CARD</string>
+    <!-- if there is error -->
+    <string name="cnc_city_error">Please, write city name</string>
+    <string name="cnc_country_error">Please, write country name</string>
+    <string name="cnc_address_error">Please, write address</string>
+    <string name="cnc_few_information_error">Brief information</string>
+    <string name="cnc_many_information_error">Full information</string>
+    <string name="cnc_hashtags_error">Hashtags</string>
+    <string name="cnc_photo_addition_error">Do not forget to choose photo!:)</string>
 
     <!-- large map view (cbv) -->
     <string name="cbv_name_of_city">Singapore</string>

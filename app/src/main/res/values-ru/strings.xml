@@ -67,11 +67,19 @@
     <string name="cnc_description_photo">Добавьте фотографию</string>
     <string name="cnc_country">Страна</string>
     <string name="cnc_address">Адрес</string>
-    <string name="cnc_is_exact_money">Будет ли взиматься конкретная плата</string>
     <string name="cnc_money">Плата</string>
     <string name="cnc_few_information">Краткая информация</string>
     <string name="cnc_many_information">Полная информация</string>
+    <string name="cnc_hashtags">Хэштеги</string>
     <string name="cnc_btn_add_card">ДОБАВИТЬ КАРТОЧКУ</string>
+    <!-- if there is error -->
+    <string name="cnc_city_error">Пожалуйста, напишите город</string>
+    <string name="cnc_country_error">Пожалуйста, напишите страну</string>
+    <string name="cnc_address_error">Пожалуйста, напишите адрес</string>
+    <string name="cnc_few_information_error">Краткая информация</string>
+    <string name="cnc_many_information_error">Полная информация</string>
+    <string name="cnc_hashtags_error">Хэштеги</string>
+    <string name="cnc_photo_addition_error">Не забудьте выбрать фото! :)</string>
 
     <!-- card big view (cbv) -->
     <string name="cbv_name_of_city">Сингапур</string>
