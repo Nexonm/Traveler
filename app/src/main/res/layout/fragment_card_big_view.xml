@@ -30,13 +30,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/cbv_name_of_city"
-                android:textAppearance="@style/text_style_3"
-                android:textSize="33sp" />
+                android:textAppearance="@style/text_style_3" />
 
             <ImageView
                 android:id="@+id/iv_main_image_big_card"
+                android:layout_marginTop="30dp"
                 android:layout_width="300dp"
-                android:layout_height="0dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/cbv_description_photo" />
 
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="30dp"
                 android:divider="@drawable/empty_tall_divider_card_big_view"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -92,10 +92,10 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:text="@string/cbv_text_from_author"
-                android:textAppearance="@style/text_style_2" />
+                android:textAppearance="@style/text_style_2"
+                android:layout_marginBottom="50dp" />
 
         </LinearLayout>
-
     </ScrollView>
 
     <Button
@@ -103,8 +103,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cbv_add_to_favourites"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textAppearance="@style/text_style_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/button"
+        app:cornerRadius="17dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -89,6 +89,7 @@
     <string name="cbv_name">Name</string>
     <string name="cbv_second_name">Last name</string>
     <string name="cbv_description_photo">Card photo</string>
+    <string name="cbv_social_contacts">Contacts</string>
     <string name="cbv_text_from_author">text from the author</string>
     <string name="cbv_add_to_favourites">Add to favourites</string>
 
