@@ -81,11 +81,11 @@ public class RegistrationFragment extends Fragment {
 
         //default gender value
         gender = getResources().getStringArray(R.array.genders)[0];
-        rb_male = view.findViewById(R.id.rb_reg_woman);
+        rb_male = view.findViewById(R.id.rb_reg_man);
         rb_male.setOnClickListener(v -> {
             gender = getResources().getStringArray(R.array.genders)[1];
         });
-        rb_female = view.findViewById(R.id.rb_reg_man);
+        rb_female = view.findViewById(R.id.rb_reg_woman);
         rb_female.setOnClickListener(v -> {
             gender = getResources().getStringArray(R.array.genders)[2];
         });
