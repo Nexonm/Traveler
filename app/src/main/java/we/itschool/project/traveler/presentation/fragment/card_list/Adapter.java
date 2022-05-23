@@ -65,7 +65,7 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         CardEntity card = getItem(position);
-        viewHolder.tv_name_of_city.setText(card.getCardInfo().getCity());
+        viewHolder.tv_name_of_city.setText(String.valueOf(card.getCardInfo().getCity()+", "+card.getCardInfo().getCountry()));
         viewHolder.tv_short_description.setText(card.getCardInfo().getShortDescription());
         //TODO  asynk Picasso
         Context context = viewHolder.itemView.getContext();

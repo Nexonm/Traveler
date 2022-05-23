@@ -1,6 +1,5 @@
 package we.itschool.project.traveler.domain.usecases.card;
 
-import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.repository.CardDomainRepository;
 
 public class CardAddNewUseCase {
@@ -11,7 +10,7 @@ public class CardAddNewUseCase {
         this.repository = repository;
     }
 
-    public void cardAddNew(){
-        repository.cardAddNew();
+    public void cardAddNew(boolean reset){
+        repository.cardAddNew(reset);
     }
 }

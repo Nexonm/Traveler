@@ -9,7 +9,7 @@ import we.itschool.project.traveler.domain.entity.CardEntity;
 
 public interface CardDomainRepository {
 
-    void cardAddNew();
+    void cardAddNew(boolean reset);
 
     void cardAddUserCardToMutableList(CardEntity card);
 
@@ -20,6 +20,8 @@ public interface CardDomainRepository {
     void cardDeleteById(CardEntity card);
 
     void cardEditById(CardEntity card);
+
+    void cardSearchByStr(String str);
 
     MutableLiveData<ArrayList<CardEntity>> cardGetAll();
 
