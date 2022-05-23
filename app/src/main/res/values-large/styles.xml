@@ -2,7 +2,7 @@
 <resources>
     <style name="text_style_1">
         <item name="android:textSize">
-            20sp
+            50sp
         </item>
         <item name="android:textColor">
             #FFFFFF
@@ -10,7 +10,7 @@
     </style>
     <style name="text_style_2">
         <item name="android:textSize">
-            24sp
+            39sp
         </item>
         <item name="android:textColor">
             #FFFFFF
@@ -18,7 +18,7 @@
     </style>
     <style name="text_style_3">
         <item name="android:textSize">
-            29sp
+            44sp
         </item>
         <item name="android:textColor">
             #FFFFFF

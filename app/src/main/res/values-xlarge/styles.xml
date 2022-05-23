@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="text_style_1">
+        <item name="android:textSize">
+            40sp
+        </item>
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+    </style>
+    <style name="text_style_2">
+        <item name="android:textSize">
+            44sp
+        </item>
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+    </style>
+    <style name="text_style_3">
+        <item name="android:textSize">
+            49sp
+        </item>
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+    </style>
+</resources>

@@ -37,10 +37,10 @@
 
     <ImageView
         android:id="@+id/iv_profile_avatar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/profile_description_photo"/>
@@ -61,8 +61,8 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="@string/icon"
                 android:src="@drawable/icon_phone" />
 
@@ -81,8 +81,8 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="@string/icon"
                 android:src="@drawable/icon_mail" />
 
@@ -101,8 +101,8 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="@string/icon"
                 android:src="@drawable/icon_gender" />
 
@@ -124,8 +124,8 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="@string/icon"
                 android:src="@drawable/icon_birthday" />
 
@@ -144,8 +144,8 @@
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="@string/icon"
                 android:src="@drawable/a001" />
 
@@ -167,9 +167,9 @@
         android:textAppearance="@style/text_style_1"
         android:backgroundTint="@color/button"
         app:strokeColor="@color/white"
-        app:strokeWidth="3dp"
-        app:cornerRadius="17dp"
-        android:layout_marginTop="20dp"
+        app:strokeWidth="5dp"
+        app:cornerRadius="50dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="@+id/iv_profile_avatar"
         app:layout_constraintStart_toStartOf="@+id/iv_profile_avatar"
         app:layout_constraintTop_toBottomOf="@+id/iv_profile_avatar" />
