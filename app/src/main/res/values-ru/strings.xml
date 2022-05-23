@@ -43,6 +43,7 @@
         <item>Мужской</item>
         <item>Женский</item>
     </string-array>
+    <string name="reg_genders_error">Выберите пол</string>
 
     <!-- main -->
     <string name="main_search">Искать</string>

@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -163,6 +164,7 @@ public class RegistrationFragment extends Fragment {
         }
         if (gender.equals(getResources().getStringArray(R.array.genders)[0])){
             check = false;
+            Toast.makeText(this.getContext(), R.string.reg_genders_error, Toast.LENGTH_LONG).show();
         }
         if (et_social_cont.getText().toString().length() <= 0){
             check = false;
