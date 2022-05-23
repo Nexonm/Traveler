@@ -147,7 +147,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:contentDescription="@string/icon"
-                android:src="@drawable/a001" />
+                android:src="@drawable/icon_contact" />
 
             <TextView
                 android:id="@+id/tv_profile_contacts"
