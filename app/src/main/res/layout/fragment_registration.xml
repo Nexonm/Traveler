@@ -125,6 +125,18 @@
             android:textAppearance="@style/text_style_1"
             android:textColorHint="@color/white" />
 
+        <EditText
+            android:id="@+id/et_reg_field_social_contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="text"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="@string/reg_title_social_contacts"
+            android:inputType="text"
+            android:textAppearance="@style/text_style_1"
+            android:textColorHint="@color/white" />
+
         <Button
             android:id="@+id/bt_reg_register_new_user"
             android:layout_width="208dp"

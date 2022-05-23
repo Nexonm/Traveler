@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -40,6 +40,8 @@ public class RegistrationFragment extends Fragment {
     EditText et_social_cont;
 
     Button bt_register;
+    RadioButton rb_male;
+    RadioButton rb_female;
 
     Spinner spin_gender;
     private String gender;
@@ -76,21 +78,16 @@ public class RegistrationFragment extends Fragment {
         et_phone = view.findViewById(R.id.et_reg_field_phone_number);
         et_social_cont = view.findViewById(R.id.et_reg_field_social_contacts);
 
-        spin_gender = view.findViewById(R.id.spin_reg_genders);
+
         //default gender value
         gender = getResources().getStringArray(R.array.genders)[0];
-        Context context = this.getContext();
-        spin_gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String[] choose = getResources().getStringArray(R.array.genders);
-                gender = choose[position];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+        rb_male = view.findViewById(R.id.rb_reg_woman);
+        rb_male.setOnClickListener(v -> {
+            gender = getResources().getStringArray(R.array.genders)[1];
+        });
+        rb_female = view.findViewById(R.id.rb_reg_man);
+        rb_female.setOnClickListener(v -> {
+            gender = getResources().getStringArray(R.array.genders)[2];
         });
 
         bt_register = view.findViewById(R.id.bt_reg_register_new_user);

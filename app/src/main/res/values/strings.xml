@@ -29,6 +29,8 @@
     <string name="reg_main_title">Registration</string>
     <string name="reg_title_first_name">Name</string>
     <string name="reg_title_second_name">Last name</string>
+    <string name="reg_title_man">Male</string>
+    <string name="reg_title_woman">Female</string>
     <string-array name="genders">
         <item>Gender</item>
         <item>Male</item>
