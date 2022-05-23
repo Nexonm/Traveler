@@ -149,6 +149,7 @@ public class CardListFragment extends Fragment {
         } else {
             goingUsual = true;
             reset = true;
+            addData();
         }
 
     }
