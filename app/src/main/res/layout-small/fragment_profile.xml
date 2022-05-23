@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_rectangle_1"
+    tools:context=".presentation.fragment.profile.ProfileFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/empty_tall_divider_profile_name"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile_avatar"
+        app:layout_constraintTop_toTopOf="@+id/iv_profile_avatar"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_profile_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_first_name"
+            android:textAppearance="@style/text_style_2" />
+
+        <TextView
+            android:id="@+id/tv_profile_second_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/profile_second_name"
+            android:textAppearance="@style/text_style_2" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_profile_avatar"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/profile_description_photo"/>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/empty_tall_divider_profile"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_avatar">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/icon_phone" />
+
+            <TextView
+                android:id="@+id/tv_profile_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/profile_phone_number"
+                android:textAppearance="@style/text_style_2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/icon_mail" />
+
+            <TextView
+                android:id="@+id/tv_profile_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/profile_email"
+                android:textAppearance="@style/text_style_2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/icon_gender" />
+
+            <TextView
+                android:id="@+id/tv_profile_is_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/profile_is_male_null"
+                android:textAppearance="@style/text_style_2" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/icon_birthday" />
+
+            <TextView
+                android:id="@+id/tv_profile_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/profile_date_of_birth_null"
+                android:textAppearance="@style/text_style_2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/a001" />
+
+            <TextView
+                android:id="@+id/tv_profile_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/profile_contacts"
+                android:textAppearance="@style/text_style_2" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/bt_profile_update_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_btn_update_photo"
+        android:textAppearance="@style/text_style_1"
+        android:backgroundTint="@color/button"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp"
+        app:cornerRadius="50dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_profile_avatar"
+        app:layout_constraintStart_toStartOf="@+id/iv_profile_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_avatar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
