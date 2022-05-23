@@ -25,8 +25,8 @@ public interface APIServiceCard {
      * @param str key word how we can find cards
      * @return gson str from ArrayList
      */
-    @GET("cards/get-by-str")
+    @POST("cards/get-by-str")
     Call<String> getCardsBySearch(
-            @Query("str") String str
+            @Body String str
     );
 }
