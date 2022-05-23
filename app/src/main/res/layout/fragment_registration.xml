@@ -41,7 +41,7 @@
             android:textColorHint="@color/white" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spin_reg_genders"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:foregroundTint="@color/white"
@@ -107,6 +107,18 @@
             android:ems="10"
             android:hint="@string/reg_title_phone_number"
             android:inputType="phone"
+            android:textAppearance="@style/text_style_1"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/et_reg_field_social_contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="phone"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="@string/reg_title_social_contacts"
+            android:inputType="text"
             android:textAppearance="@style/text_style_1"
             android:textColorHint="@color/white" />
 

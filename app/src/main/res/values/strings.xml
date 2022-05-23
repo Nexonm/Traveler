@@ -39,8 +39,9 @@
     <string name="reg_title_password_repeat">Repeat the password</string>
     <string name="reg_title_password_repeat_not_match">Passwords don\'t match</string>
     <string name="reg_title_date_of_birth_hint">Date of birth</string>
-    <string name="reg_title_incorrect_date_of_birth_hint">Invalid date of birth</string>
+    <string name="reg_title_incorrect_date_of_birth_hint">Invalid date of birth(dd.mm.yyyy)</string>
     <string name="reg_title_phone_number">Phone number</string>
+    <string name="reg_title_social_contacts">How to contact you?:)</string>
     <string name="reg_btn_register">REGISTRATION</string>
 
     <!-- main -->

@@ -47,6 +47,7 @@ public class ProfileFragment extends Fragment {
     private TextView tv_email;
     private TextView tv_is_male;
     private TextView tv_birthday;
+    private TextView tv_contacts;
 
     private Button bt_update_photo;
 
@@ -84,6 +85,8 @@ public class ProfileFragment extends Fragment {
         tv_is_male.setText(AppStart.getUser().getUserInfo().isMale() ? "Мужской" : "Женский");
         tv_birthday = view.findViewById(R.id.tv_profile_birthday);
         tv_birthday.setText(AppStart.getUser().getUserInfo().getDateOfBirth());
+        tv_contacts = view.findViewById(R.id.tv_profile_contacts);
+        tv_contacts.setText(AppStart.getUser().getUserInfo().getSocialContacts());
 
         iv_avatar = view.findViewById(R.id.iv_profile_avatar);
         Picasso.with(context)
