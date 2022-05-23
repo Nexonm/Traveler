@@ -31,6 +31,10 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/Traveler/app/src/main/res/layout/nav_header_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Traveler/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Traveler/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable-large/empty_tall_divider_cnc.xml" value="0.2275" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable-large/empty_tall_divider_login.xml" value="0.2275" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable-large/empty_tall_divider_registration.xml" value="0.2275" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable-large/icon_add.xml" value="0.2275" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable-nodpi/ic_add.xml" value="0.2095" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable-small/empty_tall_divider_cnc.xml" value="0.2275" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable-small/empty_tall_divider_login.xml" value="0.2275" />
@@ -67,6 +71,14 @@
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-land/activity_main.xml" value="0.21516754850088182" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-land/fragment_chats.xml" value="0.21516754850088182" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-large/fragment_card_big_view.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-large/fragment_card_list_item_visitor.xml" value="0.38125" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-large/fragment_create_new_card.xml" value="0.38125" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-large/fragment_login.xml" value="0.38125" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-large/fragment_main.xml" value="0.38125" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-large/fragment_map.xml" value="0.38125" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-large/fragment_my_cards.xml" value="0.38125" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-large/fragment_profile.xml" value="0.38125" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-large/fragment_registration.xml" value="0.38125" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-small/fragment_card_big_view.xml" value="0.7303571428571428" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-small/fragment_card_list_item_visitor.xml" value="1.6" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout-small/fragment_create_new_card.xml" value="0.7746212121212122" />
