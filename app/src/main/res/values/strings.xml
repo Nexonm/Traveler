@@ -29,11 +29,8 @@
     <string name="reg_main_title">Registration</string>
     <string name="reg_title_first_name">Name</string>
     <string name="reg_title_second_name">Last name</string>
-    <string-array name="genders">
-        <item>Change</item>
-        <item>Male</item>
-        <item>Female</item>
-    </string-array>
+    <string name="reg_title_man">Male</string>
+    <string name="reg_title_woman">Female</string>
     <string name="reg_title_email">Email</string>
     <string name="reg_title_password">Password</string>
     <string name="reg_title_password_repeat">Repeat the password</string>

@@ -29,6 +29,8 @@
     <string name="reg_main_title">Регистрация</string>
     <string name="reg_title_first_name">Имя</string>
     <string name="reg_title_second_name">Фамилия</string>
+    <string name="reg_title_man">Мужской</string>
+    <string name="reg_title_woman">Женский</string>
     <string name="reg_title_email">Email</string>
     <string name="reg_title_password">Пароль</string>
     <string name="reg_title_password_repeat">Повторите пароль</string>
