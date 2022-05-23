@@ -73,6 +73,8 @@ public class RegistrationFragment extends Fragment {
                 fragmentManager.popBackStack();
                 Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
                 startActivity(intent);
+                //close activity in case there is no more need in it
+                closeActivity();
             }
         });
     }
@@ -133,6 +135,7 @@ public class RegistrationFragment extends Fragment {
             et_phone.setHint(R.string.reg_title_phone_number);
         }
         if (check) {
+            //send request to register new user
             AppStart.personAddNewUC.userAddNew(new String[]{
                     et_email.getText().toString(),
                     et_password.getText().toString(),
@@ -179,5 +182,9 @@ public class RegistrationFragment extends Fragment {
         editor.putString(LoginActivity.KEY_PREF_USER_EMAIL, et_email.getText().toString());
 
         editor.apply();
+    }
+
+    private void closeActivity() {
+        this.requireActivity().finish();
     }
 }
