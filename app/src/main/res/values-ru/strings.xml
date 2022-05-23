@@ -37,6 +37,11 @@
     <string name="reg_title_incorrect_date_of_birth_hint">Некорректная дата рождения</string>
     <string name="reg_title_phone_number">Номер телефона</string>
     <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
+    <string-array name="genders">
+        <item>Пол</item>
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
 
     <!-- main -->
     <string name="main_search">Искать</string>
