@@ -7,148 +7,150 @@
     android:background="@drawable/img_rectangle_1"
     tools:context=".presentation.fragment.registration.RegistrationFragment">
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:divider="@drawable/empty_tall_divider_profile_name"
-        android:showDividers="middle">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/et_reg_field_firs_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="name"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="@string/reg_title_first_name"
-            android:inputType="textPersonName"
-            android:textAppearance="@style/text_style_1"
-            android:textColorHint="@color/white" />
+            android:divider="@drawable/empty_tall_divider_registration"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:layout_marginTop="20dp">
 
-        <EditText
-            android:id="@+id/et_reg_field_second_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="@string/reg_title_second_name"
-            android:inputType="textPersonName"
-            android:textAppearance="@style/text_style_1"
-            android:textColorHint="@color/white" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rb_reg_man"
+            <EditText
+                android:id="@+id/et_reg_field_firs_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/reg_title_man"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_marginEnd="30dp" />
+                android:autofillHints="name"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/reg_title_first_name"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/text_style_1"
+                android:textColorHint="@color/white" />
 
-            <RadioButton
-                android:id="@+id/rb_reg_woman"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/et_reg_field_second_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/reg_title_woman"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_marginStart="30dp" />
-        </RadioGroup>
+                android:autofillHints=""
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/reg_title_second_name"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/text_style_1"
+                android:textColorHint="@color/white" />
 
-        <EditText
-            android:id="@+id/et_reg_field_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="emailAddress"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="@string/reg_title_email"
-            android:inputType="textEmailAddress"
-            android:textAppearance="@style/text_style_1"
-            android:textColorHint="@color/white" />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/et_reg_field_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="password"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="@string/reg_title_password"
-            android:inputType="textPassword"
-            android:textAppearance="@style/text_style_1"
-            android:textColorHint="@color/white" />
+                <RadioButton
+                    android:id="@+id/rb_reg_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/reg_title_man"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/et_reg_field_password_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="@string/reg_title_password_repeat"
-            android:inputType="textPassword"
-            android:textAppearance="@style/text_style_1"
-            android:textColorHint="@color/white" />
+                <RadioButton
+                    android:id="@+id/rb_reg_woman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="@string/reg_title_woman"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </RadioGroup>
 
-        <EditText
-            android:id="@+id/et_reg_field_date_of_birth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="@string/reg_title_date_of_birth_hint"
-            android:inputType="date"
-            android:textAppearance="@style/text_style_1"
-            android:textColorHint="@color/white" />
+            <EditText
+                android:id="@+id/et_reg_field_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/reg_title_email"
+                android:inputType="textEmailAddress"
+                android:textAppearance="@style/text_style_1"
+                android:textColorHint="@color/white" />
 
-        <EditText
-            android:id="@+id/et_reg_field_phone_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="phone"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="@string/reg_title_phone_number"
-            android:inputType="phone"
-            android:textAppearance="@style/text_style_1"
-            android:textColorHint="@color/white" />
+            <EditText
+                android:id="@+id/et_reg_field_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="password"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/reg_title_password"
+                android:inputType="textPassword"
+                android:textAppearance="@style/text_style_1"
+                android:textColorHint="@color/white" />
 
-        <EditText
-            android:id="@+id/et_reg_field_social_contacts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="text"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="@string/reg_title_social_contacts"
-            android:inputType="text"
-            android:textAppearance="@style/text_style_1"
-            android:textColorHint="@color/white" />
+            <EditText
+                android:id="@+id/et_reg_field_password_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/reg_title_password_repeat"
+                android:inputType="textPassword"
+                android:textAppearance="@style/text_style_1"
+                android:textColorHint="@color/white" />
 
-        <Button
-            android:id="@+id/bt_reg_register_new_user"
-            android:layout_width="208dp"
-            android:layout_height="52dp"
-            android:backgroundTint="@color/button"
-            android:text="@string/reg_btn_register"
-            android:textAppearance="@style/text_style_1"
-            app:cornerRadius="17dp"
-            app:strokeColor="@color/white"
-            app:strokeWidth="3dp" />
+            <EditText
+                android:id="@+id/et_reg_field_date_of_birth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/reg_title_date_of_birth_hint"
+                android:inputType="date"
+                android:textAppearance="@style/text_style_1"
+                android:textColorHint="@color/white" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/et_reg_field_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="phone"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/reg_title_phone_number"
+                android:inputType="phone"
+                android:textAppearance="@style/text_style_1"
+                android:textColorHint="@color/white" />
 
+            <EditText
+                android:id="@+id/et_reg_field_social_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="text"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/reg_title_social_contacts"
+                android:inputType="text"
+                android:textAppearance="@style/text_style_1"
+                android:textColorHint="@color/white" />
 
+            <Button
+                android:id="@+id/bt_reg_register_new_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/button"
+                android:text="@string/reg_btn_register"
+                android:textAppearance="@style/text_style_1"
+                app:cornerRadius="17dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="3dp" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

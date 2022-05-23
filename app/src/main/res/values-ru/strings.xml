@@ -38,7 +38,7 @@
     <string name="reg_title_date_of_birth_hint">Дата рождения</string>
     <string name="reg_title_incorrect_date_of_birth_hint">Некорректная дата рождения(дд.мм.гггг)</string>
     <string name="reg_title_phone_number">Номер телефона</string>
-    <string name="reg_title_social_contacts">Как с вами связаться?:)</string>
+    <string name="reg_title_social_contacts">Как с вами связаться?</string>
     <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
     <string-array name="genders">
         <item>Пол</item>
