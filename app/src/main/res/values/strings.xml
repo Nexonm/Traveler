@@ -30,7 +30,7 @@
     <string name="reg_title_first_name">Name</string>
     <string name="reg_title_second_name">Last name</string>
     <string-array name="genders">
-        <item>Genders</item>
+        <item>Gender</item>
         <item>Male</item>
         <item>Female</item>
     </string-array>
