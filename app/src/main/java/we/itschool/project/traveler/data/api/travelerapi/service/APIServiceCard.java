@@ -18,4 +18,9 @@ public interface APIServiceCard {
             @Query("uid") long id,
             @Body String gsonStr
     );
+
+    @GET("cards/get-by-str")
+    Call<String> getCardsBySearch(
+            @Query("str") String str
+    );
 }
