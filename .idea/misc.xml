@@ -42,11 +42,13 @@
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/empty_tall_divider_cnc.xml" value="0.228" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/empty_tall_divider_profile.xml" value="0.228" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/empty_tall_divider_profile_name.xml" value="0.228" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/empty_tall_divider_registration.xml" value="0.228" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/ic_add.xml" value="0.228" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/ic_baseline_ac_unit_24.xml" value="0.124" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/ic_launcher_background.xml" value="0.124" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.228" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/img_rectangle_1.xml" value="0.124" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/img_rectangle_2.xml" value="0.228" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/myrect.xml" value="0.228" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/nav_item_text.xml" value="0.228" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/drawable/rectangle_1.xml" value="0.2095" />
@@ -72,7 +74,7 @@
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout/fragment_map.xml" value="0.2" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout/fragment_my_cards.xml" value="0.1" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout/fragment_profile.xml" value="0.176" />
-        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout/fragment_registration.xml" value="0.264" />
+        <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout/fragment_registration.xml" value="0.4742468415937804" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout/fragment_settings.xml" value="0.264" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/layout/nav_header_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/arfa3/AndroidStudioProjects/Traveler/app/src/main/res/menu/activity_main_drawer.xml" value="0.25416666666666665" />

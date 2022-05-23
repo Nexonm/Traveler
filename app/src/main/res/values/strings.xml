@@ -29,6 +29,11 @@
     <string name="reg_main_title">Registration</string>
     <string name="reg_title_first_name">Name</string>
     <string name="reg_title_second_name">Last name</string>
+    <string-array name="genders">
+        <item>Change</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
     <string name="reg_title_email">Email</string>
     <string name="reg_title_password">Password</string>
     <string name="reg_title_password_repeat">Repeat the password</string>
@@ -48,9 +53,10 @@
     <string name="profile_phone_number">Phone</string>
     <string name="profile_email">Mail</string>
     <string name="profile_is_male_null">Gender</string>
-    <string name="profile_date_of_birth_null">birthday</string>
+    <string name="profile_date_of_birth_null">Birthday</string>
     <string name="profile_is_male"><u>Gender</u></string>
     <string name="profile_date_of_birth"><u>Birthday</u></string>
+    <string name="profile_contacts">Social contacts</string>
     <string name="profile_description_photo">Your photo</string>
     <string name="profile_btn_update_photo">Update photo</string>
 
