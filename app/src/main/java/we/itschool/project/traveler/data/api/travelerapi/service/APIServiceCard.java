@@ -18,4 +18,15 @@ public interface APIServiceCard {
             @Query("uid") long id,
             @Body String gsonStr
     );
+
+    /**
+     * Calls server and tries to find cards, where
+     * hashtag, City, Country fields have such word
+     * @param str key word how we can find cards
+     * @return gson str from ArrayList
+     */
+    @POST("cards/get-by-str")
+    Call<String> getCardsBySearch(
+            @Body String str
+    );
 }

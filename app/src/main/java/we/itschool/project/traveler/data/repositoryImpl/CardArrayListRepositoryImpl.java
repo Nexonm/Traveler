@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -191,7 +192,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
      *
      * @param id card id to load
      */
-    private void loadDataRetrofit(int id) {
+    private void loadDataRetrofit(long id) {
 //        AsyncTask.execute(() -> {
 
         APIServiceCard service = APIServiceTravelerConstructor.CreateService(APIServiceCard.class);
@@ -219,6 +220,40 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
             }
         });
 //        });
+    }
+
+    @Override
+    public void cardSearchByStr(String str) {
+
+        APIServiceCard service = APIServiceTravelerConstructor.CreateService(APIServiceCard.class);
+        cleanLiveData();
+
+        Call<String> call = service.getCardsBySearch(str);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body() != null) {
+                    String str = response.body().toString();
+                    ArrayList<Long> list = (new Gson()).fromJson(
+                            str,
+                            new TypeToken<ArrayList<Long>>() {
+                            }.getType()
+                    );
+                    for (long id : list) {
+                        loadDataRetrofit(id);
+                    }
+
+                } else {
+                    Log.v("retrofitLogger", "null response.body on loadDataRetrofit");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+
     }
 
     /**
@@ -257,6 +292,11 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
 
     //other methods
 
+    private void cleanLiveData(){
+        data.clear();
+        updateLiveData();
+    }
+
     private void updateLiveData() {
 //        AsyncTask.execute(() -> {
         dataLiveData.postValue(data);
@@ -291,8 +331,9 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
     }
 
     @Override
-    public void cardAddNew() {
+    public void cardAddNew(boolean reset) {
 //        if (NUM_OF_CARDS_TO_DO == 2) NUM_OF_CARDS_TO_DO = 13;
+        if (reset) NUM_OF_CARDS_TO_DO = 0;
         loadDataRetrofit(++NUM_OF_CARDS_TO_DO);
     }
 

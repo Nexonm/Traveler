@@ -9,11 +9,13 @@ import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.domain.usecases.card.CardAddNewUseCase;
 import we.itschool.project.traveler.domain.usecases.card.CardGetAllUseCase;
+import we.itschool.project.traveler.domain.usecases.card.CardSearchByStrUseCase;
 
 public class CardListViewModel extends ViewModel {
 
     private final CardAddNewUseCase addNewCard = AppStart.cardAddNewUC;
     private final CardGetAllUseCase getAll = AppStart.cardGetAllUC;
+    private final CardSearchByStrUseCase searchCards = AppStart.cardSearchByStrUC;
 
     private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList;
 
@@ -22,8 +24,12 @@ public class CardListViewModel extends ViewModel {
         return cardsLiveDataList;
     }
 
-    protected void addNewCard(){
-        addNewCard.cardAddNew();
+    protected void addNewCard(boolean reset){
+        addNewCard.cardAddNew(reset);
+    }
+
+    protected void searchCards(String str){
+        searchCards.cardSearchByStr(str);
     }
 
 }

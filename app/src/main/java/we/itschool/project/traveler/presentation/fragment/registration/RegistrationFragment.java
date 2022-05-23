@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +29,7 @@ import we.itschool.project.traveler.presentation.activity.LoginActivity;
 import we.itschool.project.traveler.presentation.activity.MainActivity;
 
 public class RegistrationFragment extends Fragment {
+
     EditText et_first_name;
     EditText et_second_name;
     EditText et_email;
@@ -33,7 +37,12 @@ public class RegistrationFragment extends Fragment {
     EditText et_password_check;
     EditText et_birth_date;
     EditText et_phone;
+    EditText et_social_cont;
+
     Button bt_register;
+
+    Spinner spin_gender;
+    private String gender;
 
     public static RegistrationFragment newInstance(){
         return new RegistrationFragment();
@@ -65,6 +74,25 @@ public class RegistrationFragment extends Fragment {
         et_password_check = view.findViewById(R.id.et_reg_field_password_two);
         et_birth_date = view.findViewById(R.id.et_reg_field_date_of_birth);
         et_phone = view.findViewById(R.id.et_reg_field_phone_number);
+        et_social_cont = view.findViewById(R.id.et_reg_field_social_contacts);
+
+        spin_gender = view.findViewById(R.id.spin_reg_genders);
+        //default gender value
+        gender = getResources().getStringArray(R.array.genders)[0];
+        Context context = this.getContext();
+        spin_gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String[] choose = getResources().getStringArray(R.array.genders);
+                gender = choose[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
             if(checkAllData()) {
@@ -73,35 +101,37 @@ public class RegistrationFragment extends Fragment {
                 fragmentManager.popBackStack();
                 Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
                 startActivity(intent);
+                //close activity in case there is no more need in it
+                closeActivity();
             }
         });
     }
 
     private boolean checkAllData() {
         boolean check = true;
-        if (et_first_name.getText().length() <= 0) {
+        if (et_first_name.getText().toString().length() <= 0) {
             check = false;
             et_first_name.setHintTextColor(Color.RED);
             et_first_name.setHint(R.string.reg_title_first_name);
         }
-        if (et_second_name.getText().length() <= 0) {
+        if (et_second_name.getText().toString().length() <= 0) {
             check = false;
             et_second_name.setHintTextColor(Color.RED);
             et_second_name.setHint(R.string.reg_title_second_name);
         }
-        if (et_email.getText().length() <= 0) {
+        if (et_email.getText().toString().length() <= 0) {
             check = false;
             et_email.setHintTextColor(Color.RED);
             et_email.setHint(R.string.reg_title_email);
         }
         boolean can1 = true, can2 = true;
-        if (et_password.getText().length() <= 0) {
+        if (et_password.getText().toString().length() <= 0) {
             can1 = false;
             check = false;
             et_password.setHintTextColor(Color.RED);
             et_password.setHint(R.string.reg_title_password);
         }
-        if (et_password_check.getText().length() <= 0) {
+        if (et_password_check.getText().toString().length() <= 0) {
             can2 = false;
             check = false;
             et_password_check.setHintTextColor(Color.RED);
@@ -116,7 +146,7 @@ public class RegistrationFragment extends Fragment {
             et_password_check.setText("");
             et_password_check.setHint(R.string.reg_title_password_repeat_not_match);
         }
-        if (et_birth_date.getText().length() <= 0) {
+        if (et_birth_date.getText().toString().length() <= 0) {
             check = false;
             et_birth_date.setHintTextColor(Color.RED);
             et_birth_date.setHint(R.string.reg_title_date_of_birth_hint);
@@ -127,19 +157,30 @@ public class RegistrationFragment extends Fragment {
             et_birth_date.setText("");
             et_birth_date.setHint(R.string.reg_title_incorrect_date_of_birth_hint);
         }
-        if (et_phone.getText().length() <= 0) {
+        if (et_phone.getText().toString().length() <= 0) {
             check = false;
             et_phone.setHintTextColor(Color.RED);
             et_phone.setHint(R.string.reg_title_phone_number);
         }
+        if (gender.equals(getResources().getStringArray(R.array.genders)[0])){
+            check = false;
+            Toast.makeText(this.getContext(), R.string.reg_genders_error, Toast.LENGTH_LONG).show();
+        }
+        if (et_social_cont.getText().toString().length() <= 0){
+            check = false;
+        }
         if (check) {
+            //send request to register new user
             AppStart.personAddNewUC.userAddNew(new String[]{
                     et_email.getText().toString(),
                     et_password.getText().toString(),
                     et_first_name.getText().toString(),
                     et_second_name.getText().toString(),
                     et_birth_date.getText().toString(),
-                    et_phone.getText().toString()
+                    et_phone.getText().toString(),
+                    getResources().getStringArray(R.array.genders)[1].equals(gender) ? "true": "false",
+                    et_social_cont.getText().toString()
+
             });
             savePrefs();
         }
@@ -179,5 +220,9 @@ public class RegistrationFragment extends Fragment {
         editor.putString(LoginActivity.KEY_PREF_USER_EMAIL, et_email.getText().toString());
 
         editor.apply();
+    }
+
+    private void closeActivity() {
+        this.requireActivity().finish();
     }
 }

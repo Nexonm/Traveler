@@ -70,28 +70,6 @@
                 android:textAppearance="@style/text_style_2"
                 android:textColorHint="@color/white" />
 
-            <Switch
-                android:id="@+id/sw_new_card_payment_is_fixed"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:text="@string/cnc_is_exact_money"
-                android:textAppearance="@style/text_style_1"
-                android:textColor="@color/white"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-            <EditText
-                android:id="@+id/et_new_card_cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:backgroundTint="@color/white"
-                android:ems="10"
-                android:hint="@string/cnc_money"
-                android:inputType="number"
-                android:textAppearance="@style/text_style_1"
-                android:textColorHint="@color/white"
-                android:visibility="invisible" />
-
             <EditText
                 android:id="@+id/et_new_card_short_description"
                 android:layout_width="wrap_content"
@@ -100,7 +78,8 @@
                 android:backgroundTint="@color/white"
                 android:ems="10"
                 android:hint="@string/cnc_few_information"
-                android:inputType="text"
+                android:inputType="textMultiLine"
+                android:lines="2"
                 android:textAppearance="@style/text_style_2"
                 android:textColorHint="@color/white" />
 
@@ -112,6 +91,19 @@
                 android:backgroundTint="@color/white"
                 android:ems="10"
                 android:hint="@string/cnc_many_information"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:textAppearance="@style/text_style_2"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/et_new_card_hashtags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="@string/cnc_hashtags"
                 android:inputType="textMultiLine"
                 android:lines="3"
                 android:textAppearance="@style/text_style_2"

@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //set display params for future usage
         setDisplayData();
 
         if (userLogged()) {
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            //close activity in case we don't need it more
             closeActivity();
         } else {
             startLogInFragment();
@@ -58,16 +60,25 @@ public class LoginActivity extends AppCompatActivity {
         return pref.contains(KEY_PREF_USER_EMAIL) && pref.contains(KEY_PREF_USER_PASSWORD);
     }
 
+    /**
+     * Gets user's email from SharedPreferences
+     * @return user email
+     */
     private String userDataFromSPEmail() {
         SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
         return pref.getString(KEY_PREF_USER_EMAIL, "null");
     }
 
+    /**
+     * Gets user's password from SharedPreferences
+     * @return user password
+     */
     private String userDataFromSPPass() {
         SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
         return pref.getString(KEY_PREF_USER_PASSWORD, "null");
     }
 
+    //start main login fragment and then start working
     private void startLogInFragment() {
         //in case user is new to app we suggest login or register
         Fragment fragment = LoginFragment.newInstance();

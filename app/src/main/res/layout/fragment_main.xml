@@ -8,7 +8,7 @@
     tools:context=".presentation.fragment.card_list.CardListFragment">
 
     <EditText
-        android:id="@+id/tv_main_search"
+        android:id="@+id/et_main_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
@@ -19,13 +19,13 @@
         android:autofillHints=""
         android:textAppearance="@style/text_style_1"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/btn_main_search"
+        app:layout_constraintEnd_toStartOf="@+id/bt_main_search"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_main_search"
+        android:id="@+id/bt_main_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button"
@@ -34,7 +34,7 @@
         app:cornerRadius="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_main_search"
+        app:layout_constraintStart_toEndOf="@+id/et_main_search"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/white"
         app:strokeWidth="3dp" />
@@ -47,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_main_search"
+        app:layout_constraintTop_toBottomOf="@+id/et_main_search"
         tools:listitem="@layout/fragment_card_list_item_visitor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

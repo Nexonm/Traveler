@@ -46,15 +46,13 @@ public class CreateNewCardFragment extends Fragment {
     private EditText et_city;
     private EditText et_country;
     private EditText et_address;
-    private EditText et_coast;
-    private EditText et_null;
     private EditText et_short_desc;
     private EditText et_full_desc;
+    private EditText et_hashtags;
 
     private String bufString = "null";
 
     private FragmentCreateNewCardBinding binding;
-    private boolean paymentIsFixed;
     private static final int IMAGE_PIC_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
 
@@ -119,26 +117,7 @@ public class CreateNewCardFragment extends Fragment {
         et_address = view.findViewById(R.id.et_new_card_address);
         et_short_desc = view.findViewById(R.id.et_new_card_short_description);
         et_full_desc = view.findViewById(R.id.et_new_card_full_description);
-        et_coast = view.findViewById(R.id.et_new_card_cost);
-        et_coast.setWidth(1);
-        et_coast.setHeight(1);
-        et_null = view.findViewById(R.id.null_object);
-        sw_payment = view.findViewById(R.id.sw_new_card_payment_is_fixed);
-        sw_payment.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                et_coast.setWidth(et_null.getWidth());
-                et_coast.setHeight(et_null.getHeight());
-                et_coast.setVisibility(View.VISIBLE);
-                et_coast.setClickable(true);
-                paymentIsFixed = true;
-            } else {
-                et_coast.setWidth(1);
-                et_coast.setHeight(1);
-                et_coast.setVisibility(View.INVISIBLE);
-                et_coast.setClickable(false);
-                paymentIsFixed = false;
-            }
-        });
+        et_hashtags = view.findViewById(R.id.et_new_card_hashtags);
     }
 
     /**
@@ -151,44 +130,37 @@ public class CreateNewCardFragment extends Fragment {
         if (!(et_city.getText().length() > 0)) {
             check = false;
             et_city.setHintTextColor(Color.RED);
-            et_city.setHint("Введите название города");
+            et_city.setHint(R.string.cnc_city_error);
         }
         //country
         if (!(et_country.getText().length() > 0)) {
             check = false;
             et_country.setHintTextColor(Color.RED);
-            et_country.setHint("Введите название страны");
+            et_country.setHint(R.string.cnc_country_error);
         }
         //address
         if (!(et_address.getText().length() > 0)) {
             check = false;
             et_address.setHintTextColor(Color.RED);
-            et_address.setHint("Введите адрес расположения");
+            et_address.setHint(R.string.cnc_address_error);
         }
         //short description
         if (!(et_short_desc.getText().length() > 0)) {
             check = false;
             et_short_desc.setHintTextColor(Color.RED);
-            et_short_desc.setHint("Опишите ваше предложение");
+            et_short_desc.setHint(R.string.cnc_few_information_error);
         }
         //full description
         if (!(et_full_desc.getText().length() > 0)) {
             check = false;
             et_full_desc.setHintTextColor(Color.RED);
-            et_full_desc.setHint("Подробно опишите ваше предложение");
-        }
-        //coast
-        if (paymentIsFixed && !(et_coast.getText().length() > 0 && isNum(et_coast.getText().toString()))) {
-            check = false;
-            et_coast.setHintTextColor(Color.RED);
-            et_coast.setHint("Введите плату");
+            et_full_desc.setHint(R.string.cnc_many_information_error);
         }
         if ("null".equals(bufString)){
             check = false;
-            Toast.makeText(context, "Не забудьте выбрать фото! :)", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.cnc_photo_addition_error, Toast.LENGTH_LONG).show();
         }
         if (check) {
-            //TODO удалить нафиг про цену и сделать один конструктор
                 AppStart.cardCreateNewUC.cardCreateNew(
                         new CardModelPOJO(
                                 et_city.getText().toString() + "",
@@ -197,8 +169,7 @@ public class CreateNewCardFragment extends Fragment {
                                 et_short_desc.getText().toString() + "",
                                 et_address.getText().toString() + "",
                                 bufString,
-//                                hashtag, TODO леха, тут нужно поле под хэштеги
-                                ""
+                                et_hashtags.getText().toString()
                         )
                 );
             return true;
