@@ -210,6 +210,7 @@ public class CardArrayListRepositoryImpl implements CardDomainRepository {
 
                 } else {
                     Log.v("retrofitLogger", "null response.body on loadDataRetrofit");
+                    NUM_OF_CARDS_TO_DO--;
                 }
             }
 

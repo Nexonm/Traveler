@@ -160,7 +160,7 @@ public class CardListFragment extends Fragment {
 
             reset = false;
             int num = 0;
-            while (num < 5 && goingUsual)
+            while (num < 7 && goingUsual)
                 try {
 //                        Log.v("OkHttpClient nik", "запрос отправляю " + num+", going="+going);
                     viewModel.addNewCard(reset);
