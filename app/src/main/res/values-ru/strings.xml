@@ -51,6 +51,7 @@
     <string name="profile_date_of_birth_null">День рождения</string>
     <string name="profile_is_male"><u>Пол</u></string>
     <string name="profile_date_of_birth"><u>День рождения</u></string>
+    <string name="profile_contacts">Контакты</string>
     <string name="profile_description_photo">Ваша фотография</string>
     <string name="profile_btn_update_photo">Обновить фото</string>
 
