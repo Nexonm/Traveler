@@ -157,12 +157,16 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
         bt_crop_user = view.findViewById(R.id.bt_map_crop);
         bt_crop_user.setOnClickListener(v -> {
-            if (userLocationLayer.cameraPosition() != null) {
-                Point toPoint = Objects.requireNonNull(userLocationLayer.cameraPosition()).getTarget();
-                mapView.getMap().move(
-                        new CameraPosition(toPoint, 14.5f, 0.0f, 0.0f),
-                        new Animation(SMOOTH, 3),
-                        null);
+            try {
+                if (userLocationLayer.cameraPosition() != null) {
+                    Point toPoint = Objects.requireNonNull(userLocationLayer.cameraPosition()).getTarget();
+                    mapView.getMap().move(
+                            new CameraPosition(toPoint, 14.5f, 0.0f, 0.0f),
+                            new Animation(SMOOTH, 3),
+                            null);
+                }
+            }catch (NullPointerException e){
+                Toast.makeText(this.getContext(), R.string.map_crop_error,Toast.LENGTH_LONG).show();
             }
         });
 
