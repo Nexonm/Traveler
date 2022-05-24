@@ -16,7 +16,7 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="400dp"
+        android:layout_width="450dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
@@ -24,7 +24,7 @@
         android:background="@drawable/img_rectangle_2"
         app:itemVerticalPadding="15dp"
         app:itemTextAppearance="@style/text_style_2"
-        app:itemIconSize="30sp"
+        app:itemIconSize="40sp"
         app:itemIconPadding="15dp"
         app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>
