@@ -103,7 +103,7 @@
     <string name="alreadyInFavorite">уже в планах</string>
     <string name="map_crop_error">Включите геоданные или подождите немного</string>
     <string name="ok">применить</string>
-    <string name="map_bt_find_me">Нати себя</string>
+    <string name="map_bt_find_me">Найти себя</string>
 
     <!-- settings -->
     <string name="settings_language">Сменить язык</string>

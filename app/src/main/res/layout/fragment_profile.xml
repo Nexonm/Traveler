@@ -7,73 +7,120 @@
     android:background="@drawable/img_rectangle_1"
     tools:context=".presentation.fragment.profile.ProfileFragment">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:divider="@drawable/empty_tall_divider_profile_name"
-        android:orientation="vertical"
-        android:showDividers="middle"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_profile_avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile_avatar"
-        app:layout_constraintTop_toTopOf="@+id/iv_profile_avatar"
-        android:gravity="center">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_profile_first_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/profile_first_name"
-            android:textAppearance="@style/text_style_2" />
-
-        <TextView
-            android:id="@+id/tv_profile_second_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:divider="@drawable/empty_tall_divider_profile_name"
             android:gravity="center"
-            android:text="@string/profile_second_name"
-            android:textAppearance="@style/text_style_2" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:showDividers="middle"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile_avatar">
 
-    <ImageView
-        android:id="@+id/iv_profile_avatar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/profile_description_photo"/>
-
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:divider="@drawable/empty_tall_divider_profile"
-        android:showDividers="middle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_profile_avatar">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/icon"
-                android:src="@drawable/icon_phone" />
-
-            <TextView
-                android:id="@+id/tv_profile_phone"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:text="@string/profile_phone_number"
-                android:textAppearance="@style/text_style_2" />
-        </TableRow>
+                android:layout_marginTop="30dp"
+                android:divider="@drawable/empty_tall_divider_profile_name"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:showDividers="middle">
+
+                <ImageView
+                    android:id="@+id/iv_profile_avatar"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:contentDescription="@string/profile_description_photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:divider="@drawable/empty_tall_divider_profile_name"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:showDividers="middle"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_profile_avatar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_profile_avatar"
+                    app:layout_constraintTop_toTopOf="@+id/iv_profile_avatar">
+
+                    <TextView
+                        android:id="@+id/tv_profile_first_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_first_name"
+                        android:textAppearance="@style/text_style_2" />
+
+                    <TextView
+                        android:id="@+id/tv_profile_second_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_second_name"
+                        android:textAppearance="@style/text_style_2" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_profile_update_photo"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/button"
+                android:text="@string/profile_btn_update_photo"
+                android:textAppearance="@style/text_style_1"
+                app:cornerRadius="17dp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_avatar"
+                app:layout_constraintStart_toStartOf="@+id/iv_profile_avatar"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile_avatar"
+                app:strokeColor="@color/white"
+                app:strokeWidth="3dp" />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="50dp"
+                android:divider="@drawable/empty_tall_divider_profile"
+                android:showDividers="middle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_profile_update_photo">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="@string/icon"
+                        android:src="@drawable/icon_phone" />
+
+                    <TextView
+                        android:id="@+id/tv_profile_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/profile_phone_number"
+                        android:textAppearance="@style/text_style_2" />
+                </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -90,7 +137,7 @@
                 android:id="@+id/tv_profile_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="30dp"
                 android:text="@string/profile_email"
                 android:textAppearance="@style/text_style_2" />
         </TableRow>
@@ -110,7 +157,7 @@
                 android:id="@+id/tv_profile_is_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="30dp"
                 android:text="@string/profile_is_male"
                 android:textAppearance="@style/text_style_2" />
 
@@ -133,7 +180,7 @@
                 android:id="@+id/tv_profile_birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="30dp"
                 android:text="@string/profile_date_of_birth"
                 android:textAppearance="@style/text_style_2" />
         </TableRow>
@@ -153,25 +200,11 @@
                 android:id="@+id/tv_profile_contacts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="30dp"
                 android:text="@string/profile_contacts"
                 android:textAppearance="@style/text_style_2" />
         </TableRow>
-    </TableLayout>
-
-    <Button
-        android:id="@+id/bt_profile_update_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/profile_btn_update_photo"
-        android:textAppearance="@style/text_style_1"
-        android:backgroundTint="@color/button"
-        app:strokeColor="@color/white"
-        app:strokeWidth="3dp"
-        app:cornerRadius="17dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/iv_profile_avatar"
-        app:layout_constraintStart_toStartOf="@+id/iv_profile_avatar"
-        app:layout_constraintTop_toBottomOf="@+id/iv_profile_avatar" />
-
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
