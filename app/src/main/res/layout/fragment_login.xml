@@ -22,7 +22,7 @@
 
     <Button
         android:id="@+id/bt_login_sign_in"
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="50dp"
         android:text="@string/login_sign_in"
         android:textAppearance="@style/text_style_1"
@@ -48,7 +48,7 @@
 
     <Button
         android:id="@+id/bt_login_register"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/button"
         android:text="@string/login_register"
