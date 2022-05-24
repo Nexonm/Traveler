@@ -69,6 +69,7 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
         viewHolder.tv_short_description.setText(card.getCardInfo().getShortDescription());
         //TODO  asynk Picasso
         Context context = viewHolder.itemView.getContext();
+//        viewHolder.iv_avatar_image.setMaxHeight(AppStart.getInstance().getDisplayHeight()/2);
         Picasso.with(context)
                 .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD+card.get_id())
                 .resize(

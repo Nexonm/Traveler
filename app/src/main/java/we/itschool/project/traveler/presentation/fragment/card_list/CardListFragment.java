@@ -89,6 +89,7 @@ public class CardListFragment extends Fragment {
         initViewModel();
         initView(view);
         goingUsual = true;
+        reset = false;
         addData();
     }
 
@@ -158,12 +159,12 @@ public class CardListFragment extends Fragment {
     private void addData() {
         AsyncTask.execute(() -> {
 
-            reset = false;
             int num = 0;
-            while (num < 7 && goingUsual)
+            while (num < 20 && goingUsual)
                 try {
 //                        Log.v("OkHttpClient nik", "запрос отправляю " + num+", going="+going);
                     viewModel.addNewCard(reset);
+                    reset = false;
                     num++;
 //                        Log.v("OkHttpClient nik", "ухожу спать" + num+", going="+going);
                     Thread.sleep(1500);
