@@ -28,7 +28,7 @@
             android:layout_marginStart="80dp"
             android:text="@string/cliv_name_of_city"
             android:textAppearance="@style/text_style_3"
-            android:textSize="65sp"/>
+            android:textSize="55sp"/>
 
         <ImageView
                 android:id="@+id/iv_avatar_image"

@@ -11,7 +11,7 @@
         android:id="@+id/bt_map_crop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/map_bt_find_me"
+        android:text="@string/menu_map"
         android:textAppearance="@style/text_style_1"
         android:backgroundTint="@color/button"
         app:strokeColor="@color/white"
