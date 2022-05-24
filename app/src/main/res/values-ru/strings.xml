@@ -89,7 +89,7 @@
     <string name="cbv_name">Имя</string>
     <string name="cbv_second_name">Фамилия</string>
     <string name="cbv_description_photo">Фотография карточки</string>
-    <string name="cbv_social_contacts">Контакты</string>
+    <string name="cbv_social_contacts">Контакты:</string>
     <string name="cbv_text_from_author">текст от автора</string>
     <string name="cbv_add_to_favourites">Добавить в избранное</string>
 

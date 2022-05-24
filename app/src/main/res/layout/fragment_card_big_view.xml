@@ -41,11 +41,16 @@
                 android:contentDescription="@string/cbv_description_photo" />
 
             <LinearLayout
-                android:id="@+id/avatar_card_layout_big_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/avatar_card_layout_big_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:divider="@drawable/empty_tall_divider_card_big_view"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -83,6 +88,21 @@
                         android:textAppearance="@style/text_style_2" />
                 </LinearLayout>
 
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_cbv_contacts_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cbv_social_contacts"
+                    android:textAppearance="@style/text_style_2"/>
+
+                <TextView
+                    android:id="@+id/tv_cbv_contacts_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cbv_social_contacts"
+                    android:textAppearance="@style/text_style_2"/>
             </LinearLayout>
 
             <TextView

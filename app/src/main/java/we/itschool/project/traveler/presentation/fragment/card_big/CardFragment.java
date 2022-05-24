@@ -94,6 +94,7 @@ public class CardFragment extends Fragment {
                 view.getContext().getPackageName()
         );
 
+        ((ImageView) view.findViewById(R.id.iv_main_image_big_card)).setMaxHeight(AppStart.getInstance().getDisplayHeight()/2);
         Picasso.with(this.getContext())
                 .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD+card.get_id())
                 .resize(
@@ -102,6 +103,7 @@ public class CardFragment extends Fragment {
                 ).into(
                         ((ImageView) view.findViewById(R.id.iv_main_image_big_card))
                 );
+
         Picasso.with(this.getContext())
                 .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD+card.getCardInfo().getUser().get_id())
                 .into(
@@ -118,6 +120,13 @@ public class CardFragment extends Fragment {
                         card.getCardInfo()
                                 .getUser().getUserInfo().getSecondName()
                 );
+        //code for social contacts
+        ((TextView) view.findViewById(R.id.tv_cbv_contacts_field))
+                .setText(
+                        card.getCardInfo()
+                                .getUser().getUserInfo().getSocialContacts()
+                );
+
         ((TextView) view.findViewById(R.id.tv_name_of_city))
                 .setText(card.getCardInfo().getCity());
         ((TextView) view.findViewById(R.id.tv_description_long))
