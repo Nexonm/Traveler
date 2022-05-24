@@ -1,11 +1,16 @@
 package we.itschool.project.traveler.presentation.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Display;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -21,25 +26,31 @@ public class LoginActivity extends AppCompatActivity {
     public static final String KEY_PREF_USER_EMAIL = "UserEmail";
     public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ((ImageView) findViewById(R.id.iv_login_icon)).setImageDrawable(getResources().getDrawable(R.drawable.icon_app_house));
+
         //set display params for future usage
         setDisplayData();
-
-        if (userLogged()) {
-            AppStart.loginUC.login(userDataFromSPEmail(), userDataFromSPPass());
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            //close activity in case we don't need it more
-            closeActivity();
-        } else {
-            startLogInFragment();
-        }
-
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            //Do something after 2000ms
+            ((ProgressBar) findViewById(R.id.progressBar)).setVisibility(View.INVISIBLE);
+            if (userLogged()) {
+                AppStart.loginUC.login(userDataFromSPEmail(), userDataFromSPPass());
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                //close activity in case we don't need it more
+                closeActivity();
+            } else {
+                startLogInFragment();
+            }
+        }, ((int)(Math.random()*2001)+1500));
     }
 
     private void closeActivity() {
