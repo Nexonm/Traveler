@@ -22,7 +22,7 @@
         android:fitsSystemWindows="true"
         app:itemTextColor="@color/white"
         android:background="@drawable/img_rectangle_2"
-        app:itemVerticalPadding="15dp"
+        app:itemVerticalPadding="25dp"
         app:itemTextAppearance="@style/text_style_2"
         app:itemIconSize="40sp"
         app:itemIconPadding="15dp"
