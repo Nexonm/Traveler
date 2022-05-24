@@ -94,13 +94,15 @@ public class CardFragment extends Fragment {
                 view.getContext().getPackageName()
         );
 
-        ((ImageView) view.findViewById(R.id.iv_main_image_big_card)).setMaxHeight(AppStart.getInstance().getDisplayHeight()/2);
+//        ((ImageView) view.findViewById(R.id.iv_main_image_big_card)).setMaxWidth((int)(AppStart.getInstance().getDisplayWidth()*0.7));
+//        ((ImageView) view.findViewById(R.id.iv_main_image_big_card)).setMaxHeight((int)(AppStart.getInstance().getDisplayHeight()*0.5));
         Picasso.with(this.getContext())
                 .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD+card.get_id())
-                .resize(
-                        AppStart.getInstance().getDisplayHeight()/2,
-                        AppStart.getInstance().getDisplayHeight()/2
-                ).into(
+//                .resize(
+//                        AppStart.getInstance().getDisplayHeight()/2,
+//                        AppStart.getInstance().getDisplayHeight()/2
+//                )
+                .into(
                         ((ImageView) view.findViewById(R.id.iv_main_image_big_card))
                 );
 

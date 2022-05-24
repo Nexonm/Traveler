@@ -90,7 +90,7 @@
     <string name="cbv_social_contacts_null">Контакты:</string>
     <string name="cbv_social_contacts">Контакты</string>
     <string name="cbv_text_from_author">текст от автора</string>
-    <string name="cbv_add_to_favourites">Добавить в избранное</string>
+    <string name="cbv_add_to_favourites">В избранное</string>
 
 
     <!-- card list item visitor (cliv) -->
