@@ -33,7 +33,7 @@
                 android:textColorHint="@color/white" />
             <Button
                 android:id="@+id/bt_new_card_upload_photo"
-                android:layout_width="500dp"
+                android:layout_width="530dp"
                 android:layout_height="wrap_content"
                 android:text="@string/cnc_upload"
                 android:textAppearance="@style/text_style_1"
@@ -111,7 +111,7 @@
 
             <Button
                 android:id="@+id/bt_new_card_add_new_card"
-                android:layout_width="500dp"
+                android:layout_width="530dp"
                 android:layout_height="wrap_content"
                 android:text="@string/cnc_btn_add_card"
                 android:textAppearance="@style/text_style_1"
