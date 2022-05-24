@@ -111,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:text="@string/profile_is_male_null"
+                android:text="@string/profile_is_male"
                 android:textAppearance="@style/text_style_2" />
 
         </TableRow>
@@ -134,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:text="@string/profile_date_of_birth_null"
+                android:text="@string/profile_date_of_birth"
                 android:textAppearance="@style/text_style_2" />
         </TableRow>
 

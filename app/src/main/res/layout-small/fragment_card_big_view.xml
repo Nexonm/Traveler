@@ -89,19 +89,23 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_cbv_contacts_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cbv_social_contacts"
-                android:textAppearance="@style/text_style_2"/>
+                <TextView
+                    android:id="@+id/tv_cbv_contacts_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="7dp"
+                    android:text="@string/cbv_social_contacts_null"
+                    android:textAppearance="@style/text_style_2"/>
 
-            <TextView
-                android:id="@+id/tv_cbv_contacts_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cbv_social_contacts"
-                android:textAppearance="@style/text_style_2"/>
+                <TextView
+                    android:id="@+id/tv_cbv_contacts_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/cbv_social_contacts"
+                    android:textAppearance="@style/text_style_2"/>
         </LinearLayout>
 
             <TextView

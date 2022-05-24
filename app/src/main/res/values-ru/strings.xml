@@ -56,8 +56,6 @@
     <string name="profile_second_name">Фамилия</string>
     <string name="profile_phone_number">Телефон</string>
     <string name="profile_email">Почта</string>
-    <string name="profile_is_male_null">Пол</string>
-    <string name="profile_date_of_birth_null">День рождения</string>
     <string name="profile_is_male"><u>Пол</u></string>
     <string name="profile_date_of_birth"><u>День рождения</u></string>
     <string name="profile_contacts">Контакты</string>
@@ -89,7 +87,8 @@
     <string name="cbv_name">Имя</string>
     <string name="cbv_second_name">Фамилия</string>
     <string name="cbv_description_photo">Фотография карточки</string>
-    <string name="cbv_social_contacts">Контакты:</string>
+    <string name="cbv_social_contacts_null">Контакты:</string>
+    <string name="cbv_social_contacts">Контакты</string>
     <string name="cbv_text_from_author">текст от автора</string>
     <string name="cbv_add_to_favourites">Добавить в избранное</string>
 

@@ -56,10 +56,8 @@
     <string name="profile_second_name">Last name</string>
     <string name="profile_phone_number">Phone</string>
     <string name="profile_email">Mail</string>
-    <string name="profile_is_male_null">Gender</string>
-    <string name="profile_date_of_birth_null">Birthday</string>
-    <string name="profile_is_male"><u>Gender</u></string>
-    <string name="profile_date_of_birth"><u>Birthday</u></string>
+    <string name="profile_is_male">Gender</string>
+    <string name="profile_date_of_birth">Birthday</string>
     <string name="profile_contacts">Social contacts</string>
     <string name="profile_description_photo">Your photo</string>
     <string name="profile_btn_update_photo">Update photo</string>
@@ -89,7 +87,8 @@
     <string name="cbv_name">Name</string>
     <string name="cbv_second_name">Last name</string>
     <string name="cbv_description_photo">Card photo</string>
-    <string name="cbv_social_contacts">Contacts:</string>
+    <string name="cbv_social_contacts_null">Contacts:</string>
+    <string name="cbv_social_contacts">Contacts</string>
     <string name="cbv_text_from_author">text from the author</string>
     <string name="cbv_add_to_favourites">Add to favourites</string>
 
