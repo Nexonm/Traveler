@@ -23,6 +23,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import traveler.module.domain.entity.UserEntity;
+import traveler.module.domain.entity.UserInfo;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.presentation.activity.LoginActivity;
@@ -46,7 +48,7 @@ public class RegistrationFragment extends Fragment {
     Spinner spin_gender;
     private String gender;
 
-    public static RegistrationFragment newInstance(){
+    public static RegistrationFragment newInstance() {
         return new RegistrationFragment();
     }
 
@@ -92,7 +94,7 @@ public class RegistrationFragment extends Fragment {
 
         bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
-            if(checkAllData()) {
+            if (checkAllData()) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.popBackStack();
                 fragmentManager.popBackStack();
@@ -147,8 +149,7 @@ public class RegistrationFragment extends Fragment {
             check = false;
             et_birth_date.setHintTextColor(Color.RED);
             et_birth_date.setHint(R.string.reg_title_date_of_birth_hint);
-        }
-        else if (!isValid(et_birth_date.getText().toString())){
+        } else if (!isValid(et_birth_date.getText().toString())) {
             check = false;
             et_birth_date.setHintTextColor(Color.RED);
             et_birth_date.setText("");
@@ -159,26 +160,35 @@ public class RegistrationFragment extends Fragment {
             et_phone.setHintTextColor(Color.RED);
             et_phone.setHint(R.string.reg_title_phone_number);
         }
-        if (gender.equals(getResources().getStringArray(R.array.genders)[0])){
+        if (gender.equals(getResources().getStringArray(R.array.genders)[0])) {
             check = false;
             Toast.makeText(this.getContext(), R.string.reg_genders_error, Toast.LENGTH_LONG).show();
         }
-        if (et_social_cont.getText().toString().length() <= 0){
+        if (et_social_cont.getText().toString().length() <= 0) {
             check = false;
         }
         if (check) {
             //send request to register new user
-            AppStart.personAddNewUC.userAddNew(new String[]{
-                    et_email.getText().toString(),
-                    et_password.getText().toString(),
-                    et_first_name.getText().toString(),
-                    et_second_name.getText().toString(),
-                    et_birth_date.getText().toString(),
-                    et_phone.getText().toString(),
-                    getResources().getStringArray(R.array.genders)[1].equals(gender) ? "true": "false",
-                    et_social_cont.getText().toString()
-
-            });
+            AppStart.uRegUC.regNew(
+                    new UserEntity(
+                            new UserInfo(
+                                    et_first_name.getText().toString() + "",
+                                    et_second_name.getText().toString() + "",
+                                    et_email.getText().toString() + "",
+                                    et_phone.getText().toString() + "",
+                                    et_social_cont.getText().toString() + "",
+                                    "null",
+                                    et_birth_date.getText().toString() + "",
+                                    getResources().getStringArray(R.array.genders)[1].equals(gender),
+                                    "",
+                                    "",
+                                    null,
+                                    null
+                            ),
+                            -1
+                    ),
+                    et_password.getText().toString()
+            );
             savePrefs();
         }
         return check;

@@ -1,67 +1,52 @@
 package we.itschool.project.traveler.app;
 
-import static we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM.API_YANDEX_MAP_KEY;
+import static traveler.module.mapapi.opentripmapapi.APIConfigOTM.API_YANDEX_MAP_KEY;
 
 import android.app.Application;
 
 import com.yandex.mapkit.MapKitFactory;
 
-import java.util.ArrayList;
-
-import we.itschool.project.traveler.data.repositoryImpl.CardArrayListRepositoryImpl;
-import we.itschool.project.traveler.domain.entity.UserEntity;
-import we.itschool.project.traveler.domain.usecases.card.CardAddNewUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardAddOneToMutableListUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardCreateNewUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardDeleteByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardEditByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardGetAllUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardGetAllUserFavoriteCardsUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardGetByIdUseCase;
-import we.itschool.project.traveler.data.repositoryImpl.UserArrayListRepositoryImpl;
-import we.itschool.project.traveler.domain.usecases.card.CardSearchByStrUseCase;
-import we.itschool.project.traveler.domain.usecases.user.UserAddNewCardToFavoriteUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardAddNewFavoriteFromServerUseCase;
-import we.itschool.project.traveler.domain.usecases.user.UserAddNewUseCase;
-import we.itschool.project.traveler.domain.usecases.user.UserAddPhotoToUserUseCase;
-import we.itschool.project.traveler.domain.usecases.user.UserDeleteByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.user.UserEditByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.user.UserGetAllUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardGetAllUserCardsUseCase;
-import we.itschool.project.traveler.domain.usecases.user.UserGetByIdUseCase;
-import we.itschool.project.traveler.domain.usecases.user.UserLoginUseCase;
+import traveler.module.data.data.repositoryImpl.CardRepositoryImpl;
+import traveler.module.data.data.repositoryImpl.UserRepositoryImpl;
+import traveler.module.domain.usecases.card.CardDeleteUseCase;
+import traveler.module.domain.usecases.card.CardGetAllUseCase;
+import traveler.module.domain.usecases.card.CardGetByIdUseCase;
+import traveler.module.domain.usecases.card.CardGetBySearchUseCase;
+import traveler.module.domain.usecases.card.CardUploadUseCase;
+import traveler.module.domain.usecases.user.UserAddCardToFavoritesUseCase;
+import traveler.module.domain.usecases.user.UserAddPhotoUseCase;
+import traveler.module.domain.usecases.user.UserCreateNewCardUseCase;
+import traveler.module.domain.usecases.user.UserGetMainUseCase;
+import traveler.module.domain.usecases.user.UserGetUserCardsUseCase;
+import traveler.module.domain.usecases.user.UserGetUserFavoritesCardsUseCase;
+import traveler.module.domain.usecases.user.UserLoginUserCase;
+import traveler.module.domain.usecases.user.UserRegNewUseCase;
 
 public class AppStart extends Application {
     public static final boolean isLog = true;
 
-    public static CardArrayListRepositoryImpl imp;
+    private static UserRepositoryImpl userRepImpl;
 
-    public static CardGetAllUseCase cardGetAllUC;
-    public static CardGetByIdUseCase cardGetByIdUC;
-    public static CardAddNewUseCase cardAddNewUC;
-    public static CardCreateNewUseCase cardCreateNewUC;
-    public static CardEditByIdUseCase cardEditByIdUC;
-    public static CardDeleteByIdUseCase cardDeleteByIdUC;
-    public static CardGetAllUserCardsUseCase userGetCardsUC;
-    public static CardAddOneToMutableListUseCase addToMListUC;
-    public static CardAddNewFavoriteFromServerUseCase cardAddNewFavCardFromServ;
-    public static CardGetAllUserFavoriteCardsUseCase cardGetUserFavsUC;
-    public static CardSearchByStrUseCase cardSearchByStrUC;
+    public static UserGetMainUseCase uGetMainUserUC;
+    public static UserLoginUserCase uLoginUC;
+    public static UserGetUserCardsUseCase uGetUserCardsUC;
+    public static UserGetUserFavoritesCardsUseCase uGetUserFavsUC;
+    public static UserCreateNewCardUseCase uCreateNewCardUC;
+    public static UserAddCardToFavoritesUseCase uAddCardToFavsUC;
+    public static UserAddPhotoUseCase uAddPhotoUC;
+    public static UserRegNewUseCase uRegUC;
 
-    public static UserArrayListRepositoryImpl imp1;
+    private static CardRepositoryImpl cardRepImpl;
 
-    public static UserGetAllUseCase personGetAllUC;
-    public static UserGetByIdUseCase personGetByIdUC;
-    public static UserAddNewUseCase personAddNewUC;
-    public static UserEditByIdUseCase personEditByIdUC;
-    public static UserDeleteByIdUseCase personDeleteByIdUC;
-    public static UserLoginUseCase loginUC;
-    public static UserAddPhotoToUserUseCase addPhotoUC;
-    public static UserAddNewCardToFavoriteUseCase addNewCardToFavsUC;
+    public static CardGetAllUseCase cGetAllUC;
+    public static CardGetBySearchUseCase cGetBySearchUC;
+    public static CardGetByIdUseCase cGetByIdUC;
+    public static CardDeleteUseCase cDeleteUC;
+    public static CardUploadUseCase cUploadUC;
 
     private static AppStart instance;
 
-    private static UserEntity user;
+//    private static UserEntity user;
 
     private int displayHeight;
     private int displayWidth;
@@ -73,30 +58,27 @@ public class AppStart extends Application {
 
         instance = this;
 
-        imp = new CardArrayListRepositoryImpl();
-        cardGetAllUC = new CardGetAllUseCase(imp);
-        cardGetByIdUC = new CardGetByIdUseCase(imp);
-        cardAddNewUC = new CardAddNewUseCase(imp);
-        cardCreateNewUC = new CardCreateNewUseCase(imp);
-        cardEditByIdUC = new CardEditByIdUseCase(imp);
-        cardDeleteByIdUC = new CardDeleteByIdUseCase(imp);
-        userGetCardsUC = new CardGetAllUserCardsUseCase(imp);
-        addToMListUC = new CardAddOneToMutableListUseCase(imp);
-        cardAddNewFavCardFromServ = new CardAddNewFavoriteFromServerUseCase(imp);
-        cardGetUserFavsUC = new CardGetAllUserFavoriteCardsUseCase(imp);
-        cardSearchByStrUC = new CardSearchByStrUseCase(imp);
+        userRepImpl = new UserRepositoryImpl();
 
-        imp1 = new UserArrayListRepositoryImpl();
-        personGetAllUC = new UserGetAllUseCase(imp1);
-        personGetByIdUC = new UserGetByIdUseCase(imp1);
-        personAddNewUC = new UserAddNewUseCase(imp1);
-        personEditByIdUC = new UserEditByIdUseCase(imp1);
-        personDeleteByIdUC = new UserDeleteByIdUseCase(imp1);
-        loginUC = new UserLoginUseCase(imp1);
-        addPhotoUC = new UserAddPhotoToUserUseCase(imp1);
-        addNewCardToFavsUC = new UserAddNewCardToFavoriteUseCase(imp1);
+        uGetMainUserUC = new UserGetMainUseCase(userRepImpl);
+        uLoginUC = new UserLoginUserCase(userRepImpl);
+        uGetUserCardsUC = new UserGetUserCardsUseCase(userRepImpl);
+        uGetUserFavsUC = new UserGetUserFavoritesCardsUseCase(userRepImpl);
+        uCreateNewCardUC = new UserCreateNewCardUseCase(userRepImpl);
+        uAddCardToFavsUC = new UserAddCardToFavoritesUseCase(userRepImpl);
+        uAddPhotoUC = new UserAddPhotoUseCase(userRepImpl);
+        uRegUC = new UserRegNewUseCase(userRepImpl);
 
-        user = null;
+        cardRepImpl = new CardRepositoryImpl();
+
+        cUploadUC = new CardUploadUseCase(cardRepImpl);
+        cGetAllUC = new CardGetAllUseCase(cardRepImpl);
+        cGetBySearchUC = new CardGetBySearchUseCase(cardRepImpl);
+        cGetByIdUC = new CardGetByIdUseCase(cardRepImpl);
+        cDeleteUC = new CardDeleteUseCase(cardRepImpl);
+        cUploadUC = new CardUploadUseCase(cardRepImpl);
+
+//        user = null;
 
         //set and init mapkit_api before creating view with map
         MapKitFactory.setApiKey(API_YANDEX_MAP_KEY);
@@ -111,16 +93,16 @@ public class AppStart extends Application {
         this.displayWidth = displayWidth;
     }
 
-    public static UserEntity getUser() {
-        return AppStart.user;
-    }
-
-    public static void setUser(UserEntity user) {
-        if (AppStart.user==null)
-        AppStart.user = user;
-        if (AppStart.user.getUserInfo().getUserCards()==null)
-            AppStart.user.getUserInfo().setUserCards(new ArrayList<>());
-    }
+//    public static UserEntity getUser() {
+//        return AppStart.user;
+//    }
+//
+//    public static void setUser(UserEntity user) {
+//        if (AppStart.user==null)
+//        AppStart.user = user;
+//        if (AppStart.user.getUserInfo().getUserCards()==null)
+//            AppStart.user.getUserInfo().setUserCards(new ArrayList<>());
+//    }
 
     public int getDisplayHeight() {
         return displayHeight;

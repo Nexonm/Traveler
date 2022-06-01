@@ -5,24 +5,30 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
+import traveler.module.domain.entity.CardEntity;
+import traveler.module.domain.entity.UserEntity;
+import traveler.module.domain.usecases.user.UserGetMainUseCase;
+import traveler.module.domain.usecases.user.UserGetUserFavoritesCardsUseCase;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.domain.entity.CardEntity;
-import we.itschool.project.traveler.domain.usecases.card.CardAddNewFavoriteFromServerUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardGetAllUserFavoriteCardsUseCase;
 
 public class ViewModelFavorites extends ViewModel {
 
-    private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList;
+    private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList = new MutableLiveData<>();
 
-    private final CardAddNewFavoriteFromServerUseCase addNewUC = AppStart.cardAddNewFavCardFromServ;
-    CardGetAllUserFavoriteCardsUseCase getAllUC = AppStart.cardGetUserFavsUC;
+//    private final CardAddNewFavoriteFromServerUseCase addNewUC = AppStart.cardAddNewFavCardFromServ;
+    private final UserGetUserFavoritesCardsUseCase getAllUC = AppStart.uGetUserFavsUC;
+    private final UserGetMainUseCase getUserUC = AppStart.uGetMainUserUC;
 
     protected MutableLiveData<ArrayList<CardEntity>> getCardList(){
-        cardsLiveDataList = getAllUC.getUserFavCards();
+        cardsLiveDataList.postValue(getAllUC.getUserFavoritesCards(getUserUC.getMainUser().get_id()));
         return cardsLiveDataList;
     }
 
-    protected void addCard(long id){
-        addNewUC.cardAddNewFavsFromServ(id);
+//    protected void addCard(long id){
+//        addNewUC.cardAddNewFavsFromServ(id);
+//    }
+
+    protected UserEntity getUser(){
+        return getUserUC.getMainUser();
     }
 }

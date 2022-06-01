@@ -30,6 +30,13 @@ android {
 }
 
 dependencies {
+    //*****from my project*****
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+    implementation project(path: ':mapapi')
+
+
+    //*****others libs*****
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'

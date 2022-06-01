@@ -1,6 +1,6 @@
 package we.itschool.project.traveler.presentation.fragment.map;
 
-import static we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM.LANGUAGE;
+import static traveler.module.mapapi.opentripmapapi.APIConfigOTM.LANGUAGE;
 import static we.itschool.project.traveler.presentation.fragment.map.MapFragment.cl;
 import static we.itschool.project.traveler.presentation.fragment.map.MapFragment.tx_town;
 

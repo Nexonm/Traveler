@@ -18,8 +18,8 @@ import com.squareup.picasso.Picasso;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.api.travelerapi.APIConfigTraveler;
-import we.itschool.project.traveler.domain.entity.CardEntity;
+import traveler.module.data.data.travelerapi.APIConfigTraveler;
+import traveler.module.domain.entity.CardEntity;
 
 public class CardFragment extends Fragment {
 
@@ -136,7 +136,7 @@ public class CardFragment extends Fragment {
 
         bt_add_favs = view.findViewById(R.id.bt_cbv_add_to_favourites);
         bt_add_favs.setOnClickListener(v -> {
-            AppStart.addNewCardToFavsUC.userAddNewCardToFavorite(card.get_id());
+            AppStart.uAddCardToFavsUC.addCardToFavorites(card.get_id());
         });
     }
 }

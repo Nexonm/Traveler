@@ -19,7 +19,7 @@ import java.util.Objects;
 
 import retrofit2.Response;
 import we.itschool.project.traveler.R;
-import we.itschool.project.traveler.data.api.opentripmapapi.ResponseOTMInf.ResponseOTMInfo;
+import traveler.module.mapapi.opentripmapapi.ResponseOTMInf.ResponseOTMInfo;
 
 public class PlaceInfoDialogFragment extends DialogFragment {
     private Response<ResponseOTMInfo> response;

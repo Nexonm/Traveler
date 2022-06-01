@@ -5,31 +5,31 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
+import traveler.module.domain.entity.CardEntity;
+import traveler.module.domain.usecases.card.CardGetAllUseCase;
+import traveler.module.domain.usecases.card.CardGetBySearchUseCase;
+import traveler.module.domain.usecases.card.CardUploadUseCase;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.domain.entity.CardEntity;
-import we.itschool.project.traveler.domain.usecases.card.CardAddNewUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardGetAllUseCase;
-import we.itschool.project.traveler.domain.usecases.card.CardSearchByStrUseCase;
 
 public class CardListViewModel extends ViewModel {
 
-    private final CardAddNewUseCase addNewCard = AppStart.cardAddNewUC;
-    private final CardGetAllUseCase getAll = AppStart.cardGetAllUC;
-    private final CardSearchByStrUseCase searchCards = AppStart.cardSearchByStrUC;
+    private final CardUploadUseCase addNewCard = AppStart.cUploadUC;
+    private final CardGetAllUseCase getAll = AppStart.cGetAllUC;
+    private final CardGetBySearchUseCase searchCards = AppStart.cGetBySearchUC;
 
-    private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList;
+    private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList = new MutableLiveData<>();
 
     protected MutableLiveData<ArrayList<CardEntity>> getCardList(){
-        cardsLiveDataList = getAll.cardGetAll();
+        cardsLiveDataList.postValue(getAll.getAll());
         return cardsLiveDataList;
     }
 
-    protected void addNewCard(boolean reset){
-        addNewCard.cardAddNew(reset);
+    protected void addNewCard(){
+        addNewCard.upload();
     }
 
     protected void searchCards(String str){
-        searchCards.cardSearchByStr(str);
+        searchCards.getBySearch(str);
     }
 
 }

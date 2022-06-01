@@ -3,7 +3,7 @@ package we.itschool.project.traveler.presentation.fragment.card_list;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import we.itschool.project.traveler.domain.entity.CardEntity;
+import traveler.module.domain.entity.CardEntity;
 
 public class DiffCallback extends DiffUtil.ItemCallback<CardEntity> {
     @Override

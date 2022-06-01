@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             //Do something after 2000ms
             ((ProgressBar) findViewById(R.id.progressBar)).setVisibility(View.INVISIBLE);
             if (userLogged()) {
-                AppStart.loginUC.login(userDataFromSPEmail(), userDataFromSPPass());
+                AppStart.uLoginUC.login(userDataFromSPPass(), userDataFromSPEmail());
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

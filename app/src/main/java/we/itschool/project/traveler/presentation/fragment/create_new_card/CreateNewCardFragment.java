@@ -31,9 +31,10 @@ import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 
+import traveler.module.domain.entity.CardEntity;
+import traveler.module.domain.entity.CardInfo;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.datamodel.CardModelPOJO;
 import we.itschool.project.traveler.databinding.FragmentCreateNewCardBinding;
 import we.itschool.project.traveler.presentation.fragment.my_cards.MyCardsFragment;
 
@@ -161,15 +162,19 @@ public class CreateNewCardFragment extends Fragment {
             Toast.makeText(context, R.string.cnc_photo_addition_error, Toast.LENGTH_LONG).show();
         }
         if (check) {
-                AppStart.cardCreateNewUC.cardCreateNew(
-                        new CardModelPOJO(
-                                et_city.getText().toString() + "",
-                                et_country.getText().toString() + "",
-                                et_full_desc.getText().toString() + "",
-                                et_short_desc.getText().toString() + "",
-                                et_address.getText().toString() + "",
-                                bufString,
-                                et_hashtags.getText().toString()
+                AppStart.uCreateNewCardUC.createNewCard(
+                        new CardEntity(
+                                new CardInfo(
+                                        null,
+                                        et_city.getText().toString() + "",
+                                        et_country.getText().toString() + "",
+                                        et_full_desc.getText().toString() + "",
+                                        et_short_desc.getText().toString() + "",
+                                        et_address.getText().toString() + "",
+                                        bufString,
+                                        et_hashtags.getText().toString()
+                                ),
+                                -1
                         )
                 );
             return true;

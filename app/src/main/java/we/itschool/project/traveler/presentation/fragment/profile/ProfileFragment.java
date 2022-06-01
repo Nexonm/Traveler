@@ -32,7 +32,7 @@ import com.squareup.picasso.Picasso;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.data.api.travelerapi.APIConfigTraveler;
+import traveler.module.data.data.travelerapi.APIConfigTraveler;
 import we.itschool.project.traveler.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -74,23 +74,23 @@ public class ProfileFragment extends Fragment {
 
     private void initView(View view) {
         tv_first_name = view.findViewById(R.id.tv_profile_first_name);
-        tv_first_name.setText(AppStart.getUser().getUserInfo().getFirstName());
+        tv_first_name.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getFirstName());
         tv_second_name = view.findViewById(R.id.tv_profile_second_name);
-        tv_second_name.setText(AppStart.getUser().getUserInfo().getSecondName());
+        tv_second_name.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getSecondName());
         tv_phone = view.findViewById(R.id.tv_profile_phone);
-        tv_phone.setText(AppStart.getUser().getUserInfo().getPhoneNumber());
+        tv_phone.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getPhoneNumber());
         tv_email = view.findViewById(R.id.tv_profile_email);
-        tv_email.setText(AppStart.getUser().getUserInfo().getEmail());
+        tv_email.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getEmail());
         tv_is_male = view.findViewById(R.id.tv_profile_is_male);
-        tv_is_male.setText(AppStart.getUser().getUserInfo().isMale() ? "Мужской" : "Женский");
+        tv_is_male.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().isMale() ? "Мужской" : "Женский");
         tv_birthday = view.findViewById(R.id.tv_profile_birthday);
-        tv_birthday.setText(AppStart.getUser().getUserInfo().getDateOfBirth());
+        tv_birthday.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getDateOfBirth());
         tv_contacts = view.findViewById(R.id.tv_profile_contacts);
-        tv_contacts.setText(AppStart.getUser().getUserInfo().getSocialContacts());
+        tv_contacts.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getSocialContacts());
 
         iv_avatar = view.findViewById(R.id.iv_profile_avatar);
         Picasso.with(context)
-                .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD + AppStart.getUser().get_id())
+                .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD + AppStart.uGetMainUserUC.getMainUser().get_id())
                 .into(iv_avatar);
 
         bt_update_photo = view.findViewById(R.id.bt_profile_update_photo);
@@ -148,7 +148,7 @@ public class ProfileFragment extends Fragment {
                                     .load(imageUri)
                                     .into(iv_avatar);
                             //send data to server
-                            AppStart.addPhotoUC.addPhotoToUser(bufString);
+                            AppStart.uAddPhotoUC.addPhoto(bufString);
                         } catch (NullPointerException e) {
                             Toast.makeText(context, "Видимо вы прекратили выбор фото, не забудьте выбрать:)", Toast.LENGTH_LONG).show();
                         }

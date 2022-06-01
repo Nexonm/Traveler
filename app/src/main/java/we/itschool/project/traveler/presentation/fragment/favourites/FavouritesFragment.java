@@ -19,10 +19,9 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import traveler.module.domain.entity.CardEntity;
 import we.itschool.project.traveler.R;
-import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.FragmentFavouritesBinding;
-import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
 import we.itschool.project.traveler.presentation.fragment.card_list.Adapter;
 import we.itschool.project.traveler.presentation.fragment.card_list.DiffCallback;
@@ -86,21 +85,22 @@ public class FavouritesFragment extends Fragment {
     private void addData(){
         AsyncTask.execute(()->{
 
-            try {
-                ArrayList<Long> list = new ArrayList<>(AppStart.getUser().getUserInfo().getUserFavoritesCards());
-                int size = list.size();
-                int start = 0;
-                while (start < size && going) {
-                    viewModel.addCard(list.get(start));
-                    if (start % 2 == 0)
-                        adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
-                    Thread.sleep(100);
-                    start++;
-                }
-                adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
+            adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
+//            try {
+//                ArrayList<Long> list = new ArrayList<>(viewModel.getUser().getUserInfo().getUserFavoritesCards());
+//                int size = list.size();
+//                int start = 0;
+//                while (start < size && going) {
+//                    viewModel.addCard(list.get(start));
+//                    if (start % 2 == 0)
+//                        adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
+//                    Thread.sleep(100);
+//                    start++;
+//                }
+//                adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
+//            }catch (InterruptedException e){
+//                e.printStackTrace();
+//            }
 
         });
     }

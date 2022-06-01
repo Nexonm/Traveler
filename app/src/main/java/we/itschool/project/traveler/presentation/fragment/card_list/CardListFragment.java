@@ -22,7 +22,7 @@ import java.util.Objects;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.databinding.FragmentMainBinding;
-import we.itschool.project.traveler.domain.entity.CardEntity;
+import traveler.module.domain.entity.CardEntity;
 import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
 
 public class CardListFragment extends Fragment {
@@ -163,7 +163,7 @@ public class CardListFragment extends Fragment {
             while (num < 20 && goingUsual)
                 try {
 //                        Log.v("OkHttpClient nik", "запрос отправляю " + num+", going="+going);
-                    viewModel.addNewCard(reset);
+                    viewModel.addNewCard();
                     reset = false;
                     num++;
 //                        Log.v("OkHttpClient nik", "ухожу спать" + num+", going="+going);

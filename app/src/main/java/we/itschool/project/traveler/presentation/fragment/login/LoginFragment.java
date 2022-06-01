@@ -61,7 +61,7 @@ public class LoginFragment extends Fragment {
         bt_login = view.findViewById(R.id.bt_login_sign_in);
         bt_login.setOnClickListener(v -> {
             if (checkLoginData()) {
-                AppStart.loginUC.login(et_email.getText().toString(), et_password.getText().toString());
+                AppStart.uLoginUC.login(et_password.getText().toString(), et_email.getText().toString());
                 savePrefs();
                 Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
                 startActivity(intent);
@@ -123,6 +123,7 @@ public class LoginFragment extends Fragment {
     private void closeActivity() {
         this.requireActivity().finish();
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

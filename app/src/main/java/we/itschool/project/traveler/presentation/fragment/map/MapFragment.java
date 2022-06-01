@@ -1,16 +1,15 @@
 package we.itschool.project.traveler.presentation.fragment.map;
 
 import static com.yandex.mapkit.Animation.Type.SMOOTH;
-import static we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM.ALLOWED_KINDS_OF_PLACES;
-import static we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM.API_OTM_KEY;
-import static we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM.CENSORED_KINDS_OF_PLACES;
-import static we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM.KINDS_OF_PLACES;
-import static we.itschool.project.traveler.data.api.opentripmapapi.APIConfigOTM.LANGUAGE;
+import static traveler.module.mapapi.opentripmapapi.APIConfigOTM.ALLOWED_KINDS_OF_PLACES;
+import static traveler.module.mapapi.opentripmapapi.APIConfigOTM.API_OTM_KEY;
+import static traveler.module.mapapi.opentripmapapi.APIConfigOTM.CENSORED_KINDS_OF_PLACES;
+import static traveler.module.mapapi.opentripmapapi.APIConfigOTM.KINDS_OF_PLACES;
+import static traveler.module.mapapi.opentripmapapi.APIConfigOTM.LANGUAGE;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -72,12 +71,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import we.itschool.project.traveler.R;
-import we.itschool.project.traveler.data.api.opentripmapapi.ResponseOTM.Feature;
-import we.itschool.project.traveler.data.api.opentripmapapi.ResponseOTM.ResponseOTM;
-import we.itschool.project.traveler.data.api.opentripmapapi.ResponseOTMInf.ResponseOTMInfo;
-import we.itschool.project.traveler.data.api.opentripmapapi.service.APIServiceOTMConstructor;
-import we.itschool.project.traveler.data.api.opentripmapapi.service.APIServiceOTMGetInfoOfPlaces;
-import we.itschool.project.traveler.data.api.opentripmapapi.service.APIServiceOTMGetPlaces;
+import traveler.module.mapapi.opentripmapapi.ResponseOTM.Feature;
+import traveler.module.mapapi.opentripmapapi.ResponseOTM.ResponseOTM;
+import traveler.module.mapapi.opentripmapapi.ResponseOTMInf.ResponseOTMInfo;
+import traveler.module.mapapi.opentripmapapi.service.APIServiceOTMConstructor;
+import traveler.module.mapapi.opentripmapapi.service.APIServiceOTMGetInfoOfPlaces;
+import traveler.module.mapapi.opentripmapapi.service.APIServiceOTMGetPlaces;
 
 public class MapFragment extends Fragment implements UserLocationObjectListener, CameraListener {
 

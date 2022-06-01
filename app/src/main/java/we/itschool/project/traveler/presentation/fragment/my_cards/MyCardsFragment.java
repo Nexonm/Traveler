@@ -17,10 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import traveler.module.domain.entity.CardEntity;
 import we.itschool.project.traveler.R;
-import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.databinding.FragmentMyCardsBinding;
-import we.itschool.project.traveler.domain.entity.CardEntity;
 import we.itschool.project.traveler.presentation.fragment.card_list.Adapter;
 import we.itschool.project.traveler.presentation.fragment.card_list.DiffCallback;
 import we.itschool.project.traveler.presentation.fragment.create_new_card.CreateNewCardFragment;
@@ -59,7 +58,7 @@ public class MyCardsFragment extends Fragment {
         initAdapter();
         initViewModel();
         initView(view);
-        addData();
+//        addData();
     }
 
     private void initAdapter() {
@@ -71,8 +70,8 @@ public class MyCardsFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(ViewModelMyCards.class);
 
         //add cards to mutable data for better representation
-        for (CardEntity card : AppStart.getUser().getUserInfo().getUserCards())
-            viewModel.addOne(card);
+//        for (CardEntity card : AppStart.getUser().getUserInfo().getUserCards())
+//            viewModel.addOne(card);
 
         viewModel.getCardList().observe(
                 getViewLifecycleOwner(),
@@ -107,9 +106,9 @@ public class MyCardsFragment extends Fragment {
         binding = null;
     }
 
-    private void addData(){
-        AppStart.getUser().getUserInfo().getUserCards();
-    }
+//    private void addData(){
+//        AppStart.getUser().getUserInfo().getUserCards();
+//    }
 
     @Override
     public void onResume() {
