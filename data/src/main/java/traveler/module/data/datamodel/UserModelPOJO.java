@@ -1,4 +1,4 @@
-package traveler.module.data.data.datamodel;
+package traveler.module.data.datamodel;
 
 public class UserModelPOJO {
     private String firstName;

@@ -1,4 +1,4 @@
-package traveler.module.data.data.travelerapi.mapper;
+package traveler.module.data.travelerapi.mapper;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -6,9 +6,9 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-import traveler.module.data.data.travelerapi.entityserv.CardServ;
-import traveler.module.data.data.travelerapi.entityserv.UserServ;
-import traveler.module.data.data.datamodel.UserModelPOJO;
+import traveler.module.data.travelerapi.entityserv.CardServ;
+import traveler.module.data.travelerapi.entityserv.UserServ;
+import traveler.module.data.datamodel.UserModelPOJO;
 import traveler.module.domain.entity.CardEntity;
 import traveler.module.domain.entity.UserEntity;
 import traveler.module.domain.entity.UserInfo;

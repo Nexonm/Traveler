@@ -1,10 +1,10 @@
-package traveler.module.data.data.travelerapi.mapper;
+package traveler.module.data.travelerapi.mapper;
 
 
 import com.google.gson.Gson;
 
-import traveler.module.data.data.travelerapi.entityserv.CardServ;
-import traveler.module.data.data.datamodel.CardModelPOJO;
+import traveler.module.data.travelerapi.entityserv.CardServ;
+import traveler.module.data.datamodel.CardModelPOJO;
 import traveler.module.domain.entity.CardEntity;
 import traveler.module.domain.entity.CardInfo;
 

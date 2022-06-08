@@ -1,4 +1,4 @@
-package traveler.module.data.data.travelerapi;
+package traveler.module.data.travelerapi;
 
 public class APIConfigTraveler {
     //main server ip, written by Traveler developers team

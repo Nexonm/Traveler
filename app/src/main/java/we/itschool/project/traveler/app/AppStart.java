@@ -6,8 +6,8 @@ import android.app.Application;
 
 import com.yandex.mapkit.MapKitFactory;
 
-import traveler.module.data.data.repositoryImpl.CardRepositoryImpl;
-import traveler.module.data.data.repositoryImpl.UserRepositoryImpl;
+import traveler.module.data.repositoryImpl.CardRepositoryImpl;
+import traveler.module.data.repositoryImpl.UserRepositoryImpl;
 import traveler.module.domain.usecases.card.CardDeleteUseCase;
 import traveler.module.domain.usecases.card.CardGetAllUseCase;
 import traveler.module.domain.usecases.card.CardGetByIdUseCase;

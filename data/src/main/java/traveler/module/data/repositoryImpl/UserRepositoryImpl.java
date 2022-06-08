@@ -1,4 +1,4 @@
-package traveler.module.data.data.repositoryImpl;
+package traveler.module.data.repositoryImpl;
 
 import android.util.Log;
 
@@ -17,14 +17,14 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import traveler.module.data.data.travelerapi.entityserv.CardServ;
-import traveler.module.data.data.travelerapi.entityserv.UserServ;
-import traveler.module.data.data.travelerapi.mapper.CardEntityMapper;
-import traveler.module.data.data.travelerapi.mapper.UserEntityMapper;
-import traveler.module.data.data.travelerapi.service.APIServiceCard;
-import traveler.module.data.data.travelerapi.service.APIServiceStorage;
-import traveler.module.data.data.travelerapi.service.APIServiceTravelerConstructor;
-import traveler.module.data.data.travelerapi.service.APIServiceUser;
+import traveler.module.data.travelerapi.entityserv.CardServ;
+import traveler.module.data.travelerapi.entityserv.UserServ;
+import traveler.module.data.travelerapi.mapper.CardEntityMapper;
+import traveler.module.data.travelerapi.mapper.UserEntityMapper;
+import traveler.module.data.travelerapi.service.APIServiceCard;
+import traveler.module.data.travelerapi.service.APIServiceStorage;
+import traveler.module.data.travelerapi.service.APIServiceTravelerConstructor;
+import traveler.module.data.travelerapi.service.APIServiceUser;
 import traveler.module.domain.entity.CardEntity;
 import traveler.module.domain.entity.UserEntity;
 import traveler.module.domain.repository.UserDomainRepository;

@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import traveler.module.data.data.travelerapi.APIConfigTraveler;
+import traveler.module.data.travelerapi.APIConfigTraveler;
 import traveler.module.domain.entity.CardEntity;
 
 public class CardFragment extends Fragment {

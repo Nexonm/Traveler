@@ -1,4 +1,4 @@
-package traveler.module.data.data.travelerapi.service;
+package traveler.module.data.travelerapi.service;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

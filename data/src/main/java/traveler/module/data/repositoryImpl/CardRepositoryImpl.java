@@ -1,4 +1,4 @@
-package traveler.module.data.data.repositoryImpl;
+package traveler.module.data.repositoryImpl;
 
 import android.util.Log;
 
@@ -12,10 +12,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import traveler.module.domain.entity.CardEntity;
 import traveler.module.domain.repository.CardDomainRepository;
-import traveler.module.data.data.travelerapi.entityserv.CardServ;
-import traveler.module.data.data.travelerapi.mapper.CardEntityMapper;
-import traveler.module.data.data.travelerapi.service.APIServiceCard;
-import traveler.module.data.data.travelerapi.service.APIServiceTravelerConstructor;
+import traveler.module.data.travelerapi.entityserv.CardServ;
+import traveler.module.data.travelerapi.mapper.CardEntityMapper;
+import traveler.module.data.travelerapi.service.APIServiceCard;
+import traveler.module.data.travelerapi.service.APIServiceTravelerConstructor;
 
 public class CardRepositoryImpl implements CardDomainRepository {
 

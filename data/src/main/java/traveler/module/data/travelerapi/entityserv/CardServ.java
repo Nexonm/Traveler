@@ -1,4 +1,4 @@
-package traveler.module.data.data.travelerapi.entityserv;
+package traveler.module.data.travelerapi.entityserv;
 
 
 import com.google.gson.annotations.Expose;

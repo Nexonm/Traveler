@@ -1,4 +1,4 @@
-package traveler.module.data.data.travelerapi.service;
+package traveler.module.data.travelerapi.service;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
