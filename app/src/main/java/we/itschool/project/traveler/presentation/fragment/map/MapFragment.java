@@ -368,7 +368,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
         return checkLocation();
     }
 
-    //check location???
+    //check location
     public boolean checkLocation() {
         LocationManager locationManager = (LocationManager) mf.requireActivity().getSystemService(Context.LOCATION_SERVICE);
         Log.e("checkLocation", "" + locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
@@ -395,15 +395,19 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
     }
 
     public boolean checkConnection() {
-        Log.e("checkConnection", hasConnection() + "");
+//        Log.e("checkConnection", hasConnection() + "");
         if (hasConnection()) {
             return true;
         } else {
             final AlertDialog.Builder builder = new AlertDialog.Builder(context);
             final boolean[] result = new boolean[1];
             builder.setCancelable(false)
-                    .setMessage("Влючи инет по-братски, а")
-                    .setPositiveButton("Без б", (dialog, id) -> {
+                    .setMessage(R.string.login_inet_request)
+                    .setNegativeButton(R.string.login_inet_request_quit, (dialog, id) ->{
+                        //exit from app, but it doesn't finish it running
+                        this.getActivity().finishAffinity();
+                    })
+                    .setPositiveButton(R.string.login_inet_request_turn_up, (dialog, id) -> {
                         startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
                         checkConnection();
                         result[0] = true;

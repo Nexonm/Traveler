@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
 
             builder.setCancelable(false)
-                    .setMessage("Для работы приложения нужно подключение к интернету!")
+                    .setMessage(R.string.login_inet_request)
                     .setNegativeButton("Выйти", (dialog, id) ->{
                         //exit from app, but it doesn't finish it running
                         finishAffinity();
