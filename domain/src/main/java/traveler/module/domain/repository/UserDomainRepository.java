@@ -19,7 +19,7 @@ public interface UserDomainRepository {
      * @param pass user password
      * @param login user login
      */
-    void login(String pass, String login);
+    String login(String pass, String login);
 
     /**
      * Gets all cards, that user had created. Uses id to find user.

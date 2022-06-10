@@ -25,6 +25,7 @@ import traveler.module.data.travelerapi.service.APIServiceCard;
 import traveler.module.data.travelerapi.service.APIServiceStorage;
 import traveler.module.data.travelerapi.service.APIServiceTravelerConstructor;
 import traveler.module.data.travelerapi.service.APIServiceUser;
+import traveler.module.data.usecasesimplementation.LoginUCI;
 import traveler.module.domain.entity.CardEntity;
 import traveler.module.domain.entity.UserEntity;
 import traveler.module.domain.repository.UserDomainRepository;
@@ -44,38 +45,18 @@ public class UserRepositoryImpl implements UserDomainRepository {
         return userMain;
     }
 
+    public static UserEntity getUserMain(){
+        return userMain;
+    }
+
+    public static void setUserMain(UserEntity user){
+        userMain = user;
+    }
+
     @Override
-    public void login(String pass, String login) {
-        APIServiceUser service = APIServiceTravelerConstructor.CreateService(APIServiceUser.class);
-        Call<String> call = service.loginUser(login, pass);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.body() != null) {
-                    if ("Пароль не соответствует, вход невозможен".equals(response.body().toString())) {
-                        userMain = null;
-                    } else if ("Пользователя не существует".equals(response.body().toString())) {
-                        userMain = null;
-                    } else {
-                        userMain = UserEntityMapper.toUserEntityFormUserServ(
-                                (new Gson()).fromJson(response.body(), UserServ.class),
-                                true
-                        );
-                        //TODO add user cards to mutable data
-
-                        //another action
-                        for (long id : userMain.getUserInfo().getUserFavoritesCards()) {
-                            uploadCardToFavs(id);
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                userMain = null;
-            }
-        });
+    public String login(String pass, String login) {
+        LoginUCI loginUCI = new LoginUCI();
+        return loginUCI.login(pass, login);
     }
 
     @Override
