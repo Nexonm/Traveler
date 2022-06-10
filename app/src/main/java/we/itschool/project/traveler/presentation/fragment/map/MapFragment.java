@@ -188,7 +188,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
             if (checkLocationAccess() && checkConnection()) {
                 FindUser();
             } else {
-                HandlerCheckAllAccess.postDelayed(this, 9000);
+                HandlerCheckAllAccess.postDelayed(this, 7000);
             }
         }
     };
