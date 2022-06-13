@@ -8,6 +8,7 @@ import com.yandex.mapkit.MapKitFactory;
 
 import traveler.module.data.repositoryImpl.CardRepositoryImpl;
 import traveler.module.data.repositoryImpl.UserRepositoryImpl;
+import traveler.module.data.repositoryImpl.UserRepositoryImplFactory;
 import traveler.module.domain.usecases.card.CardDeleteUseCase;
 import traveler.module.domain.usecases.card.CardGetAllUseCase;
 import traveler.module.domain.usecases.card.CardGetByIdUseCase;
@@ -58,7 +59,7 @@ public class AppStart extends Application {
 
         instance = this;
 
-        userRepImpl = new UserRepositoryImpl();
+        userRepImpl = UserRepositoryImplFactory.createUserRepositoryImpl();
 
         uGetMainUserUC = new UserGetMainUseCase(userRepImpl);
         uLoginUC = new UserLoginUserCase(userRepImpl);

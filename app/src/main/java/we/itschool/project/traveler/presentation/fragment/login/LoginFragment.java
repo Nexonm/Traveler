@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,8 @@ public class LoginFragment extends Fragment {
     EditText et_password;
     Button bt_login;
     Button bt_to_reg;
+
+    ProgressBar pb_login;
 
     private static String defaultFlag = "waiting";
     private String flag = defaultFlag;
@@ -66,37 +69,44 @@ public class LoginFragment extends Fragment {
         bt_login = view.findViewById(R.id.bt_login_sign_in);
         bt_login.setOnClickListener(v -> {
             if (checkLoginData()) {
-                //TODO make circle progress bar while send data
-                //try same trick with handler
                 //send data
                 logUserIn();
-                while (defaultFlag.equals(flag));
+
+                pb_login.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(() -> {
+                    while (defaultFlag.equals(flag)) ;
+                    pb_login.setVisibility(View.INVISIBLE);
+                }, 1500);
+
+                while (defaultFlag.equals(flag)) ;
                 //all went successfully and user logged in
-                if (UserNetAnswers.userSuccessLogin.equals(flag)){
+                if (UserNetAnswers.userSuccessLogin.equals(flag)) {
                     savePrefs();
                     startMainActivity();
-                }else{
-                    //TODO find what is the mistake and somehow fix it
-                    //make errors to text Views
-                    Toast.makeText(this.getContext(), "some error in login", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
+                } else {
+                    //TODO make string resources for those errors
+                    if (UserNetAnswers.userIncorrectPasswordException.equals(flag)) {
+                        Toast.makeText(this.getContext(), "Incorrect password", Toast.LENGTH_SHORT).show();
+                    } else if (UserNetAnswers.userOtherError.equals(flag)) {
+                        Toast.makeText(this.getContext(), "some error in login, please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }
         });
         bt_to_reg = view.findViewById(R.id.bt_login_register);
         bt_to_reg.setOnClickListener(v -> startRegistrationFragment());
+
+        pb_login = view.findViewById(R.id.pb_login);
     }
 
+
     private void logUserIn() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Log.v("UserLOGIN", flag = AppStart.uLoginUC.login(
-                        et_password.getText().toString(), et_email.getText().toString())
-                );
-            }
-        }).start();
+        new Thread(() -> flag = AppStart.uLoginUC.login(
+                et_email.getText().toString(), et_password.getText().toString())
+        ).start();
     }
 
     private boolean checkLoginData() {
@@ -139,7 +149,7 @@ public class LoginFragment extends Fragment {
                 .commit();
     }
 
-    private void startMainActivity(){
+    private void startMainActivity() {
         Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
         startActivity(intent);
         closeActivity();

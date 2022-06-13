@@ -10,7 +10,7 @@ public class UserLoginUserCase {
         this.repository = repository;
     }
 
-    public String login(String pass, String login){
-        return this.repository.login(pass, login);
+    public String login(String login, String pass){
+        return this.repository.login(login, pass);
     }
 }

@@ -14,6 +14,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
             builder.setCancelable(false)
                     .setMessage(R.string.login_inet_request)
-                    .setNegativeButton("Выйти", (dialog, id) ->{
+                    .setNegativeButton("Выйти", (dialog, id) -> {
                         //exit from app, but it doesn't finish it running
                         finishAffinity();
                     })
@@ -64,7 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
                         try {
                             Thread.sleep(2000);
-                        }catch (InterruptedException ignored){}
+                        } catch (InterruptedException ignored) {
+                        }
                         checkConnection();
                     });
 
@@ -79,11 +81,12 @@ public class LoginActivity extends AppCompatActivity {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
-    private void mainJob(){
+    private void mainJob() {
         //it's supposed that inet connection was provided
         int delayed = 500;
-        if (userLogged()){
-            logUserIn(userDataFromSPPass(), userDataFromSPEmail());
+        if (userLogged()) {
+            Log.v("OkHttpClient", "Send request to UC from LoginActivity");
+            logUserIn(userDataFromSPEmail(), userDataFromSPPass());
             AppStart.cUploadUC.upload();
             delayed = 1500;
         }
@@ -94,16 +97,25 @@ public class LoginActivity extends AppCompatActivity {
             ((ProgressBar) findViewById(R.id.progressBar)).setVisibility(View.INVISIBLE);
 
             if (userLogged()) {
+                Log.v("OkHttpClient", "User is logged in phone LoginActivity");
+                Log.v("OkHttpClient", "Waiting till answer comes LoginActivity");
                 //already sent data and wait for data to come in
                 while (defaultFlag.equals(flag)) ;//wait while request is going
 
+                Log.v("OkHttpClient", "Flag is:" + flag + ", LoginActivity");
                 //in case login is successful we start real app
                 if (UserNetAnswers.userSuccessLogin.equals(flag)) {
                     startMainActivity();
                 } else {
+                    //TODO make string resources for this
+                    if (UserNetAnswers.userOtherError.equals(flag)) {
+                        Toast.makeText(getBaseContext(), "some error in login, please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), flag, Toast.LENGTH_LONG).show();
+                    }
                     startLogInFragment();
                 }
             } else {
+                Log.v("OkHttpClient", "somehow user is not logged LoginActivity");
                 startLogInFragment();
             }
         }, (int) (Math.random() * 1001) + delayed);
@@ -111,19 +123,16 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Method works with internet, so new Thread is made and started.
-     * @param pass user password
+     *
+     * @param pass  user password
      * @param email user login=email
      */
-    private void logUserIn(String pass, String email) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                flag = AppStart.uLoginUC.login(pass, email);
-            }
-        }).start();
+    private void logUserIn(String email, String pass) {
+        new Thread(() -> flag = AppStart.uLoginUC.login(email, pass)).start();
     }
 
     //TODO make this method in data module
+
     /**
      * Check if user registered on this gadget. If no user needs to log in or register.
      * All app has just one SharedPreferences file with data and keys are stored as fields.
@@ -139,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //TODO make this method in data module
+
     /**
      * Gets user's email from SharedPreferences
      *
@@ -150,6 +160,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //TODO make this method in data module
+
     /**
      * Gets user's password from SharedPreferences
      *
