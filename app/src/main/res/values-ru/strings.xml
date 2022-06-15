@@ -24,6 +24,9 @@
     <string name="login_sign_in">ВОЙТИ</string>
     <string name="login_or">Или</string>
     <string name="login_register">РЕГИСТРАЦИЯ</string>
+    <string name="login_inet_request">Для работы приложения нужно подключение к интернету!</string>
+    <string name="login_inet_request_quit">Выйти</string>
+    <string name="login_inet_request_turn_up">Включить интернет</string>
 
     <!-- registration -->
     <string name="reg_main_title">Регистрация</string>
@@ -44,7 +47,7 @@
     <string name="reg_title_date_of_birth">Дата рождения</string>
     <string name="reg_title_empty_date_of_birth">Введите дату рождения</string>
     <string name="reg_title_invalid_date_of_birth">Некорректная дата рождения (dd.mm.yyyy)</string>
-    <string name="reg_title_phone_number">Телефон</string>
+    <string name="reg_title_phone_number">Номер телефона</string>
     <string name="reg_title_empty_phone_number">Введите номер телефона</string>
     <string name="reg_title_invalid_phone_number">Некорректный номер телефона</string>
     <string name="reg_title_social_contacts">Как с вами связаться?</string>
