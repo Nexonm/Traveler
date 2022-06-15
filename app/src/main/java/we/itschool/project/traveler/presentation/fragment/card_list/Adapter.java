@@ -74,7 +74,6 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
                 ).into(viewHolder.iv_avatar_image);
         viewHolder.itemView.setOnClickListener(
                 v -> {
-//                    Toast.makeText(viewHolder.itemView.getContext(), "card position = "+ position+"\ncard _id = "+ card.get_id(), Toast.LENGTH_SHORT).show();
                     // TODO how it work now
                     cardClickListener.onCardClick(getCurrentList().get(position));
                     // TODO how it must be work
