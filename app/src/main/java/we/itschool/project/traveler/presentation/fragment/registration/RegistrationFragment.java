@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,7 +23,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import traveler.module.data.travelerapi.errors.UserNetAnswers;
 import traveler.module.domain.entity.UserEntity;
 import traveler.module.domain.entity.UserInfo;
 import we.itschool.project.traveler.R;
@@ -47,10 +45,8 @@ public class RegistrationFragment extends Fragment {
     RadioButton rb_male;
     RadioButton rb_female;
 
-    ProgressBar pb_reg;
+    Spinner spin_gender;
     private String gender;
-    private static final String defaultFlag = "Waiting";
-    private String flag = defaultFlag;
 
     public static RegistrationFragment newInstance() {
         return new RegistrationFragment();
@@ -99,33 +95,15 @@ public class RegistrationFragment extends Fragment {
         bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
             if (checkAllData()) {
-                pb_reg.setVisibility(View.VISIBLE);
-                final Handler handler = new Handler();
-                handler.postDelayed(() -> {
-                    while(defaultFlag.equals(flag));
-                    pb_reg.setVisibility(View.INVISIBLE);
-                }, 1500);
-
-                //TODO make string resources for this errors
-                if (UserNetAnswers.userOtherError.equals(flag)){
-                    Toast.makeText(this.getActivity().getBaseContext(),
-                            "Registration failed, try again.",
-                            Toast.LENGTH_LONG).show();
-                }else if (UserNetAnswers.userAlreadyExists.equals(flag)){
-                    Toast.makeText(this.getActivity().getBaseContext(),
-                            "User with same Email is already exists.",
-                            Toast.LENGTH_LONG).show();
-                }else if (UserNetAnswers.userSuccessRegistration.equals(flag)) {
-                    startMainActivity();
-                }else {
-                    Toast.makeText(this.getActivity().getBaseContext(),
-                            "Something went wrong. Check internet connection and try again.",
-                            Toast.LENGTH_LONG).show();
-                }
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
+                fragmentManager.popBackStack();
+                Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
+                startActivity(intent);
+                //close activity in case there is no more need in it
+                closeActivity();
             }
         });
-
-        pb_reg = view.findViewById(R.id.pb_registration);
     }
 
     private boolean checkAllData() {
@@ -191,7 +169,7 @@ public class RegistrationFragment extends Fragment {
         }
         if (check) {
             //send request to register new user
-            registerUser(
+            AppStart.uRegUC.regNew(
                     new UserEntity(
                             new UserInfo(
                                     et_first_name.getText().toString() + "",
@@ -216,13 +194,7 @@ public class RegistrationFragment extends Fragment {
         return check;
     }
 
-    private void registerUser(UserEntity user, String pass) {
-        new Thread(() -> {
-            flag = AppStart.uRegUC.regNew(user, pass);
-        }).start();
-    }
-
-    private boolean isValid(String dateStr) {
+    public boolean isValid(String dateStr) {
         try {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             LocalDate.parse(dateStr, dateFormatter);
@@ -255,15 +227,6 @@ public class RegistrationFragment extends Fragment {
         editor.putString(LoginActivity.KEY_PREF_USER_EMAIL, et_email.getText().toString());
 
         editor.apply();
-    }
-
-    private void startMainActivity(){
-        FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager.popBackStack();
-        Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
-        startActivity(intent);
-        //close activity in case there is no more need in it
-        closeActivity();
     }
 
     private void closeActivity() {

@@ -29,18 +29,27 @@
     <string name="login_inet_request_turn_up">Включить интернет</string>
 
     <!-- registration -->
-    <string name="reg_main_title">Регистрация</string>
+    <string name="reg_main_title">Registration</string>
     <string name="reg_title_first_name">Имя</string>
+    <string name="reg_title_empty_first_name">Введите имя</string>
     <string name="reg_title_second_name">Фамилия</string>
+    <string name="reg_title_empty_second_name">Введите фамилию</string>
     <string name="reg_title_man">Мужской</string>
     <string name="reg_title_woman">Женский</string>
+    <string name="reg_genders_error">Выберите пол</string>
     <string name="reg_title_email">Email</string>
+    <string name="reg_title_empty_email">Введите Email</string>
+    <string name="reg_title_invalid_email">Некорректный Email</string>
     <string name="reg_title_password">Пароль</string>
+    <string name="reg_title_empty_password">Введите пароль</string>
     <string name="reg_title_password_repeat">Повторите пароль</string>
     <string name="reg_title_password_repeat_not_match">Пароли не совпадают</string>
-    <string name="reg_title_date_of_birth_hint">Дата рождения</string>
-    <string name="reg_title_incorrect_date_of_birth_hint">Некорректная дата рождения(дд.мм.гггг)</string>
-    <string name="reg_title_phone_number">Номер телефона</string>
+    <string name="reg_title_date_of_birth">Дата рождения</string>
+    <string name="reg_title_empty_date_of_birth">Введите дату рождения</string>
+    <string name="reg_title_invalid_date_of_birth">Некорректная дата рождения (dd.mm.yyyy)</string>
+    <string name="reg_title_phone_number">Телефон</string>
+    <string name="reg_title_empty_phone_number">Введите номер телефона</string>
+    <string name="reg_title_invalid_phone_number">Некорректный номер телефона</string>
     <string name="reg_title_social_contacts">Как с вами связаться?</string>
     <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
     <string-array name="genders">
@@ -48,7 +57,6 @@
         <item>Мужской</item>
         <item>Женский</item>
     </string-array>
-    <string name="reg_genders_error">Выберите пол</string>
 
     <!-- main -->
     <string name="main_search">Искать</string>

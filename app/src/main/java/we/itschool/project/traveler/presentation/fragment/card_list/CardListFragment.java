@@ -20,25 +20,20 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import traveler.module.domain.entity.CardEntity;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.databinding.FragmentMainBinding;
-import traveler.module.domain.entity.CardEntity;
 import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
 
 public class CardListFragment extends Fragment {
 
     private static final String ARGUMENT_IS_ONE_PANE_MODE = "is onePaneMode";
-    private boolean isOnePane;
 
     private CardListViewModel viewModel;
 
-    private RecyclerView recyclerView;
-    private Button bt_search;
     private EditText et_search_input;
 
     private Adapter adapter;
-
-    private FragmentMainBinding binding;
 
     private boolean goingUsual;
     private boolean goingSearch;
@@ -54,7 +49,7 @@ public class CardListFragment extends Fragment {
         Bundle args = requireArguments();
         if (!args.containsKey(ARGUMENT_IS_ONE_PANE_MODE))
             throw new RuntimeException("Argument 'is onePane' is absent");
-        isOnePane = args.getBoolean(ARGUMENT_IS_ONE_PANE_MODE);
+        boolean isOnePane = args.getBoolean(ARGUMENT_IS_ONE_PANE_MODE);
     }
 
     @Override
@@ -70,7 +65,7 @@ public class CardListFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        binding = FragmentMainBinding.inflate(inflater, container, false);
+        we.itschool.project.traveler.databinding.FragmentMainBinding binding = FragmentMainBinding.inflate(inflater, container, false);
         root = binding.getRoot();
         return root;
 //        return inflater.inflate(
@@ -107,13 +102,13 @@ public class CardListFragment extends Fragment {
     }
 
     private void initView(View view) {
-        recyclerView = view.findViewById(R.id.rv_card_list);
+        RecyclerView recyclerView = view.findViewById(R.id.rv_card_list);
         recyclerView.setAdapter(adapter);
         recyclerView.getRecycledViewPool().setMaxRecycledViews(
                 Adapter.VIEW_TYPE_CARD_VISITOR, Adapter.MAX_POOL_SIZE);
 
         et_search_input = view.findViewById(R.id.et_main_search);
-        bt_search = view.findViewById(R.id.bt_main_search);
+        Button bt_search = view.findViewById(R.id.bt_main_search);
         bt_search.setOnClickListener(v -> {
             goingUsual = false;
             searchData();
@@ -131,7 +126,7 @@ public class CardListFragment extends Fragment {
                 else
                     viewModel.searchCards(str);
                 try {
-                    int count = 0;
+                    int count;
                     while (goingSearch) {
                         Thread.sleep(3200);
                         adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
