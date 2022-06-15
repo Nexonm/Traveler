@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,9 +84,13 @@ public class RegistrationFragment extends Fragment {
         //default gender value
         gender = getResources().getStringArray(R.array.genders)[0];
         rb_male = view.findViewById(R.id.rb_reg_man);
-        rb_male.setOnClickListener(v -> gender = getResources().getStringArray(R.array.genders)[1]);
+        rb_male.setOnClickListener(v -> {
+            gender = getResources().getStringArray(R.array.genders)[1];
+        });
         rb_female = view.findViewById(R.id.rb_reg_woman);
-        rb_female.setOnClickListener(v -> gender = getResources().getStringArray(R.array.genders)[2]);
+        rb_female.setOnClickListener(v -> {
+            gender = getResources().getStringArray(R.array.genders)[2];
+        });
 
         bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
@@ -108,29 +111,24 @@ public class RegistrationFragment extends Fragment {
         if (et_first_name.getText().toString().length() <= 0) {
             check = false;
             et_first_name.setHintTextColor(Color.RED);
-            et_first_name.setHint(R.string.reg_title_empty_first_name);
+            et_first_name.setHint(R.string.reg_title_first_name);
         }
         if (et_second_name.getText().toString().length() <= 0) {
             check = false;
             et_second_name.setHintTextColor(Color.RED);
-            et_second_name.setHint(R.string.reg_title_empty_second_name);
+            et_second_name.setHint(R.string.reg_title_second_name);
         }
         if (et_email.getText().toString().length() <= 0) {
             check = false;
             et_email.setHintTextColor(Color.RED);
-            et_email.setHint(R.string.reg_title_empty_email);
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(et_email.getText()).matches()) {
-            check = false;
-            et_email.setHintTextColor(Color.RED);
-            et_password.setText("");
-            et_email.setHint(R.string.reg_title_invalid_email);
+            et_email.setHint(R.string.reg_title_email);
         }
         boolean can1 = true, can2 = true;
         if (et_password.getText().toString().length() <= 0) {
             can1 = false;
             check = false;
             et_password.setHintTextColor(Color.RED);
-            et_password.setHint(R.string.reg_title_empty_password);
+            et_password.setHint(R.string.reg_title_password);
         }
         if (et_password_check.getText().toString().length() <= 0) {
             can2 = false;
@@ -142,7 +140,7 @@ public class RegistrationFragment extends Fragment {
             check = false;
             et_password.setHintTextColor(Color.RED);
             et_password.setText("");
-            et_password.setHint(R.string.reg_title_empty_password);
+            et_password.setHint(R.string.reg_title_password);
             et_password_check.setHintTextColor(Color.RED);
             et_password_check.setText("");
             et_password_check.setHint(R.string.reg_title_password_repeat_not_match);
@@ -150,22 +148,17 @@ public class RegistrationFragment extends Fragment {
         if (et_birth_date.getText().toString().length() <= 0) {
             check = false;
             et_birth_date.setHintTextColor(Color.RED);
-            et_birth_date.setHint(R.string.reg_title_date_of_birth);
+            et_birth_date.setHint(R.string.reg_title_date_of_birth_hint);
         } else if (!isValid(et_birth_date.getText().toString())) {
             check = false;
             et_birth_date.setHintTextColor(Color.RED);
             et_birth_date.setText("");
-            et_birth_date.setHint(R.string.reg_title_invalid_date_of_birth);
+            et_birth_date.setHint(R.string.reg_title_incorrect_date_of_birth_hint);
         }
         if (et_phone.getText().toString().length() <= 0) {
             check = false;
             et_phone.setHintTextColor(Color.RED);
-            et_phone.setHint(R.string.reg_title_empty_phone_number);
-        } else if (!Patterns.PHONE.matcher(et_phone.getText()).matches()){
-            check = false;
-            et_phone.setHintTextColor(Color.RED);
-            et_phone.setText("");
-            et_phone.setHint(R.string.reg_title_invalid_phone_number);
+            et_phone.setHint(R.string.reg_title_phone_number);
         }
         if (gender.equals(getResources().getStringArray(R.array.genders)[0])) {
             check = false;

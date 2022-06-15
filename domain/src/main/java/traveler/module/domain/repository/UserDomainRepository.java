@@ -19,7 +19,7 @@ public interface UserDomainRepository {
      * @param pass user password
      * @param login user login
      */
-    void login(String pass, String login);
+    String login(String login, String pass);
 
     /**
      * Gets all cards, that user had created. Uses id to find user.
@@ -60,7 +60,7 @@ public interface UserDomainRepository {
      * In case there is new user and we need to reg him.
      * @param newUser data represented as UserEntity
      */
-    void regNew(UserEntity newUser, String password);
+    String regNew(UserEntity newUser, String password);
 
     /**
      * Sets interests to user.

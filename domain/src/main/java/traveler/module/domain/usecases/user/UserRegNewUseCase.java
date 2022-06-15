@@ -11,7 +11,7 @@ public class UserRegNewUseCase {
         this.repository = repository;
     }
 
-    public void regNew(UserEntity newUser, String pass){
-        this.repository.regNew(newUser, pass);
+    public String regNew(UserEntity newUser, String pass){
+        return this.repository.regNew(newUser, pass);
     }
 }
