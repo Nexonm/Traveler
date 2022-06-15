@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import com.squareup.picasso.Picasso;
 
-import we.itschool.project.traveler.R;
-import we.itschool.project.traveler.app.AppStart;
 import traveler.module.data.travelerapi.APIConfigTraveler;
 import traveler.module.domain.entity.CardEntity;
+import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.app.AppStart;
 
 public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
 
@@ -37,18 +37,13 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
         if (AppStart.isLog)
             Log.w("onCreateViewHolder", "onCreateViewHolder, count = " + (++count));
         int layout;
-        switch (viewType) {
-            case VIEW_TYPE_CARD_VISITOR:
-                layout = R.layout.fragment_card_list_item_visitor;
-                break;
+        if (viewType != VIEW_TYPE_CARD_VISITOR) {
+            if (AppStart.isLog)
+                Log.wtf("onCreateViewHolder", "onCreateViewHolder, THERE IS NO SUCH TYPE!!!");
 
-            default:
-                if (AppStart.isLog)
-                    Log.wtf("onCreateViewHolder", "onCreateViewHolder, THERE IS NO SUCH TYPE!!!");
-
-                //TODO find how to do it smartly without errors
-                layout = R.layout.fragment_card_list_item_visitor;
+            //TODO find how to do it smartly without errors
         }
+        layout = R.layout.fragment_card_list_item_visitor;
 
         View view = LayoutInflater
                 .from(parent.getContext())
@@ -65,16 +60,17 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         CardEntity card = getItem(position);
-        viewHolder.tv_name_of_city.setText(String.valueOf(card.getCardInfo().getCity()+", "+card.getCardInfo().getCountry()));
+        String name_of_city = card.getCardInfo().getCity() + ", " + card.getCardInfo().getCountry();
+        viewHolder.tv_name_of_city.setText(name_of_city);
         viewHolder.tv_short_description.setText(card.getCardInfo().getShortDescription());
         //TODO  asynk Picasso
         Context context = viewHolder.itemView.getContext();
 //        viewHolder.iv_avatar_image.setMaxHeight(AppStart.getInstance().getDisplayHeight()/2);
         Picasso.with(context)
-                .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD+card.get_id())
+                .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD + card.get_id())
                 .resize(
-                        AppStart.getInstance().getDisplayHeight()/2,
-                        AppStart.getInstance().getDisplayHeight()/2
+                        AppStart.getInstance().getDisplayHeight() / 2,
+                        AppStart.getInstance().getDisplayHeight() / 2
                 ).into(viewHolder.iv_avatar_image);
         viewHolder.itemView.setOnClickListener(
                 v -> {

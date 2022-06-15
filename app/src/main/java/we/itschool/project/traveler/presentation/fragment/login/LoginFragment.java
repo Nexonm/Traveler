@@ -38,7 +38,7 @@ public class LoginFragment extends Fragment {
 
     ProgressBar pb_login;
 
-    private static String defaultFlag = "waiting";
+    private static final String defaultFlag = "waiting";
     private String flag = defaultFlag;
 
     public static LoginFragment newInstance() {
@@ -78,22 +78,19 @@ public class LoginFragment extends Fragment {
                     while (defaultFlag.equals(flag)) ;
                     pb_login.setVisibility(View.INVISIBLE);
                 }, 1500);
-
                 while (defaultFlag.equals(flag)) ;
                 //all went successfully and user logged in
                 if (UserNetAnswers.userSuccessLogin.equals(flag)) {
                     savePrefs();
                     startMainActivity();
                 } else {
-                    //TODO make string resources for those errors
                     if (UserNetAnswers.userIncorrectPasswordException.equals(flag)) {
-                        Toast.makeText(this.getContext(), "Incorrect password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getContext(), R.string.login_incorrect_password, Toast.LENGTH_SHORT).show();
                     } else if (UserNetAnswers.userOtherError.equals(flag)) {
-                        Toast.makeText(this.getContext(), "some error in login, please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getContext(), R.string.login_some_error, Toast.LENGTH_SHORT).show();
                         Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
                     }
                 }
-
             }
         });
         bt_to_reg = view.findViewById(R.id.bt_login_register);
@@ -154,7 +151,7 @@ public class LoginFragment extends Fragment {
         startActivity(intent);
         closeActivity();
     }
-
+// TODO: посмотреть куда его девать
     private boolean userLogged() {
         //make object of SharedPreferences, in case we have just one file we call
         //getPreferences() passing with context of app/activity

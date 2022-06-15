@@ -27,8 +27,6 @@ public class CardFragment extends Fragment {
 
     private CardEntity card;
 
-    private Button bt_add_favs;
-
     public static CardFragment newInstance(
             String cardGson
     ) {
@@ -81,21 +79,19 @@ public class CardFragment extends Fragment {
 
     private void initView(View view) {
         String mDrawableCard = card.getCardInfo().getPathToPhoto();
-        int resIDCard = view.getContext().getResources().getIdentifier(
+        view.getContext().getResources().getIdentifier(
                 mDrawableCard,
                 "drawable",
                 view.getContext().getPackageName()
         );
         String mDrawableUser = card.getCardInfo()
                 .getUser().getUserInfo().getPathToPhoto();
-        int resIDUser = view.getContext().getResources().getIdentifier(
+        view.getContext().getResources().getIdentifier(
                 mDrawableUser,
                 "drawable",
                 view.getContext().getPackageName()
         );
 
-//        ((ImageView) view.findViewById(R.id.iv_main_image_big_card)).setMaxWidth((int)(AppStart.getInstance().getDisplayWidth()*0.7));
-//        ((ImageView) view.findViewById(R.id.iv_main_image_big_card)).setMaxHeight((int)(AppStart.getInstance().getDisplayHeight()*0.5));
         Picasso.with(this.getContext())
                 .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD+card.get_id())
 //                .resize(
@@ -134,9 +130,7 @@ public class CardFragment extends Fragment {
         ((TextView) view.findViewById(R.id.tv_description_long))
                 .setText(card.getCardInfo().getFullDescription());
 
-        bt_add_favs = view.findViewById(R.id.bt_cbv_add_to_favourites);
-        bt_add_favs.setOnClickListener(v -> {
-            AppStart.uAddCardToFavsUC.addCardToFavorites(card.get_id());
-        });
+        Button bt_add_faves = view.findViewById(R.id.bt_cbv_add_to_favourites);
+        bt_add_faves.setOnClickListener(v -> AppStart.uAddCardToFavsUC.addCardToFavorites(card.get_id()));
     }
 }
