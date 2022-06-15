@@ -112,7 +112,7 @@
                 android:autofillHints=""
                 android:backgroundTint="@color/white"
                 android:ems="10"
-                android:hint="@string/reg_title_date_of_birth_hint"
+                android:hint="@string/reg_title_date_of_birth"
                 android:inputType="date"
                 android:textAppearance="@style/text_style_1"
                 android:textColorHint="@color/white" />
@@ -150,7 +150,8 @@
                 android:textAppearance="@style/text_style_1"
                 app:cornerRadius="17dp"
                 app:strokeColor="@color/white"
-                app:strokeWidth="3dp" />
+                app:strokeWidth="3dp"
+                android:layout_marginBottom="30dp"/>
         </LinearLayout>
     </ScrollView>
 
