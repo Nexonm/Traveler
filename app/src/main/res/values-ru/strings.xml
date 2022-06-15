@@ -30,33 +30,25 @@
 
     <!-- registration -->
     <string name="reg_main_title">Registration</string>
-    <string name="reg_title_first_name">Имя</string>
-    <string name="reg_title_empty_first_name">Введите имя</string>
-    <string name="reg_title_second_name">Фамилия</string>
-    <string name="reg_title_empty_second_name">Введите фамилию</string>
-    <string name="reg_title_man">Мужской</string>
-    <string name="reg_title_woman">Женский</string>
-    <string name="reg_genders_error">Выберите пол</string>
-    <string name="reg_title_email">Email</string>
-    <string name="reg_title_empty_email">Введите Email</string>
-    <string name="reg_title_invalid_email">Некорректный Email</string>
-    <string name="reg_title_password">Пароль</string>
-    <string name="reg_title_empty_password">Введите пароль</string>
-    <string name="reg_title_password_repeat">Повторите пароль</string>
-    <string name="reg_title_password_repeat_not_match">Пароли не совпадают</string>
-    <string name="reg_title_date_of_birth">Дата рождения</string>
-    <string name="reg_title_empty_date_of_birth">Введите дату рождения</string>
-    <string name="reg_title_invalid_date_of_birth">Некорректная дата рождения (dd.mm.yyyy)</string>
-    <string name="reg_title_phone_number">Телефон</string>
-    <string name="reg_title_empty_phone_number">Введите номер телефона</string>
-    <string name="reg_title_invalid_phone_number">Некорректный номер телефона</string>
-    <string name="reg_title_social_contacts">Как с вами связаться?</string>
-    <string name="reg_btn_register">РЕГИСТРАЦИЯ</string>
+    <string name="reg_title_first_name">Name</string>
+    <string name="reg_title_second_name">Last name</string>
+    <string name="reg_title_man">Male</string>
+    <string name="reg_title_woman">Female</string>
     <string-array name="genders">
-        <item>Пол</item>
-        <item>Мужской</item>
-        <item>Женский</item>
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
+    <string name="reg_genders_error">Please, select your Gender</string>
+    <string name="reg_title_email">Email</string>
+    <string name="reg_title_password">Password</string>
+    <string name="reg_title_password_repeat">Repeat the password</string>
+    <string name="reg_title_password_repeat_not_match">Passwords don\'t match</string>
+    <string name="reg_title_date_of_birth_hint">Date of birth</string>
+    <string name="reg_title_incorrect_date_of_birth_hint">Invalid date of birth(dd.mm.yyyy)</string>
+    <string name="reg_title_phone_number">Phone number</string>
+    <string name="reg_title_social_contacts">How to contact you?</string>
+    <string name="reg_btn_register">REGISTRATION</string>
 
     <!-- main -->
     <string name="main_search">Искать</string>
