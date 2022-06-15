@@ -26,7 +26,7 @@
     <string name="login_register">РЕГИСТРАЦИЯ</string>
 
     <!-- registration -->
-    <string name="reg_main_title">Registration</string>
+    <string name="reg_main_title">Регистрация</string>
     <string name="reg_title_first_name">Имя</string>
     <string name="reg_title_empty_first_name">Введите имя</string>
     <string name="reg_title_second_name">Фамилия</string>
