@@ -25,6 +25,7 @@
     <string name="login_or">Or</string>
     <string name="login_register">REGISTER</string>
     <string name="login_incorrect_password">Incorrect password</string>
+    <string name="login_no_such_user">User with such email is not registered</string>
     <string name="login_some_error">Some error in login, please try again</string>
     <string name="login_inet_request">This app needs internet connection!</string>
     <string name="login_inet_request_quit">Exit</string>

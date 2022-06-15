@@ -5,14 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import traveler.module.data.travelerapi.errors.UserNetAnswers;
 import traveler.module.domain.entity.UserEntity;
 import traveler.module.domain.entity.UserInfo;
 import we.itschool.project.traveler.R;
@@ -33,21 +35,23 @@ import we.itschool.project.traveler.presentation.activity.MainActivity;
 
 public class RegistrationFragment extends Fragment {
 
-    EditText et_first_name;
-    EditText et_second_name;
-    EditText et_email;
-    EditText et_password;
-    EditText et_password_check;
-    EditText et_birth_date;
-    EditText et_phone;
-    EditText et_social_cont;
+    private EditText et_first_name;
+    private EditText et_second_name;
+    private EditText et_email;
+    private EditText et_password;
+    private EditText et_password_check;
+    private EditText et_birth_date;
+    private EditText et_phone;
+    private EditText et_social_cont;
 
-    Button bt_register;
-    RadioButton rb_male;
-    RadioButton rb_female;
+    private Button bt_register;
+    private RadioButton rb_male;
+    private RadioButton rb_female;
 
-    Spinner spin_gender;
+    private ProgressBar pb_reg;
     private String gender;
+    private static final String defaultFlag = "Waiting";
+    private String flag = defaultFlag;
 
     public static RegistrationFragment newInstance() {
         return new RegistrationFragment();
@@ -92,15 +96,33 @@ public class RegistrationFragment extends Fragment {
         bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
             if (checkAllData()) {
-                FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.popBackStack();
-                fragmentManager.popBackStack();
-                Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
-                startActivity(intent);
-                //close activity in case there is no more need in it
-                closeActivity();
+                pb_reg.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(() -> {
+                    while(defaultFlag.equals(flag));
+                    pb_reg.setVisibility(View.INVISIBLE);
+                }, 1500);
+
+                //TODO make string resources for this errors
+                if (UserNetAnswers.userOtherError.equals(flag)){
+                    Toast.makeText(this.getActivity().getBaseContext(),
+                            "Registration failed, try again.",
+                            Toast.LENGTH_LONG).show();
+                }else if (UserNetAnswers.userAlreadyExists.equals(flag)){
+                    Toast.makeText(this.getActivity().getBaseContext(),
+                            "User with same Email is already exists.",
+                            Toast.LENGTH_LONG).show();
+                }else if (UserNetAnswers.userSuccessRegistration.equals(flag)) {
+                    startMainActivity();
+                }else {
+                    Toast.makeText(this.getActivity().getBaseContext(),
+                            "Something went wrong. Check internet connection and try again.",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
+
+        pb_reg = view.findViewById(R.id.pb_registration);
     }
 
     private boolean checkAllData() {
@@ -176,7 +198,7 @@ public class RegistrationFragment extends Fragment {
         }
         if (check) {
             //send request to register new user
-            AppStart.uRegUC.regNew(
+            registerUser(
                     new UserEntity(
                             new UserInfo(
                                     et_first_name.getText().toString() + "",
@@ -201,7 +223,13 @@ public class RegistrationFragment extends Fragment {
         return check;
     }
 
-    public boolean isValid(String dateStr) {
+    private void registerUser(UserEntity user, String pass) {
+        new Thread(() -> {
+            flag = AppStart.uRegUC.regNew(user, pass);
+        }).start();
+    }
+
+    private boolean isValid(String dateStr) {
         try {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             LocalDate.parse(dateStr, dateFormatter);
@@ -236,6 +264,14 @@ public class RegistrationFragment extends Fragment {
         editor.apply();
     }
 
+    private void startMainActivity(){
+        FragmentManager fragmentManager = getParentFragmentManager();
+        fragmentManager.popBackStack();
+        Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
+        startActivity(intent);
+        //close activity in case there is no more need in it
+        closeActivity();
+    }
     private void closeActivity() {
         this.requireActivity().finish();
     }

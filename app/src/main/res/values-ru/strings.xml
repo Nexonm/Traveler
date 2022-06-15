@@ -25,6 +25,7 @@
     <string name="login_or">Или</string>
     <string name="login_register">РЕГИСТРАЦИЯ</string>
     <string name="login_incorrect_password">Неверный пароль</string>
+    <string name="login_no_such_user">Пользователь с данной почтой не зарегистрирован</string>
     <string name="login_some_error">Произошла ошибка входа, попробуйте снова</string>
     <string name="login_inet_request">Для работы приложения нужно подключение к интернету!</string>
     <string name="login_inet_request_quit">Выйти</string>

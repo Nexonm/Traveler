@@ -86,7 +86,9 @@ public class LoginFragment extends Fragment {
                 } else {
                     if (UserNetAnswers.userIncorrectPasswordException.equals(flag)) {
                         Toast.makeText(this.getContext(), R.string.login_incorrect_password, Toast.LENGTH_SHORT).show();
-                    } else if (UserNetAnswers.userOtherError.equals(flag)) {
+                    }else if (UserNetAnswers.userDoesNotExistException.equals(flag)) {
+                        Toast.makeText(this.getContext(), R.string.login_no_such_user, Toast.LENGTH_SHORT).show();
+                    }else if (UserNetAnswers.userOtherError.equals(flag)) {
                         Toast.makeText(this.getContext(), R.string.login_some_error, Toast.LENGTH_SHORT).show();
                         Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
                     }
@@ -150,14 +152,6 @@ public class LoginFragment extends Fragment {
         Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
         startActivity(intent);
         closeActivity();
-    }
-// TODO: посмотреть куда его девать
-    private boolean userLogged() {
-        //make object of SharedPreferences, in case we have just one file we call
-        //getPreferences() passing with context of app/activity
-        SharedPreferences pref = this.requireActivity().getPreferences(Context.MODE_PRIVATE);
-        //check if there is needed data
-        return pref.contains(KEY_PREF_USER_EMAIL) && pref.contains(KEY_PREF_USER_PASSWORD);
     }
 
     private void closeActivity() {
