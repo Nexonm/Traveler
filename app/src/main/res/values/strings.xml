@@ -42,7 +42,7 @@
     <string name="reg_genders_error">Please, select your Gender</string>
     <string name="reg_title_email">Email</string>
     <string name="reg_title_password">Password</string>
-    <string name="reg_title_password_repeat">Repeat the password</string>
+    <string name="reg_title_password_repeat">Repeat the  password</string>
     <string name="reg_title_password_repeat_not_match">Passwords don\'t match</string>
     <string name="reg_title_date_of_birth_hint">Date of birth</string>
     <string name="reg_title_incorrect_date_of_birth_hint">Invalid date of birth(dd.mm.yyyy)</string>
