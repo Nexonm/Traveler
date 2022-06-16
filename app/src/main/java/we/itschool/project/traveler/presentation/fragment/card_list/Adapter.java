@@ -37,13 +37,15 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
         if (AppStart.isLog)
             Log.w("onCreateViewHolder", "onCreateViewHolder, count = " + (++count));
         int layout;
-        if (viewType != VIEW_TYPE_CARD_VISITOR) {
+        if (viewType == VIEW_TYPE_CARD_VISITOR) {
+            layout = R.layout.fragment_card_list_item_visitor;
+        } else {
             if (AppStart.isLog)
                 Log.wtf("onCreateViewHolder", "onCreateViewHolder, THERE IS NO SUCH TYPE!!!");
 
             //TODO find how to do it smartly without errors
+            layout = R.layout.fragment_card_list_item_visitor;
         }
-        layout = R.layout.fragment_card_list_item_visitor;
 
         View view = LayoutInflater
                 .from(parent.getContext())

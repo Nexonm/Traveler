@@ -86,8 +86,10 @@ public class LoginFragment extends Fragment {
                 } else {
                     if (UserNetAnswers.userIncorrectPasswordException.equals(flag)) {
                         Toast.makeText(this.getContext(), R.string.login_incorrect_password, Toast.LENGTH_SHORT).show();
+                        et_password.setText("");
                     }else if (UserNetAnswers.userDoesNotExistException.equals(flag)) {
                         Toast.makeText(this.getContext(), R.string.login_no_such_user, Toast.LENGTH_SHORT).show();
+                        et_password.setText("");
                     }else if (UserNetAnswers.userOtherError.equals(flag)) {
                         Toast.makeText(this.getContext(), R.string.login_some_error, Toast.LENGTH_SHORT).show();
                         Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
@@ -113,12 +115,12 @@ public class LoginFragment extends Fragment {
         if (et_email.getText().length() <= 0) {
             check = false;
             et_email.setHintTextColor(Color.RED);
-            et_email.setHint(R.string.login_email_ev);
+            et_email.setHint(R.string.login_empty_email_ev);
         }
         if (et_password.getText().length() <= 0) {
             check = false;
             et_password.setHintTextColor(Color.RED);
-            et_password.setHint(R.string.login_password_ev);
+            et_password.setHint(R.string.login_empty_password_ev);
         }
         return check;
     }

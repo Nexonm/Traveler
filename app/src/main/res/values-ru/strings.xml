@@ -19,8 +19,10 @@
     <string name="login_title">Добро пожаловать в Traveler!</string>
     <string name="login_email_tv">Введите email</string>
     <string name="login_email_ev">Email</string>
+    <string name="login_empty_email_ev">Введите Email</string>
     <string name="login_password_tv">Введите пароль</string>
     <string name="login_password_ev">Пароль</string>
+    <string name="login_empty_password_ev">Введите пароль</string>
     <string name="login_sign_in">ВОЙТИ</string>
     <string name="login_or">Или</string>
     <string name="login_register">РЕГИСТРАЦИЯ</string>

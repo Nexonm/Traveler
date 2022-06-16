@@ -19,8 +19,10 @@
     <string name="login_title">Welcome to the Traveler!</string>
     <string name="login_email_tv">Enter email</string>
     <string name="login_email_ev">Email</string>
+    <string name="login_empty_email_ev">Enter Email</string>
     <string name="login_password_tv">Enter the password</string>
     <string name="login_password_ev">Password</string>
+    <string name="login_empty_password_ev">Enter password</string>
     <string name="login_sign_in">LOG IN</string>
     <string name="login_or">Or</string>
     <string name="login_register">REGISTER</string>
