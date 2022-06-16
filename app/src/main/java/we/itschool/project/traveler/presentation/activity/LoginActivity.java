@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         //set display params for future usage
         setDisplayData();
-        ((ImageView) findViewById(R.id.iv_login_icon)).setImageDrawable(getResources().getDrawable(R.drawable.icon_app_house));
 
         checkConnection();
     }
@@ -94,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
             //Do something after handler work
-            ((ProgressBar) findViewById(R.id.progressBar)).setVisibility(View.INVISIBLE);
 
             if (userLogged()) {
                 Log.v("OkHttpClient", "User is logged in phone LoginActivity");

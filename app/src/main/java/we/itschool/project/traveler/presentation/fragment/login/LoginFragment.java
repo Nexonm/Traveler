@@ -3,15 +3,16 @@ package we.itschool.project.traveler.presentation.fragment.login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,9 +32,11 @@ public class LoginFragment extends Fragment {
 
     public static final String KEY_PREF_USER_EMAIL = "UserEmail";
     public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
-    EditText et_email;
-    EditText et_password;
+
+    String email, password;
+    EditText et_email, et_password;
     Button bt_login;
+    TextView forgot_pass;
     Button bt_to_reg;
 
     ProgressBar pb_login;
@@ -67,42 +70,42 @@ public class LoginFragment extends Fragment {
         et_password = view.findViewById(R.id.et_login_field_password);
         et_password = view.findViewById(R.id.et_login_field_password);
         bt_login = view.findViewById(R.id.bt_login_sign_in);
-        bt_login.setOnClickListener(v -> {
-            if (checkLoginData()) {
-                //send data
-                logUserIn();
-
-                pb_login.setVisibility(View.VISIBLE);
-                final Handler handler = new Handler();
-                handler.postDelayed(() -> {
-                    while (defaultFlag.equals(flag)) ;
-                    pb_login.setVisibility(View.INVISIBLE);
-                }, 1500);
-                while (defaultFlag.equals(flag)) ;
-                //all went successfully and user logged in
-                if (UserNetAnswers.userSuccessLogin.equals(flag)) {
-                    savePrefs();
-                    startMainActivity();
-                } else {
-                    if (UserNetAnswers.userIncorrectPasswordException.equals(flag)) {
-                        Toast.makeText(this.getContext(), R.string.login_incorrect_password, Toast.LENGTH_SHORT).show();
-                        et_password.setText("");
-                    }else if (UserNetAnswers.userDoesNotExistException.equals(flag)) {
-                        Toast.makeText(this.getContext(), R.string.login_no_such_user, Toast.LENGTH_SHORT).show();
-                        et_password.setText("");
-                    }else if (UserNetAnswers.userOtherError.equals(flag)) {
-                        Toast.makeText(this.getContext(), R.string.login_some_error, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-        });
+        bt_login.setOnClickListener(v -> userLogin());
         bt_to_reg = view.findViewById(R.id.bt_login_register);
         bt_to_reg.setOnClickListener(v -> startRegistrationFragment());
 
         pb_login = view.findViewById(R.id.pb_login);
     }
 
+    private void userLogin() {
+        if (checkLoginData()) {
+            //send data
+            logUserIn();
+            pb_login.setVisibility(View.VISIBLE);
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                while (defaultFlag.equals(flag)) ;
+                pb_login.setVisibility(View.INVISIBLE);
+            }, 1500);
+            while (defaultFlag.equals(flag)) ;
+            //all went successfully and user logged in
+            if (UserNetAnswers.userSuccessLogin.equals(flag)) {
+                savePrefs();
+                startMainActivity();
+            } else {
+                if (UserNetAnswers.userIncorrectPasswordException.equals(flag)) {
+                    Toast.makeText(this.getContext(), R.string.login_incorrect_password, Toast.LENGTH_SHORT).show();
+                    et_password.setText("");
+                } else if (UserNetAnswers.userDoesNotExistException.equals(flag)) {
+                    Toast.makeText(this.getContext(), R.string.login_no_such_user, Toast.LENGTH_SHORT).show();
+                    et_password.setText("");
+                } else if (UserNetAnswers.userOtherError.equals(flag)) {
+                    Toast.makeText(this.getContext(), R.string.login_some_error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
 
     private void logUserIn() {
         new Thread(() -> flag = AppStart.uLoginUC.login(
@@ -112,15 +115,27 @@ public class LoginFragment extends Fragment {
 
     private boolean checkLoginData() {
         boolean check = true;
-        if (et_email.getText().length() <= 0) {
+
+        email = et_email.getText().toString().trim();
+        password = et_password.getText().toString().trim();
+
+        if (password.isEmpty()) {
             check = false;
-            et_email.setHintTextColor(Color.RED);
-            et_email.setHint(R.string.login_empty_email_ev);
+            et_password.setError("Password is required");
+            et_password.requestFocus();
+        } else if (password.length() < 6) {
+            check = false;
+            et_password.setError("Min Password length should be of 6 characters! ");
+            et_password.requestFocus();
         }
-        if (et_password.getText().length() <= 0) {
+        if (email.isEmpty()) {
             check = false;
-            et_password.setHintTextColor(Color.RED);
-            et_password.setHint(R.string.login_empty_password_ev);
+            et_email.setError("Email is required");
+            et_email.requestFocus();
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            check = false;
+            et_email.setError("Please provide your valid Email");
+            et_email.requestFocus();
         }
         return check;
     }
