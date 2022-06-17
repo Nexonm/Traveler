@@ -37,7 +37,6 @@ public class LoginFragment extends Fragment {
     EditText et_email, et_password;
     Button bt_login;
     TextView forgot_pass;
-    Button bt_to_reg;
 
     ProgressBar pb_login;
 
@@ -68,11 +67,8 @@ public class LoginFragment extends Fragment {
     private void initView(View view) {
         et_email = view.findViewById(R.id.et_login_field_email);
         et_password = view.findViewById(R.id.et_login_field_password);
-        et_password = view.findViewById(R.id.et_login_field_password);
         bt_login = view.findViewById(R.id.bt_login_sign_in);
         bt_login.setOnClickListener(v -> userLogin());
-        bt_to_reg = view.findViewById(R.id.bt_login_register);
-        bt_to_reg.setOnClickListener(v -> startRegistrationFragment());
 
         pb_login = view.findViewById(R.id.pb_login);
     }
@@ -155,25 +151,11 @@ public class LoginFragment extends Fragment {
         //editor.commit();
     }
 
-    private void startRegistrationFragment() {
-        Fragment fragment = RegistrationFragment.newInstance();
-        FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager
-                .beginTransaction()
-                .addToBackStack("null")
-                .replace(R.id.fcv_login, fragment, null)
-                .commit();
-    }
-
     private void startMainActivity() {
         Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);
         startActivity(intent);
-        closeActivity();
     }
 
-    private void closeActivity() {
-        this.requireActivity().finish();
-    }
 
     @Override
     public void onDestroyView() {

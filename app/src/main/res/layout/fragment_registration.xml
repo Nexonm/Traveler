@@ -4,155 +4,277 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_rectangle_1"
     tools:context=".presentation.fragment.registration.RegistrationFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@drawable/empty_tall_divider_registration"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:showDividers="middle"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/et_reg_field_firs_name"
-                android:layout_width="wrap_content"
+
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:autofillHints="name"
-                android:backgroundTint="@color/white"
-                android:ems="10"
+
                 android:hint="@string/reg_title_first_name"
                 android:inputType="textPersonName"
-                android:textAppearance="@style/text_style_1"
-                android:textColorHint="@color/white" />
+
+                android:background="@drawable/custom_edittext_1"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent=".8"
+                android:autofillHints="name" />
 
             <EditText
                 android:id="@+id/et_reg_field_second_name"
-                android:layout_width="wrap_content"
+
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:backgroundTint="@color/white"
-                android:ems="10"
+
                 android:hint="@string/reg_title_second_name"
                 android:inputType="textPersonName"
-                android:textAppearance="@style/text_style_1"
-                android:textColorHint="@color/white" />
+
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext_1"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reg_field_firs_name"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent=".8"
+                android:autofillHints="name" />
 
             <RadioGroup
-                android:layout_width="wrap_content"
+                android:id="@+id/rg_gender"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reg_field_second_name"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent=".8">
 
                 <RadioButton
                     android:id="@+id/rb_reg_man"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
                     android:text="@string/reg_title_man"
                     android:textColor="@color/white"
+                    android:background="@drawable/custom_edittext_1"
                     android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/rb_reg_woman"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:text="@string/reg_title_woman"
                     android:textColor="@color/white"
+                    android:background="@drawable/custom_edittext_1"
                     android:textSize="20sp" />
             </RadioGroup>
 
             <EditText
                 android:id="@+id/et_reg_field_email"
-                android:layout_width="wrap_content"
+
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:autofillHints="emailAddress"
-                android:backgroundTint="@color/white"
-                android:ems="10"
+
                 android:hint="@string/reg_title_email"
                 android:inputType="textEmailAddress"
-                android:textAppearance="@style/text_style_1"
-                android:textColorHint="@color/white" />
+
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext_1"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rg_gender"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent=".8"
+                android:autofillHints="emailAddress" />
 
             <EditText
                 android:id="@+id/et_reg_field_password"
-                android:layout_width="wrap_content"
+
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:autofillHints="password"
-                android:backgroundTint="@color/white"
-                android:ems="10"
+
                 android:hint="@string/reg_title_password"
                 android:inputType="textPassword"
-                android:textAppearance="@style/text_style_1"
-                android:textColorHint="@color/white" />
+
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext_1"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reg_field_email"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent=".8"
+                android:autofillHints="password" />
 
             <EditText
                 android:id="@+id/et_reg_field_password_two"
-                android:layout_width="wrap_content"
+
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:backgroundTint="@color/white"
-                android:ems="10"
+
                 android:hint="@string/reg_title_password_repeat"
                 android:inputType="textPassword"
-                android:textAppearance="@style/text_style_1"
-                android:textColorHint="@color/white" />
+
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext_1"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reg_field_password"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent=".8"
+                android:autofillHints="password" />
 
             <EditText
                 android:id="@+id/et_reg_field_date_of_birth"
-                android:layout_width="wrap_content"
+
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:backgroundTint="@color/white"
-                android:ems="10"
+
                 android:hint="@string/reg_title_date_of_birth"
                 android:inputType="date"
-                android:textAppearance="@style/text_style_1"
-                android:textColorHint="@color/white" />
+
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext_1"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reg_field_password_two"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent=".8"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/et_reg_field_phone_number"
-                android:layout_width="wrap_content"
+
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:autofillHints="phone"
-                android:backgroundTint="@color/white"
-                android:ems="10"
+
                 android:hint="@string/reg_title_phone_number"
                 android:inputType="phone"
-                android:textAppearance="@style/text_style_1"
-                android:textColorHint="@color/white" />
+
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext_1"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reg_field_date_of_birth"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent=".8"
+                android:autofillHints="phone" />
 
             <EditText
                 android:id="@+id/et_reg_field_social_contacts"
-                android:layout_width="wrap_content"
+
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:autofillHints="text"
-                android:backgroundTint="@color/white"
-                android:ems="10"
+
                 android:hint="@string/reg_title_social_contacts"
                 android:inputType="text"
-                android:textAppearance="@style/text_style_1"
-                android:textColorHint="@color/white" />
+
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext_1"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reg_field_phone_number"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintWidth_percent=".8"
+                android:autofillHints="" />
 
             <Button
                 android:id="@+id/bt_reg_register_new_user"
-                android:layout_width="200dp"
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_button_2"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/button"
                 android:text="@string/reg_btn_register"
+                android:paddingBottom="10dp"
                 android:textAppearance="@style/text_style_1"
-                app:cornerRadius="17dp"
-                app:strokeColor="@color/white"
-                app:strokeWidth="3dp"
-                android:layout_marginBottom="30dp"/>
-        </LinearLayout>
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reg_field_social_contacts"
+                app:layout_constraintVertical_bias=".85"
+                app:layout_constraintWidth_percent=".8" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <ProgressBar

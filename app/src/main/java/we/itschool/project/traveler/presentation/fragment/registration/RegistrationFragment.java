@@ -23,7 +23,6 @@ import androidx.fragment.app.FragmentManager;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Objects;
 
 import traveler.module.data.travelerapi.errors.UserNetAnswers;
 import traveler.module.domain.entity.UserEntity;
@@ -198,10 +197,6 @@ public class RegistrationFragment extends Fragment {
             et_email.setError("Please provide your valid Email");
             et_email.requestFocus();
         }
-        if (gender.equals(getResources().getStringArray(R.array.genders)[0])) {
-            check = false;
-            Toast.makeText(this.getContext(), R.string.reg_genders_error, Toast.LENGTH_LONG).show();
-        }
         if (surname.isEmpty()) {
             check = false;
             et_second_name.setError("Second name is required");
@@ -211,6 +206,12 @@ public class RegistrationFragment extends Fragment {
             check = false;
             et_first_name.setError("Name is required");
             et_first_name.requestFocus();
+        }
+        if (gender.equals(getResources().getStringArray(R.array.genders)[0])) {
+            if (check) {
+                Toast.makeText(this.getContext(), R.string.reg_genders_error, Toast.LENGTH_LONG).show();
+            }
+            check = false;
         }
         if (check) {
             //send request to register new user

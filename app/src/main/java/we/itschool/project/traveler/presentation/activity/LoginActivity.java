@@ -11,14 +11,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import traveler.module.data.travelerapi.errors.UserNetAnswers;
 import we.itschool.project.traveler.R;
@@ -27,6 +27,9 @@ import we.itschool.project.traveler.presentation.fragment.login.LoginFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    float v = 0;
 
     //keys for SharedPreferences
     public static final String KEY_PREF_USER_EMAIL = "UserEmail";
@@ -40,6 +43,29 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //binding
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
+
+        // setting 2 tabs in tab layout
+        tabLayout.addTab(tabLayout.newTab().setText("Log in"));
+        tabLayout.addTab(tabLayout.newTab().setText("Sign Up"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+
+        final LoginAdapter loginAdapter = new LoginAdapter(getSupportFragmentManager(), this, tabLayout.getTabCount());
+        viewPager.setAdapter(loginAdapter);
+
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
+        tabLayout.setTranslationY(300);
+
+        tabLayout.setAlpha(v);
+
+        tabLayout.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
         //set display params for future usage
         setDisplayData();
 
@@ -110,11 +136,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "some error in login, please try again", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getBaseContext(), flag, Toast.LENGTH_LONG).show();
                     }
-                    startLogInFragment();
                 }
             } else {
                 Log.v("OkHttpClient", "somehow user is not logged LoginActivity");
-                startLogInFragment();
             }
         }, (int) (Math.random() * 1001) + delayed);
     }
@@ -179,19 +203,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void closeActivity() {
         this.finish();
-    }
-
-    //start main login fragment and then start working
-    private void startLogInFragment() {
-        //in case user is new to app we suggest login or register
-        Fragment fragment = LoginFragment.newInstance();
-
-        getSupportFragmentManager().popBackStack();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .addToBackStack("null")
-                .replace(R.id.fcv_login, fragment, null)
-                .commit();
     }
 
     //method saves display size to AppStart fields
