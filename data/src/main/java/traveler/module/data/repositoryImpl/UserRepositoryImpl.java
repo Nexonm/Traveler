@@ -106,10 +106,16 @@ public class UserRepositoryImpl implements UserDomainRepository {
 
     @Override
     public void addPhoto(String path) {
-        String ans = addPhotoUCI.addPhoto(path, getUserMain().get_id());
-        if (!UserNetAnswers.userOtherError.equals(ans)) {
-            userMain.getUserInfo().setPathToPhoto(ans);
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String ans = addPhotoUCI.addPhoto(path, getUserMain().get_id());
+                if (!UserNetAnswers.userOtherError.equals(ans)) {
+                    userMain.getUserInfo().setPathToPhoto(ans);
+                }
+            }
+        }).start();
+
     }
 
     @Override

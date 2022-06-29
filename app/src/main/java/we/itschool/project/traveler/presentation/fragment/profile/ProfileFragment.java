@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +29,9 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
+import traveler.module.data.travelerapi.APIConfigTraveler;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import traveler.module.data.travelerapi.APIConfigTraveler;
 import we.itschool.project.traveler.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -55,6 +54,7 @@ public class ProfileFragment extends Fragment {
 
     private static final int PERMISSION_CODE = 1001;
     private String bufString = "null";
+    private boolean flagToDownloadImage = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -108,18 +108,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-//        fab_edit_avatar = view.findViewById(R.id.fab_profile_edit_avatar);
-//        fab_edit_avatar.setOnClickListener(v -> {
-//            try {
-//                if (!hasPermissions()) {
-//                    requestPermissionsMy();
-//                } else {
-//                    //permission Granted we can pick image
-//                    pickImageFromGallery();
-//                }
-//                //TODO send file to server
-//            }catch (Exception ignored){}
-//        });
     }
 
 
@@ -143,7 +131,7 @@ public class ProfileFragment extends Fragment {
                         try {
                             Uri imageUri = result.getData().getData();
                             bufString = getRealPathFromURI(imageUri);
-                            Log.v("fileName", "the file path: " + bufString);
+//                            Log.v("fileName", "the file path: " + bufString);
                             Glide.with(context)
                                     .load(imageUri)
                                     .into(iv_avatar);
