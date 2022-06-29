@@ -23,13 +23,13 @@ import traveler.module.domain.repository.UserDomainRepository;
 public class UserRepositoryImpl implements UserDomainRepository {
 
     private static UserEntity userMain;
-    private static ArrayList<CardEntity> userFavCards;
+    private final static ArrayList<CardEntity> userFavCards;
 
-    private UserLoginUCI loginUCI;
-    private UserRegUCI regUCI;
-    private UserAddPhotoUCI addPhotoUCI;
-    private UserCreateNewCardUCI createNewCardUCI;
-    private UserAddCardToFavoritesUCI addCardToFavoritesUCI;
+    private final UserLoginUCI loginUCI;
+    private final UserRegUCI regUCI;
+    private final UserAddPhotoUCI addPhotoUCI;
+    private final UserCreateNewCardUCI createNewCardUCI;
+    private final UserAddCardToFavoritesUCI addCardToFavoritesUCI;
 
     static {
         userMain = null;
@@ -88,9 +88,14 @@ public class UserRepositoryImpl implements UserDomainRepository {
 
     @Override
     public void addCardToFavorites(long cid) {
-        ArrayList<Long> list = addCardToFavoritesUCI.addCardToFavorites(userMain.get_id(), cid);
-        userMain.getUserInfo().setUserFavoritesCards(list);
-        chekUserFavs(list);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<Long> list = addCardToFavoritesUCI.addCardToFavorites(userMain.get_id(), cid);
+                userMain.getUserInfo().setUserFavoritesCards(list);
+                chekUserFavs(list);
+            }
+        }).start();
     }
 
     @Override
