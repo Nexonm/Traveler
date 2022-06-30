@@ -45,9 +45,10 @@ public class PlaceInfoDialogFragment extends DialogFragment {
 
 
         if (Objects.equals(name, "")) {
-            name = R.string.map_no_name;
+            //get string from resources
+            name = getContext().getResources().getString(R.string.map_no_name);
         }
-        dist = R.string.map_dist + (int) Double.parseDouble(dist);
+        dist = getContext().getResources().getString(R.string.map_dist) + (int) Double.parseDouble(dist);
 
         String url = checkIfNull(response.body().getWikipedia());
         String address = checkIfNull(response.body().getAddress().getRoad()) + ", " +
