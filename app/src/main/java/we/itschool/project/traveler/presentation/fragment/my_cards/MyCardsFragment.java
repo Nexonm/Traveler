@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import traveler.module.domain.entity.CardEntity;
 import we.itschool.project.traveler.R;
@@ -28,10 +29,7 @@ public class MyCardsFragment extends Fragment {
 
     private FragmentMyCardsBinding binding;
 
-    private ImageButton ib_new_card;
-
     private ViewModelMyCards viewModel;
-    private RecyclerView recyclerView;
     private Adapter adapter;
 
     public static MyCardsFragment newInstance(){
@@ -70,8 +68,6 @@ public class MyCardsFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(ViewModelMyCards.class);
 
         //add cards to mutable data for better representation
-//        for (CardEntity card : AppStart.getUser().getUserInfo().getUserCards())
-//            viewModel.addOne(card);
 
         viewModel.getCardList().observe(
                 getViewLifecycleOwner(),
@@ -80,10 +76,10 @@ public class MyCardsFragment extends Fragment {
     }
 
     private void initView(View view) {
-        ib_new_card = view.findViewById(R.id.ib_my_cards_create_new_card);
+        ImageButton ib_new_card = view.findViewById(R.id.ib_my_cards_create_new_card);
         ib_new_card.setOnClickListener(v -> startCreateNewCardFragment());
 
-        recyclerView = view.findViewById(R.id.rv_card_list_my_cards);
+        RecyclerView recyclerView = view.findViewById(R.id.rv_card_list_my_cards);
         recyclerView.setAdapter(adapter);
         recyclerView.getRecycledViewPool().setMaxRecycledViews(
                 Adapter.VIEW_TYPE_CARD_VISITOR, Adapter.MAX_POOL_SIZE);
@@ -106,17 +102,13 @@ public class MyCardsFragment extends Fragment {
         binding = null;
     }
 
-//    private void addData(){
-//        AppStart.getUser().getUserInfo().getUserCards();
-//    }
-
     @Override
     public void onResume() {
         super.onResume();
         AsyncTask.execute(() ->{
         try{
             Thread.sleep(3500);
-            adapter.submitList(new ArrayList<>(viewModel.getCardList().getValue()));
+            adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
         }catch (InterruptedException e){
             e.printStackTrace();
         }
@@ -124,17 +116,5 @@ public class MyCardsFragment extends Fragment {
     }
 
     private void startCardFragment(CardEntity card) {
-
-//        Log.e("CARD FRAGMENT", "TRYING TO GO TO BIG CARD");
-//        Fragment fragment = CardFragment.newInstance(
-//                (new Gson()).toJson(card)
-//        );
-//        FragmentManager fragmentManager = getParentFragmentManager();
-//        fragmentManager.popBackStack();
-//        fragmentManager
-//                .beginTransaction()
-//                .addToBackStack("null")
-//                .replace(R.id.nav_host_fragment_content_main, fragment, null)
-//                .commit();
     }
 }

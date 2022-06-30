@@ -9,13 +9,11 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Display;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -23,13 +21,13 @@ import com.google.android.material.tabs.TabLayout;
 import traveler.module.data.travelerapi.errors.UserNetAnswers;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.presentation.fragment.login.LoginFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager viewPager;
     float v = 0;
+    int delayed = 500;
 
     //keys for SharedPreferences
     public static final String KEY_PREF_USER_EMAIL = "UserEmail";
@@ -54,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-        final LoginAdapter loginAdapter = new LoginAdapter(getSupportFragmentManager(), this, tabLayout.getTabCount());
+        final LoginAdapter loginAdapter = new LoginAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(loginAdapter);
 
 
@@ -72,11 +70,9 @@ public class LoginActivity extends AppCompatActivity {
         checkConnection();
     }
 
-    public boolean checkConnection() {
-        Log.e("checkConnection", hasConnection() + "");
+    public void checkConnection() {
         if (hasConnection()) {
             mainJob();
-            return true;
         } else {
             final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
 
@@ -97,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
 
             final AlertDialog alert = builder.create();
             alert.show();
-            return true;
         }
     }
 
@@ -108,9 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void mainJob() {
         //it's supposed that inet connection was provided
-        int delayed = 500;
         if (userLogged()) {
-            Log.v("OkHttpClient", "Send request to UC from LoginActivity");
             logUserIn(userDataFromSPEmail(), userDataFromSPPass());
             AppStart.cUploadUC.upload();
             delayed = 1500;
@@ -121,24 +114,17 @@ public class LoginActivity extends AppCompatActivity {
             //Do something after handler work
 
             if (userLogged()) {
-                Log.v("OkHttpClient", "User is logged in phone LoginActivity");
-                Log.v("OkHttpClient", "Waiting till answer comes LoginActivity");
                 //already sent data and wait for data to come in
                 while (defaultFlag.equals(flag)) ;//wait while request is going
-
-                Log.v("OkHttpClient", "Flag is:" + flag + ", LoginActivity");
                 //in case login is successful we start real app
                 if (UserNetAnswers.userSuccessLogin.equals(flag)) {
                     startMainActivity();
                 } else {
-                    //TODO make string resources for this
                     if (UserNetAnswers.userOtherError.equals(flag)) {
-                        Toast.makeText(getBaseContext(), "some error in login, please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.login_some_error, Toast.LENGTH_SHORT).show();
                         Toast.makeText(getBaseContext(), flag, Toast.LENGTH_LONG).show();
                     }
                 }
-            } else {
-                Log.v("OkHttpClient", "somehow user is not logged LoginActivity");
             }
         }, (int) (Math.random() * 1001) + delayed);
     }
@@ -210,8 +196,8 @@ public class LoginActivity extends AppCompatActivity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        AppStart.getInstance().setDisplayHeight(size.y);//height is up and down, it's y
-        AppStart.getInstance().setDisplayWidth(size.x);//width is right and left, it's x
+        AppStart.getInstance().setDisplayHeight(size.y); //height is up and down, it's y
+        AppStart.getInstance().setDisplayWidth(size.x); //width is right and left, it's x
     }
 
 }

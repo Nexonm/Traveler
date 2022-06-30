@@ -20,18 +20,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import we.itschool.project.traveler.R;
 
 public class GetGeoLocation extends AsyncTask<String, Void, ArrayList<String>> {
-    private MapFragment mapFragment;
-    private Point position;
-    private Typeface tf;
+    private final MapFragment mapFragment;
+    private final Point position;
+    private final Typeface tf;
 
-    public GetGeoLocation(MapFragment mf, Point myPosition, Typeface tipeface) {
+    public GetGeoLocation(MapFragment mf, Point myPosition, Typeface typeface) {
         mapFragment = mf;
         position = myPosition;
-        tf = tipeface;
+        tf = typeface;
     }
 
     @Override
@@ -59,14 +60,14 @@ public class GetGeoLocation extends AsyncTask<String, Void, ArrayList<String>> {
     @Override
     protected void onPostExecute(ArrayList<String> result) {
         super.onPostExecute(result);
-        mapFragment.regions = result;
+        MapFragment.regions = result;
         if (cl.findViewById(1) instanceof TextView){
             tx_town.setText(result.get(0));
         } else if (result.size() > 0){
             tx_town.setTextSize(30);
             tx_town.setTypeface(tf);
             tx_town.setId(1);
-            tx_town.setTextColor(ContextCompat.getColor(mapFragment.getContext(), R.color.black));
+            tx_town.setTextColor(ContextCompat.getColor(mapFragment.requireContext(), R.color.black));
             tx_town.setPadding(20, 70, 0, 0);
 
             tx_town.setText(result.get(0));

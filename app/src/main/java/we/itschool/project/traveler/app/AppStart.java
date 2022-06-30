@@ -24,20 +24,15 @@ import traveler.module.domain.usecases.user.UserLoginUserCase;
 import traveler.module.domain.usecases.user.UserRegNewUseCase;
 
 public class AppStart extends Application {
-    public static final boolean isLog = true;
-
-    private static UserRepositoryImpl userRepImpl;
 
     public static UserGetMainUseCase uGetMainUserUC;
     public static UserLoginUserCase uLoginUC;
     public static UserGetUserCardsUseCase uGetUserCardsUC;
-    public static UserGetUserFavoritesCardsUseCase uGetUserFavsUC;
+    public static UserGetUserFavoritesCardsUseCase uGetUserFavesUC;
     public static UserCreateNewCardUseCase uCreateNewCardUC;
-    public static UserAddCardToFavoritesUseCase uAddCardToFavsUC;
+    public static UserAddCardToFavoritesUseCase uAddCardToFavesUC;
     public static UserAddPhotoUseCase uAddPhotoUC;
     public static UserRegNewUseCase uRegUC;
-
-    private static CardRepositoryImpl cardRepImpl;
 
     public static CardGetAllUseCase cGetAllUC;
     public static CardGetBySearchUseCase cGetBySearchUC;
@@ -47,7 +42,6 @@ public class AppStart extends Application {
 
     private static AppStart instance;
 
-//    private static UserEntity user;
 
     private int displayHeight;
     private int displayWidth;
@@ -59,18 +53,18 @@ public class AppStart extends Application {
 
         instance = this;
 
-        userRepImpl = UserRepositoryImplFactory.createUserRepositoryImpl();
+        UserRepositoryImpl userRepImpl = UserRepositoryImplFactory.createUserRepositoryImpl();
 
         uGetMainUserUC = new UserGetMainUseCase(userRepImpl);
         uLoginUC = new UserLoginUserCase(userRepImpl);
         uGetUserCardsUC = new UserGetUserCardsUseCase(userRepImpl);
-        uGetUserFavsUC = new UserGetUserFavoritesCardsUseCase(userRepImpl);
+        uGetUserFavesUC = new UserGetUserFavoritesCardsUseCase(userRepImpl);
         uCreateNewCardUC = new UserCreateNewCardUseCase(userRepImpl);
-        uAddCardToFavsUC = new UserAddCardToFavoritesUseCase(userRepImpl);
+        uAddCardToFavesUC = new UserAddCardToFavoritesUseCase(userRepImpl);
         uAddPhotoUC = new UserAddPhotoUseCase(userRepImpl);
         uRegUC = new UserRegNewUseCase(userRepImpl);
 
-        cardRepImpl = new CardRepositoryImpl();
+        CardRepositoryImpl cardRepImpl = new CardRepositoryImpl();
 
         cUploadUC = new CardUploadUseCase(cardRepImpl);
         cGetAllUC = new CardGetAllUseCase(cardRepImpl);
@@ -78,8 +72,6 @@ public class AppStart extends Application {
         cGetByIdUC = new CardGetByIdUseCase(cardRepImpl);
         cDeleteUC = new CardDeleteUseCase(cardRepImpl);
         cUploadUC = new CardUploadUseCase(cardRepImpl);
-
-//        user = null;
 
         //set and init mapkit_api before creating view with map
         MapKitFactory.setApiKey(API_YANDEX_MAP_KEY);
@@ -93,17 +85,6 @@ public class AppStart extends Application {
     public void setDisplayWidth(int displayWidth) {
         this.displayWidth = displayWidth;
     }
-
-//    public static UserEntity getUser() {
-//        return AppStart.user;
-//    }
-//
-//    public static void setUser(UserEntity user) {
-//        if (AppStart.user==null)
-//        AppStart.user = user;
-//        if (AppStart.user.getUserInfo().getUserCards()==null)
-//            AppStart.user.getUserInfo().setUserCards(new ArrayList<>());
-//    }
 
     public int getDisplayHeight() {
         return displayHeight;

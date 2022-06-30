@@ -27,8 +27,6 @@ import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
 
 public class CardListFragment extends Fragment {
 
-    private static final String ARGUMENT_IS_ONE_PANE_MODE = "is onePaneMode";
-
     private CardListViewModel viewModel;
 
     private EditText et_search_input;
@@ -37,25 +35,12 @@ public class CardListFragment extends Fragment {
 
     private boolean goingUsual;
     private boolean goingSearch;
-    private boolean reset;
 
     View root;
-
-    public static CardListFragment newInstance() {
-        return new CardListFragment();
-    }
-
-    private void parseParams() {
-        Bundle args = requireArguments();
-        if (!args.containsKey(ARGUMENT_IS_ONE_PANE_MODE))
-            throw new RuntimeException("Argument 'is onePane' is absent");
-        boolean isOnePane = args.getBoolean(ARGUMENT_IS_ONE_PANE_MODE);
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //parseParams();
     }
 
     @Nullable
@@ -68,10 +53,6 @@ public class CardListFragment extends Fragment {
         we.itschool.project.traveler.databinding.FragmentMainBinding binding = FragmentMainBinding.inflate(inflater, container, false);
         root = binding.getRoot();
         return root;
-//        return inflater.inflate(
-//                R.layout.fragment_main,
-//                container,
-//                false);
     }
 
     @Override
@@ -84,7 +65,6 @@ public class CardListFragment extends Fragment {
         initViewModel();
         initView(view);
         goingUsual = true;
-        reset = false;
         addData();
     }
 
@@ -117,7 +97,6 @@ public class CardListFragment extends Fragment {
 
     private void searchData() {
         if (et_search_input.getText().toString().length() > 1) {
-
             AsyncTask.execute(() -> {
                 goingSearch = true;
                 String str = et_search_input.getText().toString();
@@ -144,10 +123,8 @@ public class CardListFragment extends Fragment {
             });
         } else {
             goingUsual = true;
-            reset = true;
             addData();
         }
-
     }
 
     //TODO сделать загрузку данных другим способом, в зависимости от прокрутки пользователем странницы
@@ -157,19 +134,13 @@ public class CardListFragment extends Fragment {
             int num = 0;
             while (num < 20 && goingUsual)
                 try {
-//                        Log.v("OkHttpClient nik", "запрос отправляю " + num+", going="+going);
                     viewModel.addNewCard();
-                    reset = false;
                     num++;
-//                        Log.v("OkHttpClient nik", "ухожу спать" + num+", going="+going);
                     Thread.sleep(1500);
-//                        Log.v("OkHttpClient nik", "проснулся" + num+", going="+going);
                     //write submit list to add new list made from main list with cards
                     adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
-//                        adapter.onCurrentListChanged(adapter.getCurrentList(), viewModel.getCardList().getValue());
                     try {
                         num = viewModel.getCardList().getValue().size();
-//                            Log.v("OkHttpClient nik", "получил карту num=" + num +", going="+going);
                     } catch (NullPointerException ignored) {
                     }
                 } catch (InterruptedException e) {
@@ -182,19 +153,16 @@ public class CardListFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-//        Log.v("OkHttpClient nik", "onPAUSE in ListFragment");
         goingUsual = false;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        Log.v("OkHttpClient nik", "onRESUME in ListFragment");
         goingUsual = true;
     }
 
     private void startCardFragment(CardEntity card) {
-
         Fragment fragment = CardFragment.newInstance(
                 (new Gson()).toJson(card)
         );

@@ -1,7 +1,6 @@
 package we.itschool.project.traveler.presentation.fragment.card_list;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
     public static final int MAX_POOL_SIZE = 20;
     public static final int VIEW_TYPE_CARD_VISITOR = 100;
 
-    private static int count = 0;
+    String name_of_city;
 
 
     public OnCardClickListener cardClickListener = null;
@@ -34,18 +33,8 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (AppStart.isLog)
-            Log.w("onCreateViewHolder", "onCreateViewHolder, count = " + (++count));
         int layout;
-        if (viewType == VIEW_TYPE_CARD_VISITOR) {
-            layout = R.layout.fragment_card_list_item_visitor;
-        } else {
-            if (AppStart.isLog)
-                Log.wtf("onCreateViewHolder", "onCreateViewHolder, THERE IS NO SUCH TYPE!!!");
-
-            //TODO find how to do it smartly without errors
-            layout = R.layout.fragment_card_list_item_visitor;
-        }
+        layout = R.layout.fragment_card_list_item_visitor;
 
         View view = LayoutInflater
                 .from(parent.getContext())
@@ -62,12 +51,10 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         CardEntity card = getItem(position);
-        String name_of_city = card.getCardInfo().getCity() + ", " + card.getCardInfo().getCountry();
+        name_of_city = card.getCardInfo().getCity() + ", " + card.getCardInfo().getCountry();
         viewHolder.tv_name_of_city.setText(name_of_city);
         viewHolder.tv_short_description.setText(card.getCardInfo().getShortDescription());
-        //TODO  asynk Picasso
         Context context = viewHolder.itemView.getContext();
-//        viewHolder.iv_avatar_image.setMaxHeight(AppStart.getInstance().getDisplayHeight()/2);
         Picasso.with(context)
                 .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD + card.get_id())
                 .resize(
@@ -75,17 +62,8 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
                         AppStart.getInstance().getDisplayHeight() / 2
                 ).into(viewHolder.iv_avatar_image);
         viewHolder.itemView.setOnClickListener(
-                v -> {
-                    // TODO how it work now
-                    cardClickListener.onCardClick(getCurrentList().get(position));
-                    // TODO how it must be work
-                    //peopleClickListener.onPeopleClick(card.get_id());
-                }
+                v -> cardClickListener.onCardClick(getCurrentList().get(position))
         );
-    }
-
-    public void updateSet(){
-        notifyDataSetChanged();
     }
 
     public interface OnCardClickListener {

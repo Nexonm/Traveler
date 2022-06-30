@@ -17,7 +17,7 @@ public class CardListViewModel extends ViewModel {
     private final CardGetAllUseCase getAll = AppStart.cGetAllUC;
     private final CardGetBySearchUseCase searchCards = AppStart.cGetBySearchUC;
 
-    private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList = new MutableLiveData<>();
 
     protected MutableLiveData<ArrayList<CardEntity>> getCardList(){
         cardsLiveDataList.postValue(getAll.getAll());

@@ -152,7 +152,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
         tf = Typeface.createFromAsset(context.getAssets(), "karlocharm.otf");
 
-        InitialisatePrefs();
+        InitialisePrefs();
 
         bt_crop_user = view.findViewById(R.id.bt_map_crop);
         bt_crop_user.setOnClickListener(v -> {
@@ -332,7 +332,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
         });
     }
 
-    private void InitialisatePrefs() {
+    private void InitialisePrefs() {
         CENSORED_KINDS_OF_PLACES = (ArrayList<String>) ALLOWED_KINDS_OF_PLACES.clone();
         ArrOfFavorite = new HashMap<>();
     }
@@ -405,7 +405,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
                     .setMessage(R.string.login_inet_request)
                     .setNegativeButton(R.string.login_inet_request_quit, (dialog, id) ->{
                         //exit from app, but it doesn't finish it running
-                        this.getActivity().finishAffinity();
+                        this.requireActivity().finishAffinity();
                     })
                     .setPositiveButton(R.string.login_inet_request_turn_up, (dialog, id) -> {
                         startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));

@@ -30,22 +30,14 @@ import we.itschool.project.traveler.presentation.fragment.registration.Registrat
 
 public class LoginFragment extends Fragment {
 
-    public static final String KEY_PREF_USER_EMAIL = "UserEmail";
-    public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
-
     String email, password;
     EditText et_email, et_password;
     Button bt_login;
-    TextView forgot_pass;
 
     ProgressBar pb_login;
 
     private static final String defaultFlag = "waiting";
     private String flag = defaultFlag;
-
-    public static LoginFragment newInstance() {
-        return new LoginFragment();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

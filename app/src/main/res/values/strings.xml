@@ -117,8 +117,10 @@
     <string name="addToFavorite">in plans</string>
     <string name="alreadyInFavorite">already in the plans</string>
     <string name="map_crop_error">Check if your geolocation is on or wait a second</string>
-    <string name="ok">apply</string>
+    <string name="map_ok">apply</string>
     <string name="map_bt_find_me">Find me</string>
+    <string name="map_no_name">No name info</string>
+    <string name="map_dist">Dist: </string>
 
     <!-- settings -->
     <string name="settings_language">Change the language</string>

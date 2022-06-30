@@ -1,7 +1,6 @@
 package we.itschool.project.traveler.presentation.fragment.card_big;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,9 +42,7 @@ public class CardFragment extends Fragment {
             throw new RuntimeException("Argument card gson is absent");
         String cardGson = args.getString(ARGUMENT_CARD_GSON);
         card = (new Gson()).fromJson(cardGson, CardEntity.class);
-        if (AppStart.isLog) {
-            Log.w("CardFragment", "Incoming parseParams:   " + cardGson + "\n");
-        }
+
     }
 
     @Override
@@ -131,6 +128,6 @@ public class CardFragment extends Fragment {
                 .setText(card.getCardInfo().getFullDescription());
 
         Button bt_add_faves = view.findViewById(R.id.bt_cbv_add_to_favourites);
-        bt_add_faves.setOnClickListener(v -> AppStart.uAddCardToFavsUC.addCardToFavorites(card.get_id()));
+        bt_add_faves.setOnClickListener(v -> AppStart.uAddCardToFavesUC.addCardToFavorites(card.get_id()));
     }
 }

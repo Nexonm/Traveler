@@ -13,22 +13,13 @@ import we.itschool.project.traveler.app.AppStart;
 
 public class ViewModelFavorites extends ViewModel {
 
-    private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList = new MutableLiveData<>();
 
-//    private final CardAddNewFavoriteFromServerUseCase addNewUC = AppStart.cardAddNewFavCardFromServ;
-    private final UserGetUserFavoritesCardsUseCase getAllUC = AppStart.uGetUserFavsUC;
+    private final UserGetUserFavoritesCardsUseCase getAllUC = AppStart.uGetUserFavesUC;
     private final UserGetMainUseCase getUserUC = AppStart.uGetMainUserUC;
 
     protected MutableLiveData<ArrayList<CardEntity>> getCardList(){
         cardsLiveDataList.postValue(getAllUC.getUserFavoritesCards(getUserUC.getMainUser().get_id()));
         return cardsLiveDataList;
-    }
-
-//    protected void addCard(long id){
-//        addNewUC.cardAddNewFavsFromServ(id);
-//    }
-
-    protected UserEntity getUser(){
-        return getUserUC.getMainUser();
     }
 }

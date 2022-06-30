@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -27,7 +26,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 
@@ -35,14 +33,11 @@ import traveler.module.domain.entity.CardEntity;
 import traveler.module.domain.entity.CardInfo;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
-import we.itschool.project.traveler.databinding.FragmentCreateNewCardBinding;
-import we.itschool.project.traveler.presentation.fragment.my_cards.MyCardsFragment;
 
 public class CreateNewCardFragment extends Fragment {
 
     private Context context;
     private ImageView iv_card_photo;
-    private Switch sw_payment;
 
     private EditText et_city;
     private EditText et_country;
@@ -53,9 +48,10 @@ public class CreateNewCardFragment extends Fragment {
 
     private String bufString = "null";
 
-    private FragmentCreateNewCardBinding binding;
-    private static final int IMAGE_PIC_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
+
+    public CreateNewCardFragment() {
+    }
 
 
     //new Instance method
@@ -182,23 +178,6 @@ public class CreateNewCardFragment extends Fragment {
         return false;
     }
 
-    private boolean isNum(String a) {
-        try {
-            Integer.parseInt(a);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private int getNum(String a) {
-        try {
-            return Integer.parseInt(a);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
-
     /**
      * Method to start new activity to get photo from storage
      */
@@ -263,21 +242,8 @@ public class CreateNewCardFragment extends Fragment {
 
     //methods for ui changes (fragments)
 
-    private void startMyCardsFragment() {
-        Fragment fragment = MyCardsFragment.newInstance();
-
-        FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager.popBackStack();
-        fragmentManager
-                .beginTransaction()
-                .addToBackStack("null")
-                .replace(R.id.nav_host_fragment_content_main, fragment, null)
-                .commit();
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
 }

@@ -2,7 +2,6 @@ package we.itschool.project.traveler.presentation.fragment.favourites;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +30,7 @@ public class FavouritesFragment extends Fragment {
     private FragmentFavouritesBinding binding;
 
     private ViewModelFavorites viewModel;
-    private RecyclerView recyclerView;
     private Adapter adapter;
-
-    private boolean going = true;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,8 +41,7 @@ public class FavouritesFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentFavouritesBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -75,7 +70,7 @@ public class FavouritesFragment extends Fragment {
     }
 
     private void initView(View view){
-        recyclerView = view.findViewById(R.id.rv_favs_cards);
+        RecyclerView recyclerView = view.findViewById(R.id.rv_favs_cards);
         recyclerView.setAdapter(adapter);
         recyclerView.getRecycledViewPool().setMaxRecycledViews(
                 Adapter.VIEW_TYPE_CARD_VISITOR, Adapter.MAX_POOL_SIZE
@@ -83,40 +78,17 @@ public class FavouritesFragment extends Fragment {
     }
 
     private void addData(){
-        AsyncTask.execute(()->{
-
-            adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
-//            try {
-//                ArrayList<Long> list = new ArrayList<>(viewModel.getUser().getUserInfo().getUserFavoritesCards());
-//                int size = list.size();
-//                int start = 0;
-//                while (start < size && going) {
-//                    viewModel.addCard(list.get(start));
-//                    if (start % 2 == 0)
-//                        adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
-//                    Thread.sleep(100);
-//                    start++;
-//                }
-//                adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
-//            }catch (InterruptedException e){
-//                e.printStackTrace();
-//            }
-
-        });
+        AsyncTask.execute(()-> adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue()))));
     }
 
     @Override
     public void onPause() {
         super.onPause();
-//        Log.v("OkHttpClient nik", "onPAUSE in ListFragment");
-        going = false;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        Log.v("OkHttpClient nik", "onRESUME in ListFragment");
-        going = true;
     }
 
     @Override
@@ -126,8 +98,6 @@ public class FavouritesFragment extends Fragment {
     }
 
     private void startCardFragment(CardEntity card) {
-
-        Log.e("CARD FRAGMENT", "TRYING TO GO TO BIG CARD");
         Fragment fragment = CardFragment.newInstance(
                 (new Gson()).toJson(card)
         );

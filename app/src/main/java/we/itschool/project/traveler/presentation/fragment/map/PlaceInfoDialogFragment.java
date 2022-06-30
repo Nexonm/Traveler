@@ -18,19 +18,14 @@ import androidx.fragment.app.DialogFragment;
 import java.util.Objects;
 
 import retrofit2.Response;
-import we.itschool.project.traveler.R;
 import traveler.module.mapapi.opentripmapapi.ResponseOTMInf.ResponseOTMInfo;
+import we.itschool.project.traveler.R;
 
 public class PlaceInfoDialogFragment extends DialogFragment {
-    private Response<ResponseOTMInfo> response;
+    private final Response<ResponseOTMInfo> response;
     private String dist;
-    private String url;
-    private String address;
     private String tittle = "Описание ";
     private String text = "отсутствует \n";
-    int str_to_fav = R.string.addToFavorite;
-    int str_alr_in = R.string.alreadyInFavorite;
-    private TableLayout tableLayout;
 
     private String checkIfNull(String str){ if (str==null){ return ""; }else { return str; } }
     public PlaceInfoDialogFragment(Response<ResponseOTMInfo> card, String distance) {
@@ -43,23 +38,26 @@ public class PlaceInfoDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_fragment, null);
-        tableLayout = view.findViewById(R.id.tl_dialog_content);
+        TableLayout tableLayout = view.findViewById(R.id.tl_dialog_content);
 
         assert response.body() != null;
         String name = response.body().getName();
 
 
-        if (Objects.equals(name, "")) {name = "Без названия";}
-        dist = "До места(м): " + (int) Double.parseDouble(dist);
+        if (Objects.equals(name, "")) {
+            name = R.string.map_no_name;
+        }
+        dist = R.string.map_dist + (int) Double.parseDouble(dist);
 
-        url = checkIfNull(response.body().getWikipedia());
-       address = checkIfNull(response.body().getAddress().getRoad()) + ", " +
+        String url = checkIfNull(response.body().getWikipedia());
+        String address = checkIfNull(response.body().getAddress().getRoad()) + ", " +
                 checkIfNull(response.body().getAddress().getHouse()) + " " +
                 checkIfNull(response.body().getAddress().getHouseNumber()) + "\n";
         try {
             tittle = response.body().getWikipediaExtracts().getTitle();
-            text = response.body().getWikipediaExtracts().getText()+ "\n";
-        } catch (NullPointerException ignored){}
+            text = response.body().getWikipediaExtracts().getText() + "\n";
+        } catch (NullPointerException ignored) {
+        }
 
         TextView tv_title = new TextView(mf.getContext());
         tv_title.setText(tittle);
@@ -79,8 +77,6 @@ public class PlaceInfoDialogFragment extends DialogFragment {
         tv_dist.setPadding(14,7,14,7);
 
         TextView tv_address = new TextView(mf.getContext());
-        if (address.equals(",")){
-            address = "...";}
         tv_address.setText(address);
         tv_address.setTextSize(17);
         tv_address.setPadding(14,7,14,7);
