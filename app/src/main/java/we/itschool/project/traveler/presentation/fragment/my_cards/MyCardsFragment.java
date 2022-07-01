@@ -15,6 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -24,6 +26,7 @@ import we.itschool.project.traveler.databinding.FragmentMyCardsBinding;
 import we.itschool.project.traveler.presentation.fragment.card_list.Adapter;
 import we.itschool.project.traveler.presentation.fragment.card_list.DiffCallback;
 import we.itschool.project.traveler.presentation.fragment.create_new_card.CreateNewCardFragment;
+import we.itschool.project.traveler.presentation.fragment.my_card_big.MyCardBigFragment;
 
 public class MyCardsFragment extends Fragment {
 
@@ -116,5 +119,15 @@ public class MyCardsFragment extends Fragment {
     }
 
     private void startCardFragment(CardEntity card) {
+        Fragment fragment = MyCardBigFragment.newInstance(
+                (new Gson()).toJson(card)
+        );
+        FragmentManager fragmentManager = getParentFragmentManager();
+        fragmentManager.popBackStack();
+        fragmentManager
+                .beginTransaction()
+                .addToBackStack("null")
+                .replace(R.id.nav_host_fragment_content_main, fragment, null)
+                .commit();
     }
 }
