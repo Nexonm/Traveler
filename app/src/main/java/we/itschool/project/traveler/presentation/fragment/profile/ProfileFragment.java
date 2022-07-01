@@ -82,6 +82,7 @@ public class ProfileFragment extends Fragment {
         tv_email = view.findViewById(R.id.tv_profile_email);
         tv_email.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getEmail());
         tv_is_male = view.findViewById(R.id.tv_profile_is_male);
+        //TODO make String resource with translation
         tv_is_male.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().isMale() ? "Мужской" : "Женский");
         tv_birthday = view.findViewById(R.id.tv_profile_birthday);
         tv_birthday.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getDateOfBirth());
@@ -103,7 +104,7 @@ public class ProfileFragment extends Fragment {
                     pickImageFromGallery();
                 }
             } catch (Exception e) {
-                //TODO make String with this text
+                //TODO make String resource
                 Toast.makeText(this.getContext(), "Поизошла ошибка, попробуйте снова", Toast.LENGTH_LONG).show();
             }
         });
@@ -138,9 +139,11 @@ public class ProfileFragment extends Fragment {
                             //send data to server
                             AppStart.uAddPhotoUC.addPhoto(bufString);
                         } catch (NullPointerException e) {
+                            //TODO make String resource
                             Toast.makeText(context, "Видимо вы прекратили выбор фото, не забудьте выбрать:)", Toast.LENGTH_LONG).show();
                         }
                     } else {
+                        //TODO make String resource
                         Toast.makeText(context, "Please allow us to upload photo from your gallery", Toast.LENGTH_LONG).show();
                     }
                 }

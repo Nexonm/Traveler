@@ -137,6 +137,7 @@ public class RegistrationFragment extends Fragment {
         phone = et_phone.getText().toString().trim();
         social_contacts = et_social_cont.getText().toString().trim();
 
+        //TODO make String resources for this strings
         if (social_contacts.isEmpty()) {
             check = false;
             et_social_cont.setError("Social contacts is required");
