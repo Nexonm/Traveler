@@ -108,6 +108,8 @@
     <string name="cbv_text_from_author">текст от автора</string>
     <string name="cbv_add_to_favourites">В избранное</string>
 
+    <!-- my card big -->
+    <string name="delete">Delete card</string>
 
     <!-- card list item visitor (cliv) -->
     <string name="cliv_name_of_city">Сингапур</string>

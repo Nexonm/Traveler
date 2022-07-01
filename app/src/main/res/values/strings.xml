@@ -108,6 +108,9 @@
     <string name="cbv_text_from_author">text from the author</string>
     <string name="cbv_add_to_favourites">Add to favourites</string>
 
+    <!-- my card big -->
+    <string name="delete">Delete card</string>
+
     <!-- card list item visitor (cliv) -->
     <string name="cliv_name_of_city">Singapore</string>
     <string name="cliv_dop_info">progress city</string>
