@@ -20,12 +20,6 @@ public interface CardDomainRepository {
     ArrayList<CardEntity> getBySearch(String searchStr);
 
     /**
-     * Delete card by it's special id in storage.
-     * @param id of card
-     */
-    void delete(long id);
-
-    /**
      * Calls method to update the storage list and add new card.
      */
     void upload();

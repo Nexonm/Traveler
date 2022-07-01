@@ -1,10 +1,10 @@
 package we.itschool.project.traveler.presentation.fragment.registration;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +34,7 @@ import we.itschool.project.traveler.presentation.activity.MainActivity;
 
 public class RegistrationFragment extends Fragment {
 
-    String name, surname, email, password, password2, birth_date, phone, social_contacts;
+    private String name, surname, email, password, password2, birth_date, phone, social_contacts;
     private EditText et_first_name;
     private EditText et_second_name;
     private EditText et_email;
@@ -270,7 +270,7 @@ public class RegistrationFragment extends Fragment {
     }
 
     private void savePrefs() {
-        SharedPreferences pref = this.requireActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(requireActivity().getApplicationContext());
 
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(LoginActivity.KEY_PREF_USER_PASSWORD, et_password.getText().toString());
@@ -287,6 +287,7 @@ public class RegistrationFragment extends Fragment {
         //close activity in case there is no more need in it
         closeActivity();
     }
+
     private void closeActivity() {
         this.requireActivity().finish();
     }

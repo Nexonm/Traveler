@@ -47,6 +47,14 @@ public interface UserDomainRepository {
     void createNewCard(CardEntity createdCard);
 
     /**
+     * Delete card by it's special id in storage.
+     * @param id card id
+     * @param uemail user email
+     * @param pass user pass
+     */
+    void deleteCard(long id, String uemail, String pass);
+
+    /**
      * Add new photo to user.
      * (That's not good passing path as string cause
      * photo is photo but not String.

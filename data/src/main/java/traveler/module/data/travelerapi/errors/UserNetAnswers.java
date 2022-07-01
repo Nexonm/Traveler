@@ -13,6 +13,7 @@ public class UserNetAnswers {
     public final static String userDataNoEmailException = "Регистрация невозможна: не предоставлены данные email";
     public final static String userDataNoFirstNameException = "Регистрация невозможна: не предоставлены данные об ИМЕНИ";
     public final static String userDataNoSecondNameException = "Регистрация невозможна: не предоставлены данные о ФАМИЛИИ";
+    public final static String userDataCardCreatedByAnotherUser = "Карта с таким id не может быть удалена: принадлежит другому пользователю";
     public final static String userPhotoLoadingException = "Ошибка";
 
     //successful actions

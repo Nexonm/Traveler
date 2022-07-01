@@ -14,6 +14,7 @@ import traveler.module.data.travelerapi.service.APIServiceTravelerConstructor;
 import traveler.module.data.usecaseinterface.user.UserAddCardToFavoritesUCI;
 import traveler.module.data.usecaseinterface.user.UserAddPhotoUCI;
 import traveler.module.data.usecaseinterface.user.UserCreateNewCardUCI;
+import traveler.module.data.usecaseinterface.user.UserDeleteCardUCI;
 import traveler.module.data.usecaseinterface.user.UserLoginUCI;
 import traveler.module.data.usecaseinterface.user.UserRegUCI;
 import traveler.module.domain.entity.CardEntity;
@@ -29,6 +30,7 @@ public class UserRepositoryImpl implements UserDomainRepository {
     private final UserRegUCI regUCI;
     private final UserAddPhotoUCI addPhotoUCI;
     private final UserCreateNewCardUCI createNewCardUCI;
+    private final UserDeleteCardUCI deleteCardUCI;
     private final UserAddCardToFavoritesUCI addCardToFavoritesUCI;
 
     static {
@@ -41,12 +43,14 @@ public class UserRepositoryImpl implements UserDomainRepository {
             UserRegUCI regUCI,
             UserAddPhotoUCI addPhotoUCI,
             UserCreateNewCardUCI createNewCardUCI,
+            UserDeleteCardUCI deleteCardUCI,
             UserAddCardToFavoritesUCI addCardToFavoritesUCI
     ) {
         this.loginUCI = loginUCI;
         this.regUCI = regUCI;
         this.addPhotoUCI = addPhotoUCI;
         this.createNewCardUCI = createNewCardUCI;
+        this.deleteCardUCI = deleteCardUCI;
         this.addCardToFavoritesUCI = addCardToFavoritesUCI;
     }
 
@@ -102,6 +106,25 @@ public class UserRepositoryImpl implements UserDomainRepository {
     public void createNewCard(CardEntity createdCard) {
         createNewCardUCI.createNewCard(createdCard, userMain.get_id());
         addCardToUserCards(createdCard);
+    }
+
+    /**
+     * Sends request to User UC implementation. Then deletes card from mainUser list.
+     * @param id card id
+     * @param uemail user email
+     * @param pass user pass
+     */
+    @Override
+    public void deleteCard(long id, String uemail, String pass) {
+        deleteCardUCI.deleteCard(id, uemail, pass);
+        //delete from user list
+        ArrayList<CardEntity> list = new ArrayList<>(getUserMain().getUserInfo().getUserCards());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).get_id() == id){
+                getUserMain().getUserInfo().getUserCards().remove(i);
+                break;
+            }
+        }
     }
 
     @Override

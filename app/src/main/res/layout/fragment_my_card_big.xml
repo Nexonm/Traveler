@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteY="8dp">
 
         <LinearLayout
-            android:id="@+id/container_card_big_view"
+            android:id="@+id/container_my_card_big"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_name_of_city"
+                android:id="@+id/tv_name_of_city_my_card_big"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -33,7 +33,7 @@
                 android:textAppearance="@style/text_style_3" />
 
             <ImageView
-                android:id="@+id/iv_main_image_big_card"
+                android:id="@+id/iv_main_image_big_card_my_card_big"
                 android:layout_marginTop="30dp"
                 android:layout_width="300dp"
                 android:layout_height="150dp"
@@ -57,7 +57,7 @@
                     android:showDividers="middle">
 
                     <ImageView
-                        android:id="@+id/iv_avatar_image_big_card"
+                        android:id="@+id/iv_avatar_image_big_card_my_card_big"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:contentDescription="@string/cbv_description_photo"
@@ -74,14 +74,14 @@
                         android:showDividers="middle">
 
                         <TextView
-                            android:id="@+id/tv_avatar_profile_data_small_FN"
+                            android:id="@+id/tv_avatar_profile_data_small_FN_my_card_big"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cbv_name"
                             android:textAppearance="@style/text_style_2" />
 
                         <TextView
-                            android:id="@+id/tv_avatar_profile_data_small_SN"
+                            android:id="@+id/tv_avatar_profile_data_small_SN_my_card_big"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cbv_second_name"
@@ -100,7 +100,7 @@
                     android:textAppearance="@style/text_style_2"/>
 
                 <TextView
-                    android:id="@+id/tv_cbv_contacts_field"
+                    android:id="@+id/tv_mcb_contacts_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -110,7 +110,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_description_long"
+                android:id="@+id/tv_description_long_my_card_big"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -123,7 +123,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/bt_cbv_add_to_favourites"
+        android:id="@+id/bt_mcb_delete_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/delete"

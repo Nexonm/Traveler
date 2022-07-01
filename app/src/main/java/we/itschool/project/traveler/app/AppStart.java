@@ -9,7 +9,7 @@ import com.yandex.mapkit.MapKitFactory;
 import traveler.module.data.repositoryImpl.CardRepositoryImpl;
 import traveler.module.data.repositoryImpl.UserRepositoryImpl;
 import traveler.module.data.repositoryImpl.UserRepositoryImplFactory;
-import traveler.module.domain.usecases.card.CardDeleteUseCase;
+import traveler.module.domain.usecases.user.UserDeleteCardUseCase;
 import traveler.module.domain.usecases.card.CardGetAllUseCase;
 import traveler.module.domain.usecases.card.CardGetByIdUseCase;
 import traveler.module.domain.usecases.card.CardGetBySearchUseCase;
@@ -30,6 +30,7 @@ public class AppStart extends Application {
     public static UserGetUserCardsUseCase uGetUserCardsUC;
     public static UserGetUserFavoritesCardsUseCase uGetUserFavesUC;
     public static UserCreateNewCardUseCase uCreateNewCardUC;
+    public static UserDeleteCardUseCase uDeleteCardUC;
     public static UserAddCardToFavoritesUseCase uAddCardToFavesUC;
     public static UserAddPhotoUseCase uAddPhotoUC;
     public static UserRegNewUseCase uRegUC;
@@ -37,7 +38,6 @@ public class AppStart extends Application {
     public static CardGetAllUseCase cGetAllUC;
     public static CardGetBySearchUseCase cGetBySearchUC;
     public static CardGetByIdUseCase cGetByIdUC;
-    public static CardDeleteUseCase cDeleteUC;
     public static CardUploadUseCase cUploadUC;
 
     private static AppStart instance;
@@ -60,6 +60,7 @@ public class AppStart extends Application {
         uGetUserCardsUC = new UserGetUserCardsUseCase(userRepImpl);
         uGetUserFavesUC = new UserGetUserFavoritesCardsUseCase(userRepImpl);
         uCreateNewCardUC = new UserCreateNewCardUseCase(userRepImpl);
+        uDeleteCardUC = new UserDeleteCardUseCase(userRepImpl);
         uAddCardToFavesUC = new UserAddCardToFavoritesUseCase(userRepImpl);
         uAddPhotoUC = new UserAddPhotoUseCase(userRepImpl);
         uRegUC = new UserRegNewUseCase(userRepImpl);
@@ -70,7 +71,6 @@ public class AppStart extends Application {
         cGetAllUC = new CardGetAllUseCase(cardRepImpl);
         cGetBySearchUC = new CardGetBySearchUseCase(cardRepImpl);
         cGetByIdUC = new CardGetByIdUseCase(cardRepImpl);
-        cDeleteUC = new CardDeleteUseCase(cardRepImpl);
         cUploadUC = new CardUploadUseCase(cardRepImpl);
 
         //set and init mapkit_api before creating view with map

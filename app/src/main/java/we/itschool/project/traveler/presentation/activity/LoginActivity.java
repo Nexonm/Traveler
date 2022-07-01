@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.Display;
 import android.widget.Toast;
 
@@ -150,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean userLogged() {
         //make object of SharedPreferences, in case we have just one file we call
         //getPreferences() passing with context of app/activity
-        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         //check if there is needed data
         return pref.contains(KEY_PREF_USER_EMAIL) && pref.contains(KEY_PREF_USER_PASSWORD);
     }
@@ -163,7 +164,7 @@ public class LoginActivity extends AppCompatActivity {
      * @return user email
      */
     private String userDataFromSPEmail() {
-        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         return pref.getString(KEY_PREF_USER_EMAIL, "null");
     }
 
@@ -175,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
      * @return user password
      */
     private String userDataFromSPPass() {
-        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         return pref.getString(KEY_PREF_USER_PASSWORD, "null");
     }
 

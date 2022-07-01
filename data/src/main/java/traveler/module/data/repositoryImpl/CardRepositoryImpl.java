@@ -5,17 +5,19 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import traveler.module.domain.entity.CardEntity;
-import traveler.module.domain.repository.CardDomainRepository;
 import traveler.module.data.travelerapi.entityserv.CardServ;
+import traveler.module.data.travelerapi.errors.CardNetAnswers;
 import traveler.module.data.travelerapi.mapper.CardEntityMapper;
 import traveler.module.data.travelerapi.service.APIServiceCard;
 import traveler.module.data.travelerapi.service.APIServiceTravelerConstructor;
+import traveler.module.domain.entity.CardEntity;
+import traveler.module.domain.repository.CardDomainRepository;
 
 public class CardRepositoryImpl implements CardDomainRepository {
 
@@ -43,11 +45,6 @@ public class CardRepositoryImpl implements CardDomainRepository {
         return cardsData;
     }
 
-    @Override
-    public void delete(long id) {
-        //TODO call server to delete data
-    }
-
     /**
      * uploads cards from server
      */
@@ -70,6 +67,15 @@ public class CardRepositoryImpl implements CardDomainRepository {
         //TODO call server to edit card
     }
 
+    /**
+     * Upload one card from server by making retrofit request.
+     *
+     * Note: not always card could be returned. Card could be deleted or doesn't even exist!
+     * Other ways - server exceptions.
+     *
+     * All are checkable.
+     * @param id card id to upload
+     */
     private void uploadCardByIdUsingRetrofit(long id){
         APIServiceCard service = APIServiceTravelerConstructor.CreateService(APIServiceCard.class);
         Call<String> call = service.getOneCardById(id);
@@ -79,21 +85,28 @@ public class CardRepositoryImpl implements CardDomainRepository {
             public void onResponse(Call<String> call, retrofit2.Response<String> response) {
                 if (response.body() != null) {
                     String str = response.body().toString();
-                    Log.v("retrofitLogger", "card.toString():" + str);
                     addCardToData(CardEntityMapper.toCardEntityFormCardServ(
                             (new Gson()).fromJson(str, CardServ.class)
                             , true));
 
                 } else {
-                    Log.v("retrofitLogger", "null response.body on loadDataRetrofit");
-                    incrementId--;
+                    String errorBody = "wait";
+                    try {
+                        errorBody = response.errorBody().string();
+                    }catch (IOException e){
+                    }
+
+                    if (!CardNetAnswers.cardWasDeleted.equals(errorBody))
+                        incrementId--;
+                    // other messages could be Карты с таким id не существует
+                    // or some error
+                    //in that case we think that it is the last card in db
                 }
             }
 
             @Override
             public void onFailure(retrofit2.Call<String> call, Throwable t) {
-                Log.v("retrofitLogger", "some error!!! on failure, " +
-                        " t:" + t.getMessage());
+                    incrementId--;
             }
         });
     }

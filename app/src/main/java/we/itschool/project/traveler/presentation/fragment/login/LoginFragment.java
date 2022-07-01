@@ -1,10 +1,10 @@
 package we.itschool.project.traveler.presentation.fragment.login;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,20 +12,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import traveler.module.data.travelerapi.errors.UserNetAnswers;
 import we.itschool.project.traveler.R;
 import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.presentation.activity.LoginActivity;
 import we.itschool.project.traveler.presentation.activity.MainActivity;
-import we.itschool.project.traveler.presentation.fragment.registration.RegistrationFragment;
 
 
 public class LoginFragment extends Fragment {
@@ -131,7 +128,7 @@ public class LoginFragment extends Fragment {
     private void savePrefs() {
         //make object of SharedPreferences, in case we have just one file we call
         //getPreferences() passing with context of app/activity
-        SharedPreferences pref = this.requireActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(requireActivity().getApplicationContext());
         //make object of SharedPreferences.Editor which provides methods to edit data
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(LoginActivity.KEY_PREF_USER_PASSWORD, et_password.getText().toString());
