@@ -251,19 +251,19 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
                             }
                         }
                         if (flag) {
-                            if (kinds.contains("historic")) {
+                            if (kinds.contains(MapPointsKinds.KIND_HISTORIC)) {
                                 bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_monument)).getBitmap();
-                            } else if (kinds.contains("cultural")) {
+                            } else if (kinds.contains(MapPointsKinds.KIND_CULTURAL)) {
                                 bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_historical)).getBitmap();
-                            } else if (kinds.contains("industrial_facilities")) {
+                            } else if (kinds.contains(MapPointsKinds.KIND_INDUSTRIAL_FACILITIES)) {
                                 bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_industrial)).getBitmap();
                             } else if (card.properties.name.length() == 0) {
                                 bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_unknown)).getBitmap();
-                            } else if (kinds.contains("natural")) {
+                            } else if (kinds.contains(MapPointsKinds.KIND_NATURAL)) {
                                 bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_nature)).getBitmap();
-                            } else if (kinds.contains("architecture")) {
+                            } else if (kinds.contains(MapPointsKinds.KIND_ARCHITECTURE)) {
                                 bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_buildings)).getBitmap();
-                            } else if (kinds.contains("other")) {
+                            } else if (kinds.contains(MapPointsKinds.KIND_OTHER)) {
                                 bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_forphoto)).getBitmap();
                             } else {
                                 bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_unknown)).getBitmap();
@@ -290,7 +290,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
             @Override
             public void onFailure(@NonNull Call<ResponseOTM> call, @NonNull Throwable t) {
-                Log.e("!SomethingWentWrong(P)!", t.toString());
+                //TODO make String resource
                 Toast.makeText(mf.getContext(), "[WARNING] " + t,
                         Toast.LENGTH_LONG).show();
             }
@@ -300,7 +300,6 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
     // Get all info about places in  OpenTripMap
     public static void GetInfoAbout(String xid, String distance) {
 
-        Log.e("xid", xid);
         APIServiceOTMGetInfoOfPlaces service = APIServiceOTMConstructor.CreateService(APIServiceOTMGetInfoOfPlaces.class);
         Call<ResponseOTMInfo> call = service.getInfo(
                 xid,
@@ -311,7 +310,6 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
             @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
             public void onResponse(@NonNull Call<ResponseOTMInfo> call, @NonNull Response<ResponseOTMInfo> response) {
-                Log.e("url", response.toString());
                 if (response.body() != null) {
                     mapView.getMap().move(
                             new CameraPosition(new Point(response.body().getPoint().getLat(), response.body().getPoint().getLon()),
@@ -325,7 +323,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
             @Override
             public void onFailure(@NonNull Call<ResponseOTMInfo> call, @NonNull Throwable t) {
-                Log.e("!SomethingWentWrong(I)!", t.toString());
+                //TODO make String resource
                 Toast.makeText(mf.context, "[WARNING] " + t,
                         Toast.LENGTH_LONG).show();
             }
@@ -371,12 +369,12 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
     //check location
     public boolean checkLocation() {
         LocationManager locationManager = (LocationManager) mf.requireActivity().getSystemService(Context.LOCATION_SERVICE);
-        Log.e("checkLocation", "" + locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
             final AlertDialog.Builder builder = new AlertDialog.Builder(context);
             final boolean[] result = new boolean[1];
             builder.setCancelable(false);
+            //TODO make String resource
             builder.setMessage("Разрешите доступ к местоположению для работы карты");
             builder.setPositiveButton("Разрешить", (dialog, id) -> {
                 startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
