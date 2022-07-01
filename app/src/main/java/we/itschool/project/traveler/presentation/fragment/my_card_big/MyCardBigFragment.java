@@ -94,36 +94,36 @@ public class MyCardBigFragment extends Fragment {
         Picasso.with(this.getContext())
                 .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD+card.get_id())
                 .into(
-                        ((ImageView) view.findViewById(R.id.iv_main_image_big_card))
+                        ((ImageView) view.findViewById(R.id.iv_main_image_big_card_my_card_big))
                 );
 
         //TODO create View model and then call data methods
         Picasso.with(this.getContext())
                 .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD+AppStart.uGetMainUserUC.getMainUser().get_id())
                 .into(
-                        ((ImageView) view.findViewById(R.id.iv_avatar_image_big_card))
+                        ((ImageView) view.findViewById(R.id.iv_avatar_image_big_card_my_card_big))
                 );
 
-        ((TextView) view.findViewById(R.id.tv_avatar_profile_data_small_FN))
+        ((TextView) view.findViewById(R.id.tv_avatar_profile_data_small_FN_my_card_big))
                 .setText(
                         AppStart.uGetMainUserUC.getMainUser().getUserInfo().getFirstName()
                 );
-        ((TextView) view.findViewById(R.id.tv_avatar_profile_data_small_SN))
+        ((TextView) view.findViewById(R.id.tv_avatar_profile_data_small_SN_my_card_big))
                 .setText(
                         AppStart.uGetMainUserUC.getMainUser().getUserInfo().getSecondName()
                 );
         //code for social contacts
-        ((TextView) view.findViewById(R.id.tv_cbv_contacts_field))
+        ((TextView) view.findViewById(R.id.tv_mcb_contacts_field))
                 .setText(
                         AppStart.uGetMainUserUC.getMainUser().getUserInfo().getSocialContacts()
                 );
 
-        ((TextView) view.findViewById(R.id.tv_name_of_city))
+        ((TextView) view.findViewById(R.id.tv_name_of_city_my_card_big))
                 .setText(card.getCardInfo().getCity());
-        ((TextView) view.findViewById(R.id.tv_description_long))
+        ((TextView) view.findViewById(R.id.tv_description_long_my_card_big))
                 .setText(card.getCardInfo().getFullDescription());
 
-        Button bt_delete_card = view.findViewById(R.id.bt_cbv_add_to_favourites);
+        Button bt_delete_card = view.findViewById(R.id.bt_mcb_delete_card);
         //todo make method to delete card
         bt_delete_card.setOnClickListener(v -> System.out.println("sdfaf"));
     }
