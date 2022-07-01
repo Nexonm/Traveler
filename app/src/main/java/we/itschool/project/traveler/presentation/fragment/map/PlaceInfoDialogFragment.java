@@ -28,6 +28,7 @@ public class PlaceInfoDialogFragment extends DialogFragment {
     private String text = "отсутствует \n";
 
     private String checkIfNull(String str){ if (str==null){ return ""; }else { return str; } }
+
     public PlaceInfoDialogFragment(Response<ResponseOTMInfo> card, String distance) {
         this.response = card;
         this.dist = distance;
@@ -96,19 +97,19 @@ public class PlaceInfoDialogFragment extends DialogFragment {
 
         String kinds = response.body().getKinds();
         int bit;
-        if (kinds.contains("historic")){
+        if (kinds.contains(MapPointsKinds.KIND_HISTORIC)){
                 bit = R.drawable.map_monument;
-        }else if (kinds.contains("cultural")){
+        }else if (kinds.contains(MapPointsKinds.KIND_CULTURAL)){
                 bit = R.drawable.map_historical;
-        }else if (kinds.contains("industrial_facilities")){
+        }else if (kinds.contains(MapPointsKinds.KIND_INDUSTRIAL_FACILITIES)){
                 bit = R.drawable.map_industrial;
         }else if (response.body().getName().length() == 0){
                 bit = R.drawable.map_unknown;
-        } else if (kinds.contains("natural")){
+        } else if (kinds.contains(MapPointsKinds.KIND_NATURAL)){
                 bit = R.drawable.map_nature;
-        } else if (kinds.contains("architecture")){
+        } else if (kinds.contains(MapPointsKinds.KIND_ARCHITECTURE)){
                 bit = R.drawable.map_buildings;
-        }else if (kinds.contains("other")){
+        }else if (kinds.contains(MapPointsKinds.KIND_OTHER)){
                 bit = R.drawable.map_forphoto;
         }else{
                 bit = R.drawable.map_unknown;

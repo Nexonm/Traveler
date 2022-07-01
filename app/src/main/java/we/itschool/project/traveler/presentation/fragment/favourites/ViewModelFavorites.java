@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 
 import traveler.module.domain.entity.CardEntity;
-import traveler.module.domain.entity.UserEntity;
 import traveler.module.domain.usecases.user.UserGetMainUseCase;
 import traveler.module.domain.usecases.user.UserGetUserFavoritesCardsUseCase;
 import we.itschool.project.traveler.app.AppStart;
