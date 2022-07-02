@@ -15,6 +15,10 @@
     <string name="menu_login">Вход</string>
     <string name="menu_registration">Регистрация</string>
 
+    <!-- login Activity -->
+    <string name="activity_login_log_in">Войти</string>
+    <string name="activity_login_sign_up">Зарегистрироваться</string>
+
     <!-- login -->
     <string name="login_title">Добро пожаловать в Traveler!</string>
     <string name="login_email_tv">Введите email</string>
