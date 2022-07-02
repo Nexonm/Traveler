@@ -65,7 +65,7 @@
     <string name="reg_error">Registration failed, try again.</string>
     <string name="reg_error_email_exist">User with same Email is already exists.</string>
     <string name="reg_some_error">Something went wrong. Check internet connection and try again.</string>
-    <string name="reg_required_social">Social contacts is required</string>
+    <string name="reg_required_social">Social contacts are required</string>
     <string name="reg_required_phone">Phone number is required</string>
     <string name="reg_required_birth">Birth date is required</string>
     <string name="reg_required_password">Password is required</string>
@@ -76,7 +76,7 @@
     <string name="reg_invalid_birth">Please provide your correct birth date</string>
     <string name="reg_dont_confirm_pass">Passwords don\'t confirm</string>
     <string name="reg_not_long_password">Min password length should be of 6 characters!</string>
-    <string name="reg_invalid_email">"Please provide your valid Email"</string>
+    <string name="reg_invalid_email">Please provide your valid Email</string>
 
     <!-- main -->
     <string name="main_search">Search</string>
@@ -92,8 +92,8 @@
     <string name="profile_contacts">Social contacts</string>
     <string name="profile_description_photo">Your photo</string>
     <string name="profile_btn_update_photo">Update photo</string>
-    <string name="profile_error">Произошла ошибка, попробуйте снова</string>
-    <string name="profile_photo_break">Видимо вы прекратили выбор фото, не забудьте выбрать:)</string>
+    <string name="profile_error">Something went wrong, try again, please.</string>
+    <string name="profile_photo_break">Seems like you canceled photo selection, don\'t forget to pick it:)</string>
     <string name="profile_photo_can_not">Please allow us to upload photo from your gallery</string>
     <string name="profile_btn_save_new_sc">save</string>
 
@@ -151,8 +151,8 @@
     <string name="map_no_name">No name info</string>
     <string name="map_dist">Dist: </string>
     <string name="map_warning">[WARNING] </string>
-    <string name="map_please_accept">Разрешите доступ к местоположению для работы карты</string>
-    <string name="map_accept">Разрешиты</string>
+    <string name="map_please_accept">Geolocation is needed for map to work properly</string>
+    <string name="map_accept">Allow</string>
 
     <!-- settings -->
     <string name="settings_language">Change the language</string>

@@ -62,6 +62,21 @@
         <item>Мужской</item>
         <item>Женский</item>
     </string-array>
+    <string name="reg_error">Произошла ошибка, попробуйте снова.</string>
+    <string name="reg_error_email_exist">Пользователь с данной почной существует</string>
+    <string name="reg_some_error">Что-то пошло не так, проверьте интернет соединение и попробуйте снова.</string>
+    <string name="reg_required_social">Напишите, как с вами связаться</string>
+    <string name="reg_required_phone">Напишите номер телефона</string>
+    <string name="reg_required_birth">Напишите дату рождения</string>
+    <string name="reg_required_password">Напишите пароль</string>
+    <string name="reg_required_email">Напишите email</string>
+    <string name="reg_required_second_name">Напишите фамилию</string>
+    <string name="reg_required_name">Напишите имя</string>
+    <string name="reg_invalid_phone">Пожалуйста, напишите корректный телефонный номер</string>
+    <string name="reg_invalid_birth">Пожалуйста, напишите корректную дату рождения</string>
+    <string name="reg_dont_confirm_pass">Пароли не совпадают</string>
+    <string name="reg_not_long_password">Минимальная длинна пароля 6 символов!</string>
+    <string name="reg_invalid_email">Пожалуйста, напишите корректный адрес электронной почты</string>
 
     <!-- main -->
     <string name="main_search">Искать</string>
@@ -77,6 +92,9 @@
     <string name="profile_contacts">Контакты</string>
     <string name="profile_description_photo">Ваша фотография</string>
     <string name="profile_btn_update_photo">Обновить фото</string>
+    <string name="profile_error">Произошла ошибка, попробуйте снова</string>
+    <string name="profile_photo_break">Видимо вы прекратили выбор фото, не забудьте выбрать:)</string>
+    <string name="profile_photo_can_not">Please allow us to upload photo from your gallery</string>
     <string name="profile_btn_save_new_sc">save</string>
 
     <!-- create new card (cnc) -->
@@ -132,6 +150,9 @@
     <string name="map_bt_find_me">Найти себя</string>
     <string name="map_no_name">Без названия</string>
     <string name="map_dist">До места: </string>
+    <string name="map_warning">[ОШИБКА] </string>
+    <string name="map_please_accept">Разрешите доступ к местоположению для работы карты</string>
+    <string name="map_accept">Разрешить</string>
 
     <!-- settings -->
     <string name="settings_language">Сменить язык</string>
