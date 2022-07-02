@@ -98,7 +98,7 @@
     <string name="profile_btn_update_photo">Обновить фото</string>
     <string name="profile_error">Произошла ошибка, попробуйте снова</string>
     <string name="profile_photo_break">Видимо вы прекратили выбор фото, не забудьте выбрать:)</string>
-    <string name="profile_photo_can_not">Please allow us to upload photo from your gallery</string>
+    <string name="profile_photo_can_not">Пожалуйста, разрешите доступ к галерее для выбора фото</string>
     <string name="profile_btn_save_new_sc">save</string>
 
     <!-- create new card (cnc) -->

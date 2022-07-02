@@ -175,7 +175,7 @@ public class ProfileFragment extends Fragment {
             }
         } catch (Exception e) {
             //TODO make String resource
-            Toast.makeText(this.getContext(), "Поизошла ошибка, попробуйте снова", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getContext(), R.string.profile_photo_break, Toast.LENGTH_LONG).show();
         }
     }
 
