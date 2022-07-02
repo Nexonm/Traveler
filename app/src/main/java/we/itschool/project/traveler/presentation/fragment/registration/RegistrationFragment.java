@@ -93,7 +93,6 @@ public class RegistrationFragment extends Fragment {
                 handler.postDelayed(() -> {
                     while (defaultFlag.equals(flag)) ;
                     pb_reg.setVisibility(View.INVISIBLE);
-                }, 2500);
 
                 if (UserNetAnswers.userOtherError.equals(flag)) {
                     Toast.makeText(this.requireActivity().getBaseContext(),
@@ -110,6 +109,8 @@ public class RegistrationFragment extends Fragment {
                             R.string.reg_some_error,
                             Toast.LENGTH_LONG).show();
                 }
+
+                }, 2500);
             }
         });
     }

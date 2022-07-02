@@ -69,24 +69,24 @@ public class LoginFragment extends Fragment {
             handler.postDelayed(() -> {
                 while (defaultFlag.equals(flag)) ;
                 pb_login.setVisibility(View.INVISIBLE);
-            }, 1500);
-            while (defaultFlag.equals(flag)) ;
-            //all went successfully and user logged in
-            if (UserNetAnswers.userSuccessLogin.equals(flag)) {
-                savePrefs();
-                startMainActivity();
-            } else {
-                if (UserNetAnswers.userIncorrectPasswordException.equals(flag)) {
-                    Toast.makeText(this.getContext(), R.string.login_incorrect_password, Toast.LENGTH_SHORT).show();
-                    et_password.setText("");
-                } else if (UserNetAnswers.userDoesNotExistException.equals(flag)) {
-                    Toast.makeText(this.getContext(), R.string.login_no_such_user, Toast.LENGTH_SHORT).show();
-                    et_password.setText("");
-                } else if (UserNetAnswers.userOtherError.equals(flag)) {
-                    Toast.makeText(this.getContext(), R.string.login_some_error, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
+
+                //all went successfully and user logged in
+                if (UserNetAnswers.userSuccessLogin.equals(flag)) {
+                    savePrefs();
+                    startMainActivity();
+                } else {
+                    if (UserNetAnswers.userIncorrectPasswordException.equals(flag)) {
+                        Toast.makeText(this.getContext(), R.string.login_incorrect_password, Toast.LENGTH_SHORT).show();
+                        et_password.setText("");
+                    } else if (UserNetAnswers.userDoesNotExistException.equals(flag)) {
+                        Toast.makeText(this.getContext(), R.string.login_no_such_user, Toast.LENGTH_SHORT).show();
+                        et_password.setText("");
+                    } else if (UserNetAnswers.userOtherError.equals(flag)) {
+                        Toast.makeText(this.getContext(), R.string.login_some_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
+                }, 1500);
         }
     }
 
