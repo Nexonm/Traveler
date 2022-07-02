@@ -14,11 +14,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:showDividers="middle"
+            android:layout_marginTop="15dp"
             android:divider="@drawable/empty_tall_divider_cnc"
-            android:layout_marginTop="15dp">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle">
 
             <EditText
                 android:id="@+id/et_new_card_city"
@@ -31,21 +31,24 @@
                 android:inputType="textPersonName"
                 android:textAppearance="@style/text_style_2"
                 android:textColorHint="@color/white" />
+
             <Button
                 android:id="@+id/bt_new_card_upload_photo"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/button"
                 android:text="@string/cnc_upload"
                 android:textAppearance="@style/text_style_1"
-                android:backgroundTint="@color/button"
                 app:cornerRadius="17dp"
                 app:strokeColor="@color/white"
                 app:strokeWidth="3dp" />
+
             <ImageView
                 android:id="@+id/iv_new_card_photo"
                 android:layout_width="1dp"
                 android:layout_height="1dp"
                 android:contentDescription="@string/cnc_description_photo" />
+
             <EditText
                 android:id="@+id/et_new_card_country"
                 android:layout_width="wrap_content"
@@ -113,9 +116,9 @@
                 android:id="@+id/bt_new_card_add_new_card"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/button"
                 android:text="@string/cnc_btn_add_card"
                 android:textAppearance="@style/text_style_1"
-                android:backgroundTint="@color/button"
                 app:cornerRadius="17dp"
                 app:strokeColor="@color/white"
                 app:strokeWidth="3dp" />

@@ -11,19 +11,19 @@
         android:id="@+id/bt_map_crop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/button"
         android:text="@string/map_bt_find_me"
         android:textAppearance="@style/text_style_1"
-        android:backgroundTint="@color/button"
-        app:strokeColor="@color/white"
-        app:strokeWidth="3dp"
         app:cornerRadius="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/white"
+        app:strokeWidth="3dp" />
 
     <com.yandex.mapkit.mapview.MapView
         android:id="@+id/mv_map_map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
