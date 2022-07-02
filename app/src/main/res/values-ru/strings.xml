@@ -91,12 +91,19 @@
     <string name="cnc_btn_add_card">ДОБАВИТЬ КАРТОЧКУ</string>
     <!-- if there is error -->
     <string name="cnc_city_error">Пожалуйста, напишите город</string>
+    <string name="cnc_city_error_length">Название города не может быть больше 200 символов!</string>
     <string name="cnc_country_error">Пожалуйста, напишите страну</string>
+    <string name="cnc_country_error_length">Название города не может быть больше 100 символов!</string>
     <string name="cnc_address_error">Пожалуйста, напишите адрес</string>
+    <string name="cnc_address_error_length">Название адреса не может быть больше 200 символов!</string>
     <string name="cnc_few_information_error">Краткая информация</string>
+    <string name="cnc_few_information_error_length">Длина краткого описания должна быть меньше 150 символов!</string>
     <string name="cnc_many_information_error">Полная информация</string>
+    <string name="cnc_many_information_error_length">Длина описания должна быть меньше 250 символов!</string>
     <string name="cnc_hashtags_error">Хэштеги</string>
+    <string name="cnc_hashtags_error_length">Длина хэштегов должна быть меньше 250 символов! (*удалите пробелы между словами)</string>
     <string name="cnc_photo_addition_error">Не забудьте выбрать фото! :)</string>
+    <string name="cnc_all_data_error">Карта не может быть создана: проверте корректность заполненных данных.</string>
 
     <!-- card big view (cbv) -->
     <string name="cbv_name_of_city">Сингапур</string>
@@ -122,6 +129,8 @@
     <string name="map_crop_error">Включите геоданные или подождите немного</string>
     <string name="map_ok">применить</string>
     <string name="map_bt_find_me">Найти себя</string>
+    <string name="map_no_name">Без названия</string>
+    <string name="map_dist">До места: </string>
 
     <!-- settings -->
     <string name="settings_language">Сменить язык</string>
