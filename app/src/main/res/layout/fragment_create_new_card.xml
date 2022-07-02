@@ -45,8 +45,8 @@
 
             <ImageView
                 android:id="@+id/iv_new_card_photo"
-                android:layout_width="1dp"
-                android:layout_height="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/cnc_description_photo" />
 
             <EditText
