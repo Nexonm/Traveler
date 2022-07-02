@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import traveler.module.domain.entity.CardEntity;
 import we.itschool.project.traveler.R;
@@ -78,7 +77,14 @@ public class FavouritesFragment extends Fragment {
     }
 
     private void addData(){
-        AsyncTask.execute(()-> adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue()))));
+        AsyncTask.execute(()-> {
+            ArrayList<CardEntity> list = viewModel.getCardList().getValue();
+            if (list==null)
+                try {
+                    Thread.sleep(500);
+                }catch (InterruptedException ignored){}
+            adapter.submitList(new ArrayList<>(viewModel.getCardList().getValue()));
+        });
     }
 
     @Override
