@@ -15,6 +15,10 @@
     <string name="menu_login">Input</string>
     <string name="menu_registration">Registration</string>
 
+    <!-- login Activity -->
+    <string name="activity_login_log_in">Log in</string>
+    <string name="activity_login_sign_up">Sign up</string>
+
     <!-- login -->
     <string name="login_title">Welcome to the Traveler!</string>
     <string name="login_email_tv">Enter email</string>
