@@ -23,6 +23,7 @@
                 android:hint="@string/reg_title_first_name"
                 android:inputType="textPersonName"
                 android:textColorHint="@color/hint"
+                android:textAppearance="@style/text_style_1"
 
                 android:background="@drawable/custom_edittext_1"
                 android:paddingStart="20dp"
@@ -48,8 +49,9 @@
                 android:hint="@string/reg_title_second_name"
                 android:inputType="textPersonName"
                 android:textColorHint="@color/hint"
+                android:textAppearance="@style/text_style_1"
 
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/custom_edittext_1"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
@@ -70,13 +72,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:layout_marginTop="40dp"
 
                 android:orientation="horizontal"
                 android:paddingStart="20dp"
-                android:paddingTop="10dp"
                 android:paddingEnd="20dp"
-                android:paddingBottom="10dp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,23 +89,23 @@
 
                 <RadioButton
                     android:id="@+id/rb_reg_man"
-                    android:layout_width="100dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="30dp"
                     android:text="@string/man"
                     android:textColor="@color/hint"
+                    android:layout_marginEnd="30dp"
                     android:background="@drawable/custom_edittext_1"
-                    android:textSize="18sp" />
+                    android:textAppearance="@style/text_style_1" />
 
                 <RadioButton
                     android:id="@+id/rb_reg_woman"
-                    android:layout_width="100dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:text="@string/woman"
-                    android:textColor="@color/hint"
                     android:background="@drawable/custom_edittext_1"
-                    android:textSize="18sp" />
+                    android:text="@string/woman"
+                    android:textAppearance="@style/text_style_1"
+                    android:textColor="@color/hint" />
             </RadioGroup>
 
             <EditText
@@ -116,8 +117,9 @@
                 android:hint="@string/reg_title_email"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/hint"
+                android:textAppearance="@style/text_style_1"
 
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/custom_edittext_1"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
@@ -141,10 +143,10 @@
 
                 android:hint="@string/reg_title_password"
                 android:inputType="textPassword"
-                android:textAppearance="@style/text_style_1"
                 android:textColorHint="@color/hint"
+                android:textAppearance="@style/text_style_1"
 
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/custom_edittext_1"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
@@ -169,8 +171,9 @@
                 android:hint="@string/reg_title_password_repeat"
                 android:inputType="textPassword"
                 android:textColorHint="@color/hint"
+                android:textAppearance="@style/text_style_1"
 
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/custom_edittext_1"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
@@ -195,8 +198,9 @@
                 android:hint="@string/reg_title_date_of_birth"
                 android:inputType="date"
                 android:textColorHint="@color/hint"
+                android:textAppearance="@style/text_style_1"
 
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/custom_edittext_1"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
@@ -221,8 +225,9 @@
                 android:hint="@string/reg_title_phone_number"
                 android:inputType="phone"
                 android:textColorHint="@color/hint"
+                android:textAppearance="@style/text_style_1"
 
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/custom_edittext_1"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
@@ -247,8 +252,9 @@
                 android:hint="@string/reg_title_social_contacts"
                 android:inputType="text"
                 android:textColorHint="@color/hint"
+                android:textAppearance="@style/text_style_1"
 
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/custom_edittext_1"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
@@ -267,7 +273,8 @@
             <Button
                 android:id="@+id/bt_reg_register_new_user"
                 android:layout_width="0dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/custom_button_2"
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
@@ -287,16 +294,18 @@
     </ScrollView>
 
     <ProgressBar
+        app:layout_constraintDimensionRatio="1:1"
         android:id="@+id/pb_registration"
         style="?android:attr/progressBarStyle"
         android:visibility="invisible"
         android:clickable="false"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent=".4"
+        android:layout_height="0dp"
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
