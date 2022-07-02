@@ -1,7 +1,5 @@
 package traveler.module.data.repositoryImpl;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -98,13 +96,10 @@ public class UserRepositoryImpl implements UserDomainRepository {
 
     @Override
     public void addCardToFavorites(long cid) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(() -> {
                 ArrayList<Long> list = addCardToFavoritesUCI.addCardToFavorites(userMain.get_id(), cid);
                 userMain.getUserInfo().setUserFavoritesCards(list);
                 chekUserFavs(list);
-            }
         }).start();
     }
 
@@ -135,14 +130,11 @@ public class UserRepositoryImpl implements UserDomainRepository {
 
     @Override
     public void addPhoto(String path) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(() -> {
                 String ans = addPhotoUCI.addPhoto(path, getUserMain().get_id());
                 if (!UserNetAnswers.userOtherError.equals(ans)) {
                     userMain.getUserInfo().setPathToPhoto(ans);
                 }
-            }
         }).start();
 
     }
@@ -156,20 +148,14 @@ public class UserRepositoryImpl implements UserDomainRepository {
 
     @Override
     public void editContacts(UserEntity entity, String pass) {
-        Log.v("EDIT_USER_CONTACTS", "start new thread with request");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(() -> {
                 UserEntity ans = null;
                 do{
                     ans = editContactsUCI.editContacts(entity, pass);
-                    Log.v("EDIT_USER_CONTACTS", "one time request from editContacts");
                     //in case answer is null request will be repeated till it is successful
                 }while(ans == null);
-                Log.v("EDIT_USER_CONTACTS", "updating data from editContacts");
                 getUserMain().getUserInfo().setSocialContacts(ans.getUserInfo().getSocialContacts());
                 getUserMain().getUserInfo().setPhoneNumber(ans.getUserInfo().getPhoneNumber());
-            }
         }).start();
     }
 
@@ -228,4 +214,5 @@ public class UserRepositoryImpl implements UserDomainRepository {
     private void addCardToUserFavsData(CardEntity card) {
         userFavCards.add(card);
     }
+
 }
