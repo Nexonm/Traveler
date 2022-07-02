@@ -41,7 +41,17 @@ public class CardRepositoryImpl implements CardDomainRepository {
 
     @Override
     public ArrayList<CardEntity> getBySearch(String searchStr) {
-        searchCardsUsingRetrofit(searchStr);
+        if (searchStr.length()>1) {
+            //clear data before fill it with new data
+            clearCardsData();
+
+            searchCardsUsingRetrofit(searchStr);
+        }else{
+            Log.v("retrofitLogger", "trying to delete cards, thread:" + Thread.currentThread().getName());
+            clearCardsData();
+            Log.v("retrofitLogger", "deleted cards, thread:" + Thread.currentThread().getName());
+            incrementId = 0;
+        }
         return cardsData;
     }
 
@@ -113,8 +123,6 @@ public class CardRepositoryImpl implements CardDomainRepository {
 
     private void searchCardsUsingRetrofit(String searchStr){
         APIServiceCard service = APIServiceTravelerConstructor.CreateService(APIServiceCard.class);
-        //clear data before full it with new data
-        clearCardsData();
 
         Call<String> call = service.getCardsBySearch(searchStr);
         call.enqueue(new Callback<String>() {
@@ -145,10 +153,14 @@ public class CardRepositoryImpl implements CardDomainRepository {
     }
 
     private void addCardToData(CardEntity card){
-        cardsData.add(card);
+        synchronized (cardsData){
+            cardsData.add(card);
+        }
     }
 
     private void clearCardsData(){
-        cardsData.clear();
+        synchronized (cardsData){
+            cardsData.clear();
+        }
     }
 }

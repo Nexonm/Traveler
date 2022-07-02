@@ -1,6 +1,5 @@
 package we.itschool.project.traveler.presentation.fragment.card_list;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,37 +90,38 @@ public class CardListFragment extends Fragment {
         Button bt_search = view.findViewById(R.id.bt_main_search);
         bt_search.setOnClickListener(v -> {
             goingUsual = false;
-            searchData();
+            searchData(et_search_input.getText().toString());
         });
     }
 
-    private void searchData() {
-        if (et_search_input.getText().toString().length() > 1) {
-            AsyncTask.execute(() -> {
-                goingSearch = true;
-                String str = et_search_input.getText().toString();
-                if (str.charAt(str.length() - 1) == ' ')
-                    viewModel.searchCards(str.substring(0, str.length() - 2));
-                else
-                    viewModel.searchCards(str);
-                try {
-                    int count;
-                    while (goingSearch) {
-                        Thread.sleep(3200);
-                        adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
-                        count = adapter.getItemCount();
-                        //just to stop loop and async
-                        if (viewModel.getCardList().getValue().size()>5 ||
-                        viewModel.getCardList().getValue().size()==0) break;
-                        //in case after new update there is same num of items
-                        if (count!= 0 && adapter.getItemCount()==count) break;
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+    private void searchData(String input) {
+        String str = input.trim();
+        //in case there are all whitespaces
+
+        new Thread(() -> {
+            goingSearch = true;
+
+            viewModel.searchCards(str);
+            try {
+                int count;
+                while (goingSearch) {
+                    count = Objects.requireNonNull(viewModel.getCardList().getValue()).size();
+                    Thread.sleep(1500);
+                    adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
+
+                    //just to stop loop and async
+//                        if ( viewModel.getCardList().getValue().size() == 0) break;
+                    //in case after new update there is same num of items
+                    if (count != 0 && adapter.getItemCount() == count) break;
                 }
-                goingSearch = false;
-            });
-        } else {
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            goingSearch = false;
+        }).start();
+
+        if (!(str.length() > 1)) {
+            goingSearch = false;
             goingUsual = true;
             addData();
         }
@@ -129,25 +129,18 @@ public class CardListFragment extends Fragment {
 
     //TODO сделать загрузку данных другим способом, в зависимости от прокрутки пользователем странницы
     private void addData() {
-        AsyncTask.execute(() -> {
-
-            int num = 0;
-            while (num < 20 && goingUsual)
+        new Thread(() -> {
+            while (goingUsual)
                 try {
                     viewModel.addNewCard();
-                    num++;
-                    Thread.sleep(1500);
+                    Thread.sleep(1200);
                     //write submit list to add new list made from main list with cards
                     adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
-                    try {
-                        num = viewModel.getCardList().getValue().size();
-                    } catch (NullPointerException ignored) {
-                    }
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-        });
+        }).start();
     }
 
     @Override
