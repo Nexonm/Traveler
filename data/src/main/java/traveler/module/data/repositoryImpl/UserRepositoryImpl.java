@@ -1,5 +1,7 @@
 package traveler.module.data.repositoryImpl;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import traveler.module.data.usecaseinterface.user.UserAddCardToFavoritesUCI;
 import traveler.module.data.usecaseinterface.user.UserAddPhotoUCI;
 import traveler.module.data.usecaseinterface.user.UserCreateNewCardUCI;
 import traveler.module.data.usecaseinterface.user.UserDeleteCardUCI;
+import traveler.module.data.usecaseinterface.user.UserEditContactsUCI;
 import traveler.module.data.usecaseinterface.user.UserLoginUCI;
 import traveler.module.data.usecaseinterface.user.UserRegUCI;
 import traveler.module.domain.entity.CardEntity;
@@ -32,19 +35,21 @@ public class UserRepositoryImpl implements UserDomainRepository {
     private final UserCreateNewCardUCI createNewCardUCI;
     private final UserDeleteCardUCI deleteCardUCI;
     private final UserAddCardToFavoritesUCI addCardToFavoritesUCI;
+    private final UserEditContactsUCI editContactsUCI;
 
     static {
         userMain = null;
         userFavCards = new ArrayList<>();
     }
 
-    public UserRepositoryImpl(
+    protected UserRepositoryImpl(
             UserLoginUCI loginUCI,
             UserRegUCI regUCI,
             UserAddPhotoUCI addPhotoUCI,
             UserCreateNewCardUCI createNewCardUCI,
             UserDeleteCardUCI deleteCardUCI,
-            UserAddCardToFavoritesUCI addCardToFavoritesUCI
+            UserAddCardToFavoritesUCI addCardToFavoritesUCI,
+            UserEditContactsUCI editContactsUCI
     ) {
         this.loginUCI = loginUCI;
         this.regUCI = regUCI;
@@ -52,6 +57,7 @@ public class UserRepositoryImpl implements UserDomainRepository {
         this.createNewCardUCI = createNewCardUCI;
         this.deleteCardUCI = deleteCardUCI;
         this.addCardToFavoritesUCI = addCardToFavoritesUCI;
+        this.editContactsUCI = editContactsUCI;
     }
 
     @Override
@@ -149,6 +155,25 @@ public class UserRepositoryImpl implements UserDomainRepository {
     }
 
     @Override
+    public void editContacts(UserEntity entity, String pass) {
+        Log.v("EDIT_USER_CONTACTS", "start new thread with request");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                UserEntity ans = null;
+                do{
+                    ans = editContactsUCI.editContacts(entity, pass);
+                    Log.v("EDIT_USER_CONTACTS", "one time request from editContacts");
+                    //in case answer is null request will be repeated till it is successful
+                }while(ans == null);
+                Log.v("EDIT_USER_CONTACTS", "updating data from editContacts");
+                getUserMain().getUserInfo().setSocialContacts(ans.getUserInfo().getSocialContacts());
+                getUserMain().getUserInfo().setPhoneNumber(ans.getUserInfo().getPhoneNumber());
+            }
+        }).start();
+    }
+
+    @Override
     public void setInterests(String interests) {
         //TODO send server request to set Interests
     }
@@ -161,6 +186,8 @@ public class UserRepositoryImpl implements UserDomainRepository {
     private void addCardToUserCards(CardEntity card) {
         userMain.getUserInfo().getUserCards().add(card);
     }
+
+
 
     private void chekUserFavs(ArrayList<Long> list) {
         uploadCardToFavs(

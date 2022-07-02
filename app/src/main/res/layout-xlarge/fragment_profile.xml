@@ -203,6 +203,40 @@
                         android:text="@string/profile_contacts"
                         android:textAppearance="@style/text_style_2" />
                 </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tr_edit_social_contacts"
+                    android:visibility="invisible"
+                    android:clickable="false">
+
+                    <ImageView
+                        android:id="@+id/iv_profile_edit_s_c"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:contentDescription="@string/icon"
+                        android:src="@drawable/icon_contact" />
+
+                    <EditText
+                        android:id="@+id/et_profile_edit_contacts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:hint="@string/profile_contacts"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/white"
+                        android:textAppearance="@style/text_style_2" />
+
+                    <Button
+                        android:id="@+id/bt_profile_save_social_contacts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="save"
+                        android:src="@drawable/custom_button_2"
+                        android:textAppearance="@style/text_style_1" />
+
+                </TableRow>
             </TableLayout>
         </LinearLayout>
     </ScrollView>

@@ -9,7 +9,6 @@ import com.yandex.mapkit.MapKitFactory;
 import traveler.module.data.repositoryImpl.CardRepositoryImpl;
 import traveler.module.data.repositoryImpl.UserRepositoryImpl;
 import traveler.module.data.repositoryImpl.UserRepositoryImplFactory;
-import traveler.module.domain.usecases.user.UserDeleteCardUseCase;
 import traveler.module.domain.usecases.card.CardGetAllUseCase;
 import traveler.module.domain.usecases.card.CardGetByIdUseCase;
 import traveler.module.domain.usecases.card.CardGetBySearchUseCase;
@@ -17,6 +16,8 @@ import traveler.module.domain.usecases.card.CardUploadUseCase;
 import traveler.module.domain.usecases.user.UserAddCardToFavoritesUseCase;
 import traveler.module.domain.usecases.user.UserAddPhotoUseCase;
 import traveler.module.domain.usecases.user.UserCreateNewCardUseCase;
+import traveler.module.domain.usecases.user.UserDeleteCardUseCase;
+import traveler.module.domain.usecases.user.UserEditContactsUseCase;
 import traveler.module.domain.usecases.user.UserGetMainUseCase;
 import traveler.module.domain.usecases.user.UserGetUserCardsUseCase;
 import traveler.module.domain.usecases.user.UserGetUserFavoritesCardsUseCase;
@@ -34,6 +35,7 @@ public class AppStart extends Application {
     public static UserAddCardToFavoritesUseCase uAddCardToFavesUC;
     public static UserAddPhotoUseCase uAddPhotoUC;
     public static UserRegNewUseCase uRegUC;
+    public static UserEditContactsUseCase uEditContactsUC;
 
     public static CardGetAllUseCase cGetAllUC;
     public static CardGetBySearchUseCase cGetBySearchUC;
@@ -64,6 +66,7 @@ public class AppStart extends Application {
         uAddCardToFavesUC = new UserAddCardToFavoritesUseCase(userRepImpl);
         uAddPhotoUC = new UserAddPhotoUseCase(userRepImpl);
         uRegUC = new UserRegNewUseCase(userRepImpl);
+        uEditContactsUC = new UserEditContactsUseCase(userRepImpl);
 
         CardRepositoryImpl cardRepImpl = new CardRepositoryImpl();
 

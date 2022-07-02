@@ -96,7 +96,8 @@ public class CreateNewCardFragment extends Fragment {
                     iv_card_photo.getLayoutParams().width = AppStart.getInstance().getDisplayWidth();
                     pickImageFromGallery();
                 }
-            }catch (Exception ignored){}
+            } catch (Exception ignored) {
+            }
 
         });
         //create new card button, on this click all check are made and data sends
@@ -119,61 +120,103 @@ public class CreateNewCardFragment extends Fragment {
 
     /**
      * Checks all the fields in fragment and sends to server new card
-     *
      */
     private boolean checkAllData() {
         boolean check = true;
         //city
-        if (!(et_city.getText().length() > 0)) {
+        if (!(et_city.getText().toString().length() > 0)) {
             check = false;
             et_city.setHintTextColor(Color.RED);
             et_city.setHint(R.string.cnc_city_error);
         }
+        //check length
+        //there is city that contains more than 150 letters (in case someone from there could do it)
+        if (et_city.getText().toString().length() > 200) {
+            check = false;
+            et_city.setError(requireActivity().getResources().getString(R.string.cnc_city_error_length));
+        }
         //country
-        if (!(et_country.getText().length() > 0)) {
+        if (!(et_country.getText().toString().length() > 0)) {
             check = false;
             et_country.setHintTextColor(Color.RED);
             et_country.setHint(R.string.cnc_country_error);
         }
+        //check length
+        //there is county that contains more than 70 letters in its name
+        if (et_country.getText().toString().length() > 100) {
+            check = false;
+            et_country.setError(requireActivity().getResources().getString(R.string.cnc_country_error_length));
+        }
         //address
-        if (!(et_address.getText().length() > 0)) {
+        if (!(et_address.getText().toString().length() > 0)) {
             check = false;
             et_address.setHintTextColor(Color.RED);
             et_address.setHint(R.string.cnc_address_error);
         }
+        //check length
+        if (et_address.getText().toString().length() > 200) {
+            check = false;
+            et_address.setError(requireActivity().getResources().getString(R.string.cnc_address_error_length));
+        }
         //short description
-        if (!(et_short_desc.getText().length() > 0)) {
+        if (!(et_short_desc.getText().toString().length() > 0)) {
             check = false;
             et_short_desc.setHintTextColor(Color.RED);
             et_short_desc.setHint(R.string.cnc_few_information_error);
         }
+        //it's short description, let it be short!
+        if (et_short_desc.getText().toString().length() > 150) {
+            check = false;
+            et_short_desc.setError(requireActivity().getResources().getString(R.string.cnc_few_information_error_length));
+        }
         //full description
-        if (!(et_full_desc.getText().length() > 0)) {
+        if (!(et_full_desc.getText().toString().length() > 0)) {
             check = false;
             et_full_desc.setHintTextColor(Color.RED);
             et_full_desc.setHint(R.string.cnc_many_information_error);
         }
-        if ("null".equals(bufString)){
+        //database can store str not more than 255
+        if (et_full_desc.getText().toString().length() > 250) {
+            check = false;
+            et_full_desc.setError(requireActivity().getResources().getString(R.string.cnc_many_information_error_length));
+        }
+        //hashtags are needed too
+        if (!(et_hashtags.getText().toString().length() > 0)) {
+            check = false;
+            et_hashtags.setHintTextColor(Color.RED);
+            et_hashtags.setHint(requireActivity().getResources().getString(R.string.cnc_hashtags_error));
+        }
+        //check length
+        if (et_hashtags.getText().toString().length() > 250) {
+            check = false;
+            et_hashtags.setError(requireActivity().getResources().getString(R.string.cnc_hashtags_error_length));
+        }
+
+        //in case user didn't pasted photo
+        if ("null".equals(bufString)) {
             check = false;
             Toast.makeText(context, R.string.cnc_photo_addition_error, Toast.LENGTH_LONG).show();
         }
+
         if (check) {
-                AppStart.uCreateNewCardUC.createNewCard(
-                        new CardEntity(
-                                new CardInfo(
-                                        null,
-                                        et_city.getText().toString() + "",
-                                        et_country.getText().toString() + "",
-                                        et_full_desc.getText().toString() + "",
-                                        et_short_desc.getText().toString() + "",
-                                        et_address.getText().toString() + "",
-                                        bufString,
-                                        et_hashtags.getText().toString()
-                                ),
-                                -1
-                        )
-                );
+            AppStart.uCreateNewCardUC.createNewCard(
+                    new CardEntity(
+                            new CardInfo(
+                                    null,
+                                    et_city.getText().toString() + "",
+                                    et_country.getText().toString() + "",
+                                    et_full_desc.getText().toString() + "",
+                                    et_short_desc.getText().toString() + "",
+                                    et_address.getText().toString() + "",
+                                    bufString,
+                                    et_hashtags.getText().toString()
+                            ),
+                            -1
+                    )
+            );
             return true;
+        } else {
+            Toast.makeText(context, R.string.cnc_all_data_error, Toast.LENGTH_LONG).show();
         }
         return false;
     }
@@ -199,12 +242,13 @@ public class CreateNewCardFragment extends Fragment {
                             assert result.getData() != null;
                             Uri imageUri = result.getData().getData();
                             bufString = getRealPathFromURI(imageUri);
-                            Log.v("fileName", "the file path: "+ bufString);
+                            Log.v("fileName", "the file path: " + bufString);
                             Glide.with(context)
                                     .load(imageUri)
                                     .into(iv_card_photo);
-                        }catch (NullPointerException e){
+                        } catch (NullPointerException | AssertionError e) {
                             Toast.makeText(context, "Видимо вы прекратили выбор фото, не забудьте выбрать:)", Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
                         }
                     } else {
                         Toast.makeText(context, "Please allow us to upload photo from your gallery", Toast.LENGTH_LONG).show();
@@ -222,6 +266,7 @@ public class CreateNewCardFragment extends Fragment {
 
     /**
      * Checking if there is permission to EXTERNAL_STORAGE
+     *
      * @return true if there is permission
      */
     private boolean hasPermissions() {

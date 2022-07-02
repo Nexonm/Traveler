@@ -7,8 +7,8 @@ public class UserInfo {
     private final String firstName;
     private final String secondName;
     private final String email;
-    private final String phoneNumber;
-    private final String socialContacts;
+    private String phoneNumber;
+    private String socialContacts;
     private String pathToPhoto;
     private final String dateOfBirth;
     private final boolean isMale;
@@ -61,6 +61,10 @@ public class UserInfo {
         return socialContacts;
     }
 
+    public void setSocialContacts(String socialContacts) {
+        this.socialContacts = socialContacts;
+    }
+
     public String getPathToPhoto() {
         return pathToPhoto;
     }
@@ -75,6 +79,10 @@ public class UserInfo {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public boolean isMale() {

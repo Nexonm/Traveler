@@ -95,6 +95,7 @@
     <string name="profile_error">Произошла ошибка, попробуйте снова</string>
     <string name="profile_photo_break">Видимо вы прекратили выбор фото, не забудьте выбрать:)</string>
     <string name="profile_photo_can_not">Произошла ошибка, попробуйте снова</string>
+    <string name="profile_btn_save_new_sc">save</string>
 
     <!-- create new card (cnc) -->
     <string name="cnc_city">City</string>
@@ -109,12 +110,19 @@
     <string name="cnc_btn_add_card">ADD CARD</string>
     <!-- if there is error -->
     <string name="cnc_city_error">Please, write city name</string>
+    <string name="cnc_city_error_length">City name cannot be more than 200 letters!</string>
     <string name="cnc_country_error">Please, write country name</string>
+    <string name="cnc_country_error_length">Country name cannot be more than 100 letters!</string>
     <string name="cnc_address_error">Please, write address</string>
+    <string name="cnc_address_error_length">Address name cannot be more than 200 letters!</string>
     <string name="cnc_few_information_error">Brief information</string>
+    <string name="cnc_few_information_error_length">Length of short description must be less than 150 letters!</string>
     <string name="cnc_many_information_error">Full information</string>
+    <string name="cnc_many_information_error_length">Length of description must be less than 200 letters!</string>
     <string name="cnc_hashtags_error">Hashtags</string>
+    <string name="cnc_hashtags_error_length">Hashtags length must be less than 250 letters! (*try to delete whitespaces)</string>
     <string name="cnc_photo_addition_error">Do not forget to choose photo!:)</string>
+    <string name="cnc_all_data_error">Card cannot be created: check the correctness of the filled data.</string>
 
     <!-- large card view (cbv) -->
     <string name="cbv_name_of_city">Singapore</string>

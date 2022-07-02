@@ -4,6 +4,7 @@ import traveler.module.data.usecasesimplementation.user.UserAddCardToFavoritesUC
 import traveler.module.data.usecasesimplementation.user.UserAddPhotoUCImpl;
 import traveler.module.data.usecasesimplementation.user.UserCreateNewCardUCImpl;
 import traveler.module.data.usecasesimplementation.user.UserDeleteCardUCImpl;
+import traveler.module.data.usecasesimplementation.user.UserEditContactsUCImpl;
 import traveler.module.data.usecasesimplementation.user.UserLoginUCImpl;
 import traveler.module.data.usecasesimplementation.user.UserRegUCImpl;
 
@@ -16,7 +17,8 @@ public class UserRepositoryImplFactory {
                 new UserAddPhotoUCImpl(),
                 new UserCreateNewCardUCImpl(),
                 new UserDeleteCardUCImpl(),
-                new UserAddCardToFavoritesUCImpl()
+                new UserAddCardToFavoritesUCImpl(),
+                new UserEditContactsUCImpl()
         );
     }
 }
