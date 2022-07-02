@@ -93,7 +93,7 @@ public class RegistrationFragment extends Fragment {
                 handler.postDelayed(() -> {
                     while (defaultFlag.equals(flag)) ;
                     pb_reg.setVisibility(View.INVISIBLE);
-                }, 1500);
+                }, 2500);
 
                 if (UserNetAnswers.userOtherError.equals(flag)) {
                     Toast.makeText(this.requireActivity().getBaseContext(),
