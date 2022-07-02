@@ -192,7 +192,6 @@ public class ProfileFragment extends Fragment {
         Cursor cursor = this.requireActivity().getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        cursor.close();
         return cursor.getString(idx);
     }
 
