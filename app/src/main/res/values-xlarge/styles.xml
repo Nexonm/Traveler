@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="text_style_1">
         <item name="android:textSize">
             40sp
@@ -8,6 +9,7 @@
             #FFFFFF
         </item>
     </style>
+
     <style name="text_style_2">
         <item name="android:textSize">
             44sp
@@ -16,6 +18,7 @@
             #FFFFFF
         </item>
     </style>
+
     <style name="text_style_3">
         <item name="android:textSize">
             60sp

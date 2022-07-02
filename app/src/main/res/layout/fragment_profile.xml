@@ -210,7 +210,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/custom_button_2"
                         android:text="@string/profile_btn_edit"
-                        android:textSize="11sp"/>
+                        android:textSize="11sp" />
                 </TableRow>
 
                 <TableRow

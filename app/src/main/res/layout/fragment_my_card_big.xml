@@ -70,7 +70,6 @@
                         android:divider="@drawable/empty_tall_divider_cnc"
                         android:gravity="center"
                         android:orientation="vertical"
-
                         android:showDividers="middle">
 
                         <TextView
@@ -87,7 +86,6 @@
                             android:text="@string/cbv_second_name"
                             android:textAppearance="@style/text_style_2" />
                     </LinearLayout>
-
                 </LinearLayout>
 
                 <TextView
@@ -129,11 +127,10 @@
         android:backgroundTint="@color/button"
         android:text="@string/delete"
         android:textAppearance="@style/text_style_1"
-        app:cornerRadius="17dp"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:strokeColor="@color/white"
         app:strokeWidth="3dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

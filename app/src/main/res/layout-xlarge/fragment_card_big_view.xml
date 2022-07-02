@@ -70,7 +70,6 @@
                         android:divider="@drawable/empty_tall_divider_cnc"
                         android:gravity="center"
                         android:orientation="vertical"
-
                         android:showDividers="middle">
 
                         <TextView
@@ -87,7 +86,6 @@
                             android:text="@string/cbv_second_name"
                             android:textAppearance="@style/text_style_2" />
                     </LinearLayout>
-
                 </LinearLayout>
 
                 <TextView
@@ -118,7 +116,6 @@
                 android:layout_marginBottom="100dp"
                 android:text="@string/cbv_text_from_author"
                 android:textAppearance="@style/text_style_2" />
-
         </LinearLayout>
     </ScrollView>
 

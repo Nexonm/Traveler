@@ -91,24 +91,24 @@ public class RegistrationFragment extends Fragment {
                 pb_reg.setVisibility(View.VISIBLE);
                 final Handler handler = new Handler();
                 handler.postDelayed(() -> {
-                    while (defaultFlag.equals(flag)) ;
+                    while (true) if (!defaultFlag.equals(flag)) break;
                     pb_reg.setVisibility(View.INVISIBLE);
 
-                if (UserNetAnswers.userOtherError.equals(flag)) {
-                    Toast.makeText(this.requireActivity().getBaseContext(),
-                            R.string.reg_error,
-                            Toast.LENGTH_LONG).show();
-                } else if (UserNetAnswers.userAlreadyExists.equals(flag)) {
-                    Toast.makeText(this.requireActivity().getBaseContext(),
-                            R.string.reg_error_email_exist,
-                            Toast.LENGTH_LONG).show();
-                } else if (UserNetAnswers.userSuccessRegistration.equals(flag)) {
-                    startMainActivity();
-                } else {
-                    Toast.makeText(this.requireActivity().getBaseContext(),
-                            R.string.reg_some_error,
-                            Toast.LENGTH_LONG).show();
-                }
+                    if (UserNetAnswers.userOtherError.equals(flag)) {
+                        Toast.makeText(this.requireActivity().getBaseContext(),
+                                R.string.reg_error,
+                                Toast.LENGTH_LONG).show();
+                    } else if (UserNetAnswers.userAlreadyExists.equals(flag)) {
+                        Toast.makeText(this.requireActivity().getBaseContext(),
+                                R.string.reg_error_email_exist,
+                                Toast.LENGTH_LONG).show();
+                    } else if (UserNetAnswers.userSuccessRegistration.equals(flag)) {
+                        startMainActivity();
+                    } else {
+                        Toast.makeText(this.requireActivity().getBaseContext(),
+                                R.string.reg_some_error,
+                                Toast.LENGTH_LONG).show();
+                    }
 
                 }, 2500);
             }

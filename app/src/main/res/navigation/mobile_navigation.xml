@@ -19,7 +19,7 @@
         android:id="@+id/nav_main"
         android:name="we.itschool.project.traveler.presentation.fragment.card_list.CardListFragment"
         android:label="@string/menu_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_nav_main_to_nav_big_card"
             app:destination="@id/nav_big_card" />
@@ -28,7 +28,7 @@
         android:id="@+id/nav_my_cards"
         android:name="we.itschool.project.traveler.presentation.fragment.my_cards.MyCardsFragment"
         android:label="@string/menu_my_cards"
-        tools:layout="@layout/fragment_my_cards" >
+        tools:layout="@layout/fragment_my_cards">
         <action
             android:id="@+id/action_nav_my_cards_to_nav_create_card"
             app:destination="@id/nav_create_card" />
@@ -47,7 +47,7 @@
         android:id="@+id/nav_login"
         android:name="we.itschool.project.traveler.presentation.fragment.login.LoginFragment"
         android:label="@string/menu_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_nav_login_to_nav_registration"
             app:destination="@id/nav_registration" />
