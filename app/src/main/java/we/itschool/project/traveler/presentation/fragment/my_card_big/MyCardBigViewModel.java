@@ -7,7 +7,7 @@ import traveler.module.domain.usecases.user.UserDeleteCardUseCase;
 import traveler.module.domain.usecases.user.UserGetMainUseCase;
 import we.itschool.project.traveler.app.AppStart;
 
-class MyCardBigViewModel extends ViewModel {
+public class MyCardBigViewModel extends ViewModel {
 
     private final UserDeleteCardUseCase deleteCardUC = AppStart.uDeleteCardUC;
     private final UserGetMainUseCase getMainUserUC = AppStart.uGetMainUserUC;
