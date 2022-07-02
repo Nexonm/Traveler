@@ -140,8 +140,6 @@ public class LoginActivity extends AppCompatActivity {
         new Thread(() -> flag = AppStart.uLoginUC.login(email, pass)).start();
     }
 
-    //TODO make this method in data module
-
     /**
      * Check if user registered on this gadget. If no user needs to log in or register.
      * All app has just one SharedPreferences file with data and keys are stored as fields.
@@ -156,8 +154,6 @@ public class LoginActivity extends AppCompatActivity {
         return pref.contains(KEY_PREF_USER_EMAIL) && pref.contains(KEY_PREF_USER_PASSWORD);
     }
 
-    //TODO make this method in data module
-
     /**
      * Gets user's email from SharedPreferences
      *
@@ -167,8 +163,6 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         return pref.getString(KEY_PREF_USER_EMAIL, "null");
     }
-
-    //TODO make this method in data module
 
     /**
      * Gets user's password from SharedPreferences
