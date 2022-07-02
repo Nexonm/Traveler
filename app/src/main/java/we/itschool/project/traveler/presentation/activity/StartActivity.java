@@ -26,13 +26,11 @@ import we.itschool.project.traveler.app.AppStart;
 public class StartActivity extends AppCompatActivity {
 
 
-    int delayed = 500;
-
     //keys for SharedPreferences
     public static final String KEY_PREF_USER_EMAIL = "UserEmail";
     public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
-
     private static final String defaultFlag = "waiting";
+    int delayed = 500;
     private String flag = defaultFlag;
 
     @Override
@@ -40,7 +38,7 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        ((ImageView)findViewById(R.id.iv_start_logo)).setImageResource(R.drawable.icon_app_house);
+        ((ImageView) findViewById(R.id.iv_start_logo)).setImageResource(R.drawable.icon_app_house);
 
         //set display params for future usage
         setDisplayData();
@@ -82,7 +80,7 @@ public class StartActivity extends AppCompatActivity {
 
     private void mainJob() {
         //it's supposed that inet connection was provided
-        ((ProgressBar) findViewById(R.id.pb_start)).setVisibility(View.VISIBLE);
+        findViewById(R.id.pb_start).setVisibility(View.VISIBLE);
 
         if (userLogged()) {
             logUserIn(userDataFromSPEmail(), userDataFromSPPass());
@@ -98,7 +96,7 @@ public class StartActivity extends AppCompatActivity {
                 //already sent data and wait for data to come in
                 while (defaultFlag.equals(flag)) ;//wait while request is going
                 //in case login is successful we start real app
-                ((ProgressBar) findViewById(R.id.pb_start)).setVisibility(View.INVISIBLE);
+                findViewById(R.id.pb_start).setVisibility(View.INVISIBLE);
 
                 if (UserNetAnswers.userSuccessLogin.equals(flag)) {
                     startMainActivity();
@@ -108,7 +106,7 @@ public class StartActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), flag, Toast.LENGTH_LONG).show();
                     }
                 }
-            }else{
+            } else {
                 startLoginActivity();
             }
         }, (int) (Math.random() * 1001) + delayed);
@@ -166,7 +164,7 @@ public class StartActivity extends AppCompatActivity {
         closeActivity();
     }
 
-    private void startLoginActivity(){
+    private void startLoginActivity() {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

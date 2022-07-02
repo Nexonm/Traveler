@@ -19,16 +19,16 @@ public class CardListViewModel extends ViewModel {
 
     private final MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList = new MutableLiveData<>();
 
-    protected MutableLiveData<ArrayList<CardEntity>> getCardList(){
+    protected MutableLiveData<ArrayList<CardEntity>> getCardList() {
         cardsLiveDataList.postValue(getAll.getAll());
         return cardsLiveDataList;
     }
 
-    protected void addNewCard(){
+    protected void addNewCard() {
         addNewCard.upload();
     }
 
-    protected void searchCards(String str){
+    protected void searchCards(String str) {
         searchCards.getBySearch(str);
     }
 

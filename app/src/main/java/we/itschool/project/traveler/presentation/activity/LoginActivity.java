@@ -12,12 +12,11 @@ import we.itschool.project.traveler.R;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static final String KEY_PREF_USER_EMAIL = "UserEmail";
+    public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
     TabLayout tabLayout;
     ViewPager viewPager;
     float v = 0;
-
-    public static final String KEY_PREF_USER_EMAIL = "UserEmail";
-    public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override

@@ -207,9 +207,9 @@
 
                     <ImageButton
                         android:id="@+id/ib_profile_edit_social_contacts"
-                        android:layout_width="20dp"
-                        android:layout_height="10dp"
-                        android:src="@drawable/editing" />
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/custom_button_2" />
 
                 </TableRow>
 

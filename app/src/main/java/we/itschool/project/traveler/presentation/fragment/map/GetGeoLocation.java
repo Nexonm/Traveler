@@ -37,9 +37,9 @@ public class GetGeoLocation extends AsyncTask<String, Void, ArrayList<String>> {
     @Override
     protected ArrayList<String> doInBackground(String... parameter) {
         Geocoder geocoder;
-        if (LANGUAGE.equals("ru")){
+        if (LANGUAGE.equals("ru")) {
             geocoder = new Geocoder(mapFragment.getContext(), Locale.getDefault());
-        }else{
+        } else {
             geocoder = new Geocoder(mapFragment.getContext(), Locale.UK);
         }
         ArrayList<String> arr = new ArrayList<>();
@@ -47,7 +47,7 @@ public class GetGeoLocation extends AsyncTask<String, Void, ArrayList<String>> {
             List<Address> location = geocoder.getFromLocation(position.getLatitude(), position.getLongitude(), 1);
             arr.add(location.get(0).getThoroughfare()); //route
             arr.add(location.get(0).getLocality()); //town
-            arr.add( location.get(0).getAdminArea()); //admin
+            arr.add(location.get(0).getAdminArea()); //admin
             arr.add(location.get(0).getCountryName()); //country
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,9 +60,9 @@ public class GetGeoLocation extends AsyncTask<String, Void, ArrayList<String>> {
     protected void onPostExecute(ArrayList<String> result) {
         super.onPostExecute(result);
         MapFragment.regions = result;
-        if (cl.findViewById(1) instanceof TextView){
+        if (cl.findViewById(1) instanceof TextView) {
             tx_town.setText(result.get(0));
-        } else if (result.size() > 0){
+        } else if (result.size() > 0) {
             tx_town.setTextSize(30);
             tx_town.setTypeface(tf);
             tx_town.setId(1);

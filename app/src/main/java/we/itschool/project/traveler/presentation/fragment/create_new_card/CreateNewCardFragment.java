@@ -36,23 +36,46 @@ import we.itschool.project.traveler.app.AppStart;
 
 public class CreateNewCardFragment extends Fragment {
 
+    private static final int PERMISSION_CODE = 1001;
     private Context context;
     private ImageView iv_card_photo;
-
     private EditText et_city;
     private EditText et_country;
     private EditText et_address;
     private EditText et_short_desc;
     private EditText et_full_desc;
     private EditText et_hashtags;
-
     private String bufString = "null";
+    /**
+     * this code provide uri from chosen image. This work if permission is granted
+     */
+    ActivityResultLauncher<Intent> imagePickerActivityResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result != null) {
+                        try {
+                            assert result.getData() != null;
+                            Uri imageUri = result.getData().getData();
+                            bufString = getRealPathFromURI(imageUri);
+                            Log.v("fileName", "the file path: " + bufString);
+                            Glide.with(context)
+                                    .load(imageUri)
+                                    .into(iv_card_photo);
+                        } catch (NullPointerException | AssertionError e) {
+                            Toast.makeText(context, "Видимо вы прекратили выбор фото, не забудьте выбрать:)", Toast.LENGTH_LONG).show();
+                        } catch (Exception ignored) {
+                        }
+                    } else {
+                        Toast.makeText(context, "Please allow us to upload photo from your gallery", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+    );
 
-    private static final int PERMISSION_CODE = 1001;
 
     public CreateNewCardFragment() {
     }
-
 
     //new Instance method
     public static CreateNewCardFragment newInstance() {
@@ -77,7 +100,6 @@ public class CreateNewCardFragment extends Fragment {
         context = this.requireActivity().getBaseContext();
         initView(view);
     }
-
 
     private void initView(View view) {
         //card photo that must be downloaded by user
@@ -230,37 +252,11 @@ public class CreateNewCardFragment extends Fragment {
         imagePickerActivityResult.launch(intent);
     }
 
-    /**
-     * this code provide uri from chosen image. This work if permission is granted
-     */
-    ActivityResultLauncher<Intent> imagePickerActivityResult = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result != null) {
-                        try {
-                            assert result.getData() != null;
-                            Uri imageUri = result.getData().getData();
-                            bufString = getRealPathFromURI(imageUri);
-                            Log.v("fileName", "the file path: " + bufString);
-                            Glide.with(context)
-                                    .load(imageUri)
-                                    .into(iv_card_photo);
-                        } catch (NullPointerException | AssertionError e) {
-                            Toast.makeText(context, "Видимо вы прекратили выбор фото, не забудьте выбрать:)", Toast.LENGTH_LONG).show();
-                        } catch (Exception e) {
-                        }
-                    } else {
-                        Toast.makeText(context, "Please allow us to upload photo from your gallery", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-    );
-
     private String getRealPathFromURI(Uri uri) {
         Cursor cursor = this.requireActivity().getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        cursor.close();
         return cursor.getString(idx);
     }
 

@@ -27,11 +27,17 @@ public class PlaceInfoDialogFragment extends DialogFragment {
     private String tittle = "Описание ";
     private String text = "отсутствует \n";
 
-    private String checkIfNull(String str){ if (str==null){ return ""; }else { return str; } }
-
     public PlaceInfoDialogFragment(Response<ResponseOTMInfo> card, String distance) {
         this.response = card;
         this.dist = distance;
+    }
+
+    private String checkIfNull(String str) {
+        if (str == null) {
+            return "";
+        } else {
+            return str;
+        }
     }
 
     @NonNull
@@ -65,27 +71,27 @@ public class PlaceInfoDialogFragment extends DialogFragment {
         tv_title.setText(tittle);
         tv_title.setTextColor(Color.BLACK);
         tv_title.setTextSize(20);
-        tv_title.setPadding(14,7,14,7);
+        tv_title.setPadding(14, 7, 14, 7);
 
         TextView tv_text = new TextView(mf.getContext());
         tv_text.setTextSize(19);
         tv_text.setTextColor(Color.BLACK);
         tv_text.setText(text);
-        tv_text.setPadding(14,7,14,7);
+        tv_text.setPadding(14, 7, 14, 7);
 
         TextView tv_dist = new TextView(mf.getContext());
         tv_dist.setText(dist);
         tv_dist.setTextSize(17);
-        tv_dist.setPadding(14,7,14,7);
+        tv_dist.setPadding(14, 7, 14, 7);
 
         TextView tv_address = new TextView(mf.getContext());
         tv_address.setText(address);
         tv_address.setTextSize(17);
-        tv_address.setPadding(14,7,14,7);
+        tv_address.setPadding(14, 7, 14, 7);
 
         TextView tv_url = new TextView(mf.getContext());
         tv_url.setText(url);
-        tv_url.setPadding(14,7,14,7);
+        tv_url.setPadding(14, 7, 14, 7);
         Linkify.addLinks(tv_url, Linkify.ALL);
 
         tableLayout.addView(tv_title);
@@ -97,22 +103,22 @@ public class PlaceInfoDialogFragment extends DialogFragment {
 
         String kinds = response.body().getKinds();
         int bit;
-        if (kinds.contains(MapPointsKinds.KIND_HISTORIC)){
-                bit = R.drawable.map_monument;
-        }else if (kinds.contains(MapPointsKinds.KIND_CULTURAL)){
-                bit = R.drawable.map_historical;
-        }else if (kinds.contains(MapPointsKinds.KIND_INDUSTRIAL_FACILITIES)){
-                bit = R.drawable.map_industrial;
-        }else if (response.body().getName().length() == 0){
-                bit = R.drawable.map_unknown;
-        } else if (kinds.contains(MapPointsKinds.KIND_NATURAL)){
-                bit = R.drawable.map_nature;
-        } else if (kinds.contains(MapPointsKinds.KIND_ARCHITECTURE)){
-                bit = R.drawable.map_buildings;
-        }else if (kinds.contains(MapPointsKinds.KIND_OTHER)){
-                bit = R.drawable.map_forphoto;
-        }else{
-                bit = R.drawable.map_unknown;
+        if (kinds.contains(MapPointsKinds.KIND_HISTORIC)) {
+            bit = R.drawable.map_monument;
+        } else if (kinds.contains(MapPointsKinds.KIND_CULTURAL)) {
+            bit = R.drawable.map_historical;
+        } else if (kinds.contains(MapPointsKinds.KIND_INDUSTRIAL_FACILITIES)) {
+            bit = R.drawable.map_industrial;
+        } else if (response.body().getName().length() == 0) {
+            bit = R.drawable.map_unknown;
+        } else if (kinds.contains(MapPointsKinds.KIND_NATURAL)) {
+            bit = R.drawable.map_nature;
+        } else if (kinds.contains(MapPointsKinds.KIND_ARCHITECTURE)) {
+            bit = R.drawable.map_buildings;
+        } else if (kinds.contains(MapPointsKinds.KIND_OTHER)) {
+            bit = R.drawable.map_forphoto;
+        } else {
+            bit = R.drawable.map_unknown;
         }
 
         AlertDialog.Builder placeInfo = new AlertDialog.Builder(getActivity());

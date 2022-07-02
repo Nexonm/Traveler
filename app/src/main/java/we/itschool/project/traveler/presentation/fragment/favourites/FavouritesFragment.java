@@ -54,12 +54,12 @@ public class FavouritesFragment extends Fragment {
         addData();
     }
 
-    private void initAdapter(){
+    private void initAdapter() {
         adapter = new Adapter(new DiffCallback());
         adapter.cardClickListener = this::startCardFragment;
     }
 
-    private void initViewModel(){
+    private void initViewModel() {
         viewModel = new ViewModelProvider(this).get(ViewModelFavorites.class);
 
         viewModel.getCardList().observe(
@@ -68,7 +68,7 @@ public class FavouritesFragment extends Fragment {
         );
     }
 
-    private void initView(View view){
+    private void initView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.rv_favs_cards);
         recyclerView.setAdapter(adapter);
         recyclerView.getRecycledViewPool().setMaxRecycledViews(
@@ -76,13 +76,14 @@ public class FavouritesFragment extends Fragment {
         );
     }
 
-    private void addData(){
-        AsyncTask.execute(()-> {
+    private void addData() {
+        AsyncTask.execute(() -> {
             ArrayList<CardEntity> list = viewModel.getCardList().getValue();
-            if (list==null)
+            if (list == null)
                 try {
                     Thread.sleep(500);
-                }catch (InterruptedException ignored){}
+                } catch (InterruptedException ignored) {
+                }
             adapter.submitList(new ArrayList<>(viewModel.getCardList().getValue()));
         });
     }

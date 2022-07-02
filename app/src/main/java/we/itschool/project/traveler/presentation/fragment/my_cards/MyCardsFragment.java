@@ -84,7 +84,7 @@ public class MyCardsFragment extends Fragment {
                 Adapter.VIEW_TYPE_CARD_VISITOR, Adapter.MAX_POOL_SIZE);
     }
 
-    private void startCreateNewCardFragment(){
+    private void startCreateNewCardFragment() {
         Fragment fragment = CreateNewCardFragment.newInstance();
 
         FragmentManager fragmentManager = getParentFragmentManager();
@@ -104,13 +104,13 @@ public class MyCardsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        AsyncTask.execute(() ->{
-        try{
-            Thread.sleep(3500);
-            adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
+        AsyncTask.execute(() -> {
+            try {
+                Thread.sleep(3500);
+                adapter.submitList(new ArrayList<>(Objects.requireNonNull(viewModel.getCardList().getValue())));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         });
     }
 

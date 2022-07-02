@@ -19,11 +19,8 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
 
     public static final int MAX_POOL_SIZE = 20;
     public static final int VIEW_TYPE_CARD_VISITOR = 100;
-
-    String name_of_city;
-
-
     public OnCardClickListener cardClickListener = null;
+    String name_of_city;
 
     public Adapter(DiffCallback diffCallback) {
         super(diffCallback);
@@ -44,7 +41,7 @@ public class Adapter extends ListAdapter<CardEntity, ViewHolder> {
     }
 
     @Override
-    public int getItemViewType(int position){
+    public int getItemViewType(int position) {
         return VIEW_TYPE_CARD_VISITOR;
     }
 

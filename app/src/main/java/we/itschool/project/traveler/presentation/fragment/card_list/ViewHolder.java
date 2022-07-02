@@ -14,12 +14,10 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     TextView tv_name_of_city;
     TextView tv_short_description;
 
-    public ViewHolder(View item){
+    public ViewHolder(View item) {
         super(item);
         iv_avatar_image = item.findViewById(R.id.iv_avatar_image);
         tv_name_of_city = item.findViewById(R.id.tv_name_of_city);
         tv_short_description = item.findViewById(R.id.tv_short_description);
     }
-
-
 }

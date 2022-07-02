@@ -41,19 +41,41 @@ import we.itschool.project.traveler.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
 
+    public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
+    private static final int PERMISSION_CODE = 1001;
     private FragmentProfileBinding binding;
     private Context context;
     private ProfileViewModel viewModel;
-
     private ImageView iv_avatar;
-
+    /**
+     * this code provide uri from chosen image. This work if permission is granted
+     */
+    ActivityResultLauncher<Intent> imagePickerActivityResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result != null) {
+                        try {
+                            assert result.getData() != null;
+                            Uri imageUri = result.getData().getData();
+                            String bufString = getRealPathFromURI(imageUri);
+                            Glide.with(context)
+                                    .load(imageUri)
+                                    .into(iv_avatar);
+                            //send data to server
+                            AppStart.uAddPhotoUC.addPhoto(bufString);
+                        } catch (NullPointerException e) {
+                            Toast.makeText(context, R.string.profile_photo_break, Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(context, R.string.profile_photo_can_not, Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+    );
     private TextView tv_contacts;
-
     private EditText et_edit_social_contacts;
-
-    private static final int PERMISSION_CODE = 1001;
     private boolean counter;
-    public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,7 +93,7 @@ public class ProfileFragment extends Fragment {
         initView(view);
     }
 
-    private void initViewModel(){
+    private void initViewModel() {
         viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
     }
 
@@ -143,7 +165,7 @@ public class ProfileFragment extends Fragment {
         return pref.getString(KEY_PREF_USER_PASSWORD, "null");
     }
 
-    private void updatePhoto(){
+    private void updatePhoto() {
         try {
             if (!hasPermissions()) {
                 requestPermissionsMy();
@@ -157,7 +179,6 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-
     /**
      * Method to start new activity to get photo from storage
      */
@@ -166,33 +187,6 @@ public class ProfileFragment extends Fragment {
         intent.setType("image/*");
         imagePickerActivityResult.launch(intent);
     }
-
-    /**
-     * this code provide uri from chosen image. This work if permission is granted
-     */
-    ActivityResultLauncher<Intent> imagePickerActivityResult = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result != null) {
-                        try {
-                            assert result.getData() != null;
-                            Uri imageUri = result.getData().getData();
-                            String bufString = getRealPathFromURI(imageUri);
-                            Glide.with(context)
-                                    .load(imageUri)
-                                    .into(iv_avatar);
-                            //send data to server
-                            AppStart.uAddPhotoUC.addPhoto(bufString);
-                        } catch (NullPointerException e) {
-                            Toast.makeText(context, R.string.profile_photo_break, Toast.LENGTH_LONG).show();
-                        }
-                    } else {
-                        Toast.makeText(context, R.string.profile_photo_can_not, Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-    );
 
     private String getRealPathFromURI(Uri uri) {
         Cursor cursor = this.requireActivity().getContentResolver().query(uri, null, null, null, null);

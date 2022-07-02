@@ -24,10 +24,8 @@ import we.itschool.project.traveler.R;
 
 public class MyCardBigFragment extends Fragment {
 
-    private static final String ARGUMENT_CARD_GSON = "card Gson";
-
     public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
-
+    private static final String ARGUMENT_CARD_GSON = "card Gson";
     private CardEntity card;
 
     private MyCardBigViewModel viewModel;
@@ -152,6 +150,7 @@ public class MyCardBigFragment extends Fragment {
     }
 
     //TODO make this method in data module
+
     /**
      * Gets user's password from SharedPreferences
      *
@@ -162,7 +161,7 @@ public class MyCardBigFragment extends Fragment {
         return pref.getString(KEY_PREF_USER_PASSWORD, "null");
     }
 
-    private void finishFragment(){
+    private void finishFragment() {
         requireActivity().getSupportFragmentManager().popBackStack();
     }
 }

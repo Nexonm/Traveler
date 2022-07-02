@@ -18,7 +18,7 @@ public class ViewModelMyCards extends ViewModel {
         cardsLiveDataList = new MutableLiveData<>();
     }
 
-    public MutableLiveData<ArrayList<CardEntity>> getCardList(){
+    public MutableLiveData<ArrayList<CardEntity>> getCardList() {
         cardsLiveDataList.postValue(getCardsUC.getUserCards());
         return cardsLiveDataList;
     }

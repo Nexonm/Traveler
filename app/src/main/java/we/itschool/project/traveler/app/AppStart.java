@@ -48,6 +48,9 @@ public class AppStart extends Application {
     private int displayHeight;
     private int displayWidth;
 
+    public static AppStart getInstance() {
+        return instance;
+    }
 
     @Override
     public void onCreate() {
@@ -80,24 +83,19 @@ public class AppStart extends Application {
         MapKitFactory.setApiKey(API_YANDEX_MAP_KEY);
     }
 
+    public int getDisplayHeight() {
+        return displayHeight;
+    }
 
     public void setDisplayHeight(int displayHeight) {
         this.displayHeight = displayHeight;
-    }
-
-    public void setDisplayWidth(int displayWidth) {
-        this.displayWidth = displayWidth;
-    }
-
-    public int getDisplayHeight() {
-        return displayHeight;
     }
 
     public int getDisplayWidth() {
         return displayWidth;
     }
 
-    public static AppStart getInstance(){
-        return instance;
+    public void setDisplayWidth(int displayWidth) {
+        this.displayWidth = displayWidth;
     }
 }

@@ -70,38 +70,64 @@ import java.util.Objects;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import we.itschool.project.traveler.R;
 import traveler.module.mapapi.opentripmapapi.ResponseOTM.Feature;
 import traveler.module.mapapi.opentripmapapi.ResponseOTM.ResponseOTM;
 import traveler.module.mapapi.opentripmapapi.ResponseOTMInf.ResponseOTMInfo;
 import traveler.module.mapapi.opentripmapapi.service.APIServiceOTMConstructor;
 import traveler.module.mapapi.opentripmapapi.service.APIServiceOTMGetInfoOfPlaces;
 import traveler.module.mapapi.opentripmapapi.service.APIServiceOTMGetPlaces;
+import we.itschool.project.traveler.R;
 
 public class MapFragment extends Fragment implements UserLocationObjectListener, CameraListener {
-
-    private Context context;
 
     public static MapView mapView;
     public static Geocoder geocoder;
     public static Point myPosition;
-    private UserLocationLayer userLocationLayer;
-    private final Handler HandlerPlacesUpdater = new Handler();
-    private final Handler HandlerCheckAllAccess = new Handler();
     public static MapFragment mf;
-    private boolean followUserLocation;
     public static Button bt_crop_user;
-
     public static ConstraintLayout cl;
     public static Typeface tf;
-
-    private int counter;
     public static TextView tx_town;
-
     public static java.util.Map<String, ArrayList<String>> ArrOfFavorite;
     public static ArrayList<String> regions;
     static List<MapObjectTapListener> mapObjectTapListeners = new ArrayList<>();
+    private final Handler HandlerPlacesUpdater = new Handler();
+    private final Handler HandlerCheckAllAccess = new Handler();
+    private Context context;
+    private UserLocationLayer userLocationLayer;
+    private final Runnable CheckAllAccess = new Runnable() {
+        @Override
+        public void run() {
+            if (checkLocationAccess() && checkConnection()) {
+                FindUser();
+            } else {
+                HandlerCheckAllAccess.postDelayed(this, 7000);
+            }
+        }
+    };
+    private boolean followUserLocation;
+    private int counter;
+    private final Runnable PlacesUpdater = new Runnable() {
 
+        @Override
+        public void run() {
+            if (myPosition.getLatitude() != 0.0) {
+                if (counter == 0) {
+                    counter++;
+
+                    mapView.getMap().move(
+                            new CameraPosition(myPosition, 11.5f, 3.0f, 1.0f),
+                            new Animation(Animation.Type.LINEAR, 5),
+                            null);
+                    new GetGeoLocation(mf, myPosition, tf).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                }
+                SetPlacesInMap(myPosition);
+                HandlerPlacesUpdater.postDelayed(this, 60000);
+            } else {
+                HandlerPlacesUpdater.postDelayed(this, 0);
+            }
+        }
+    };
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -137,7 +163,6 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
         initView(view);
     }
 
-
     @SuppressLint("ResourceAsColor")
     public void initView(View view) {
 
@@ -164,8 +189,8 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
                             new Animation(SMOOTH, 3),
                             null);
                 }
-            }catch (NullPointerException e){
-                Toast.makeText(this.getContext(), R.string.map_crop_error,Toast.LENGTH_LONG).show();
+            } catch (NullPointerException e) {
+                Toast.makeText(this.getContext(), R.string.map_crop_error, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -181,39 +206,6 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
 
     }
-
-    private final Runnable CheckAllAccess = new Runnable() {
-        @Override
-        public void run() {
-            if (checkLocationAccess() && checkConnection()) {
-                FindUser();
-            } else {
-                HandlerCheckAllAccess.postDelayed(this, 7000);
-            }
-        }
-    };
-
-    private final Runnable PlacesUpdater = new Runnable() {
-
-        @Override
-        public void run() {
-            if (myPosition.getLatitude() != 0.0) {
-                if (counter == 0) {
-                    counter++;
-
-                    mapView.getMap().move(
-                            new CameraPosition(myPosition, 11.5f, 3.0f, 1.0f),
-                            new Animation(Animation.Type.LINEAR, 5),
-                            null);
-                    new GetGeoLocation(mf, myPosition, tf).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                }
-                SetPlacesInMap(myPosition);
-                HandlerPlacesUpdater.postDelayed(this, 60000);
-            } else {
-                HandlerPlacesUpdater.postDelayed(this, 0);
-            }
-        }
-    };
 
     // get all places around in 10 km
     public void SetPlacesInMap(Point position) {
@@ -252,21 +244,21 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
                         }
                         if (flag) {
                             if (kinds.contains(MapPointsKinds.KIND_HISTORIC)) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_monument)).getBitmap();
+                                bit = ((BitmapDrawable) mf.getResources().getDrawable(R.drawable.map_monument)).getBitmap();
                             } else if (kinds.contains(MapPointsKinds.KIND_CULTURAL)) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_historical)).getBitmap();
+                                bit = ((BitmapDrawable) mf.getResources().getDrawable(R.drawable.map_historical)).getBitmap();
                             } else if (kinds.contains(MapPointsKinds.KIND_INDUSTRIAL_FACILITIES)) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_industrial)).getBitmap();
+                                bit = ((BitmapDrawable) mf.getResources().getDrawable(R.drawable.map_industrial)).getBitmap();
                             } else if (card.properties.name.length() == 0) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_unknown)).getBitmap();
+                                bit = ((BitmapDrawable) mf.getResources().getDrawable(R.drawable.map_unknown)).getBitmap();
                             } else if (kinds.contains(MapPointsKinds.KIND_NATURAL)) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_nature)).getBitmap();
+                                bit = ((BitmapDrawable) mf.getResources().getDrawable(R.drawable.map_nature)).getBitmap();
                             } else if (kinds.contains(MapPointsKinds.KIND_ARCHITECTURE)) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_buildings)).getBitmap();
+                                bit = ((BitmapDrawable) mf.getResources().getDrawable(R.drawable.map_buildings)).getBitmap();
                             } else if (kinds.contains(MapPointsKinds.KIND_OTHER)) {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_forphoto)).getBitmap();
+                                bit = ((BitmapDrawable) mf.getResources().getDrawable(R.drawable.map_forphoto)).getBitmap();
                             } else {
-                                bit = ((BitmapDrawable)mf .getResources().getDrawable(R.drawable.map_unknown)).getBitmap();
+                                bit = ((BitmapDrawable) mf.getResources().getDrawable(R.drawable.map_unknown)).getBitmap();
                             }
 
                             MapObjectTapListener mapObjectTapListener = (mapObject, point) -> {
@@ -290,7 +282,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
             @Override
             public void onFailure(@NonNull Call<ResponseOTM> call, @NonNull Throwable t) {
-                Toast.makeText(mf.getContext(),  requireContext().getResources().getString(R.string.map_warning) + t,
+                Toast.makeText(mf.getContext(), requireContext().getResources().getString(R.string.map_warning) + t,
                         Toast.LENGTH_LONG).show();
             }
         });
@@ -397,7 +389,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
             final boolean[] result = new boolean[1];
             builder.setCancelable(false)
                     .setMessage(R.string.login_inet_request)
-                    .setNegativeButton(R.string.login_inet_request_quit, (dialog, id) ->{
+                    .setNegativeButton(R.string.login_inet_request_quit, (dialog, id) -> {
                         //exit from app, but it doesn't finish it running
                         this.requireActivity().finishAffinity();
                     })

@@ -17,7 +17,7 @@ public class ViewModelFavorites extends ViewModel {
     private final UserGetUserFavoritesCardsUseCase getAllUC = AppStart.uGetUserFavesUC;
     private final UserGetMainUseCase getUserUC = AppStart.uGetMainUserUC;
 
-    protected MutableLiveData<ArrayList<CardEntity>> getCardList(){
+    protected MutableLiveData<ArrayList<CardEntity>> getCardList() {
         cardsLiveDataList.postValue(getAllUC.getUserFavoritesCards(getUserUC.getMainUser().get_id()));
         return cardsLiveDataList;
     }

@@ -34,6 +34,7 @@ import we.itschool.project.traveler.presentation.activity.MainActivity;
 
 public class RegistrationFragment extends Fragment {
 
+    private static final String defaultFlag = "Waiting";
     private EditText et_first_name;
     private EditText et_second_name;
     private EditText et_email;
@@ -42,10 +43,8 @@ public class RegistrationFragment extends Fragment {
     private EditText et_birth_date;
     private EditText et_phone;
     private EditText et_social_cont;
-
     private ProgressBar pb_reg;
     private String gender;
-    private static final String defaultFlag = "Waiting";
     private String flag = defaultFlag;
 
     @Override
@@ -90,21 +89,21 @@ public class RegistrationFragment extends Fragment {
                 pb_reg.setVisibility(View.VISIBLE);
                 final Handler handler = new Handler();
                 handler.postDelayed(() -> {
-                    while(defaultFlag.equals(flag));
+                    while (defaultFlag.equals(flag)) ;
                     pb_reg.setVisibility(View.INVISIBLE);
                 }, 1500);
 
-                if (UserNetAnswers.userOtherError.equals(flag)){
+                if (UserNetAnswers.userOtherError.equals(flag)) {
                     Toast.makeText(this.requireActivity().getBaseContext(),
                             R.string.reg_error,
                             Toast.LENGTH_LONG).show();
-                }else if (UserNetAnswers.userAlreadyExists.equals(flag)){
+                } else if (UserNetAnswers.userAlreadyExists.equals(flag)) {
                     Toast.makeText(this.requireActivity().getBaseContext(),
                             R.string.reg_error_email_exist,
                             Toast.LENGTH_LONG).show();
-                }else if (UserNetAnswers.userSuccessRegistration.equals(flag)) {
+                } else if (UserNetAnswers.userSuccessRegistration.equals(flag)) {
                     startMainActivity();
-                }else {
+                } else {
                     Toast.makeText(this.requireActivity().getBaseContext(),
                             R.string.reg_some_error,
                             Toast.LENGTH_LONG).show();
@@ -268,7 +267,7 @@ public class RegistrationFragment extends Fragment {
         editor.apply();
     }
 
-    private void startMainActivity(){
+    private void startMainActivity() {
         FragmentManager fragmentManager = getParentFragmentManager();
         fragmentManager.popBackStack();
         Intent intent = new Intent(this.requireActivity().getBaseContext(), MainActivity.class);

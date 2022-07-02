@@ -27,13 +27,11 @@ import we.itschool.project.traveler.presentation.activity.MainActivity;
 
 public class LoginFragment extends Fragment {
 
+    private static final String defaultFlag = "waiting";
     String email, password;
     EditText et_email, et_password;
     Button bt_login;
-
     ProgressBar pb_login;
-
-    private static final String defaultFlag = "waiting";
     private String flag = defaultFlag;
 
     @Override
@@ -146,7 +144,7 @@ public class LoginFragment extends Fragment {
         closeActivity();
     }
 
-    private void closeActivity(){
+    private void closeActivity() {
         requireActivity().finish();
     }
 

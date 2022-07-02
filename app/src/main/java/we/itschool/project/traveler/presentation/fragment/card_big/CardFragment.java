@@ -15,10 +15,10 @@ import androidx.fragment.app.Fragment;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import we.itschool.project.traveler.R;
-import we.itschool.project.traveler.app.AppStart;
 import traveler.module.data.travelerapi.APIConfigTraveler;
 import traveler.module.domain.entity.CardEntity;
+import we.itschool.project.traveler.R;
+import we.itschool.project.traveler.app.AppStart;
 
 public class CardFragment extends Fragment {
 
@@ -90,7 +90,7 @@ public class CardFragment extends Fragment {
         );
 
         Picasso.with(this.getContext())
-                .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD+card.get_id())
+                .load(APIConfigTraveler.STORAGE_CARD_PHOTO_METHOD + card.get_id())
 //                .resize(
 //                        AppStart.getInstance().getDisplayHeight()/2,
 //                        AppStart.getInstance().getDisplayHeight()/2
@@ -100,7 +100,7 @@ public class CardFragment extends Fragment {
                 );
 
         Picasso.with(this.getContext())
-                .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD+card.getCardInfo().getUser().get_id())
+                .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD + card.getCardInfo().getUser().get_id())
                 .into(
                         ((ImageView) view.findViewById(R.id.iv_avatar_image_big_card))
                 );

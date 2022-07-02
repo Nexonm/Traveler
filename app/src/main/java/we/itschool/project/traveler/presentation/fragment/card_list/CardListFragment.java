@@ -26,16 +26,12 @@ import we.itschool.project.traveler.presentation.fragment.card_big.CardFragment;
 
 public class CardListFragment extends Fragment {
 
+    View root;
     private CardListViewModel viewModel;
-
     private EditText et_search_input;
-
     private Adapter adapter;
-
     private boolean goingUsual;
     private boolean goingSearch;
-
-    View root;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
