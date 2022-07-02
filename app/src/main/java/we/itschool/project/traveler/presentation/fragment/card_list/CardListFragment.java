@@ -94,6 +94,12 @@ public class CardListFragment extends Fragment {
         });
     }
 
+    /**
+     * Make request do download some data by filters. Stops usual downloading method-loop and starts another.
+     * In case user wrote whitespace it starts usual upload and stops its loop.
+     *
+     * @param input string for search
+     */
     private void searchData(String input) {
         String str = input.trim();
         //in case there are all whitespaces
@@ -128,6 +134,10 @@ public class CardListFragment extends Fragment {
     }
 
     //TODO сделать загрузку данных другим способом, в зависимости от прокрутки пользователем странницы
+
+    /**
+     * Main method that updates list of cards
+     */
     private void addData() {
         new Thread(() -> {
             while (goingUsual)
