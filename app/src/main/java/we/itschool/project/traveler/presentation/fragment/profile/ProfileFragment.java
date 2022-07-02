@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -127,7 +126,7 @@ public class ProfileFragment extends Fragment {
         Button bt_save_social_contacts = view.findViewById(R.id.bt_profile_save_social_contacts);
         bt_save_social_contacts.setOnClickListener(v -> saveSocialContacts(view));
 
-        ImageButton ib_edit_social_contacts = view.findViewById(R.id.ib_profile_edit_social_contacts);
+        Button ib_edit_social_contacts = view.findViewById(R.id.ib_profile_edit_social_contacts);
         ib_edit_social_contacts.setOnClickListener(v -> editSocialContacts(view));
 
     }
