@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
@@ -42,6 +43,7 @@ public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
     private Context context;
+    private ProfileViewModel viewModel;
 
     private ImageView iv_avatar;
 
@@ -65,31 +67,36 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         context = this.getContext();
+        initViewModel();
         initView(view);
+    }
+
+    private void initViewModel(){
+        viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
     }
 
     private void initView(View view) {
         counter = false;
         TextView tv_first_name = view.findViewById(R.id.tv_profile_first_name);
-        tv_first_name.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getFirstName());
+        tv_first_name.setText(viewModel.getMainUser().getUserInfo().getFirstName());
         TextView tv_second_name = view.findViewById(R.id.tv_profile_second_name);
-        tv_second_name.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getSecondName());
+        tv_second_name.setText(viewModel.getMainUser().getUserInfo().getSecondName());
         TextView tv_phone = view.findViewById(R.id.tv_profile_phone);
-        tv_phone.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getPhoneNumber());
+        tv_phone.setText(viewModel.getMainUser().getUserInfo().getPhoneNumber());
         TextView tv_email = view.findViewById(R.id.tv_profile_email);
-        tv_email.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getEmail());
+        tv_email.setText(viewModel.getMainUser().getUserInfo().getEmail());
         TextView tv_is_male = view.findViewById(R.id.tv_profile_is_male);
-        tv_is_male.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().isMale() ? R.string.man : R.string.woman);
+        tv_is_male.setText(viewModel.getMainUser().getUserInfo().isMale() ? R.string.man : R.string.woman);
         TextView tv_birthday = view.findViewById(R.id.tv_profile_birthday);
-        tv_birthday.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getDateOfBirth());
+        tv_birthday.setText(viewModel.getMainUser().getUserInfo().getDateOfBirth());
         tv_contacts = view.findViewById(R.id.tv_profile_contacts);
-        tv_contacts.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getSocialContacts());
+        tv_contacts.setText(viewModel.getMainUser().getUserInfo().getSocialContacts());
 
         et_edit_social_contacts = view.findViewById(R.id.et_profile_edit_contacts);
 
         iv_avatar = view.findViewById(R.id.iv_profile_avatar);
         Picasso.with(context)
-                .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD + AppStart.uGetMainUserUC.getMainUser().get_id())
+                .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD + viewModel.getMainUser().get_id())
                 .into(iv_avatar);
 
         Button bt_update_photo = view.findViewById(R.id.bt_profile_update_photo);
@@ -119,10 +126,11 @@ public class ProfileFragment extends Fragment {
         view.findViewById(R.id.tr_edit_social_contacts).setClickable(false);
         view.findViewById(R.id.tr_edit_social_contacts).setVisibility(View.INVISIBLE);
         String newSC = et_edit_social_contacts.getText().toString();
-        UserEntity entity = AppStart.uGetMainUserUC.getMainUser();
+        UserEntity entity = viewModel.getMainUser();
         entity.getUserInfo().setSocialContacts(newSC);
-        AppStart.uEditContactsUC.editContacts(entity, userDataFromSPPass());
+        viewModel.editContacts(entity, userDataFromSPPass());
         tv_contacts.setText(newSC);
+        viewModel.updateUserMain();
     }
 
     /**
