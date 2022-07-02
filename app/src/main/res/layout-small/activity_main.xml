@@ -19,12 +19,12 @@
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:itemTextColor="@color/white"
         android:background="@drawable/img_rectangle_2"
-        app:itemVerticalPadding="15dp"
-        app:itemTextAppearance="@style/text_style_2"
-        app:itemIconSize="20sp"
+        android:fitsSystemWindows="true"
         app:itemIconPadding="15dp"
+        app:itemIconSize="20sp"
+        app:itemTextAppearance="@style/text_style_2"
+        app:itemTextColor="@color/white"
+        app:itemVerticalPadding="15dp"
         app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>
