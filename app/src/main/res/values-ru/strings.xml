@@ -99,7 +99,8 @@
     <string name="profile_error">Произошла ошибка, попробуйте снова</string>
     <string name="profile_photo_break">Видимо вы прекратили выбор фото, не забудьте выбрать:)</string>
     <string name="profile_photo_can_not">Пожалуйста, разрешите доступ к галерее для выбора фото</string>
-    <string name="profile_btn_save_new_sc">save</string>
+    <string name="profile_btn_edit">ИЗМЕНИТЬ</string>
+    <string name="profile_btn_save_new_sc">СОХРАНИТЬ</string>
 
     <!-- create new card (cnc) -->
     <string name="cnc_city">Город</string>

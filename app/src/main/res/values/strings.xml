@@ -99,7 +99,8 @@
     <string name="profile_error">Something went wrong, try again, please.</string>
     <string name="profile_photo_break">Seems like you canceled photo selection, don\'t forget to pick it:)</string>
     <string name="profile_photo_can_not">Please allow us to upload photo from your gallery</string>
-    <string name="profile_btn_save_new_sc">save</string>
+    <string name="profile_btn_edit">EDIT</string>
+    <string name="profile_btn_save_new_sc">SAVE</string>
 
     <!-- create new card (cnc) -->
     <string name="cnc_city">City</string>
