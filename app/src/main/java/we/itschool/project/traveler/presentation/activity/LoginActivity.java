@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
 
         // setting 2 tabs in tab layout
+        //TODO make resources from this strings
         tabLayout.addTab(tabLayout.newTab().setText("Log in"));
         tabLayout.addTab(tabLayout.newTab().setText("Sign Up"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
