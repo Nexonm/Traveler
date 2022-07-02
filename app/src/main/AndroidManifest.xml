@@ -22,10 +22,16 @@
             android:name=".presentation.activity.MainActivity"
             android:screenOrientation="portrait"
             android:exported="false"
-            android:parentActivityName=".presentation.activity.LoginActivity">
+            android:parentActivityName=".presentation.activity.StartActivity">
         </activity>
         <activity
             android:name=".presentation.activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            android:parentActivityName=".presentation.activity.StartActivity">
+        </activity>
+        <activity
+            android:name=".presentation.activity.StartActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
