@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.Display;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -36,6 +39,8 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        ((ImageView)findViewById(R.id.iv_start_logo)).setImageResource(R.drawable.icon_app_house);
 
         //set display params for future usage
         setDisplayData();
@@ -77,6 +82,8 @@ public class StartActivity extends AppCompatActivity {
 
     private void mainJob() {
         //it's supposed that inet connection was provided
+        ((ProgressBar) findViewById(R.id.pb_start)).setVisibility(View.VISIBLE);
+
         if (userLogged()) {
             logUserIn(userDataFromSPEmail(), userDataFromSPPass());
             AppStart.cUploadUC.upload();
@@ -91,6 +98,8 @@ public class StartActivity extends AppCompatActivity {
                 //already sent data and wait for data to come in
                 while (defaultFlag.equals(flag)) ;//wait while request is going
                 //in case login is successful we start real app
+                ((ProgressBar) findViewById(R.id.pb_start)).setVisibility(View.INVISIBLE);
+
                 if (UserNetAnswers.userSuccessLogin.equals(flag)) {
                     startMainActivity();
                 } else {
