@@ -77,6 +77,7 @@
     <string name="profile_contacts">Контакты</string>
     <string name="profile_description_photo">Ваша фотография</string>
     <string name="profile_btn_update_photo">Обновить фото</string>
+    <string name="profile_btn_save_new_sc">save</string>
 
     <!-- create new card (cnc) -->
     <string name="cnc_city">Город</string>

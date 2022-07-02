@@ -77,6 +77,7 @@
     <string name="profile_contacts">Social contacts</string>
     <string name="profile_description_photo">Your photo</string>
     <string name="profile_btn_update_photo">Update photo</string>
+    <string name="profile_btn_save_new_sc">save</string>
 
     <!-- create new card (cnc) -->
     <string name="cnc_city">City</string>
