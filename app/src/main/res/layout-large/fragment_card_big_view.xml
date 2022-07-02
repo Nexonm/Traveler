@@ -105,6 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="50dp"
                     android:text="@string/cbv_social_contacts"
                     android:textAppearance="@style/text_style_2" />
             </LinearLayout>
@@ -118,7 +119,6 @@
                 android:layout_marginBottom="75dp"
                 android:text="@string/cbv_text_from_author"
                 android:textAppearance="@style/text_style_2" />
-
         </LinearLayout>
     </ScrollView>
 

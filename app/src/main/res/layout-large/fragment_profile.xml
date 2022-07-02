@@ -202,13 +202,14 @@
                         android:layout_marginStart="40dp"
                         android:text="@string/profile_contacts"
                         android:textAppearance="@style/text_style_2" />
+
                     <Button
                         android:id="@+id/ib_profile_edit_social_contacts"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/custom_button_2"
                         android:text="@string/profile_btn_edit"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
                 </TableRow>
 
                 <TableRow
@@ -240,7 +241,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/custom_button_2"
-                        android:text="save" />
+                        android:text="@string/profile_btn_save_new_sc" />
 
                 </TableRow>
             </TableLayout>

@@ -86,7 +86,6 @@
                             android:text="@string/cbv_second_name"
                             android:textAppearance="@style/text_style_2" />
                     </LinearLayout>
-
                 </LinearLayout>
 
                 <TextView
@@ -117,7 +116,6 @@
                 android:layout_marginBottom="50dp"
                 android:text="@string/cbv_text_from_author"
                 android:textAppearance="@style/text_style_2" />
-
         </LinearLayout>
     </ScrollView>
 

@@ -34,8 +34,8 @@
 
             <ImageView
                 android:id="@+id/iv_main_image_big_card_my_card_big"
-                android:layout_width="300dp"
-                android:layout_height="150dp"
+                android:layout_width="450dp"
+                android:layout_height="250dp"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/cbv_description_photo" />
@@ -58,8 +58,8 @@
 
                     <ImageView
                         android:id="@+id/iv_avatar_image_big_card_my_card_big"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:contentDescription="@string/cbv_description_photo"
                         android:padding="8dp"
                         tools:src="@drawable/icon_profile" />
@@ -105,6 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="50dp"
                     android:text="@string/cbv_social_contacts"
                     android:textAppearance="@style/text_style_2" />
             </LinearLayout>
@@ -115,10 +116,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="75dp"
                 android:text="@string/cbv_text_from_author"
                 android:textAppearance="@style/text_style_2" />
-
         </LinearLayout>
     </ScrollView>
 
@@ -129,11 +129,11 @@
         android:backgroundTint="@color/button"
         android:text="@string/delete"
         android:textAppearance="@style/text_style_1"
-        app:cornerRadius="17dp"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:strokeColor="@color/white"
-        app:strokeWidth="3dp" />
+        app:strokeWidth="5dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

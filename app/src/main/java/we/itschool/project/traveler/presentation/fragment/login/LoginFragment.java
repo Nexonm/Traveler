@@ -24,7 +24,6 @@ import we.itschool.project.traveler.app.AppStart;
 import we.itschool.project.traveler.presentation.activity.LoginActivity;
 import we.itschool.project.traveler.presentation.activity.MainActivity;
 
-
 public class LoginFragment extends Fragment {
 
     private static final String defaultFlag = "waiting";
@@ -56,7 +55,6 @@ public class LoginFragment extends Fragment {
         et_password = view.findViewById(R.id.et_login_field_password);
         bt_login = view.findViewById(R.id.bt_login_sign_in);
         bt_login.setOnClickListener(v -> userLogin());
-
         pb_login = view.findViewById(R.id.pb_login);
     }
 
@@ -67,7 +65,7 @@ public class LoginFragment extends Fragment {
             pb_login.setVisibility(View.VISIBLE);
             final Handler handler = new Handler();
             handler.postDelayed(() -> {
-                while (defaultFlag.equals(flag)) ;
+                while (true) if (!defaultFlag.equals(flag)) break;
                 pb_login.setVisibility(View.INVISIBLE);
 
                 //all went successfully and user logged in
@@ -86,7 +84,7 @@ public class LoginFragment extends Fragment {
                         Toast.makeText(this.getContext(), flag, Toast.LENGTH_LONG).show();
                     }
                 }
-                }, 1500);
+            }, 1500);
         }
     }
 
