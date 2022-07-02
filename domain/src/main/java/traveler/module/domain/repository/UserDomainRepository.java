@@ -81,4 +81,11 @@ public interface UserDomainRepository {
      * @param desc hte user personal description
      */
     void setDescription(String desc);
+
+    /**
+     * Edit user contacts (socialContacts and phone).
+     * @param entity user with changed data
+     * @param pass user password
+     */
+    void editContacts(UserEntity entity, String pass);
 }
