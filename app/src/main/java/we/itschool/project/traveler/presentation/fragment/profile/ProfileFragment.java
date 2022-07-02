@@ -50,6 +50,7 @@ public class ProfileFragment extends Fragment {
     private EditText et_edit_social_contacts;
 
     private static final int PERMISSION_CODE = 1001;
+    private boolean counter;
     public static final String KEY_PREF_USER_PASSWORD = "UserPassword";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -68,6 +69,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initView(View view) {
+        counter = false;
         TextView tv_first_name = view.findViewById(R.id.tv_profile_first_name);
         tv_first_name.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getFirstName());
         TextView tv_second_name = view.findViewById(R.id.tv_profile_second_name);
@@ -101,12 +103,19 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void editSocialContacts(View view){
-        view.findViewById(R.id.tr_edit_social_contacts).setClickable(true);
-        view.findViewById(R.id.tr_edit_social_contacts).setVisibility(View.VISIBLE);
+    private void editSocialContacts(View view) {
+        counter = !counter;
+        if (counter) {
+            view.findViewById(R.id.tr_edit_social_contacts).setClickable(true);
+            view.findViewById(R.id.tr_edit_social_contacts).setVisibility(View.VISIBLE);
+        } else {
+            view.findViewById(R.id.tr_edit_social_contacts).setClickable(false);
+            view.findViewById(R.id.tr_edit_social_contacts).setVisibility(View.INVISIBLE);
+        }
+
     }
 
-    private void saveSocialContacts(View view){
+    private void saveSocialContacts(View view) {
         view.findViewById(R.id.tr_edit_social_contacts).setClickable(false);
         view.findViewById(R.id.tr_edit_social_contacts).setVisibility(View.INVISIBLE);
         String newSC = et_edit_social_contacts.getText().toString();
