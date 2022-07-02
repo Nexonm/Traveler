@@ -11,7 +11,7 @@ import we.itschool.project.traveler.app.AppStart;
 
 public class ViewModelMyCards extends ViewModel {
 
-    private MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList;
+    private final MutableLiveData<ArrayList<CardEntity>> cardsLiveDataList;
     UserGetUserCardsUseCase getCardsUC = AppStart.uGetUserCardsUC;
 
     public ViewModelMyCards() {

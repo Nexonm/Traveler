@@ -39,8 +39,8 @@
     <string name="reg_title_empty_first_name">Введите имя</string>
     <string name="reg_title_second_name">Фамилия</string>
     <string name="reg_title_empty_second_name">Введите фамилию</string>
-    <string name="reg_title_man">Мужской</string>
-    <string name="reg_title_woman">Женский</string>
+    <string name="man">Мужской</string>
+    <string name="woman">Женский</string>
     <string name="reg_genders_error">Выберите пол</string>
     <string name="reg_title_email">Email</string>
     <string name="reg_title_empty_email">Введите Email</string>

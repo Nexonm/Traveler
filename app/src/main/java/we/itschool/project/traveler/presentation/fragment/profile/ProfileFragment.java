@@ -26,7 +26,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import traveler.module.data.travelerapi.APIConfigTraveler;
@@ -40,29 +39,15 @@ public class ProfileFragment extends Fragment {
     private Context context;
 
     private ImageView iv_avatar;
-    private TextView tv_first_name;
-    private TextView tv_second_name;
-    private TextView tv_phone;
-    private TextView tv_email;
-    private TextView tv_is_male;
-    private TextView tv_birthday;
-    private TextView tv_contacts;
-
-    private Button bt_update_photo;
-
-    private FloatingActionButton fab_edit_avatar;
 
     private static final int PERMISSION_CODE = 1001;
-    private String bufString = "null";
-    private boolean flagToDownloadImage = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -73,20 +58,19 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initView(View view) {
-        tv_first_name = view.findViewById(R.id.tv_profile_first_name);
+        TextView tv_first_name = view.findViewById(R.id.tv_profile_first_name);
         tv_first_name.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getFirstName());
-        tv_second_name = view.findViewById(R.id.tv_profile_second_name);
+        TextView tv_second_name = view.findViewById(R.id.tv_profile_second_name);
         tv_second_name.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getSecondName());
-        tv_phone = view.findViewById(R.id.tv_profile_phone);
+        TextView tv_phone = view.findViewById(R.id.tv_profile_phone);
         tv_phone.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getPhoneNumber());
-        tv_email = view.findViewById(R.id.tv_profile_email);
+        TextView tv_email = view.findViewById(R.id.tv_profile_email);
         tv_email.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getEmail());
-        tv_is_male = view.findViewById(R.id.tv_profile_is_male);
-        //TODO make String resource with translation
-        tv_is_male.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().isMale() ? "Мужской" : "Женский");
-        tv_birthday = view.findViewById(R.id.tv_profile_birthday);
+        TextView tv_is_male = view.findViewById(R.id.tv_profile_is_male);
+        tv_is_male.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().isMale() ? requireContext().getResources().getString(R.string.man) : requireContext().getResources().getString(R.string.woman));
+        TextView tv_birthday = view.findViewById(R.id.tv_profile_birthday);
         tv_birthday.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getDateOfBirth());
-        tv_contacts = view.findViewById(R.id.tv_profile_contacts);
+        TextView tv_contacts = view.findViewById(R.id.tv_profile_contacts);
         tv_contacts.setText(AppStart.uGetMainUserUC.getMainUser().getUserInfo().getSocialContacts());
 
         iv_avatar = view.findViewById(R.id.iv_profile_avatar);
@@ -94,7 +78,7 @@ public class ProfileFragment extends Fragment {
                 .load(APIConfigTraveler.STORAGE_USER_PHOTO_METHOD + AppStart.uGetMainUserUC.getMainUser().get_id())
                 .into(iv_avatar);
 
-        bt_update_photo = view.findViewById(R.id.bt_profile_update_photo);
+        Button bt_update_photo = view.findViewById(R.id.bt_profile_update_photo);
         bt_update_photo.setOnClickListener(v -> {
             try {
                 if (!hasPermissions()) {
@@ -104,8 +88,7 @@ public class ProfileFragment extends Fragment {
                     pickImageFromGallery();
                 }
             } catch (Exception e) {
-                //TODO make String resource
-                Toast.makeText(this.getContext(), "Поизошла ошибка, попробуйте снова", Toast.LENGTH_LONG).show();
+                Toast.makeText(this.getContext(), R.string.profile_error, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -130,8 +113,9 @@ public class ProfileFragment extends Fragment {
                 public void onActivityResult(ActivityResult result) {
                     if (result != null) {
                         try {
+                            assert result.getData() != null;
                             Uri imageUri = result.getData().getData();
-                            bufString = getRealPathFromURI(imageUri);
+                            String bufString = getRealPathFromURI(imageUri);
 //                            Log.v("fileName", "the file path: " + bufString);
                             Glide.with(context)
                                     .load(imageUri)
@@ -139,21 +123,20 @@ public class ProfileFragment extends Fragment {
                             //send data to server
                             AppStart.uAddPhotoUC.addPhoto(bufString);
                         } catch (NullPointerException e) {
-                            //TODO make String resource
-                            Toast.makeText(context, "Видимо вы прекратили выбор фото, не забудьте выбрать:)", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, R.string.profile_photo_break, Toast.LENGTH_LONG).show();
                         }
                     } else {
-                        //TODO make String resource
-                        Toast.makeText(context, "Please allow us to upload photo from your gallery", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, R.string.profile_photo_can_not, Toast.LENGTH_LONG).show();
                     }
                 }
             }
     );
 
     private String getRealPathFromURI(Uri uri) {
-        Cursor cursor = this.getActivity().getContentResolver().query(uri, null, null, null, null);
+        Cursor cursor = this.requireActivity().getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        cursor.close();
         return cursor.getString(idx);
     }
 
@@ -164,7 +147,7 @@ public class ProfileFragment extends Fragment {
      */
     private boolean hasPermissions() {
         return ActivityCompat.checkSelfPermission(
-                this.getActivity().getBaseContext(),
+                this.requireActivity().getBaseContext(),
                 Manifest.permission.READ_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED;
     }

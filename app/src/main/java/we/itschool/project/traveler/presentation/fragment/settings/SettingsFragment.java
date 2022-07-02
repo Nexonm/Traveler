@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import we.itschool.project.traveler.R;
 
 public class SettingsFragment extends Fragment {
-    TextView bt_language;
+    TextView tv_language;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,6 @@ public class SettingsFragment extends Fragment {
     }
 
     private void initView(View view) {
-        bt_language = view.findViewById(R.id.tv_settings_language);
-        //bt_language.setOnClickListener(v -> isEnglish = !isEnglish);
+        tv_language = view.findViewById(R.id.tv_settings_language);
     }
 }

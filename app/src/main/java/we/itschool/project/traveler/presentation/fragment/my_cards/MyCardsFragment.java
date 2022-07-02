@@ -35,10 +35,6 @@ public class MyCardsFragment extends Fragment {
     private ViewModelMyCards viewModel;
     private Adapter adapter;
 
-    public static MyCardsFragment newInstance(){
-        return new MyCardsFragment();
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

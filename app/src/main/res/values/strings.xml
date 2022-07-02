@@ -39,9 +39,9 @@
     <string name="reg_title_empty_first_name">Enter name</string>
     <string name="reg_title_second_name">Last name</string>
     <string name="reg_title_empty_second_name">Enter last name</string>
-    <string name="reg_title_man">Male</string>
-    <string name="reg_title_woman">Female</string>
-    <string name="reg_genders_error">Please, select your Gender</string>
+    <string name="man">Male</string>
+    <string name="woman">Female</string>
+    <string name="reg_genders_error">Please, select your gender</string>
     <string name="reg_title_email">Email</string>
     <string name="reg_title_empty_email">Enter Email</string>
     <string name="reg_title_invalid_email">Invalid Email</string>
@@ -62,6 +62,21 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string name="reg_error">Registration failed, try again.</string>
+    <string name="reg_error_email_exist">User with same Email is already exists.</string>
+    <string name="reg_some_error">Something went wrong. Check internet connection and try again.</string>
+    <string name="reg_required_social">Social contacts is required</string>
+    <string name="reg_required_phone">Phone number is required</string>
+    <string name="reg_required_birth">Birth date is required</string>
+    <string name="reg_required_password">Password is required</string>
+    <string name="reg_required_email">Email is required</string>
+    <string name="reg_required_second_name">Second name is required</string>
+    <string name="reg_required_name">Name is required</string>
+    <string name="reg_invalid_phone">Please provide your correct phone number</string>
+    <string name="reg_invalid_birth">Please provide your correct birth date</string>
+    <string name="reg_dont_confirm_pass">Passwords don\'t confirm</string>
+    <string name="reg_not_long_password">Min password length should be of 6 characters!</string>
+    <string name="reg_invalid_email">"Please provide your valid Email"</string>
 
     <!-- main -->
     <string name="main_search">Search</string>
@@ -77,6 +92,9 @@
     <string name="profile_contacts">Social contacts</string>
     <string name="profile_description_photo">Your photo</string>
     <string name="profile_btn_update_photo">Update photo</string>
+    <string name="profile_error">Произошла ошибка, попробуйте снова</string>
+    <string name="profile_photo_break">Видимо вы прекратили выбор фото, не забудьте выбрать:)</string>
+    <string name="profile_photo_can_not">Произошла ошибка, попробуйте снова</string>
 
     <!-- create new card (cnc) -->
     <string name="cnc_city">City</string>
@@ -124,6 +142,9 @@
     <string name="map_bt_find_me">Find me</string>
     <string name="map_no_name">No name info</string>
     <string name="map_dist">Dist: </string>
+    <string name="map_warning">[WARNING] </string>
+    <string name="map_please_accept">Разрешите доступ к местоположению для работы карты</string>
+    <string name="map_accept">Разрешиты</string>
 
     <!-- settings -->
     <string name="settings_language">Change the language</string>

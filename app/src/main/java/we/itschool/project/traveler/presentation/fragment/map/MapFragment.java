@@ -216,7 +216,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
     };
 
     // get all places around in 10 km
-    public static void SetPlacesInMap(Point position) {
+    public void SetPlacesInMap(Point position) {
         Log.e("lon, lat", position.getLongitude() + " " + position.getLatitude());
         APIServiceOTMGetPlaces service = APIServiceOTMConstructor.CreateService(APIServiceOTMGetPlaces.class);
         //запрос к ретрофиту на получение данных
@@ -290,15 +290,14 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
             @Override
             public void onFailure(@NonNull Call<ResponseOTM> call, @NonNull Throwable t) {
-                //TODO make String resource
-                Toast.makeText(mf.getContext(), "[WARNING] " + t,
+                Toast.makeText(mf.getContext(),  requireContext().getResources().getString(R.string.map_warning) + t,
                         Toast.LENGTH_LONG).show();
             }
         });
     }
 
     // Get all info about places in  OpenTripMap
-    public static void GetInfoAbout(String xid, String distance) {
+    public void GetInfoAbout(String xid, String distance) {
 
         APIServiceOTMGetInfoOfPlaces service = APIServiceOTMConstructor.CreateService(APIServiceOTMGetInfoOfPlaces.class);
         Call<ResponseOTMInfo> call = service.getInfo(
@@ -323,8 +322,7 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
 
             @Override
             public void onFailure(@NonNull Call<ResponseOTMInfo> call, @NonNull Throwable t) {
-                //TODO make String resource
-                Toast.makeText(mf.context, "[WARNING] " + t,
+                Toast.makeText(mf.context, requireContext().getResources().getString(R.string.map_warning) + t,
                         Toast.LENGTH_LONG).show();
             }
         });
@@ -374,9 +372,8 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
             final AlertDialog.Builder builder = new AlertDialog.Builder(context);
             final boolean[] result = new boolean[1];
             builder.setCancelable(false);
-            //TODO make String resource
-            builder.setMessage("Разрешите доступ к местоположению для работы карты");
-            builder.setPositiveButton("Разрешить", (dialog, id) -> {
+            builder.setMessage(requireContext().getResources().getString(R.string.map_please_accept));
+            builder.setPositiveButton(R.string.map_accept, (dialog, id) -> {
                 startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                 checkLocation();
                 result[0] = true;
@@ -393,7 +390,6 @@ public class MapFragment extends Fragment implements UserLocationObjectListener,
     }
 
     public boolean checkConnection() {
-//        Log.e("checkConnection", hasConnection() + "");
         if (hasConnection()) {
             return true;
         } else {

@@ -34,7 +34,6 @@ import we.itschool.project.traveler.presentation.activity.MainActivity;
 
 public class RegistrationFragment extends Fragment {
 
-    private String name, surname, email, password, password2, birth_date, phone, social_contacts;
     private EditText et_first_name;
     private EditText et_second_name;
     private EditText et_email;
@@ -44,18 +43,10 @@ public class RegistrationFragment extends Fragment {
     private EditText et_phone;
     private EditText et_social_cont;
 
-    private Button bt_register;
-    private RadioButton rb_male;
-    private RadioButton rb_female;
-
     private ProgressBar pb_reg;
     private String gender;
     private static final String defaultFlag = "Waiting";
     private String flag = defaultFlag;
-
-    public static RegistrationFragment newInstance() {
-        return new RegistrationFragment();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,12 +79,12 @@ public class RegistrationFragment extends Fragment {
 
         //default gender value
         gender = getResources().getStringArray(R.array.genders)[0];
-        rb_male = view.findViewById(R.id.rb_reg_man);
+        RadioButton rb_male = view.findViewById(R.id.rb_reg_man);
         rb_male.setOnClickListener(v -> gender = getResources().getStringArray(R.array.genders)[1]);
-        rb_female = view.findViewById(R.id.rb_reg_woman);
+        RadioButton rb_female = view.findViewById(R.id.rb_reg_woman);
         rb_female.setOnClickListener(v -> gender = getResources().getStringArray(R.array.genders)[2]);
 
-        bt_register = view.findViewById(R.id.bt_reg_register_new_user);
+        Button bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
             if (checkAllData()) {
                 pb_reg.setVisibility(View.VISIBLE);
@@ -103,20 +94,19 @@ public class RegistrationFragment extends Fragment {
                     pb_reg.setVisibility(View.INVISIBLE);
                 }, 1500);
 
-                //TODO make string resources for this errors
                 if (UserNetAnswers.userOtherError.equals(flag)){
                     Toast.makeText(this.requireActivity().getBaseContext(),
-                            "Registration failed, try again.",
+                            R.string.reg_error,
                             Toast.LENGTH_LONG).show();
                 }else if (UserNetAnswers.userAlreadyExists.equals(flag)){
                     Toast.makeText(this.requireActivity().getBaseContext(),
-                            "User with same Email is already exists.",
+                            R.string.reg_error_email_exist,
                             Toast.LENGTH_LONG).show();
                 }else if (UserNetAnswers.userSuccessRegistration.equals(flag)) {
                     startMainActivity();
                 }else {
                     Toast.makeText(this.requireActivity().getBaseContext(),
-                            "Something went wrong. Check internet connection and try again.",
+                            R.string.reg_some_error,
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -128,84 +118,82 @@ public class RegistrationFragment extends Fragment {
     private boolean checkAllData() {
         boolean check = true;
 
-        name = et_first_name.getText().toString().trim();
-        surname = et_second_name.getText().toString().trim();
-        email = et_email.getText().toString().trim();
-        password = et_password.getText().toString().trim();
-        password2 = et_password_check.getText().toString().trim();
-        birth_date = et_birth_date.getText().toString().trim();
-        phone = et_phone.getText().toString().trim();
-        social_contacts = et_social_cont.getText().toString().trim();
+        String name = et_first_name.getText().toString().trim();
+        String surname = et_second_name.getText().toString().trim();
+        String email = et_email.getText().toString().trim();
+        String password = et_password.getText().toString().trim();
+        String password2 = et_password_check.getText().toString().trim();
+        String birth_date = et_birth_date.getText().toString().trim();
+        String phone = et_phone.getText().toString().trim();
+        String social_contacts = et_social_cont.getText().toString().trim();
 
-        //TODO make String resources for this strings
         if (social_contacts.isEmpty()) {
             check = false;
-            et_social_cont.setError("Social contacts is required");
+            et_social_cont.setError(requireContext().getResources().getString(R.string.reg_required_social));
             et_social_cont.requestFocus();
         }
-
         if (phone.isEmpty()) {
             check = false;
-            et_phone.setError("Phone number is required");
+            et_phone.setError(requireContext().getResources().getString(R.string.reg_required_phone));
             et_phone.requestFocus();
         } else if (!Patterns.PHONE.matcher(phone).matches()) {
             check = false;
             et_phone.setText("");
-            et_phone.setError("Please provide your correct phone number");
+            et_phone.setError(requireContext().getResources().getString(R.string.reg_invalid_phone));
             et_phone.requestFocus();
         }
         if (birth_date.isEmpty()) {
             check = false;
-            et_birth_date.setError("Birth date is required");
+            et_birth_date.setError(requireContext().getResources().getString(R.string.reg_required_birth));
             et_birth_date.requestFocus();
         } else if (!isValid(birth_date)) {
             check = false;
             et_birth_date.setText("");
-            et_birth_date.setError("Please provide your correct birth date");
+            et_birth_date.setError(requireContext().getResources().getString(R.string.reg_invalid_birth));
             et_birth_date.requestFocus();
         }
         boolean can1 = true, can2 = true;
         if (password2.isEmpty()) {
             can2 = false;
             check = false;
-            et_password_check.setError("Password is required");
+            et_password_check.setError(requireContext().getResources().getString(R.string.reg_required_password));
             et_password_check.requestFocus();
         }
         if (password.isEmpty()) {
             can1 = false;
             check = false;
-            et_password.setError("Password is required");
+            et_password.setError(requireContext().getResources().getString(R.string.reg_required_password));
             et_password.requestFocus();
         } else if (password.length() < 6) {
             can1 = false;
             check = false;
-            et_password.setError("Min password length should be of 6 characters! ");
+            et_password.setError(requireContext().getResources().getString(R.string.reg_not_long_password));
             et_password.requestFocus();
         }
         if (can1 && can2 && !et_password.getText().toString().equals(et_password_check.getText().toString())) {
             check = false;
             et_password.setText("");
             et_password_check.setText("");
-            et_password_check.setError("Passwords don't confirm");
+            et_password_check.setError(requireContext().getResources().getString(R.string.reg_dont_confirm_pass));
             et_password_check.requestFocus();
         }
         if (email.isEmpty()) {
             check = false;
-            et_email.setError("Email is required");
+            et_email.setError(requireContext().getResources().getString(R.string.reg_required_email));
             et_email.requestFocus();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(et_email.getText()).matches()) {
             check = false;
-            et_email.setError("Please provide your valid Email");
+            et_email.setError(requireContext().getResources().getString(R.string.reg_invalid_email));
             et_email.requestFocus();
         }
         if (surname.isEmpty()) {
             check = false;
-            et_second_name.setError("Second name is required");
+            et_second_name.setError(requireContext().getResources().getString(R.string.reg_required_second_name));
             et_second_name.requestFocus();
         }
         if (name.isEmpty()) {
             check = false;
-            et_first_name.setError("Name is required");
+            et_first_name.setError(requireContext().getResources().getString(R.string.reg_required_name));
             et_first_name.requestFocus();
         }
         if (gender.equals(getResources().getStringArray(R.array.genders)[0])) {
