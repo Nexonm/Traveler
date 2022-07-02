@@ -83,6 +83,8 @@ public class RegistrationFragment extends Fragment {
         RadioButton rb_female = view.findViewById(R.id.rb_reg_woman);
         rb_female.setOnClickListener(v -> gender = getResources().getStringArray(R.array.genders)[2]);
 
+        pb_reg = view.findViewById(R.id.pb_registration);
+
         Button bt_register = view.findViewById(R.id.bt_reg_register_new_user);
         bt_register.setOnClickListener(v -> {
             if (checkAllData()) {
@@ -110,8 +112,6 @@ public class RegistrationFragment extends Fragment {
                 }
             }
         });
-
-        pb_reg = view.findViewById(R.id.pb_registration);
     }
 
     private boolean checkAllData() {
